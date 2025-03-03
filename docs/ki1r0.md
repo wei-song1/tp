@@ -29,24 +29,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Yizhan Han
+### Johnny Doe
 
-<img src="images/hyizhak.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/hyizhak)] [[portfolio](team/hyizhak.md)]
+[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Integration
+* Responsibilities: Data
 
-### Wei Song
+### Jean Doe
 
-<img src="images/wei-song1.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](https://github.com/wei-song1)]
-[[portfolio](team/wei-song1.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role: Documentation
-* Responsibilities: Documentation
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -57,13 +57,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
-
-### Amos Tan
-
-<img src="images/tanjiehaoamos.png" width="200px">
-
-[[github](http://github.com/TanJieHaoAmos)]
-[[portfolio](team/tanjiehaoamos.md)]
-
-* Role: Coding Quality
-* Responsibilities: Look after code quality, ensures adherence to coding standards, etc
