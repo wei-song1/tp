@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Amos Tan
+
+<img src="images/tanjiehaoamos.png" width="200px">
+
+[[github](http://github.com/TanJieHaoAmos)]
+[[portfolio](team/tanjiehaoamos.md)]
+
+* Role: Coding Quality
+* Responsibilities: Look after code quality, ensures adherence to coding standards, etc
