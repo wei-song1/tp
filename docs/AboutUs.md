@@ -18,41 +18,41 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Sun Siliang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ki1r0.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/rickyhfr)]
+[[github](https://github.com/ki1r0)]
+[[portfolio](team/ki1r0.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Yizhan Han
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hyizhak.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/rickyhfr)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/rickyhfr)]
+[[github](https://github.com/hyizhak)] [[portfolio](team/hyizhak.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Integration
 
-### James Doe
+### Lim Wei Song
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wei-song1.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/rickyhfr)]
+[[github](https://github.com/wei-song1)]
+[[portfolio](team/wei-song1.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Documentation
+
+### Amos Tan
+
+<img src="images/tanjiehaoamos.png" width="200px">
+
+[[github](http://github.com/TanJieHaoAmos)]
+[[portfolio](team/tanjiehaoamos.md)]
+
+* Role: Coding Quality
+* Responsibilities: Look after code quality, ensures adherence to coding standards, etc
