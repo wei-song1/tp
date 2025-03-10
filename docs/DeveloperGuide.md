@@ -262,32 +262,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Tech-savvy users
-* has a need to manage a significant number of contacts
-* has a need to add notes to managed contacts
-* prefer typing
-* is reasonably comfortable using CLI apps
+* 💼 Financial advisors
+* 🖥️ Tech-savvy
+* 📇 has a need to manage a significant number of contacts
+* 📝 has a need to add notes to keep track of their clients’ preferences
+* ⌨️ prefer typing
+* 🖱️ is reasonably comfortable using CLI apps
 
 **Value proposition**: 
 
-* Provide fast access to client details 
-* Easy adding of new clients and required data
-* Optimized for users who prefer CLI
-* Allows tracking of multiple details such as clients hobbies, preferences, status etc
+* 🚀 Provide fast access to client details 
+* ✨ Easy adding of new clients and required data
+* ⌨️ Optimized for users who prefer CLI
+* 📋 Allows tracking of multiple details such as clients hobbies, preferences, status etc
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                  | So that I can…​                                                        |
+|----------| ------------------------------------------ |-------------------------------| ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions        | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person              |                                                                        |
+| `* * *`  | user                                       | delete a person               | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name         | locate details of persons without having to go through the entire list |
+| `* *`    | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name          | locate a person easily                                                 |
+| `* * *`  | user                                       | read details about my clients | I can tell what my clients have    |
+| `* * *`  | user                                       | add notes to a person         |  record important details about my business dealings with them|
+| `* * *`  | user                                       | search for clients contacts   | I can immediately get the data I require of my client|
+| `* * *`  | user                                       | store multiple phone numbers and emails for a contact     |I can reach them through different channelse|
+
 
 *{More to be added}*
 
@@ -317,6 +323,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Add a person**
+
+**MSS**
+
+1.  User requests to add a person
+2. AddressBook prompts for the person’s details
+3. User provides the person’s details
+4. AddressBook adds the person
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. User provides an invalid detail.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+    * 3a2. User provides a duplicate detail.
+
+      * 3a2.1. AddressBook shows an error message.
+
+        Use case resumes at step 2.
+
+**Use case: Find a person**
+
+**MSS**
+
+1.  User requests to find a person by name
+2. AddressBook shows the person’s details
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The person is not found.
+
+  * 2a1. AddressBook shows an error message.
+
+    Use case ends.
 
 *{More to be added}*
 
