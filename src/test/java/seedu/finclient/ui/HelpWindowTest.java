@@ -1,9 +1,8 @@
 package seedu.finclient.ui;
 
+import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static java.lang.Thread.sleep;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
