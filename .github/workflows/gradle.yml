@@ -39,9 +39,6 @@ jobs:
       - name: Build and check with Gradle
         run: ./gradlew check coverage
 
-      - name: Run tests with Xvfb (Headless JavaFX)
-        run: xvfb-run --auto-servernum ./gradlew test
-
       - name: Upload coverage reports to Codecov
         if: runner.os == 'Linux'
         uses: codecov/codecov-action@v4
