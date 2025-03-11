@@ -3,12 +3,13 @@ package seedu.finclient.ui;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static java.lang.Thread.sleep;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.testfx.util.WaitForAsyncUtils;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -28,14 +29,13 @@ public class HelpWindowTest {
     }
 
     @Test
-    void testEscapeKeyClosesWindow(FxRobot robot) {
+    void testEscapeKeyClosesWindow(FxRobot robot) throws InterruptedException {
         // Assert that the HelpWindow is visible initially
         assertTrue(helpWindow.isShowing());
 
         // Simulate pressing ESC key
         robot.press(KeyCode.ESCAPE).release(KeyCode.ESCAPE);
-        WaitForAsyncUtils.waitForFxEvents();
-
+        sleep(500);
         // Assert that the window is now closed (invisible)
         assertFalse(helpWindow.isShowing());
     }
