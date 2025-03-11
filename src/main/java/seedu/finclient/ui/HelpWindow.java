@@ -17,21 +17,26 @@ import seedu.finclient.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_SYNTAX = "Add contact: add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]";
-    public static final String EDIT_SYNTAX = "Edit contact: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]";
+    public static final String EDIT_SYNTAX = "Edit contact: edit INDEX [n/NAME] "
+            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]";
     public static final String LIST_SYNTAX = "List all saved contacts: list";
     public static final String FIND_SYNTAX = "Find contact by name: find KEYWORD [MORE_KEYWORDS]";
     public static final String DELETE_SYNTAX = "Delete contact: delete INDEX";
     public static final String CLEAR_SYNTAX = "Clear all saved contacts: clear";
     public static final String HELP_SYNTAX = "Getting help for available commands: help";
     public static final String EXIT_SYNTAX = "Exit FinClient: exit";
-    public static final String ESCAPE_SYNTAX = "Close help window: hit the ESC key or click on the 'X' located at the top right of this window";
-    public static final String ADDITIONAL_COMMAND_SYNTAX = "Commands coming in a following update include sort and remark";
+    public static final String ESCAPE_SYNTAX = "Close help window: hit the ESC key or click on the 'X'"
+            + " located at the top right of this window";
+    public static final String ADDITIONAL_COMMAND_SYNTAX = "Commands coming in a following update "
+            + "include sort and remark";
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
 
-    public static final String HELP_MESSAGE = "Welcome to FinClient, here are the commands available: \n\n" +
-            ADD_SYNTAX + "\n" + EDIT_SYNTAX + "\n" + LIST_SYNTAX + "\n" + FIND_SYNTAX + "\n" +
-            DELETE_SYNTAX + "\n" + CLEAR_SYNTAX + "\n" + HELP_SYNTAX + "\n" + EXIT_SYNTAX + "\n\n" + ADDITIONAL_COMMAND_SYNTAX +
-            "\n\n" + ESCAPE_SYNTAX + "\n\nFor a more detailed guide, please head to " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Welcome to FinClient, here are the commands available: \n\n"
+            + ADD_SYNTAX + "\n" + EDIT_SYNTAX + "\n" + LIST_SYNTAX + "\n" + FIND_SYNTAX + "\n"
+            + DELETE_SYNTAX + "\n" + CLEAR_SYNTAX + "\n" + HELP_SYNTAX + "\n"
+            + EXIT_SYNTAX + "\n\n" + ADDITIONAL_COMMAND_SYNTAX
+            + "\n\n" + ESCAPE_SYNTAX + "\n\nFor a more detailed guide, please head to "
+            + USERGUIDE_URL;
 
     //public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     //public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + "\n" + ADD_SYNTAX;
