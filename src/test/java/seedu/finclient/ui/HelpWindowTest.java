@@ -4,6 +4,7 @@ import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.security.Key;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -28,13 +29,13 @@ public class HelpWindowTest {
     }
 
     @Test
-    void testEscapeKeyClosesWindow(FxRobot robot) throws InterruptedException {
+    void testEscapeKeyClosesWindow(FxRobot robot) {
         // Assert that the HelpWindow is visible initially
         assertTrue(helpWindow.isShowing());
 
         // Simulate pressing ESC key
         robot.press(KeyCode.ESCAPE).release(KeyCode.ESCAPE);
-        sleep(500);
+
         // Assert that the window is now closed (invisible)
         assertFalse(helpWindow.isShowing());
     }
