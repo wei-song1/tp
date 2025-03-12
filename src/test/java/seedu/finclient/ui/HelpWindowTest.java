@@ -25,7 +25,11 @@ public class HelpWindowTest {
 
     @BeforeAll
     static void setup() {
-        System.setProperty("javafx.platform", "Headless");
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+        System.setProperty("java.awt.headless", "true");
     }
 
     @Start
@@ -36,16 +40,16 @@ public class HelpWindowTest {
 
     @Test
     void testEscapeKeyClosesWindow(FxRobot robot) {
-        Platform.runLater(() -> {
-            assertTrue(helpWindow.isShowing());
 
-            // Simulate pressing ESC key
-            robot.press(KeyCode.ESCAPE).release(KeyCode.ESCAPE);
-        });
+        WaitForAsyncUtils.waitForFxEvents();
+        assertTrue(helpWindow.isShowing());
+
+        // Simulate pressing ESC key
+        robot.press(KeyCode.ESCAPE).release(KeyCode.ESCAPE);
 
         // Wait for JavaFX to process events
         WaitForAsyncUtils.waitForFxEvents();
 
-        Platform.runLater(() -> assertFalse(helpWindow.isShowing()));
+        assertFalse(helpWindow.isShowing());
     }
 }
