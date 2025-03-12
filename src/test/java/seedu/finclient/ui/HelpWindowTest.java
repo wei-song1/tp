@@ -22,10 +22,10 @@ public class HelpWindowTest {
     private HelpWindow helpWindow;
 
     @BeforeAll
-    static void setup() {
+    static void setup(){
         System.setProperty("javafx.platform", "Headless");
     }
-    
+
     @Start
     private void start(Stage stage) {
         helpWindow = new HelpWindow(stage);
