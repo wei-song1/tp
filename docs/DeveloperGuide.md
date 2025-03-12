@@ -269,9 +269,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * ⌨️ prefer typing
 * 🖱️ is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
-* 🚀 Provide fast access to client details 
+* 🚀 Provide fast access to client details
 * ✨ Easy adding of new clients and required data
 * ⌨️ Optimized for users who prefer CLI
 * 📋 Allows tracking of multiple details such as clients hobbies, preferences, status etc
