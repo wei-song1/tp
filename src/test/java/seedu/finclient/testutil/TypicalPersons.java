@@ -25,10 +25,10 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withPhone("94351253").withRemark("She likes aardvarks.")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
+            .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -60,14 +60,14 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code FinClient} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static FinClient getTypicalFinClient() {
-        FinClient fc = new FinClient();
+    public static FinClient getTypicalAddressBook() {
+        FinClient ab = new FinClient();
         for (Person person : getTypicalPersons()) {
-            fc.addPerson(person);
+            ab.addPerson(person);
         }
-        return fc;
+        return ab;
     }
 
     public static List<Person> getTypicalPersons() {
