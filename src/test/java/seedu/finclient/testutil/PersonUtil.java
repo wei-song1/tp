@@ -32,13 +32,6 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-<<<<<<< HEAD
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
-=======
         sb.append(PREFIX_NAME).append(person.getName().fullName).append(" ");
 
         for (Phone phone : person.getPhoneList().phoneList) {
@@ -47,8 +40,8 @@ public class PersonUtil {
 
         sb.append(PREFIX_EMAIL).append(person.getEmail().value).append(" ");
         sb.append(PREFIX_ADDRESS).append(person.getAddress().value).append(" ");
+        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
 
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );
