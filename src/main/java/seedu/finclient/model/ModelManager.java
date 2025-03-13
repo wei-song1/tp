@@ -111,6 +111,28 @@ public class ModelManager implements Model {
         finClient.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void hidePerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        finClient.hidePerson(predicate);
+    }
+
+    @Override
+    public void revealPerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        finClient.revealPerson(predicate);
+    }
+
+    @Override
+    public void hideAllPersons() {
+        finClient.hidePerson(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void revealAllPersons() {
+        finClient.revealPerson(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

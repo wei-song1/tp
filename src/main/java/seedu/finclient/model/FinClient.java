@@ -3,6 +3,7 @@ package seedu.finclient.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.finclient.commons.util.ToStringBuilder;
@@ -92,6 +93,20 @@ public class FinClient implements ReadOnlyFinClient {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Hides details of the person that satisfies the predicate.
+     */
+    public void hidePerson(Predicate<Person> predicate) {
+        persons.hidePerson(predicate);
+    }
+
+    /**
+     * Reveals details of the person that satisfies the predicate.
+     */
+    public void revealPerson(Predicate<Person> predicate) {
+        persons.revealPerson(predicate);
     }
 
     //// util methods
