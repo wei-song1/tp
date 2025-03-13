@@ -1,5 +1,6 @@
 package seedu.finclient.testutil;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +11,7 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -33,7 +35,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
+        descriptor.setPhoneList(person.getPhoneList());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
@@ -48,12 +50,19 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code PhoneList} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditPersonDescriptorBuilder withPhones(String... phones) {
+        ArrayList<Phone> phoneArrayList = new ArrayList<>();
+
+        for (String phone : phones) {
+            phoneArrayList.add(new Phone(phone));
+        }
+
+        descriptor.setPhoneList(new PhoneList(phoneArrayList));
         return this;
     }
+
 
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.

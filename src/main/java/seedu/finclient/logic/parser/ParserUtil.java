@@ -2,6 +2,7 @@ package seedu.finclient.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -64,6 +66,33 @@ public class ParserUtil {
         }
         return new Phone(trimmedPhone);
     }
+
+    /**
+     * Parses a collection of phone numbers into a list of Phone objects for PhoneList.
+     *
+     * @throws ParseException if any phone number is duplicated or contains more than 3 numbers.
+     * @return PhoneList of the final unique list
+     */
+    public static PhoneList parsePhoneList(Collection<String> phones) throws ParseException {
+        requireNonNull(phones);
+
+        Set<String> uniquePhones = new HashSet<>(phones);
+        if (uniquePhones.size() < phones.size()) {
+            throw new ParseException(PhoneList.MESSAGE_CONSTRAINTS);
+        }
+
+        if (uniquePhones.size() > 3) {
+            throw new ParseException(PhoneList.SIZE_CONSTRAINTS);
+        }
+
+        ArrayList<Phone> phoneArrayList = new ArrayList<>();
+        for (String phone : phones) {
+            phoneArrayList.add(parsePhone(phone));
+        }
+
+        return new PhoneList(phoneArrayList);
+    }
+
 
     /**
      * Parses a {@code String address} into an {@code Address}.
