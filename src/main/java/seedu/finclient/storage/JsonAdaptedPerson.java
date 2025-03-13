@@ -36,7 +36,7 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phones") List<String> phones,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("isHidden") boolean isHidden) {
         this.name = name;
@@ -89,7 +89,7 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (phones == null || phones.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Phone numbers"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PhoneList"));
         }
 
         PhoneList modelPhoneList = new PhoneList();
@@ -120,7 +120,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelIsHidden);
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelTags, modelIsHidden);
 
     }
 

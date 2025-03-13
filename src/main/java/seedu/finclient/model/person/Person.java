@@ -2,6 +2,8 @@ package seedu.finclient.model.person;
 
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -43,10 +45,10 @@ public class Person {
     /**
      * Alternate constructor to allow hiding of details.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isHidden) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags, boolean isHidden) {
+        requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.phoneList = phoneList;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -65,12 +67,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return isHidden ? new Phone("00000000") : phone;
-    }
-  
     public PhoneList getPhoneList() {
-        return phoneList;
+        return isHidden ? new PhoneList(new ArrayList<>(Arrays.asList(new Phone("00000000")))) : phoneList;
     }
 
     public Email getEmail() {
@@ -135,7 +133,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phoneList, phone, email, address, tags, isHidden);
+        return Objects.hash(name, phoneList, email, address, tags, isHidden);
     }
 
     @Override
@@ -149,7 +147,7 @@ public class Person {
         } else {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("phone", phone)
+                    .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
