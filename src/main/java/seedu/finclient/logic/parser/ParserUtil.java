@@ -71,7 +71,6 @@ public class ParserUtil {
      * Parses a collection of phone numbers into a list of Phone objects for PhoneList.
      *
      * @throws ParseException if any phone number is duplicated or contains more than 3 numbers.
-     * @return PhoneList of the final unique list
      */
     public static PhoneList parsePhoneList(Collection<String> phones) throws ParseException {
         requireNonNull(phones);

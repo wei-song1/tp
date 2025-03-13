@@ -12,7 +12,6 @@ import seedu.finclient.logic.commands.AddCommand;
 import seedu.finclient.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
-import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 
 /**
