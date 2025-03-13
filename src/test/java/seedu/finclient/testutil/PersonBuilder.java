@@ -1,5 +1,6 @@
 package seedu.finclient.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -82,6 +83,20 @@ public class PersonBuilder {
         Phone tempPhone = new Phone(phone);
         phoneList = new PhoneList();
         phoneList.addPhone(tempPhone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code PhoneList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPhone(String... phones) {
+        ArrayList<Phone> phoneArrayList = new ArrayList<>();
+
+        for (String phone : phones) {
+            phoneArrayList.add(new Phone(phone)); // Convert each String to a Phone object
+        }
+
+        this.phoneList = new PhoneList(phoneArrayList); // Use PhoneList constructor
         return this;
     }
 

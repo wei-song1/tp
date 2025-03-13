@@ -10,6 +10,8 @@ import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_DUPLICATE_PHONE_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -42,6 +44,7 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.testutil.PersonBuilder;
 
@@ -189,4 +192,17 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_duplicatePhoneNumbers_failure() {
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DUPLICATE_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                PhoneList.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_exceedPhoneNumbers_failure() {
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_EXCEED_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                PhoneList.SIZE_CONSTRAINTS);
+    }
+
 }

@@ -10,6 +10,8 @@ import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_DUPLICATE_PHONE_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
@@ -42,6 +44,7 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.testutil.EditPersonDescriptorBuilder;
 
@@ -173,8 +176,14 @@ public class EditCommandParserTest {
 
         // invalid followed by valid
         userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + INVALID_PHONE_DESC;
-
         assertParseFailure(parser, userInput, Phone.MESSAGE_CONSTRAINTS);
+
+        // invalid inputs
+        userInput = targetIndex.getOneBased() + INVALID_DUPLICATE_PHONE_DESC;
+        assertParseFailure(parser, userInput, PhoneList.MESSAGE_CONSTRAINTS);
+
+        userInput = targetIndex.getOneBased() + INVALID_EXCEED_PHONE_DESC;
+        assertParseFailure(parser, userInput, PhoneList.SIZE_CONSTRAINTS);
     }
 
     @Test
@@ -185,7 +194,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput;
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
@@ -196,6 +205,20 @@ public class EditCommandParserTest {
         // multiple invalid values
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
                 + INVALID_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC;
+
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL, PREFIX_ADDRESS));
+
+        // multiple invalid values with duplicate phone numbers
+        userInput = targetIndex.getOneBased() + INVALID_DUPLICATE_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
+                + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC;
+
+        assertParseFailure(parser, userInput,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL, PREFIX_ADDRESS));
+
+        // multiple invalid values with too many phone numbers
+        userInput = targetIndex.getOneBased() + INVALID_EXCEED_PHONE_DESC + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC
+                + INVALID_ADDRESS_DESC + INVALID_EMAIL_DESC;
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL, PREFIX_ADDRESS));

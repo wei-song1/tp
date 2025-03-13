@@ -1,6 +1,5 @@
 package seedu.finclient.testutil;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,17 +51,14 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code PhoneList} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withPhones(String... phones) {
-        ArrayList<Phone> phoneArrayList = new ArrayList<>();
-
+    public EditPersonDescriptorBuilder withPhones(String... phones) { // Accept multiple phone numbers
+        PhoneList phoneList = new PhoneList();
         for (String phone : phones) {
-            phoneArrayList.add(new Phone(phone));
+            phoneList.addPhone(new Phone(phone));
         }
-
-        descriptor.setPhoneList(new PhoneList(phoneArrayList));
+        descriptor.setPhoneList(phoneList);
         return this;
     }
-
 
     /**
      * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
