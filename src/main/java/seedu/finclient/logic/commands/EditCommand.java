@@ -26,8 +26,8 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
-import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.tag.Tag;
 
 /**

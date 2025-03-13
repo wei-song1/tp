@@ -1,6 +1,5 @@
 package seedu.finclient.storage;
 
-import java.beans.PropertyEditorManager;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,8 +15,8 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
-import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.tag.Tag;
 
 /**

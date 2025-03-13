@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Person's remark in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
  */
 public class Remark {
@@ -12,11 +12,11 @@ public class Remark {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "^.{0,49}$";  // Allows 0 to 49 characters
+    public static final String VALIDATION_REGEX = "^.{0,49}$";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Remark}.
      *
      * @param remark valid content.
      */
