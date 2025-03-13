@@ -83,7 +83,6 @@ public class FinClient implements ReadOnlyFinClient {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 

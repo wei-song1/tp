@@ -107,7 +107,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         finClient.setPerson(target, editedPerson);
     }
 
@@ -115,22 +114,26 @@ public class ModelManager implements Model {
     public void hidePerson(Predicate<Person> predicate) {
         requireNonNull(predicate);
         finClient.hidePerson(predicate);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void revealPerson(Predicate<Person> predicate) {
         requireNonNull(predicate);
         finClient.revealPerson(predicate);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void hideAllPersons() {
         finClient.hidePerson(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void revealAllPersons() {
         finClient.revealPerson(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
