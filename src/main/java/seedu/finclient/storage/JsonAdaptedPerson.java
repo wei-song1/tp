@@ -16,11 +16,8 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
-<<<<<<< HEAD
 import seedu.finclient.model.person.Remark;
-=======
 import seedu.finclient.model.person.PhoneList;
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -33,27 +30,19 @@ class JsonAdaptedPerson {
     private final String name;
     private final String email;
     private final String address;
-<<<<<<< HEAD
     private final String remark;
-=======
     private final List<String> phones;
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-<<<<<<< HEAD
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("remark") String remark,
-=======
     public JsonAdaptedPerson(@JsonProperty("name") String name,
                              @JsonProperty("phones") List<String> phones,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
+                             @JsonProperty("remark") String remark,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phones = (phones != null) ? new ArrayList<>(phones) : new ArrayList<>();
@@ -137,11 +126,7 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-<<<<<<< HEAD
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
-=======
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelTags);
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }

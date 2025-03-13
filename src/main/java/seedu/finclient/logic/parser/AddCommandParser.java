@@ -17,12 +17,8 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
-<<<<<<< HEAD
-import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.Remark;
-=======
 import seedu.finclient.model.person.PhoneList;
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -52,13 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-<<<<<<< HEAD
-
-        Person person = new Person(name, phone, email, address, remark, tagList);
-=======
-        Person person = new Person(name, phoneList, email, address, tagList);
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
+        Person person = new Person(name, phoneList, email, address, remark, tagList);
 
         return new AddCommand(person);
     }

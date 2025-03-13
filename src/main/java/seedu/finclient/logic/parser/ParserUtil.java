@@ -14,11 +14,8 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Phone;
-<<<<<<< HEAD
 import seedu.finclient.model.person.Remark;
-=======
 import seedu.finclient.model.person.PhoneList;
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
 import seedu.finclient.model.tag.Tag;
 
 /**

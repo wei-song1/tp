@@ -29,13 +29,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-<<<<<<< HEAD
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, tags);
-=======
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, PhoneList phoneList, Email email, Address address,Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phoneList, email, address, tags);
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
@@ -110,11 +105,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-<<<<<<< HEAD
-        return Objects.hash(name, phone, email, address, remark, tags);
-=======
-        return Objects.hash(name, phoneList, email, address, tags);
->>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
+        return Objects.hash(name, phoneList, email, address, remark, tags);
     }
 
     @Override
