@@ -1,11 +1,12 @@
 package seedu.finclient.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.finclient.model.Model;
-import seedu.finclient.model.ModelManager;
-
 import static seedu.finclient.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.finclient.logic.commands.SortCommand.MESSAGE_SORT_ACKNOWLEDGEMENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.finclient.model.Model;
+import seedu.finclient.model.ModelManager;
 
 public class SortCommandTest {
     private Model model = new ModelManager();
