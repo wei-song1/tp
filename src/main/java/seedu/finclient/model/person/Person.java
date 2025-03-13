@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final PhoneList phoneList;
     private final Email email;
 
     // Data fields
@@ -29,10 +29,15 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
+<<<<<<< HEAD
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, remark, tags);
+=======
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phoneList, email, address, tags);
+>>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
         this.name = name;
-        this.phone = phone;
+        this.phoneList = phoneList;
         this.email = email;
         this.address = address;
         this.remark = remark;
@@ -43,8 +48,8 @@ public class Person {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public PhoneList getPhoneList() {
+        return phoneList;
     }
 
     public Email getEmail() {
@@ -95,7 +100,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
+                && phoneList.equals(otherPerson.phoneList)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && remark.equals(otherPerson.remark)
@@ -105,14 +110,18 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
+<<<<<<< HEAD
         return Objects.hash(name, phone, email, address, remark, tags);
+=======
+        return Objects.hash(name, phoneList, email, address, tags);
+>>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
-                .add("phone", phone)
+                .add("phones", phoneList)
                 .add("email", email)
                 .add("address", address)
                 .add("remark", remark)

@@ -26,8 +26,12 @@ import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
+<<<<<<< HEAD
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.Remark;
+=======
+import seedu.finclient.model.person.PhoneList;
+>>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -99,13 +103,17 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        PhoneList updatedPhoneList = editPersonDescriptor.getPhoneList().orElse(personToEdit.getPhoneList());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+<<<<<<< HEAD
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+=======
+        return new Person(updatedName, updatedPhoneList, updatedEmail, updatedAddress, updatedTags);
+>>>>>>> 3b4763bba7fcf7dc7a4296945f967f63dff1949e
     }
 
     @Override
@@ -138,7 +146,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
+        private PhoneList phoneList;
         private Email email;
         private Address address;
         private Remark remark;
@@ -152,7 +160,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setPhoneList(toCopy.phoneList);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setRemark(toCopy.remark);
@@ -163,7 +171,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phoneList, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -174,12 +182,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhoneList(PhoneList phoneList) {
+            this.phoneList = phoneList;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<PhoneList> getPhoneList() {
+            return Optional.ofNullable(phoneList);
         }
 
         public void setEmail(Email email) {
@@ -237,7 +245,7 @@ public class EditCommand extends Command {
 
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
+                    && Objects.equals(phoneList, otherEditPersonDescriptor.phoneList)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
@@ -247,7 +255,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", name)
-                    .add("phone", phone)
+                    .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
