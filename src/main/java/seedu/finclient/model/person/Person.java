@@ -40,6 +40,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Alternate constructor to allow hiding of details.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean isHidden) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
