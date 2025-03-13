@@ -6,7 +6,9 @@ import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_DUPLICATE_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -27,7 +29,6 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.finclient.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.finclient.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.finclient.testutil.TypicalPersons.AMY;
@@ -42,6 +43,7 @@ import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.testutil.PersonBuilder;
 
@@ -74,10 +76,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
-        // multiple phones
-        assertParseFailure(parser, PHONE_DESC_AMY + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
-
         // multiple emails
         assertParseFailure(parser, EMAIL_DESC_AMY + validExpectedPersonString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
@@ -90,7 +88,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 validExpectedPersonString + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_PHONE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_ADDRESS, PREFIX_EMAIL));
 
         // invalid value followed by valid value
 
@@ -104,7 +102,7 @@ public class AddCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, INVALID_ADDRESS_DESC + validExpectedPersonString,
@@ -122,7 +120,7 @@ public class AddCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, validExpectedPersonString + INVALID_PHONE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, validExpectedPersonString + INVALID_ADDRESS_DESC,
@@ -193,4 +191,17 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_duplicatePhoneNumbers_failure() {
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_DUPLICATE_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                PhoneList.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_exceedPhoneNumbers_failure() {
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_EXCEED_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                PhoneList.SIZE_CONSTRAINTS);
+    }
+
 }

@@ -18,7 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final PhoneList phoneList;
     private final Email email;
 
     // Data fields
@@ -31,10 +31,10 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
-        this.phone = phone;
+        this.phoneList = phoneList;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -67,6 +67,10 @@ public class Person {
 
     public Phone getPhone() {
         return isHidden ? new Phone("00000000") : phone;
+    }
+  
+    public PhoneList getPhoneList() {
+        return phoneList;
     }
 
     public Email getEmail() {
@@ -122,7 +126,7 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
+                && phoneList.equals(otherPerson.phoneList)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
@@ -131,7 +135,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, isHidden);
+        return Objects.hash(name, phoneList, phone, email, address, tags, isHidden);
     }
 
     @Override
