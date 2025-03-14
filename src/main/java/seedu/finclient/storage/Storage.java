@@ -27,6 +27,6 @@ public interface Storage extends FinClientStorage, UserPrefsStorage {
     Optional<ReadOnlyFinClient> readFinClient() throws DataLoadingException;
 
     @Override
-    void saveFinClient(ReadOnlyFinClient addressBook) throws IOException;
+    void saveFinClient(ReadOnlyFinClient finclient) throws IOException;
 
 }

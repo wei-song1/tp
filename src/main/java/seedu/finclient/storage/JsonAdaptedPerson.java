@@ -32,17 +32,17 @@ class JsonAdaptedPerson {
     private final String remark;
     private final List<String> phones;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final boolean isHidden;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name,
-                             @JsonProperty("phones") List<String> phones,
-                             @JsonProperty("email") String email,
-                             @JsonProperty("address") String address,
-                             @JsonProperty("remark") String remark,
-                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phones") List<String> phones,
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("remark") String remark,@JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("isHidden") boolean isHidden) {
+            
         this.name = name;
         this.phones = (phones != null) ? new ArrayList<>(phones) : new ArrayList<>();
         this.email = email;
@@ -51,12 +51,15 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.isHidden = isHidden;
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        isHidden = source.getIsHidden();
+        source.setUnhidden();
         name = source.getName().fullName;
         phones = source.getPhoneList().phoneList.stream()
                 .map(Phone::toString)
@@ -67,6 +70,9 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        if (isHidden) {
+            source.setHidden();
+        }
     }
 
     /**
@@ -89,7 +95,7 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (phones == null || phones.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Phone numbers"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PhoneList"));
         }
 
         PhoneList modelPhoneList = new PhoneList();
@@ -115,7 +121,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
+      
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
@@ -123,9 +129,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
         }
         final Remark modelRemark = new Remark(remark);
-
+      
+        final boolean modelIsHidden = isHidden;
+      
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags);
+
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelTags, modelIsHidden);
+
     }
 
 }
