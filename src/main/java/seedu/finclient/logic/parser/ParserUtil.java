@@ -130,12 +130,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Remark} is invalid.
      */
-    public static Remark parseRemark(String remark) throws ParseException {
+    public static Remark parseRemark(String remark) {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
         return new Remark(trimmedRemark);
     }
 
