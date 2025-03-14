@@ -47,12 +47,13 @@ public class Person {
     /**
      * Alternate constructor to allow hiding of details.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags, boolean isHidden) {
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags, boolean isHidden) {
         requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
         this.isHidden = isHidden;
     }

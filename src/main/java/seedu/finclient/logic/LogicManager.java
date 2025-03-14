@@ -47,8 +47,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = finClientParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        try {
+            Command command = finClientParser.parseCommand(commandText);
+            commandResult = command.execute(model);
+        } catch (ParseException pe) {
+            throw new CommandException(pe.getMessage(), pe); // ✅ Convert ParseException to CommandException
+        }
 
         try {
             storage.saveFinClient(model.getFinClient());

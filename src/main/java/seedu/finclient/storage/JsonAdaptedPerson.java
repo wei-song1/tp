@@ -40,9 +40,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phones") List<String> phones,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("remark") String remark,@JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("remark") String remark, @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("isHidden") boolean isHidden) {
-            
         this.name = name;
         this.phones = (phones != null) ? new ArrayList<>(phones) : new ArrayList<>();
         this.email = email;
@@ -121,20 +120,16 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-      
+
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
-        if (!Remark.isValidRemark(remark)) {
-            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
-        }
         final Remark modelRemark = new Remark(remark);
-      
         final boolean modelIsHidden = isHidden;
-      
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelTags, modelIsHidden);
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags, modelIsHidden);
 
     }
 
