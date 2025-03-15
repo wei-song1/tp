@@ -5,6 +5,7 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.logic.Messages;
 import seedu.finclient.logic.commands.exceptions.CommandException;

@@ -6,7 +6,6 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.testutil.Assert.assertThrows;
 
