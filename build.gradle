@@ -23,7 +23,8 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
-    jvmArgs '--add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED'
+
+    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
 }
 
 task coverage(type: JacocoReport) {
@@ -57,8 +58,6 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
-    implementation 'org.openjfx:javafx-controls:17'
-    implementation 'org.openjfx:javafx-fxml:17'
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.0'
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
