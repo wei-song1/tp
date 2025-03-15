@@ -101,4 +101,66 @@ public class PersonTest {
                 + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void testHiddenBehavior() {
+        // Make a copy of ALICE with certain fields we can easily recognize
+        Person hiddenAlice = new PersonBuilder(ALICE).build();
+        assertFalse(hiddenAlice.getIsHidden(), "Newly created person should not be hidden by default.");
+
+        // Hide the person
+        hiddenAlice.setHidden();
+        assertTrue(hiddenAlice.getIsHidden(), "Person should now be hidden.");
+
+        // Now verify that the 'hidden' variants are returned
+        assertEquals("00000000", hiddenAlice.getPhoneList().toString(),
+                "PhoneList should be replaced with 00000000 when hidden.");
+        assertEquals("hidden@example.com", hiddenAlice.getEmail().toString(),
+                "Email should be replaced with hidden@example.com when hidden.");
+        assertEquals("Hidden", hiddenAlice.getAddress().toString(),
+                "Address should read 'Hidden' when hidden.");
+        assertTrue(hiddenAlice.getTags().isEmpty(),
+                "Tags should be empty when hidden.");
+
+        // And the toString() method should reflect hidden details
+        String hiddenString = hiddenAlice.toString();
+        // e.g. "seedu.finclient.model.person.Person{name=Alice Pauline, details=Sensitive details are hidden}"
+        assertTrue(hiddenString.contains("Sensitive details are hidden"),
+                "Hidden person's toString() should say that details are hidden.");
+    }
+
+    @Test
+    public void testUnhiddenBehavior() {
+        // Start off with ALICE, hide, then unhide
+        Person hiddenAlice = new PersonBuilder(ALICE).build();
+        hiddenAlice.setHidden();
+        assertTrue(hiddenAlice.getIsHidden());
+
+        // Unhide
+        hiddenAlice.setUnhidden();
+        assertFalse(hiddenAlice.getIsHidden());
+
+        // Should revert back to original data
+        assertEquals(ALICE.getPhoneList(), hiddenAlice.getPhoneList(),
+                "PhoneList should revert to the original once unhidden.");
+        assertEquals(ALICE.getEmail(), hiddenAlice.getEmail(),
+                "Email should revert to original once unhidden.");
+        assertEquals(ALICE.getAddress(), hiddenAlice.getAddress(),
+                "Address should revert to the original once unhidden.");
+        assertEquals(ALICE.getTags(), hiddenAlice.getTags(),
+                "Tags should revert to the original once unhidden.");
+    }
+
+    @Test
+    public void testSetHiddenAndUnhidden() {
+        Person p = new PersonBuilder().build(); // a generic person
+        // by default, isHidden should be false
+        assertFalse(p.getIsHidden());
+
+        p.setHidden();
+        assertTrue(p.getIsHidden(), "After setHidden(), person should be hidden.");
+
+        p.setUnhidden();
+        assertFalse(p.getIsHidden(), "After setUnhidden(), person should no longer be hidden.");
+    }
 }

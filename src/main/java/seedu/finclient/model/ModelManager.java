@@ -117,9 +117,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void hidePerson(Person person) {
+        requireNonNull(person);
+        finClient.hidePerson(person);
+    }
+
+    @Override
     public void revealPerson(Predicate<Person> predicate) {
         requireNonNull(predicate);
         finClient.revealPerson(predicate);
+    }
+
+    @Override
+    public void revealPerson(Person person) {
+        requireNonNull(person);
+        finClient.revealPerson(person);
     }
 
     @Override
@@ -165,5 +177,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

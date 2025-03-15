@@ -102,10 +102,24 @@ public class FinClient implements ReadOnlyFinClient {
     }
 
     /**
+     * Hides details of the person.
+     */
+    public void hidePerson(Person person) {
+        persons.hidePerson(person);
+    }
+
+    /**
      * Reveals details of the person that satisfies the predicate.
      */
     public void revealPerson(Predicate<Person> predicate) {
         persons.revealPerson(predicate);
+    }
+
+    /**
+     * Reveals details of the person.
+     */
+    public void revealPerson(Person person) {
+        persons.revealPerson(person);
     }
 
     //// util methods
