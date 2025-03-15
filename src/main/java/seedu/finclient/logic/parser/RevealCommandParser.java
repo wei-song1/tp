@@ -4,6 +4,8 @@ import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
+import seedu.finclient.commons.core.index.Index;
+import seedu.finclient.commons.util.StringUtil;
 import seedu.finclient.logic.commands.RevealCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.person.NameContainsKeywordsPredicate;
@@ -25,13 +27,20 @@ public class RevealCommandParser implements Parser<RevealCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, RevealCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] splitArgs = trimmedArgs.split("\\s+");
 
-        // if there is an "all", return a RevealCommand with no predicate
-        if (nameKeywords.length == 1 && nameKeywords[0].equalsIgnoreCase("all")) {
+        // 1) "reveal all" -> Reveal everything
+        if (splitArgs.length == 1 && splitArgs[0].equalsIgnoreCase("all")) {
             return new RevealCommand();
-        } else {
-            return new RevealCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
+
+        // 2) Check if the token is a valid one-based index
+        if (splitArgs.length == 1 && StringUtil.isNonZeroUnsignedInteger(splitArgs[0])) {
+            Index index = ParserUtil.parseIndex(splitArgs[0]);
+            return new RevealCommand(index);
+        }
+
+        // 3) Otherwise, treat them as name keywords
+        return new RevealCommand(new NameContainsKeywordsPredicate(Arrays.asList(splitArgs)));
     }
 }

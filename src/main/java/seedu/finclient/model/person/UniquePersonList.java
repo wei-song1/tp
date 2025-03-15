@@ -108,11 +108,29 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Hides details of the person.
+     */
+    public void hidePerson(Person person) {
+        requireNonNull(person);
+        internalList.filtered(person::isSamePerson)
+                .forEach(Person::setHidden);
+    }
+
+    /**
      * Reveals details of the persons that satisfy the predicate.
      */
     public void revealPerson(Predicate<Person> predicate) {
         requireNonNull(predicate);
         internalList.filtered(predicate)
+                .forEach(Person::setUnhidden);
+    }
+
+    /**
+     * Reveals details of the person.
+     */
+    public void revealPerson(Person person) {
+        requireNonNull(person);
+        internalList.filtered(person::isSamePerson)
                 .forEach(Person::setUnhidden);
     }
 

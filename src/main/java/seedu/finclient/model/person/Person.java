@@ -84,7 +84,7 @@ public class Person {
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return isHidden ? Collections.emptySet() : Collections.unmodifiableSet(tags);
     }
 
     /**
