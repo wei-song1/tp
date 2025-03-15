@@ -24,7 +24,8 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 
-    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
+    systemProperty "testfx.headless", "true"
+    jvmArgs "-Dprism.order=sw", "-Dprism.verbose=true", "-Djava.awt.headless=true"
 }
 
 task coverage(type: JacocoReport) {
@@ -73,7 +74,7 @@ dependencies {
 
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'finclient.jar'
 }
 
 defaultTasks 'clean', 'test'
