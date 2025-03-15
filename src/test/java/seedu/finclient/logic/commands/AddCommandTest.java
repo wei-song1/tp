@@ -154,7 +154,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void hidePerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void revealPerson(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void revealPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
