@@ -19,12 +19,12 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String ADD_SYNTAX = "Add contact (minimum of 1 and maximum of 3 phone numbers) : "
             + "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
             + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS [t/TAG]";
-    public static final String EDIT_SYNTAX = "Edit contact: edit INDEX [n/NAME] "
+    public static final String EDIT_SYNTAX = "Edit contact (mininally one field is to be entered) : edit INDEX [n/NAME] "
             + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]";
     public static final String LIST_SYNTAX = "List all saved contacts : list";
     public static final String FIND_SYNTAX = "Find contact by name : find KEYWORD [MORE_KEYWORDS]";
     public static final String DELETE_SYNTAX = "Delete contact : delete INDEX";
-    public static final String REMARK_SYNTAX = "Adding remark to contact : remark r/[NOTES]";
+    public static final String REMARK_SYNTAX = "Adding remark to contact : remark INDEX r/[NOTES]";
     public static final String HIDE_SYNTAX = "Hide contact details (can use index or name) : hide INDEX/NAME";
     public static final String REVEAL_SYNTAX = "Reveal contact details (can use index or name) : reveal INDEX/NAME";
     public static final String HIDE_REVEAL_ALL = "Hide/Reveal all contacts : hide all / reveal all";
@@ -61,6 +61,10 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        if (root == null) {
+            throw new IllegalArgumentException("Root stage cannot be null.");
+        }
+        assert helpMessage != null : "helpMessage label is not initialized.";
         helpMessage.setText(HELP_MESSAGE);
     }
 
@@ -90,7 +94,7 @@ public class HelpWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.info("Showing help page about the application.");
         Stage stage = getRoot();
 
         // Add event handler to close Help Message upon ESC key hit.
@@ -115,6 +119,7 @@ public class HelpWindow extends UiPart<Stage> {
      * Hides the help window.
      */
     public void hide() {
+        logger.info("Closing HelpWindow");
         getRoot().hide();
     }
 
@@ -122,6 +127,9 @@ public class HelpWindow extends UiPart<Stage> {
      * Focuses on the help window.
      */
     public void focus() {
+        if (!isShowing()) {
+            throw new IllegalStateException("Cannot focus HelpWindow: It is not currently visible.");
+        }
         getRoot().requestFocus();
     }
 
