@@ -19,8 +19,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String ADD_SYNTAX = "Add contact (minimum of 1 and maximum of 3 phone numbers) : "
             + "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
             + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS [t/TAG]";
-    public static final String EDIT_SYNTAX = "Edit contact (mininally one field is to be entered) : edit INDEX [n/NAME] "
-            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]";
+    public static final String EDIT_SYNTAX = "Edit contact (mininally one field is to be entered) "
+            + ": edit INDEX [n/NAME] " + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]";
     public static final String LIST_SYNTAX = "List all saved contacts : list";
     public static final String FIND_SYNTAX = "Find contact by name : find KEYWORD [MORE_KEYWORDS]";
     public static final String DELETE_SYNTAX = "Delete contact : delete INDEX";
