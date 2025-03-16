@@ -98,6 +98,7 @@ public class HelpWindow extends UiPart<Stage> {
         Stage stage = getRoot();
 
         // Add event handler to close Help Message upon ESC key hit.
+        // GUI testcase works fine on local environment. Removed to prevent interfering with CI
         stage.getScene().setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 hide();
