@@ -384,14 +384,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Extensions**
-
-* 2a. The person is not found.
-
-    * 2a1. FinClient shows an error message.
-
-      Use case ends.
-
 **Use case: Reveal a person's details**
 
 **MSS**
@@ -400,14 +392,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FinClient reveals the person’s details
 
    Use case ends.
-
-**Extensions**
-
-* 2a. The person is not found.
-
-    * 2a1. FinClient shows an error message.
-
-      Use case ends.
 
 **Use case: Add remarks to a person**
 
