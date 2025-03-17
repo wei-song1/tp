@@ -172,4 +172,88 @@ public class UniquePersonListTest {
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }
+
+    @Test
+    public void hidePerson_singlePerson_personIsHidden() {
+        uniquePersonList.add(ALICE);
+        // ALICE should not be hidden initially
+        assertFalse(ALICE.getIsHidden(), "ALICE should start unhidden.");
+
+        // Hide ALICE
+        uniquePersonList.hidePerson(ALICE);
+
+        // After hiding, ALICE should be hidden
+        assertTrue(ALICE.getIsHidden(), "ALICE should now be hidden.");
+
+        uniquePersonList.revealPerson(ALICE);
+    }
+
+    @Test
+    public void hidePerson_personNotInList_noChange() {
+        uniquePersonList.add(ALICE);
+        // BOB is not in the list, so this should do nothing
+        uniquePersonList.hidePerson(BOB);
+
+        // ALICE still in the list, still unhidden
+        assertFalse(ALICE.getIsHidden(), "ALICE should remain unhidden because we tried to hide BOB.");
+
+        uniquePersonList.revealPerson(BOB);
+    }
+
+    @Test
+    public void hidePerson_byPredicate_multiplePersonsHidden() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+
+        // Both ALICE & BOB unhidden initially
+        assertFalse(ALICE.getIsHidden());
+        assertFalse(BOB.getIsHidden());
+
+        // Hide all persons whose name contains "bob" (case-insensitive),
+        // so BOB definitely matches, ALICE does not.
+        NameContainsKeywordsPredicate nameContainsBob = new NameContainsKeywordsPredicate(
+                Collections.singletonList("bob"));
+        uniquePersonList.hidePerson(nameContainsBob);
+
+        // Verify BOB got hidden, ALICE stayed unhidden
+        assertFalse(ALICE.getIsHidden(), "ALICE should still be unhidden.");
+        assertTrue(BOB.getIsHidden(), "BOB should now be hidden.");
+
+        uniquePersonList.revealPerson(nameContainsBob);
+    }
+
+    @Test
+    public void revealPerson_singlePerson_personIsRevealed() {
+        // Hide ALICE first, then reveal her
+        uniquePersonList.add(ALICE);
+        uniquePersonList.hidePerson(ALICE);
+        assertTrue(ALICE.getIsHidden(), "ALICE should be hidden after hidePerson.");
+
+        // Now reveal ALICE
+        uniquePersonList.revealPerson(ALICE);
+        assertFalse(ALICE.getIsHidden(), "ALICE should be revealed now.");
+    }
+
+    @Test
+    public void revealPerson_byPredicate_multiplePersonsRevealed() {
+        // Add ALICE & BOB, hide them both, then reveal only persons matching predicate
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+
+        uniquePersonList.hidePerson(ALICE);
+        uniquePersonList.hidePerson(BOB);
+        assertTrue(ALICE.getIsHidden(), "ALICE hidden.");
+        assertTrue(BOB.getIsHidden(), "BOB hidden.");
+
+        // Reveal all persons whose name contains "alice" (case-insensitive)
+        NameContainsKeywordsPredicate nameContainsAlice = new NameContainsKeywordsPredicate(
+                Collections.singletonList("alice"));
+        uniquePersonList.revealPerson(nameContainsAlice);
+
+        // ALICE should now be revealed, BOB should remain hidden
+        assertFalse(ALICE.getIsHidden(), "ALICE should be revealed now.");
+        assertTrue(BOB.getIsHidden(), "BOB should remain hidden.");
+
+        uniquePersonList.revealPerson(BOB);
+    }
 }

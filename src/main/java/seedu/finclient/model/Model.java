@@ -76,6 +76,40 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Hides details of person(s) that matches the predicate
+     * @param predicate
+     */
+    void hidePerson(Predicate<Person> predicate);
+
+    /**
+     * Hides details of the person
+     * @param person
+     */
+    void hidePerson(Person person);
+
+    /**
+     * Reveals details of person(s) that matches the predicate
+     * @param predicate
+     */
+    void revealPerson(Predicate<Person> predicate);
+
+    /**
+     * Reveals details of the person
+     * @param person
+     */
+    void revealPerson(Person person);
+
+    /**
+     * Hides details of all persons
+     */
+    void hideAllPersons();
+
+    /**
+     * Reveals all hidden persons
+     */
+    void revealAllPersons();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
