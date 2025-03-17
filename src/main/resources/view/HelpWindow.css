@@ -1,5 +1,8 @@
 #copyButton, #helpMessage {
     -fx-text-fill: white;
+    -fx-font-size: 12
+    font-family: Tahoma, Geneva, sans-serif;
+    -fx-font-weight: bold;
 }
 
 #copyButton {
