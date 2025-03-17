@@ -110,6 +110,11 @@ public interface Model {
      */
     void revealAllPersons();
 
+    /**
+     * Sorts the persons in the address book by the given criteria.
+     */
+    void sortPersons(String criteria);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

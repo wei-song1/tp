@@ -146,6 +146,17 @@ public class Person {
         return Objects.hash(name, phoneList, email, address, remark, tags, isHidden);
     }
 
+    /**
+     * Compares this person with another person based on the given criteria.
+     */
+    public int compareTo(Person other, String criteria) {
+        return switch (criteria) {
+        case "name" -> name.toString().compareTo(other.name.toString());
+        case "tags" -> tags.equals(other.tags) ? 0 : 1;
+        default -> 0;
+        };
+    }
+
     @Override
     public String toString() {
         // If the person is hidden, return only non-sensitive details.
