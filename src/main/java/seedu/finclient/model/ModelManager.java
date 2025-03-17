@@ -144,6 +144,11 @@ public class ModelManager implements Model {
         finClient.revealPerson(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void sortPersons(String criteria) {
+        finClient.sortPersons(criteria);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

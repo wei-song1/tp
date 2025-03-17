@@ -208,6 +208,11 @@ public class HideCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortPersons(String criteria) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -303,6 +308,11 @@ public class HideCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortPersons(String criteria) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -390,6 +400,11 @@ public class HideCommandTest {
         }
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortPersons(String criteria) {
             throw new AssertionError("This method should not be called.");
         }
     }
