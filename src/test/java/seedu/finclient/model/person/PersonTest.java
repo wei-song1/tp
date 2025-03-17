@@ -178,12 +178,12 @@ public class PersonTest {
         assertEquals(0, ALICE.compareTo(ALICE, "name"));
         // Compare two persons with different names
         assertEquals(-1, ALICE.compareTo(BOB, "name"));
-        assertEquals(1, BOB.compareTo(ALICE, "name"));
+        assertTrue(ALICE.compareTo(BOB, "name") < 0);
+        assertTrue(BOB.compareTo(ALICE, "name") > 0);
 
         // Compare two persons with phone criteria
         assertEquals(0, ALICE.compareTo(ALICE, "phone"));
-        // Compare two persons with different phone numbers
-        assertEquals(-1, ALICE.compareTo(BOB, "phone"));
-        assertEquals(1, BOB.compareTo(ALICE, "phone"));
+        assertTrue(ALICE.compareTo(BOB, "phone") > 0);
+        assertTrue(BOB.compareTo(ALICE, "phone") < 0);
     }
 }

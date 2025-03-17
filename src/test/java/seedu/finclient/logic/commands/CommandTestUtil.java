@@ -3,7 +3,6 @@ package seedu.finclient.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.finclient.logic.parser.CliSyntax.PREFIX_CRITERIA;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
