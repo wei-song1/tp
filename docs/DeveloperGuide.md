@@ -346,6 +346,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
+* 3b. User provides no phone numbers or invalid numbers.
+
+    * 3b1. FinClient shows an error message
+
+      Use case resumes at step 2.
+
+* 3c. User provides too many phone numbers.
+
+    * 3c1. FinClient shows an error message
+
+      Use case resumes at step 2.
+
 **Use case: Find a person**
 
 **MSS**
@@ -363,11 +375,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Hide a person's details**
+
+**MSS**
+
+1. User requests to hide a person's detail by name
+2. FinClient obscures the person’s details
+
+   Use case ends.
+
+**Use case: Reveal a person's details**
+
+**MSS**
+
+1. User requests to reveal a person's detail by name
+2. FinClient reveals the person’s details
+
+   Use case ends.
+
 **Use case: Add remarks to a person**
 
 **MSS**
 
-1.  User requests to add remarks to a person
+1. User requests to add remarks to a person
 2. FinClient prompts for the remarks
 3. User provides the remarks
 
