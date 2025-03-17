@@ -152,7 +152,7 @@ public class Person {
     public int compareTo(Person other, String criteria) {
         return switch (criteria) {
         case "name" -> name.toString().compareTo(other.name.toString());
-        case "tags" -> tags.equals(other.tags) ? 0 : 1;
+        case "phone" -> phoneList.toString().compareTo(other.phoneList.toString());
         default -> 0;
         };
     }

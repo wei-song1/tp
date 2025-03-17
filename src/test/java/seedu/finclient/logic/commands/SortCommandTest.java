@@ -14,7 +14,7 @@ public class SortCommandTest {
     @Test
     public void execute_sort_success() {
         CommandResult expectedCommandResult =
-                new CommandResult(MESSAGE_SORT_ACKNOWLEDGEMENT, false, false);
+                new CommandResult(String.format(MESSAGE_SORT_ACKNOWLEDGEMENT, "name"), false, false);
         assertCommandSuccess(new SortCommand("name"), model, expectedCommandResult, expectedModel);
     }
 }

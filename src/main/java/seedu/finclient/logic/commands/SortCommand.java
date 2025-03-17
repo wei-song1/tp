@@ -20,7 +20,7 @@ public class SortCommand extends Command {
             + "Parameters: criteria (name/tag)\n"
             + "Example: " + COMMAND_WORD + " name";
     public static final String MESSAGE_SORT_ACKNOWLEDGEMENT = "Sorted contacts by criteria: %1$s";
-    private static final List<String> validCriteria = Arrays.asList("name", "tag");
+    private static final List<String> validCriteria = Arrays.asList("name", "phone");
     private final String criteria;
 
     public SortCommand(String criteria) {

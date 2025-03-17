@@ -33,7 +33,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXIT_SYNTAX = "Exit FinClient : exit";
     public static final String ESCAPE_SYNTAX = "Close help window : hit the ESC key or click on the 'X'"
             + " located at the top right of this window";
-    public static final String SORT_SYNTAX = "Sort contact via names alphabetically : sort";
+    public static final String SORT_SYNTAX = "Sort contact via certain criteria : sort c/[CRITERIA] (current "
+            + "available criteria: name, phone)";
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional";
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
 
