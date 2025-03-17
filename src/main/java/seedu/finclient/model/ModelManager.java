@@ -107,8 +107,41 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         finClient.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void hidePerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        finClient.hidePerson(predicate);
+    }
+
+    @Override
+    public void hidePerson(Person person) {
+        requireNonNull(person);
+        finClient.hidePerson(person);
+    }
+
+    @Override
+    public void revealPerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        finClient.revealPerson(predicate);
+    }
+
+    @Override
+    public void revealPerson(Person person) {
+        requireNonNull(person);
+        finClient.revealPerson(person);
+    }
+
+    @Override
+    public void hideAllPersons() {
+        finClient.hidePerson(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void revealAllPersons() {
+        finClient.revealPerson(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -144,5 +177,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

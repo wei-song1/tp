@@ -2,6 +2,8 @@ package seedu.finclient.model.person;
 
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,7 +14,8 @@ import seedu.finclient.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null,
+ * field values are validated, immutable.
  */
 public class Person {
 
@@ -23,18 +26,46 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+
+    // Hidden detail flag
+    private boolean isHidden = false;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Alternate constructor to allow hiding of details.
+     */
+    public Person(Name name, PhoneList phoneList, Email email,
+                  Address address, Remark remark, Set<Tag> tags, boolean isHidden) {
+        requireAllNonNull(name, phoneList, email, address, tags);
+        this.name = name;
+        this.phoneList = phoneList;
+        this.email = email;
+        this.address = address;
+        this.remark = remark;
+        this.tags.addAll(tags);
+        this.isHidden = isHidden;
+    }
+
+    public void setHidden() {
+        this.isHidden = true;
+    }
+
+    public void setUnhidden() {
+        this.isHidden = false;
     }
 
     public Name getName() {
@@ -42,15 +73,19 @@ public class Person {
     }
 
     public PhoneList getPhoneList() {
-        return phoneList;
+        return isHidden ? new PhoneList(new ArrayList<>(Arrays.asList(new Phone("00000000")))) : phoneList;
     }
 
     public Email getEmail() {
-        return email;
+        return isHidden ? new Email("hidden@example.com") : email;
     }
 
     public Address getAddress() {
-        return address;
+        return isHidden ? new Address("Hidden") : address;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -58,7 +93,14 @@ public class Person {
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+        return isHidden ? Collections.emptySet() : Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if the person is hidden.
+     */
+    public boolean getIsHidden() {
+        return isHidden;
     }
 
     /**
@@ -94,24 +136,33 @@ public class Person {
                 && phoneList.equals(otherPerson.phoneList)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
+                && remark.equals(otherPerson.remark)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phoneList, email, address, tags);
+        return Objects.hash(name, phoneList, email, address, remark, tags, isHidden);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("phones", phoneList)
-                .add("email", email)
-                .add("address", address)
-                .add("tags", tags)
-                .toString();
+        // If the person is hidden, return only non-sensitive details.
+        if (isHidden) {
+            return new ToStringBuilder(this)
+                    .add("name", name)
+                    .add("details", "Sensitive details are hidden")
+                    .toString();
+        } else {
+            return new ToStringBuilder(this)
+                    .add("name", name)
+                    .add("phones", phoneList)
+                    .add("email", email)
+                    .add("address", address)
+                    .add("remark", remark)
+                    .add("tags", tags)
+                    .toString();
+        }
     }
-
 }
