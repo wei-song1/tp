@@ -93,9 +93,8 @@ public class ParserUtil {
         return new PhoneList(phoneArrayList);
     }
 
-
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String remark} into an {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
@@ -125,7 +124,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Remark}.
+     * Parses a {@code String remark} into a {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code Remark} is invalid.

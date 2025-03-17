@@ -7,8 +7,8 @@ import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.finclient.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.finclient.testutil.Assert.assertThrows;
-import static seedu.finclient.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -27,11 +27,9 @@ import seedu.finclient.model.Model;
 import seedu.finclient.model.ModelManager;
 import seedu.finclient.model.ReadOnlyFinClient;
 import seedu.finclient.model.UserPrefs;
-import seedu.finclient.model.person.Person;
 import seedu.finclient.storage.JsonFinClientStorage;
 import seedu.finclient.storage.JsonUserPrefsStorage;
 import seedu.finclient.storage.StorageManager;
-import seedu.finclient.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy IO exception");
@@ -167,8 +165,8 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing an add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REMARK_DESC_AMY;
+        // Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, model);
     }
 }
