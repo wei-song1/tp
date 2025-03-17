@@ -150,6 +150,7 @@ public class Person {
      * Compares this person with another person based on the given criteria.
      */
     public int compareTo(Person other, String criteria) {
+        requireAllNonNull(other, criteria);
         return switch (criteria) {
         case "name" -> name.toString().compareTo(other.name.toString());
         case "phone" -> phoneList.toString().compareTo(other.phoneList.toString());

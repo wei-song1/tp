@@ -171,4 +171,19 @@ public class PersonTest {
         p.setUnhidden();
         assertFalse(p.getIsHidden(), "After setUnhidden(), person should no longer be hidden.");
     }
+
+    @Test
+    public void testCompareTo() {
+        // Compare two persons with name criteria
+        assertEquals(0, ALICE.compareTo(ALICE, "name"));
+        // Compare two persons with different names
+        assertEquals(-1, ALICE.compareTo(BOB, "name"));
+        assertEquals(1, BOB.compareTo(ALICE, "name"));
+
+        // Compare two persons with phone criteria
+        assertEquals(0, ALICE.compareTo(ALICE, "phone"));
+        // Compare two persons with different phone numbers
+        assertEquals(-1, ALICE.compareTo(BOB, "phone"));
+        assertEquals(1, BOB.compareTo(ALICE, "phone"));
+    }
 }

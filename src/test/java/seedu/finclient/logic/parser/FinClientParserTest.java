@@ -24,6 +24,7 @@ import seedu.finclient.logic.commands.FindCommand;
 import seedu.finclient.logic.commands.HelpCommand;
 import seedu.finclient.logic.commands.ListCommand;
 import seedu.finclient.logic.commands.RemarkCommand;
+import seedu.finclient.logic.commands.SortCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.person.NameContainsKeywordsPredicate;
 import seedu.finclient.model.person.Person;
@@ -63,6 +64,12 @@ public class FinClientParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " c/name") instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " c/phone") instanceof SortCommand);
     }
 
     @Test
