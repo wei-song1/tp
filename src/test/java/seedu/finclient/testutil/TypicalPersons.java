@@ -51,6 +51,9 @@ public class TypicalPersons {
     public static final Person TOONOMBER = new PersonBuilder().withName("Too Nomber").withPhone("8482131", "81112222")
             .withEmail("too@example.com").withAddress("chicago").build();
 
+    public static final Person TOONOMBER_DIFF_NUMBER = new PersonBuilder().withName("Too Nomber")
+            .withPhone("8482131").withEmail("too@example.com").withAddress("chicago").build();
+
     public static final Person TWEENOMBER = new PersonBuilder().withName("Twee Nomber")
             .withPhone("8482131", "81112222", "99990000").withEmail("too@example.com")
             .withAddress("chicago").build();

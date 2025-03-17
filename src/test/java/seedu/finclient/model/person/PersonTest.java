@@ -12,6 +12,7 @@ import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.ALICE;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
 import static seedu.finclient.testutil.TypicalPersons.TOONOMBER;
+import static seedu.finclient.testutil.TypicalPersons.TOONOMBER_DIFF_NUMBER;
 import static seedu.finclient.testutil.TypicalPersons.TWEENOMBER;
 
 import org.junit.jupiter.api.Test;
@@ -52,6 +53,7 @@ public class PersonTest {
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
 
+        // different name different phone numbers -> returns false
         assertFalse(TOONOMBER.isSamePerson(TWEENOMBER));
     }
 
@@ -92,6 +94,12 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // same details but different amount of numbers -> returns false
+        assertFalse(TOONOMBER.equals(TOONOMBER_DIFF_NUMBER));
+
+        // different details different numbers -> returns false
+        assertFalse(TOONOMBER.equals(TWEENOMBER));
     }
 
     @Test
