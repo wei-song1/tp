@@ -122,6 +122,10 @@ public class FinClient implements ReadOnlyFinClient {
         persons.revealPerson(person);
     }
 
+    public void sortPersons(String criteria) {
+        persons.sortPersons(criteria);
+    }
+
     //// util methods
 
     @Override

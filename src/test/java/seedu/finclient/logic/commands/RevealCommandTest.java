@@ -211,6 +211,11 @@ public class RevealCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortPersons(String criteria) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -306,6 +311,11 @@ public class RevealCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void sortPersons(String criteria) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -393,6 +403,11 @@ public class RevealCommandTest {
         }
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortPersons(String criteria) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -134,6 +134,10 @@ public class UniquePersonList implements Iterable<Person> {
                 .forEach(Person::setUnhidden);
     }
 
+    public void sortPersons(String criteria) {
+        internalList.setAll(internalList.sorted((p1, p2) -> p1.compareTo(p2, criteria)));
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
