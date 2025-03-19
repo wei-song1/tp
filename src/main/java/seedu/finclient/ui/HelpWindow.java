@@ -36,7 +36,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String SORT_SYNTAX = "Sort contact via certain criteria : sort c/[CRITERIA] (current "
             + "available criteria: name, phone)";
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional";
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_MESSAGE = "Welcome to FinClient, here are the commands available: \n\n"
             + ADD_SYNTAX + "\n\n" + EDIT_SYNTAX + "\n\n" + LIST_SYNTAX + "\n\n" + FIND_SYNTAX + "\n\n"
