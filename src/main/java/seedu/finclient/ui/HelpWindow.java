@@ -18,13 +18,13 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_SYNTAX = "Add contact (minimum of 1 and maximum of 3 phone numbers) : "
             + "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
-            + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS [t/TAG]";
+            + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]";
     public static final String EDIT_SYNTAX = "Edit contact (mininally one field is to be entered) "
-            + ": edit INDEX [n/NAME] " + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]";
+            + ": edit INDEX [n/NAME] " + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]";
     public static final String LIST_SYNTAX = "List all saved contacts : list";
     public static final String FIND_SYNTAX = "Find contact by name : find KEYWORD [MORE_KEYWORDS]";
     public static final String DELETE_SYNTAX = "Delete contact : delete INDEX";
-    public static final String REMARK_SYNTAX = "Adding remark to contact : remark INDEX r/[NOTES]";
+    public static final String REMARK_SYNTAX = "Adding remark to contact : remark INDEX r/[REMARK]";
     public static final String HIDE_SYNTAX = "Hide contact details (can use index or name) : hide INDEX/NAME";
     public static final String REVEAL_SYNTAX = "Reveal contact details (can use index or name) : reveal INDEX/NAME";
     public static final String HIDE_REVEAL_ALL = "Hide/Reveal all contacts : hide all / reveal all";
@@ -33,7 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXIT_SYNTAX = "Exit FinClient : exit";
     public static final String ESCAPE_SYNTAX = "Close help window : hit the ESC key or click on the 'X'"
             + " located at the top right of this window";
-    public static final String SORT_SYNTAX = "Sort contact via certain criteria : sort c/[CRITERIA] (current "
+    public static final String SORT_SYNTAX = "Sort contact via certain criteria : sort c/CRITERIA (current "
             + "available criteria: name, phone)";
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional";
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
