@@ -21,7 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]";
 
     public static final String EDIT_MESSAGE = "Edit contact (mininally one field is to be entered) : ";
-    public static final String EDIT_SYNTAX =  "edit INDEX [n/NAME] "
+    public static final String EDIT_SYNTAX = "edit INDEX [n/NAME] "
             + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]";
 
     public static final String LIST_MESSAGE = "List all saved contacts : ";
