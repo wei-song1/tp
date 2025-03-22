@@ -80,6 +80,9 @@ public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
+    private static final String NOT_SHOWING = "HelpWindow is not showing but is supposed to be showing";
+    private static final String SHOWING = "HelpWindow is showing but is supposed to be hidden";
+
     @FXML
     private Button copyButton;
 
@@ -139,7 +142,7 @@ public class HelpWindow extends UiPart<Stage> {
 
         getRoot().show();
         getRoot().centerOnScreen();
-        assert isShowing() == true : "HelpWindow is not showing but is supposed to be showing";
+        assert isShowing() == true : NOT_SHOWING;
     }
 
     /**
@@ -155,7 +158,7 @@ public class HelpWindow extends UiPart<Stage> {
     public void hide() {
         logger.info("Closing HelpWindow");
         getRoot().hide();
-        assert isShowing() == false : "HelpWindow is showing but is supposed to be hidden";
+        assert isShowing() == false : SHOWING;
     }
 
     /**
