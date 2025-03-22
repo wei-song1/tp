@@ -73,7 +73,6 @@ run {
     enableAssertions = true;
 }
 
-
 shadowJar {
     archiveFileName = 'finclient.jar'
 }
