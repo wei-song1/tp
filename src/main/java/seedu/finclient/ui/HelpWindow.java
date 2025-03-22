@@ -16,35 +16,66 @@ import seedu.finclient.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String ADD_SYNTAX = "Add contact (minimum of 1 and maximum of 3 phone numbers) : "
-            + "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
+    public static final String ADD_MESSAGE = "Add contact (minimum of 1 and maximum of 3 phone numbers) : ";
+    public static final String ADD_SYNTAX = "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
             + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]";
-    public static final String EDIT_SYNTAX = "Edit contact (mininally one field is to be entered) "
-            + ": edit INDEX [n/NAME] " + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]";
-    public static final String LIST_SYNTAX = "List all saved contacts : list";
-    public static final String FIND_SYNTAX = "Find contact by name : find KEYWORD [MORE_KEYWORDS]";
-    public static final String DELETE_SYNTAX = "Delete contact : delete INDEX";
-    public static final String REMARK_SYNTAX = "Adding remark to contact : remark INDEX r/[REMARK]";
-    public static final String HIDE_SYNTAX = "Hide contact details (can use index or name) : hide INDEX/NAME";
-    public static final String REVEAL_SYNTAX = "Reveal contact details (can use index or name) : reveal INDEX/NAME";
-    public static final String HIDE_REVEAL_ALL = "Hide/Reveal all contacts : hide all / reveal all";
-    public static final String CLEAR_SYNTAX = "Clear all saved contacts : clear";
-    public static final String HELP_SYNTAX = "Getting help for available commands : help";
-    public static final String EXIT_SYNTAX = "Exit FinClient : exit";
-    public static final String ESCAPE_SYNTAX = "Close help window : hit the ESC key or click on the 'X'"
+
+    public static final String EDIT_MESSAGE = "Edit contact (mininally one field is to be entered) : ";
+    public static final String EDIT_SYNTAX = "edit INDEX [n/NAME] "
+            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]";
+
+    public static final String LIST_MESSAGE = "List all saved contacts : ";
+    public static final String LIST_SYNTAX = "list";
+
+    public static final String FIND_MESSAGE = "Find contact by name : ";
+    public static final String FIND_SYNTAX = "find KEYWORD [MORE_KEYWORDS]";
+
+    public static final String DELETE_MESSAGE = "Delete contact : ";
+    public static final String DELETE_SYNTAX = "delete INDEX";
+
+    public static final String REMARK_MESSAGE = "Adding remark to contact : ";
+    public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK]";
+
+    public static final String HIDE_MESSAGE = "Hide contact details (can use index or name) : ";
+    public static final String HIDE_SYNTAX = "hide INDEX/NAME";
+
+    public static final String REVEAL_MESSAGE = "Reveal contact details (can use index or name) : ";
+    public static final String REVEAL_SYNTAX = "reveal INDEX/NAME";
+
+    public static final String HIDE_REVEAL_MESSAGE = "Hide/Reveal all contacts : ";
+    public static final String HIDE_REVEAL_SYNTAX = "hide all / reveal all";
+
+    public static final String CLEAR_MESSAGE = "Clear all saved contacts : ";
+    public static final String CLEAR_SYNTAX = "clear";
+
+    public static final String HELP_MESSAGE = "Getting help for available commands : ";
+    public static final String HELP_SYNTAX = "help or press Fn + F1";
+
+    public static final String EXIT_MESSAGE = "Exit FinClient : ";
+    public static final String EXIT_SYNTAX = "exit";
+
+    public static final String ESCAPE_MESSAGE = "Close help window : ";
+    public static final String ESCAPE_SYNTAX = "hit the ESC key or click on the 'X'"
             + " located at the top right of this window";
-    public static final String SORT_SYNTAX = "Sort contact via certain criteria : sort c/CRITERIA (current "
+
+    public static final String SORT_MESSAGE = "Sort contact via certain criteria : ";
+    public static final String SORT_SYNTAX = "sort c/CRITERIA (current "
             + "available criteria: name, phone)";
+
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional";
+    public static final String URL_GUIDE_MESSAGE = "For a more detailed guide, please head to ";
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
 
-    public static final String HELP_MESSAGE = "Welcome to FinClient, here are the commands available: \n\n"
-            + ADD_SYNTAX + "\n\n" + EDIT_SYNTAX + "\n\n" + LIST_SYNTAX + "\n\n" + FIND_SYNTAX + "\n\n"
-            + DELETE_SYNTAX + "\n\n" + REMARK_SYNTAX + "\n\n" + HIDE_SYNTAX + "\n\n" + REVEAL_SYNTAX + "\n\n"
-            + HIDE_REVEAL_ALL + "\n\n" + CLEAR_SYNTAX + "\n\n" + HELP_SYNTAX + "\n\n"
-            + EXIT_SYNTAX + "\n\n" + SORT_SYNTAX + "\n\n" + EXTRA_INFO
-            + "\n\n" + ESCAPE_SYNTAX + "\n\nFor a more detailed guide, please head to "
-            + USERGUIDE_URL;
+    public static final String HELP_DISPLAY = "Welcome to FinClient, here are the commands available: \n\n"
+            + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
+            + LIST_MESSAGE + LIST_SYNTAX + "\n\n" + FIND_MESSAGE + FIND_SYNTAX + "\n\n"
+            + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n" + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n"
+            + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n" + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n"
+            + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n" + CLEAR_MESSAGE
+            + CLEAR_SYNTAX + "\n\n" + HELP_MESSAGE + HELP_SYNTAX + "\n\n"
+            + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n" + SORT_MESSAGE + SORT_SYNTAX + "\n\n"
+            + EXTRA_INFO + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n"
+            + URL_GUIDE_MESSAGE + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -66,7 +97,7 @@ public class HelpWindow extends UiPart<Stage> {
             throw new IllegalArgumentException("Root stage cannot be null.");
         }
         assert helpMessage != null : "helpMessage label is not initialized.";
-        helpMessage.setText(HELP_MESSAGE);
+        helpMessage.setText(HELP_DISPLAY);
     }
 
     /**
@@ -108,6 +139,7 @@ public class HelpWindow extends UiPart<Stage> {
 
         getRoot().show();
         getRoot().centerOnScreen();
+        assert isShowing() == true : "HelpWindow is not showing but is supposed to be showing";
     }
 
     /**
@@ -123,6 +155,7 @@ public class HelpWindow extends UiPart<Stage> {
     public void hide() {
         logger.info("Closing HelpWindow");
         getRoot().hide();
+        assert isShowing() == false : "HelpWindow is showing but is supposed to be hidden";
     }
 
     /**
