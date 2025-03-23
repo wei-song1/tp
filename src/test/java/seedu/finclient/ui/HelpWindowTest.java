@@ -20,8 +20,13 @@ import javafx.scene.input.KeyCode;
  * Reuses code from AB4
  */
 
+
 @DisabledIfSystemProperty(named = "os.name", matches = "(?i).*(linux|ubuntu).*")
 public class HelpWindowTest extends StageExtension {
+
+    //@@author TanJieHaoAmos - reused
+    //{Parts of the code below is obtained from AB4, a SE-EDU project}
+
 
     @RegisterExtension
     public final UiPartExtension uiPartExtension = new UiPartExtension();
@@ -58,6 +63,8 @@ public class HelpWindowTest extends StageExtension {
         assumeFalse(System.getProperty("os.name").toLowerCase().contains("linux"));
         assertFalse(helpWindow.isShowing());
     }
+
+    //@@author
 
     @Test
     public void handleHelp() {

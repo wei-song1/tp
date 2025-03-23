@@ -11,6 +11,9 @@ import javafx.scene.Scene;
  * Provides an isolated stage to test an individual {@code UiPart}.
  */
 public class UiPartExtension extends StageExtension {
+
+    //@@author TanJieHaoAmos - reused
+    //{Parts of the code below is obtained from AB4, a SE-EDU project}
     private static final String[] CSS_FILES = {"view/DarkTheme.css", "view/Extensions.css"};
 
     public void setUiPart(final UiPart<? extends Parent> uiPart) {
@@ -25,5 +28,6 @@ public class UiPartExtension extends StageExtension {
             throw new AssertionError("Timeout should not happen.", te);
         }
     }
+    //@@author
 }
 
