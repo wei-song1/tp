@@ -85,7 +85,7 @@ task headless {
 test {
     if (System.getProperty("os.name").toLowerCase().contains("linux") ||
             System.getProperty("os.name").toLowerCase().contains("ubuntu")) {
-        exclude '**/HelpWindowTest.java'  
+        exclude 'src/test/java/seedu/finclient/ui/HelpWindowTest.java'
     }
 }
 
