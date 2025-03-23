@@ -6,24 +6,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 
-public class HelpWindowTest extends GuiUnitTest {
+public class HelpWindowTest extends StageExtension {
 
     @RegisterExtension
     public final UiPartExtension uiPartExtension = new UiPartExtension();
     private HelpWindow helpWindow;
+    private FxRobot robot = new FxRobot();
 
 
     @BeforeEach
     public void setUp() throws Exception {
-        guiRobot.interact(() -> helpWindow = new HelpWindow());
+        robot.interact(() -> helpWindow = new HelpWindow());
         FxToolkit.registerStage(helpWindow::getRoot);
     }
 
     @Test
     public void isShowing_helpWindowIsShowing_returnsTrue() {
-        guiRobot.interact(helpWindow::show);
+        robot.interact(helpWindow::show);
         assertTrue(helpWindow.isShowing());
     }
 
