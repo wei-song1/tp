@@ -9,10 +9,12 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 
-public class HelpWindowTest extends StageExtension {
+import javafx.scene.input.KeyCode;
+
+public class HelpWindowTest extends UiPartExtension {
 
     @RegisterExtension
-    public final StageExtension stageExtension = new StageExtension();
+    public final UiPartExtension uiPartExtension = new UiPartExtension();
     private HelpWindow helpWindow;
     private FxRobot robot = new FxRobot();
 
@@ -30,6 +32,14 @@ public class HelpWindowTest extends StageExtension {
 
     @Test
     public void isShowing_helpWindowIsHiding_returnsFalse() {
+        assertFalse(helpWindow.isShowing());
+    }
+
+    @Test
+    public void handleHelp() {
+        robot.interact(helpWindow::show);
+        robot.press(KeyCode.valueOf("ESCAPE"));
+        robot.release(KeyCode.valueOf("ESCAPE"));
         assertFalse(helpWindow.isShowing());
     }
 
