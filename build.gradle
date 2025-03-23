@@ -20,19 +20,6 @@ checkstyle {
     toolVersion = '10.2'
 }
 
-task headless {
-        test {
-            systemProperties = [
-                    'testfx.robot': 'glass',
-                    'testfx.headless': 'true',
-                    'prism.order': 'sw',
-                    'prism.text': 't2k',
-            ]
-        }
-}
-
-test.mustRunAfter(headless);
-
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -74,13 +61,28 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
-    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
-    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
-    testImplementation 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 
+    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
+    testImplementation 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
 }
+
+task headless {
+    doLast{
+        test {
+            systemProperties = [
+                    'testfx.robot'   : 'glass',
+                    'testfx.headless': 'true',
+                    'prism.order'    : 'sw',
+                    'prism.text'     : 't2k',
+            ]
+        }
+    }
+}
+
+test.mustRunAfter(headless);
 
 run {
     enableAssertions = true;

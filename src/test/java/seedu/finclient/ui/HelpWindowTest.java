@@ -11,7 +11,7 @@ import org.testfx.api.FxToolkit;
 
 import javafx.scene.input.KeyCode;
 
-public class HelpWindowTest extends UiPartExtension {
+public class HelpWindowTest extends StageExtension {
 
     @RegisterExtension
     public final UiPartExtension uiPartExtension = new UiPartExtension();
