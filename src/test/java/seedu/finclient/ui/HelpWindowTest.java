@@ -12,10 +12,9 @@ import org.testfx.api.FxToolkit;
 public class HelpWindowTest extends StageExtension {
 
     @RegisterExtension
-    public final UiPartExtension uiPartExtension = new UiPartExtension();
+    public final StageExtension stageExtension = new StageExtension();
     private HelpWindow helpWindow;
     private FxRobot robot = new FxRobot();
-
 
     @BeforeEach
     public void setUp() throws Exception {
