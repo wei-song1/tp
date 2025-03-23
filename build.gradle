@@ -82,7 +82,6 @@ task headless {
     }
 }
 
-test.mustRunAfter(headless);
 tasks.test.dependsOn(headless);
 
 run {
