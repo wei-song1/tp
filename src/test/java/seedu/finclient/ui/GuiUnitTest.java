@@ -5,9 +5,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import javafx.scene.Node;
-//import seedu.finclient.ui.GuiRobot;
-//import seedu.finclient.ui.NodeNotFoundException;
-//import seedu.finclient.ui.UiPartExtension;
 
 /**
  * A GUI unit test class for AddressBook.

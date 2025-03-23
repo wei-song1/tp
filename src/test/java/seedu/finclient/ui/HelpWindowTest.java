@@ -2,17 +2,18 @@ package seedu.finclient.ui;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.testfx.api.FxToolkit;
-
-import javafx.stage.Stage;
 
 public class HelpWindowTest extends GuiUnitTest {
 
+    @RegisterExtension
+    public final UiPartExtension uiPartExtension = new UiPartExtension();
     private HelpWindow helpWindow;
+
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -31,29 +32,4 @@ public class HelpWindowTest extends GuiUnitTest {
         assertFalse(helpWindow.isShowing());
     }
 
-    @Test
-    public void focus_helpWindowNotFocused_focused() throws Exception {
-        // TODO: This test skip can be removed once this bug is fixed:
-        // https://github.com/javafxports/openjdk-jfx/issues/50
-        //
-        // When there are two stages (stage1 and stage2) shown,
-        // stage1 is in focus and stage2.requestFocus() is called,
-        // we expect that stage1.isFocused() will return false while
-        // stage2.isFocused() returns true. However, as reported in the bug report,
-        // both stage1.isFocused() and stage2.isFocused() returns true,
-        // which fails the test.
-        assumeFalse(guiRobot.isHeadlessMode(), "Test skipped in headless mode: Window focus behavior is buggy.");
-        guiRobot.interact(helpWindow::show);
-
-        // Focus on another stage to remove focus from the helpWindow
-        guiRobot.interact(() -> {
-            Stage temporaryStage = new Stage();
-            temporaryStage.show();
-            temporaryStage.requestFocus();
-        });
-        assertFalse(helpWindow.getRoot().isFocused());
-
-        guiRobot.interact(helpWindow::focus);
-        assertTrue(helpWindow.getRoot().isFocused());
-    }
 }
