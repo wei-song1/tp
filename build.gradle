@@ -82,7 +82,7 @@ task headless {
     }
 }
 
-tasks.test.dependsOn(headless);
+test.mustRunAfter(headless);
 
 run {
     enableAssertions = true;
