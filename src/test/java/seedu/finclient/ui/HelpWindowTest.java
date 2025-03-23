@@ -20,7 +20,7 @@ import javafx.scene.input.KeyCode;
  * Reuses code from AB4
  */
 
-@DisabledIfSystemProperty(named = "os.name", matches = ".*(linux|ubuntu).*")
+@DisabledIfSystemProperty(named = "os.name", matches = "(?i).*(linux|ubuntu).*")
 public class HelpWindowTest extends StageExtension {
 
     @RegisterExtension

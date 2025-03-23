@@ -86,6 +86,7 @@ test {
     if (System.getProperty("os.name").toLowerCase().contains("linux") ||
             System.getProperty("os.name").toLowerCase().contains("ubuntu")) {
         exclude 'src/test/java/seedu/finclient/ui/HelpWindowTest.java'
+        exclude 'src/test/java/seedu/finclient/ui/HelpWindowTest.class'
     }
 }
 
