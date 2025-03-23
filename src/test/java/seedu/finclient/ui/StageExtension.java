@@ -7,6 +7,7 @@ import org.testfx.api.FxToolkit;
 
 /**
  * Properly sets up and tears down a JavaFx stage for our testing purposes.
+ * Reuses code from AB4.
  */
 public class StageExtension implements BeforeEachCallback, AfterEachCallback {
 

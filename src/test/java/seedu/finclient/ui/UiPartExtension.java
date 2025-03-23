@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 
 /**
  * Provides an isolated stage to test an individual {@code UiPart}.
+ * Reuses code from AB4.
  */
 public class UiPartExtension extends StageExtension {
 
