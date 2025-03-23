@@ -39,9 +39,6 @@ jobs:
       - name: Build and check with Gradle
         run: ./gradlew headless check coverage
 
-      - name: Run headless tests
-        run: ./gradlew clean headless test
-
       - name: Upload coverage reports to Codecov
         if: runner.os == 'Linux'
         uses: codecov/codecov-action@v4
