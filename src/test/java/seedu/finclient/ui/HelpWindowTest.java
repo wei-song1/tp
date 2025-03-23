@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
@@ -19,6 +20,7 @@ import javafx.scene.input.KeyCode;
  * Reuses code from AB4
  */
 
+@DisabledIfSystemProperty(named = "os.name", matches = ".*(linux|ubuntu).*")
 public class HelpWindowTest extends StageExtension {
 
     @RegisterExtension

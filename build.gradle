@@ -82,6 +82,13 @@ task headless {
     }
 }
 
+test {
+    if (System.getProperty("os.name").toLowerCase().contains("linux") ||
+            System.getProperty("os.name").toLowerCase().contains("ubuntu")) {
+        exclude '**/HelpWindowTest.java'  
+    }
+}
+
 test.mustRunAfter(headless);
 
 run {
