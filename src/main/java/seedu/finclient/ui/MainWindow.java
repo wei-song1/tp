@@ -14,6 +14,8 @@ import seedu.finclient.commons.core.GuiSettings;
 import seedu.finclient.commons.core.LogsCenter;
 import seedu.finclient.logic.Logic;
 import seedu.finclient.logic.commands.CommandResult;
+import seedu.finclient.logic.commands.ExitCommand;
+import seedu.finclient.logic.commands.HelpCommand;
 import seedu.finclient.logic.commands.exceptions.CommandException;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 
@@ -40,6 +42,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem exitMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -74,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(exitMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -145,6 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+        resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_HELP_MESSAGE);
     }
 
     void show() {
@@ -157,11 +164,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        resultDisplay.setFeedbackToUser(ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT);
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1));
+        delay.setOnFinished(event -> {
+            helpWindow.hide();
+            primaryStage.hide();
+        });
+        delay.play();
     }
 
     public PersonListPanel getPersonListPanel() {
