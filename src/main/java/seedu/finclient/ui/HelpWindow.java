@@ -110,6 +110,10 @@ public class HelpWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    public Label getHelpLabel() {
+        return helpMessage;
+    }
+
     /**
      * Shows the help window.
      * @throws IllegalStateException
@@ -171,6 +175,8 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+
+
     /**
      * Copies the URL to the user guide to the clipboard.
      */
@@ -181,4 +187,5 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
 }
