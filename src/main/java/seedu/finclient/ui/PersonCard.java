@@ -53,13 +53,19 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhoneList().toString());
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        order.setText(person.getOrder().toString());
+
+        phone.setText("Phone: " + person.getPhoneList().toString());
+        address.setText("Address: " + person.getAddress().value);
+        email.setText("Email: " + person.getEmail().value);
+        order.setText("Order: " + person.getOrder().toString());
+
         System.out.println("Debug: UI PersonCard -> Name: "
                 + person.getName().fullName + ", Remark: " + person.getRemark());
-        remark.setText(person.getRemark().value);
+        remark.setText("Remark: " + person.getRemark().value);
+        if (person.getRemark().value == "") {
+            remark.setVisible(false);
+            remark.setManaged(false);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

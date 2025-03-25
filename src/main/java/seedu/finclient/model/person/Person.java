@@ -109,7 +109,7 @@ public class Person {
     }
 
     public Remark getRemark() {
-        return remark;
+        return isHidden ? new Remark("Sensitive details are hidden") : remark;
     }
 
 
