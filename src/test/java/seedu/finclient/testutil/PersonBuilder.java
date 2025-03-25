@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
-import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;

@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.finclient.commons.exceptions.IllegalValueException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
-import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
@@ -129,7 +129,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
 
-        final Order modelOrder = new Order(order);
+        final Order modelOrder;
+
+        if (order == null) {
+            modelOrder = new Order("NONE");
+        } else {
+            modelOrder = new Order(order);
+        }
 
         final Remark modelRemark = new Remark(remark);
 

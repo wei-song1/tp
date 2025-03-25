@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -142,6 +143,11 @@ public class ModelManager implements Model {
     @Override
     public void revealAllPersons() {
         finClient.revealPerson(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public Optional<Double> calculateClearingPrice() {
+        return finClient.calculateClearingPrice();
     }
 
     @Override

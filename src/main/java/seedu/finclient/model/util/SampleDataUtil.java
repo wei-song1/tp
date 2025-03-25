@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 import seedu.finclient.model.FinClient;
 import seedu.finclient.model.ReadOnlyFinClient;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
-import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;

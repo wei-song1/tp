@@ -16,10 +16,10 @@ import java.util.Set;
 
 import seedu.finclient.logic.commands.AddCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
-import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.person.Remark;
@@ -56,12 +56,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         boolean hasOrder = argMultimap.getValue(PREFIX_ORDER).isPresent();
+        boolean hasAmount = argMultimap.getValue(PREFIX_AMOUNT).isPresent();
+        boolean hasPrice = argMultimap.getValue(PREFIX_PRICE).isPresent();
+
         Order order;
         if (!hasOrder) {
             order = new Order("NONE");
-        } else {
+        } else if (hasAmount && hasPrice) {
             order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_ORDER).get(),
                     argMultimap.getValue(PREFIX_AMOUNT).get(), argMultimap.getValue(PREFIX_PRICE).get());
+        } else {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
 
         Person person = new Person(name, phoneList, email, address, order, remark, tagList);

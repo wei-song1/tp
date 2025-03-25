@@ -16,7 +16,8 @@ public class Order {
 
     public static final String MESSAGE_CONSTRAINTS_QUANTITY =
             "Quantity should be a positive integer";
-    public static final String VALIDATION_REGEX_QUANTITY = "\\d+";
+
+    public static final String MESSAGE_CONSTRAINTS = "Order should be with amount and price";
 
     private OrderType orderType;
     private String price;

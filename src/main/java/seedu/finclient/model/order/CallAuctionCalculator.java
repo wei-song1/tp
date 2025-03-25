@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Utility class that calculates a single clearing price for a group of buy/sell orders
@@ -28,16 +28,32 @@ public class CallAuctionCalculator {
      * A small container to track the results at each candidate price.
      */
     private static class CandidateResult {
-        double price;
-        int matchedVolume;
-        int demand;
-        int supply;
+        private double price;
+        private int matchedVolume;
+        private int demand;
+        private int supply;
 
         CandidateResult(double price, int matchedVolume, int demand, int supply) {
             this.price = price;
             this.matchedVolume = matchedVolume;
             this.demand = demand;
             this.supply = supply;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public int getMatchedVolume() {
+            return matchedVolume;
+        }
+
+        public int getDemand() {
+            return demand;
+        }
+
+        public int getSupply() {
+            return supply;
         }
     }
 
@@ -85,8 +101,8 @@ public class CallAuctionCalculator {
         // Evaluate matched volume at each candidate price
         List<CandidateResult> results = new ArrayList<>();
         for (double p : sortedPrices) {
-            int demand = calculateDemand(buyOrders, p);   // total buy quantity if limit >= p
-            int supply = calculateSupply(sellOrders, p); // total sell quantity if limit <= p
+            int demand = calculateDemand(buyOrders, p);
+            int supply = calculateSupply(sellOrders, p);
             int matched = Math.min(demand, supply);
             results.add(new CandidateResult(p, matched, demand, supply));
         }

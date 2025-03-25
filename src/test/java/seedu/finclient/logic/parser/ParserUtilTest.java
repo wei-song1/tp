@@ -3,6 +3,7 @@ package seedu.finclient.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.finclient.logic.parser.ParserUtil.parseOrder;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.logic.parser.exceptions.ParseException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
@@ -198,5 +200,77 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    // ============================
+    // parseOrder Tests
+    // ============================
+
+    @Test
+    public void parseOrder_nullOrder_throwsNullPointerException() {
+        // The "order" argument itself is null => requireNonNull(order) triggers NPE.
+        assertThrows(NullPointerException.class, () ->
+                parseOrder(null, "10", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_invalidOrderType_throwsParseException() {
+        // orderType must be BUY or SELL. "xyz" => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("xyz", "10", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_nonIntegerQuantity_throwsParseException() {
+        // "10.5" is not a valid integer => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "10.5", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_zeroQuantity_throwsParseException() {
+        // quantity must be positive => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("SELL", "0", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_negativeQuantity_throwsParseException() {
+        // quantity must be > 0 => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "-10", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_invalidPrice_throwsParseException() {
+        // "abc" is not a valid price => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "10", "abc"));
+    }
+
+    @Test
+    public void parseOrder_negativePrice_throwsParseException() {
+        // Price must be > 0 => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "10", "-1.23"));
+    }
+
+    @Test
+    public void parseOrder_zeroPrice_throwsParseException() {
+        // Price must be strictly > 0
+        assertThrows(ParseException.class, () ->
+                parseOrder("SELL", "10", "0"));
+    }
+
+    @Test
+    public void parseOrder_validInputs_noException() throws Exception {
+        // Trimmed or untrimmed "buy" is valid
+        // "10" => int, "5.00" => valid price
+        Order order = parseOrder("  buy  ", "  10 ", "  5.00  ");
+
+        // Verify the parsed Order’s fields
+        assertEquals(Order.OrderType.BUY, order.getOrderType());
+        assertEquals(10, order.getQuantity());
+        assertEquals(5.00, order.getPrice(), 1e-9);
     }
 }

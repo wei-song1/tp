@@ -3,21 +3,28 @@ package seedu.finclient.logic.parser;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.AMOUNT_DESC_10;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_DUPLICATE_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ORDER_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_QUANTITY_ZERO;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.ORDER_DESC_BUY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.finclient.logic.commands.CommandTestUtil.PRICE_DESC_550;
 import static seedu.finclient.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -42,6 +49,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.finclient.logic.Messages;
 import seedu.finclient.logic.commands.AddCommand;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
@@ -209,4 +217,89 @@ public class AddCommandParserTest {
                 PhoneList.SIZE_CONSTRAINTS);
     }
 
+    // ======================
+    // Order-related tests
+    // ======================
+
+    @Test
+    public void parse_orderFieldsPresent_success() {
+        // Scenario: user wants to add a new person with a BUY order, quantity=10, price=5.50
+        // This is combined with the rest of the required fields (name, phone, email, address).
+        Person expectedPerson = new PersonBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND)
+                .withRemark(VALID_REMARK_BOB)
+                .withOrder("BUY 10 @ $5.50")
+                .build();
+
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + REMARK_DESC_BOB
+                + TAG_DESC_FRIEND
+                + ORDER_DESC_BUY + AMOUNT_DESC_10 + PRICE_DESC_550;
+
+        assertParseSuccess(parser, userInput, new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_noOrderFieldsProvided_orderDefaultsToNone() {
+        // If user does NOT specify any order/amount/price, the parser sets order to NONE by default.
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withRemark(VALID_REMARK_AMY)
+                .withOrder("NONE")
+                .withTags()
+                .build();
+
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REMARK_DESC_AMY;
+        assertParseSuccess(parser, userInput, new AddCommand(expectedPerson));
+    }
+
+    @Test
+    public void parse_orderSuppliedButMissingAmount_failure() {
+        // User specified an order type but did NOT supply the --amount prefix => leads to parse error.
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + ORDER_DESC_BUY // no amount
+                + REMARK_DESC_BOB
+                + PRICE_DESC_550;
+
+        assertParseFailure(parser, userInput, Order.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_orderSuppliedButMissingPrice_failure() {
+        // User specified an order type + amount but NOT the price => parse error
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + ORDER_DESC_BUY + REMARK_DESC_BOB + AMOUNT_DESC_10; // no price
+
+        assertParseFailure(parser, userInput, Order.MESSAGE_CONSTRAINTS
+        );
+    }
+
+    @Test
+    public void parse_invalidOrderType_failure() {
+        // "foo" is not "buy" or "sell"
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + INVALID_ORDER_DESC + AMOUNT_DESC_10 + REMARK_DESC_BOB + PRICE_DESC_550;
+
+        assertParseFailure(parser, userInput, "Invalid order type! Must be either BUY or SELL");
+    }
+
+    @Test
+    public void parse_invalidQuantity_failure() {
+        // Non-integer or zero/negative => parse failure
+        // Example with "abc" as quantity
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + ORDER_DESC_BUY + INVALID_AMOUNT_DESC + REMARK_DESC_BOB + PRICE_DESC_550; // "abc"
+        assertParseFailure(parser, userInput, "Quantity must be a valid integer.");
+
+        // Example with "0" quantity => parse fails with "Quantity should be a positive integer"
+        String userInputZeroQty = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + ORDER_DESC_BUY + INVALID_QUANTITY_ZERO + REMARK_DESC_BOB + PRICE_DESC_550; // "0"
+        assertParseFailure(parser, userInputZeroQty, Order.MESSAGE_CONSTRAINTS_QUANTITY);
+    }
+
+    @Test
+    public void parse_invalidPrice_failure() {
+        // Negative or invalid format => parse failure
+        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + ORDER_DESC_BUY + AMOUNT_DESC_10 + REMARK_DESC_BOB + INVALID_PRICE_DESC; // "-1.50"
+        assertParseFailure(parser, userInput, Order.MESSAGE_CONSTRAINTS_PRICE);
+    }
 }

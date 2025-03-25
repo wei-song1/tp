@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.commons.exceptions.IllegalValueException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
@@ -115,5 +116,28 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_ORDER, VALID_REMARK, invalidTags, false);
         assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    // ============================
+    // New tests for Order field
+    // ============================
+
+    @Test
+    public void toModelType_invalidOrder_throwsIllegalArgumentException() {
+        // "BUY 10 @ $-5.50" => negative price => invalid
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, INVALID_ORDER, VALID_REMARK, VALID_TAGS, false);
+        // We expect an IllegalArgumentException with the price constraint message
+        String expectedMessage = Order.MESSAGE_CONSTRAINTS_PRICE;
+        assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullOrder_returnsPerson() throws Exception {
+        // If order is null, we get a person with NONE order
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, null, VALID_REMARK, VALID_TAGS, false);
+
+        assertEquals(new Order("NONE"), person.toModelType().getOrder());
     }
 }
