@@ -149,6 +149,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the empty {@code Company} of the {@code Person} that we are building.
+     */
     public PersonBuilder withCompany() {
         this.company = new Company();
         return this;
@@ -161,7 +164,9 @@ public class PersonBuilder {
         this.job = new Job(job);
         return this;
     }
-
+    /**
+     * Sets the empty {@code Job} of the {@code Person} that we are building.
+     */
     public PersonBuilder withJob() {
         this.job = new Job();
         return this;
@@ -175,6 +180,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the empty {@code StockPlatform} of the {@code Person} that we are building.
+     */
     public PersonBuilder withStockPlatform() {
         this.stockPlatform = new StockPlatform();
         return this;
@@ -188,6 +196,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the empty {@code StockPlatform} of the {@code Person} that we are building.
+     */
     public PersonBuilder withNetworth() {
         this.networth = new Networth();
         return this;

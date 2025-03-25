@@ -75,7 +75,8 @@ public class PersonUtil {
         descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark.value).append(" "));
         descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.value).append(" "));
         descriptor.getJob().ifPresent(job -> sb.append(PREFIX_JOB).append(job.value).append(" "));
-        descriptor.getStockPlatform().ifPresent(platform -> sb.append(PREFIX_PLATFORM).append(platform.value).append(" "));
+        descriptor.getStockPlatform().ifPresent(platform -> sb
+                .append(PREFIX_PLATFORM).append(platform.value).append(" "));
         descriptor.getNetworth().ifPresent(worth -> sb.append(PREFIX_NETWORTH).append(worth.value).append(" "));
 
         if (descriptor.getTags().isPresent()) {

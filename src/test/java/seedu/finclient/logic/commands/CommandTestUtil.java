@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String JOB_DESC_AMY = " " + PREFIX_JOB + VALID_JOB_AMY;
     public static final String JOB_DESC_BOB = " " + PREFIX_JOB + VALID_JOB_BOB;
-    public static final String STOCK_PLATFORM_DESC_AMY =  " " + PREFIX_PLATFORM + VALID_STOCK_PLATFORM_AMY;
+    public static final String STOCK_PLATFORM_DESC_AMY = " " + PREFIX_PLATFORM + VALID_STOCK_PLATFORM_AMY;
     public static final String STOCK_PLATFORM_DESC_BOB = " " + PREFIX_PLATFORM + VALID_STOCK_PLATFORM_BOB;
     public static final String NETWORTH_DESC_AMY = " " + PREFIX_NETWORTH + VALID_NETWORTH_AMY;
     public static final String NETWORTH_DESC_BOB = " " + PREFIX_NETWORTH + VALID_NETWORTH_BOB;
@@ -116,7 +116,7 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel.getFinClient(), actualModel.getFinClient());
+            assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
