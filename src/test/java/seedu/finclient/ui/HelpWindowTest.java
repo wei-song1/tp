@@ -58,6 +58,7 @@ public class HelpWindowTest extends StageExtension {
     @Test
     public void handleHelp() {
         robot.interact(helpWindow::show);
+        robot.clickOn(helpWindow.getRoot().getScene().getRoot());
         robot.press(KeyCode.valueOf("ESCAPE"));
         robot.release(KeyCode.valueOf("ESCAPE"));
         assertFalse(helpWindow.isShowing());
