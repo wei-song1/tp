@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -14,6 +15,8 @@ import seedu.finclient.commons.core.GuiSettings;
 import seedu.finclient.commons.core.LogsCenter;
 import seedu.finclient.logic.Logic;
 import seedu.finclient.logic.commands.CommandResult;
+import seedu.finclient.logic.commands.ExitCommand;
+import seedu.finclient.logic.commands.HelpCommand;
 import seedu.finclient.logic.commands.exceptions.CommandException;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 
@@ -40,6 +43,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem exitMenuItem;
+
+    @FXML
+    private Label dataLabel;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -74,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(exitMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -145,6 +155,8 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+        resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_HELP_MESSAGE);
+        dataLabel.setText("HEHE THIS WORKS");
     }
 
     void show() {
@@ -157,11 +169,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        resultDisplay.setFeedbackToUser(ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT);
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        helpWindow.hide();
-        primaryStage.hide();
+        javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1));
+        delay.setOnFinished(event -> {
+            helpWindow.hide();
+            primaryStage.hide();
+        });
+        delay.play();
     }
 
     public PersonListPanel getPersonListPanel() {

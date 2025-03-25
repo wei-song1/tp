@@ -52,7 +52,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_SYNTAX = "help or press Fn + F1";
 
     public static final String EXIT_MESSAGE = "Exit FinClient : ";
-    public static final String EXIT_SYNTAX = "exit";
+    public static final String EXIT_SYNTAX = "exit or press Fn + F2";
 
     public static final String ESCAPE_MESSAGE = "Close help window : ";
     public static final String ESCAPE_SYNTAX = "hit the ESC key or click on the 'X'"
@@ -110,6 +110,10 @@ public class HelpWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    public Label getHelpLabel() {
+        return helpMessage;
+    }
+
     /**
      * Shows the help window.
      * @throws IllegalStateException
@@ -132,17 +136,22 @@ public class HelpWindow extends UiPart<Stage> {
         logger.info("Showing help page about the application.");
         Stage stage = getRoot();
 
-        // Add event handler to close Help Message upon ESC key hit.
-        // GUI testcase works fine on local environment. Removed to prevent interfering with CI
-        stage.getScene().setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                hide();
-            }
-        });
+        setKeyFunction(stage, KeyCode.ESCAPE);
 
         getRoot().show();
         getRoot().centerOnScreen();
         assert isShowing() == true : NOT_SHOWING;
+    }
+
+    /**
+     * Creates a shortcut for ESC to close HelpWindow
+     */
+    private void setKeyFunction(Stage stage, KeyCode key) {
+        stage.getScene().setOnKeyPressed(event -> {
+            if (event.getCode() == key) {
+                hide();
+            }
+        });
     }
 
     /**
@@ -171,6 +180,8 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+
+
     /**
      * Copies the URL to the user guide to the clipboard.
      */
@@ -181,4 +192,5 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
 }

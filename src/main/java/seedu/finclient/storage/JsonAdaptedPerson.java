@@ -96,7 +96,6 @@ class JsonAdaptedPerson {
         if (phones == null || phones.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PhoneList"));
         }
-
         PhoneList modelPhoneList = new PhoneList();
         for (String phone : phones) {
             if (!Phone.isValidPhone(phone)) {
@@ -121,16 +120,10 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
-        final boolean modelIsHidden = isHidden;
+        final Remark modelRemark = new Remark(remark == null ? "" : remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags, modelIsHidden);
-
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags, isHidden);
     }
-
 }

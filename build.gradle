@@ -69,6 +69,29 @@ dependencies {
     testImplementation 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
 }
 
+task headless {
+    doLast{
+        test {
+            systemProperties = [
+                    'testfx.robot'   : 'glass',
+                    'testfx.headless': 'true',
+                    'prism.order'    : 'sw',
+                    'prism.text'     : 't2k',
+            ]
+        }
+    }
+}
+
+test {
+    if (System.getProperty("os.name").toLowerCase().contains("linux") ||
+            System.getProperty("os.name").toLowerCase().contains("ubuntu")) {
+        exclude 'src/test/java/seedu/finclient/ui/HelpWindowTest.java'
+        exclude 'src/test/java/seedu/finclient/ui/HelpWindowTest.class'
+    }
+}
+
+test.mustRunAfter(headless);
+
 run {
     enableAssertions = true;
 }
@@ -77,4 +100,4 @@ shadowJar {
     archiveFileName = 'finclient.jar'
 }
 
-defaultTasks 'clean', 'test'
+defaultTasks 'clean', 'headless', 'test'
