@@ -33,8 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,12 +46,17 @@ public class AddCommandParser implements Parser<AddCommand> {
         PhoneList phoneList = ParserUtil.parsePhoneList(argMultimap.getAllValues(PREFIX_PHONE));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+
+        Remark remark = argMultimap.getValue(PREFIX_REMARK).isPresent()
+                ? ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get())
+                : new Remark("");
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Person person = new Person(name, phoneList, email, address, remark, tagList);
 
         return new AddCommand(person);
     }
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
