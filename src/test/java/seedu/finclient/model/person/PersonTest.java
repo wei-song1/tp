@@ -129,6 +129,8 @@ public class PersonTest {
                 "Address should read 'Hidden' when hidden.");
         assertTrue(hiddenAlice.getTags().isEmpty(),
                 "Tags should be empty when hidden.");
+        assertEquals("Sensitive details are hidden", hiddenAlice.getRemark().toString(),
+                "Remark should read 'Sensitive details are hidden' when hidden.");
 
         // And the toString() method should reflect hidden details
         String hiddenString = hiddenAlice.toString();
@@ -157,6 +159,8 @@ public class PersonTest {
                 "Address should revert to the original once unhidden.");
         assertEquals(ALICE.getTags(), hiddenAlice.getTags(),
                 "Tags should revert to the original once unhidden.");
+        assertEquals(ALICE.getRemark(), hiddenAlice.getRemark(),
+                "Remark should revert to the original once unhidden.");
     }
 
     @Test
