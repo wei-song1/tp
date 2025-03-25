@@ -3,12 +3,21 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's job in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidJob(String)}
+ */
 public class Job {
     public static final String MESSAGE_CONSTRAINTS =
             "Job title can be any string, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
+    /**
+     * Constructs an {@code Job}.
+     *
+     * @param jobTitle A valid job title.
+     */
     public Job(String jobTitle) {
         requireNonNull(jobTitle);
         checkArgument(isValidJob(jobTitle), MESSAGE_CONSTRAINTS);

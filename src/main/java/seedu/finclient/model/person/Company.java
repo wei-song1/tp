@@ -3,12 +3,21 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's company in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
+ */
 public class Company {
     public static final String MESSAGE_CONSTRAINTS =
             "Company name can be any name, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
+    /**
+     * Constructs an {@code Company}.
+     *
+     * @param companyName A valid company name.
+     */
     public Company(String companyName) {
         requireNonNull(companyName);
         checkArgument(isValidCompany(companyName), MESSAGE_CONSTRAINTS);

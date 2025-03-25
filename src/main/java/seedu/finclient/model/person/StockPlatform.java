@@ -3,12 +3,21 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's chosen stock platform in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidStockPlatform(String)}
+ */
 public class StockPlatform {
     public static final String MESSAGE_CONSTRAINTS =
             "Stock platform can be any name, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
+    /**
+     * Constructs an {@code StockPlatform}.
+     *
+     * @param platformName A valid stock platform.
+     */
     public StockPlatform(String platformName) {
         requireNonNull(platformName);
         checkArgument(isValidStockPlatform(platformName), MESSAGE_CONSTRAINTS);

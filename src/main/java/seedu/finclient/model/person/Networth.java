@@ -3,12 +3,21 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's networth in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidNetworth(String)}
+ */
 public class Networth {
     public static final String MESSAGE_CONSTRAINTS =
             "Networth can take any positive values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
+    /**
+     * Constructs an {@code Networth}.
+     *
+     * @param networthAmount A valid networth amount, either in number or the bracket name.
+     */
     public Networth(String networthAmount) {
         requireNonNull(networthAmount);
         if (isBracket(networthAmount)) {
@@ -30,6 +39,12 @@ public class Networth {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if the string input is the bracket name instead.
+     *
+     * @param test A valid bracket name or special name.
+     * @return true if it's the bracket name or a special name.
+     */
     public static boolean isBracket(String test) {
         return test.equals("< $100k")
                 || test.equals("$100k - $250k")
