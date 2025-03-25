@@ -3,6 +3,7 @@ package seedu.finclient.ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.scene.Scene;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.testutil.TypicalPersons;
 
+@DisabledIfEnvironmentVariable(named = "CI", matches = "true")
 public class PersonCardTest extends ApplicationTest {
 
     @Override

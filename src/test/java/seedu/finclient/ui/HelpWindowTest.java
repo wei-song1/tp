@@ -3,10 +3,6 @@ package seedu.finclient.ui;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.testfx.util.WaitForAsyncUtils.sleep;
-import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
-
-import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,11 +58,8 @@ public class HelpWindowTest extends StageExtension {
     @Test
     public void handleHelp() {
         robot.interact(helpWindow::show);
-        waitForFxEvents();
         robot.clickOn(helpWindow.getRoot().getScene().getRoot());
         robot.press(KeyCode.valueOf("ESCAPE"));
-        waitForFxEvents();
-        sleep(500, TimeUnit.MILLISECONDS);
         robot.release(KeyCode.valueOf("ESCAPE"));
         assertFalse(helpWindow.isShowing());
     }
