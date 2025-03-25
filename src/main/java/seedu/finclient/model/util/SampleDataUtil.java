@@ -10,6 +10,7 @@ import seedu.finclient.model.ReadOnlyFinClient;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
@@ -25,32 +26,44 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), getPhoneList("87438807", "91234567"),
                         new Email("alexyeoh@example.com"),
-                        new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
+                        new Address("Blk 30 Geylang Street 29, #06-40"),
+                        new Order("BUY 30 @ $5.50"),
+                        EMPTY_REMARK,
                         getTagSet("friends")),
 
             new Person(new Name("Bernice Yu"), getPhoneList("99272758"),
                         new Email("berniceyu@example.com"),
-                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new Order("SELL 30 @ $5.70"),
+                        EMPTY_REMARK,
                         getTagSet("colleagues", "friends")),
 
             new Person(new Name("Charlotte Oliveiro"), getPhoneList("93210283", "81234567"),
                         new Email("charlotte@example.com"),
-                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_REMARK,
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        new Order("BUY 40 @ $5.20"),
+                        EMPTY_REMARK,
                         getTagSet("neighbours")),
 
             new Person(new Name("David Li"), getPhoneList("91031282"),
                         new Email("lidavid@example.com"),
-                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_REMARK,
+                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                        new Order("BUY 50 @ $5.60"),
+                        EMPTY_REMARK,
                         getTagSet("family")),
 
             new Person(new Name("Irfan Ibrahim"), getPhoneList("92492021", "82345678"),
                         new Email("irfan@example.com"),
-                        new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK,
+                        new Address("Blk 47 Tampines Street 20, #17-35"),
+                        new Order("SELL 50 @ $5.50"),
+                        EMPTY_REMARK,
                         getTagSet("classmates")),
 
             new Person(new Name("Roy Balakrishnan"), getPhoneList("92624417"),
                         new Email("royb@example.com"),
-                        new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
+                        new Address("Blk 45 Aljunied Street 85, #11-31"),
+                        new Order("SELL 25 @ $5.20"),
+                        EMPTY_REMARK,
                         getTagSet("colleagues"))
         };
     }

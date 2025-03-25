@@ -7,6 +7,7 @@ import java.util.Set;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Email;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
@@ -23,12 +24,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ORDER = "BUY 10 @ $5.50";
     public static final String DEFAULT_REMARK = "";
 
     private Name name;
     private PhoneList phoneList;
     private Email email;
     private Address address;
+    private Order order;
     private Remark remark;
     private Set<Tag> tags;
 
@@ -41,6 +44,7 @@ public class PersonBuilder {
         phoneList.addPhone(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        order = new Order(DEFAULT_ORDER);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
@@ -53,6 +57,7 @@ public class PersonBuilder {
         phoneList = personToCopy.getPhoneList();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        order = personToCopy.getOrder();
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -114,6 +119,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Order} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withOrder(String order) {
+        this.order = new Order(order);
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PersonBuilder withRemark(String remark) {
@@ -122,7 +135,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phoneList, email, address, remark, tags);
+        return new Person(name, phoneList, email, address, order, remark, tags);
     }
 
 }

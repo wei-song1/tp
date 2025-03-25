@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.finclient.commons.util.ToStringBuilder;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -26,6 +27,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Order order;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -35,12 +37,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Person(Name name, PhoneList phoneList, Email email, Address address,
+                  Order order, Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.order = order;
         this.remark = remark;
         this.tags.addAll(tags);
     }
@@ -49,15 +53,31 @@ public class Person {
      * Alternate constructor to allow hiding of details.
      */
     public Person(Name name, PhoneList phoneList, Email email,
-                  Address address, Remark remark, Set<Tag> tags, boolean isHidden) {
+                  Address address, Order order, Remark remark, Set<Tag> tags, boolean isHidden) {
         requireAllNonNull(name, phoneList, email, address, tags);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.order = order;
         this.remark = remark;
         this.tags.addAll(tags);
         this.isHidden = isHidden;
+    }
+
+    /**
+     * Alternate constructor to allow default NONE order.
+     */
+    public Person(Name name, PhoneList phoneList, Email email, Address address,
+                  Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phoneList, email, address, tags);
+        this.name = name;
+        this.phoneList = phoneList;
+        this.email = email;
+        this.address = address;
+        this.order = new Order("NONE");
+        this.remark = remark;
+        this.tags.addAll(tags);
     }
 
     public void setHidden() {
@@ -84,9 +104,14 @@ public class Person {
         return isHidden ? new Address("Hidden") : address;
     }
 
+    public Order getOrder() {
+        return isHidden ? new Order(Order.OrderType.HIDDEN, "1", 1) : order;
+    }
+
     public Remark getRemark() {
         return remark;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -172,6 +197,7 @@ public class Person {
                     .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
+                    .add("order", order)
                     .add("remark", remark)
                     .add("tags", tags)
                     .toString();
