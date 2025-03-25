@@ -64,4 +64,12 @@ public class OrderCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof OrderCommand // instanceof handles nulls
+                && targetIndex.equals(((OrderCommand) other).targetIndex)
+                && order.equals(((OrderCommand) other).order));
+    }
 }
