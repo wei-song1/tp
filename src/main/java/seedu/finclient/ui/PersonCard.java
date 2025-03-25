@@ -57,6 +57,10 @@ public class PersonCard extends UiPart<Region> {
         System.out.println("Debug: UI PersonCard -> Name: "
                 + person.getName().fullName + ", Remark: " + person.getRemark());
         remark.setText("Remark: " + person.getRemark().value);
+        if (person.getRemark().value == "") {
+            remark.setVisible(false);
+            remark.setManaged(false);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
