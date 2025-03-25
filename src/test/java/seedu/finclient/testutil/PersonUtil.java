@@ -1,9 +1,13 @@
 package seedu.finclient.testutil;
 
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -45,6 +49,11 @@ public class PersonUtil {
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );
+
+        sb.append(PREFIX_COMPANY).append(person.getCompany().value).append(" ");
+        sb.append(PREFIX_JOB).append(person.getJob().value).append(" ");
+        sb.append(PREFIX_PLATFORM).append(person.getStockPlatform().value).append(" ");
+        sb.append(PREFIX_NETWORTH).append(person.getNetworth().value).append(" ");
         return sb.toString();
     }
 
@@ -63,6 +72,11 @@ public class PersonUtil {
 
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK).append(remark.value).append(" "));
+        descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.value).append(" "));
+        descriptor.getJob().ifPresent(job -> sb.append(PREFIX_JOB).append(job.value).append(" "));
+        descriptor.getStockPlatform().ifPresent(platform -> sb.append(PREFIX_PLATFORM).append(platform.value).append(" "));
+        descriptor.getNetworth().ifPresent(worth -> sb.append(PREFIX_NETWORTH).append(worth.value).append(" "));
 
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
@@ -72,6 +86,7 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+
         return sb.toString();
     }
 }

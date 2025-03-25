@@ -149,11 +149,21 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withCompany() {
+        this.company = new Company();
+        return this;
+    }
+
     /**
      * Sets the {@code Job} of the {@code Person} that we are building.
      */
     public PersonBuilder withJob(String job) {
         this.job = new Job(job);
+        return this;
+    }
+
+    public PersonBuilder withJob() {
+        this.job = new Job();
         return this;
     }
 
@@ -165,11 +175,21 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withStockPlatform() {
+        this.stockPlatform = new StockPlatform();
+        return this;
+    }
+
     /**
      * Sets the {@code Networth} of the {@code Person} that we are building.
      */
     public PersonBuilder withNetworth(String networth) {
         this.networth = new Networth(networth);
+        return this;
+    }
+
+    public PersonBuilder withNetworth() {
+        this.networth = new Networth();
         return this;
     }
 

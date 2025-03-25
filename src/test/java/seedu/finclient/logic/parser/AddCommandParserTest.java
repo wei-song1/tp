@@ -3,6 +3,8 @@ package seedu.finclient.logic.parser;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.finclient.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -12,22 +14,32 @@ import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHON
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.JOB_DESC_AMY;
+import static seedu.finclient.logic.commands.CommandTestUtil.JOB_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.NETWORTH_DESC_AMY;
+import static seedu.finclient.logic.commands.CommandTestUtil.NETWORTH_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.finclient.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.finclient.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC_AMY;
+import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_STOCK_PLATFORM_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -56,19 +68,23 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).withRemark(VALID_REMARK_BOB).build();
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).withRemark(VALID_REMARK_BOB)
+                .withCompany(VALID_COMPANY_BOB).withJob(VALID_JOB_BOB).withStockPlatform(VALID_STOCK_PLATFORM_BOB)
+                .withNetworth(VALID_NETWORTH_BOB).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + REMARK_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
+                + ADDRESS_DESC_BOB + REMARK_DESC_BOB + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_DESC_BOB
+                + STOCK_PLATFORM_DESC_BOB + NETWORTH_DESC_BOB, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withRemark(VALID_REMARK_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).withCompany(VALID_COMPANY_BOB).withJob(VALID_JOB_BOB)
+                .withStockPlatform(VALID_STOCK_PLATFORM_BOB).withNetworth(VALID_NETWORTH_BOB).build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB + REMARK_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + REMARK_DESC_BOB
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_DESC_BOB
+                        + STOCK_PLATFORM_DESC_BOB + NETWORTH_DESC_BOB,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -137,7 +153,8 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withRemark(VALID_REMARK_AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + REMARK_DESC_AMY, new AddCommand(expectedPerson));
+                        + REMARK_DESC_AMY + COMPANY_DESC_AMY + JOB_DESC_AMY + STOCK_PLATFORM_DESC_AMY
+                        + NETWORTH_DESC_AMY, new AddCommand(expectedPerson));
     }
 
     @Test
