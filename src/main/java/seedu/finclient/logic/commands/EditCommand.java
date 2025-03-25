@@ -2,9 +2,13 @@ package seedu.finclient.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -23,11 +27,15 @@ import seedu.finclient.logic.Messages;
 import seedu.finclient.logic.commands.exceptions.CommandException;
 import seedu.finclient.model.Model;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.person.Remark;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -46,6 +54,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_JOB + "JOB] "
+            + "[" + PREFIX_PLATFORM + "STOCKPLATFORM] "
+            + "[" + PREFIX_NETWORTH + "NETWORTH] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -104,8 +116,14 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
+        Job updatedJob = editPersonDescriptor.getJob().orElse(personToEdit.getJob());
+        StockPlatform updatedStockPlatform =
+                editPersonDescriptor.getStockPlatform().orElse(personToEdit.getStockPlatform());
+        Networth updatedNetworth = editPersonDescriptor.getNetworth().orElse(personToEdit.getNetworth());
 
-        return new Person(updatedName, updatedPhoneList, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPhoneList, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+                updatedCompany, updatedJob, updatedStockPlatform, updatedNetworth);
     }
 
     @Override
@@ -143,6 +161,10 @@ public class EditCommand extends Command {
         private Address address;
         private Remark remark;
         private Set<Tag> tags;
+        private Company company;
+        private Job job;
+        private StockPlatform stockPlatform;
+        private Networth networth;
 
         public EditPersonDescriptor() {}
 
@@ -157,13 +179,18 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
+            setCompany(toCopy.company);
+            setJob(toCopy.job);
+            setStockPlatform(toCopy.stockPlatform);
+            setNetworth(toCopy.networth);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phoneList, email, address, remark, tags);
+            return CollectionUtil.isAnyNonNull(name, phoneList, email, address, remark, tags, company, job,
+                    stockPlatform, networth);
         }
 
         public void setName(Name name) {
@@ -221,6 +248,54 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setCompany(Company company) {
+            if (company != null && company.value.equals("delete")) {
+                this.company = new Company();
+            } else {
+                this.company = company;
+            }
+        }
+
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
+        }
+
+        public void setJob(Job job) {
+            if (job != null && job.value.equals("delete")) {
+                this.job = new Job();
+            } else {
+                this.job = job;
+            }
+        }
+
+        public Optional<Job> getJob() {
+            return Optional.ofNullable(job);
+        }
+
+        public void setStockPlatform(StockPlatform stockPlatform) {
+            if (stockPlatform != null && stockPlatform.value.equals("delete")) {
+                this.stockPlatform = new StockPlatform();
+            } else {
+                this.stockPlatform = stockPlatform;
+            }
+        }
+
+        public Optional<StockPlatform> getStockPlatform() {
+            return Optional.ofNullable(stockPlatform);
+        }
+
+        public void setNetworth(Networth networth) {
+            if (networth != null && networth.value.equals("delete")) {
+                this.networth = new Networth();
+            } else {
+                this.networth = networth;
+            }
+        }
+
+        public Optional<Networth> getNetworth() {
+            return Optional.ofNullable(networth);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -238,7 +313,11 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(remark, otherEditPersonDescriptor.remark)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(company, otherEditPersonDescriptor.company)
+                    && Objects.equals(job, otherEditPersonDescriptor.job)
+                    && Objects.equals(stockPlatform, otherEditPersonDescriptor.stockPlatform)
+                    && Objects.equals(networth, otherEditPersonDescriptor.networth);
         }
 
         @Override
@@ -250,6 +329,10 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("remark", remark)
                     .add("tags", tags)
+                    .add("company", company)
+                    .add("job", job)
+                    .add("stockPlatform", stockPlatform)
+                    .add("networth", networth)
                     .toString();
         }
     }

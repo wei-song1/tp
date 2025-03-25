@@ -42,6 +42,14 @@ public class PersonCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label company;
+    @FXML
+    private Label job;
+    @FXML
+    private Label stockPlatform;
+    @FXML
+    private Label networth;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,6 +64,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         System.out.println("Debug: UI PersonCard -> Name: "
                 + person.getName().fullName + ", Remark: " + person.getRemark());
+
+        // Optionals
         remark.setText("Remark: " + person.getRemark().value);
         if (person.getRemark().value == "") {
             remark.setVisible(false);
@@ -64,5 +74,33 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (person.getCompany() == null || person.getCompany().value == "") {
+            company.setVisible(false);
+            company.setManaged(false);
+        } else {
+            company.setText("Company: " + person.getCompany().value);
+        }
+
+        if (person.getJob() == null || person.getJob().value == "") {
+            job.setVisible(false);
+            job.setManaged(false);
+        } else {
+            job.setText("Job: " + person.getJob().value);
+        }
+
+        if (person.getStockPlatform() == null || person.getStockPlatform().value == "") {
+            stockPlatform.setVisible(false);
+            stockPlatform.setManaged(false);
+        } else {
+            stockPlatform.setText("Stock Platform: " + person.getStockPlatform().value);
+        }
+
+        if (person.getNetworth() == null || person.getNetworth().value == "") {
+            networth.setVisible(false);
+            networth.setManaged(false);
+        } else {
+            networth.setText("Networth: " + person.getNetworth().value);
+        }
     }
 }

@@ -5,7 +5,7 @@ import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
 public class Company {
     public static final String MESSAGE_CONSTRAINTS =
-            "Company can take any values, and it should not be blank";
+            "Company name can be any name, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
@@ -15,8 +15,12 @@ public class Company {
         value = companyName;
     }
 
+    public Company() {
+        value = "";
+    }
+
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid company.
      */
     public static boolean isValidCompany(String test) {
         return test.matches(VALIDATION_REGEX);

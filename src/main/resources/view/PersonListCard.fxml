@@ -33,6 +33,10 @@
           <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
           <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
           <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+          <Label fx:id="company" styleClass="cell_small_label" text="\$email" wrapText="true" />
+          <Label fx:id="job" styleClass="cell_small_label" text="\$email" wrapText="true" />
+          <Label fx:id="stockPlatform" styleClass="cell_small_label" text="\$email" wrapText="true" />
+          <Label fx:id="networth" styleClass="cell_small_label" text="\$email" wrapText="true" />
         </VBox>
         <VBox minWidth="100" maxWidth="150">
           <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true" />

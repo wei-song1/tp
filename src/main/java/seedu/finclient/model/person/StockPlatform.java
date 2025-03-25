@@ -3,26 +3,26 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
-public class Job {
+public class StockPlatform {
     public static final String MESSAGE_CONSTRAINTS =
-            "Job title can be any string, and it should not be blank";
+            "Stock platform can be any name, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
-    public Job(String jobTitle) {
-        requireNonNull(jobTitle);
-        checkArgument(isValidJob(jobTitle), MESSAGE_CONSTRAINTS);
-        value = jobTitle;
+    public StockPlatform(String platformName) {
+        requireNonNull(platformName);
+        checkArgument(isValidStockPlatform(platformName), MESSAGE_CONSTRAINTS);
+        value = platformName;
     }
 
-    public Job() {
+    public StockPlatform() {
         value = "";
     }
 
     /**
-     * Returns true if a given string is a valid job title.
+     * Returns true if a given string is a valid stock platform.
      */
-    public static boolean isValidJob(String test) {
+    public static boolean isValidStockPlatform(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -38,12 +38,12 @@ public class Job {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Job)) {
+        if (!(other instanceof StockPlatform)) {
             return false;
         }
 
-        Job otherJob = (Job) other;
-        return value.equals(otherJob.value);
+        StockPlatform otherPlatform = (StockPlatform) other;
+        return value.equals(otherPlatform.value);
     }
 
     @Override
