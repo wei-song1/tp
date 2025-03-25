@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         System.out.println("Debug: UI PersonCard -> Name: "
                 + person.getName().fullName + ", Remark: " + person.getRemark());
-        remark.setText(person.getRemark().value);
+        remark.setText("Remark: " + person.getRemark().value);
         if (person.getRemark().value == "") {
             remark.setVisible(false);
             remark.setManaged(false);
