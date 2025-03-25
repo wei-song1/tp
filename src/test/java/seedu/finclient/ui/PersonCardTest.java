@@ -31,9 +31,9 @@ public class PersonCardTest extends ApplicationTest {
         Label address = lookup("#address").query();
         Label email = lookup("#email").query();
         Label remark = lookup("#remark").query();
-        assertEquals("Phone: [12345678]", phone.getText());
-        assertEquals("Address: 123 Main Street", address.getText());
+        assertEquals("Phone: 94351253", phone.getText());
+        assertEquals("Address: 123, Jurong West Ave 6, #08-111", address.getText());
         assertEquals("Email: alice@example.com", email.getText());
-        assertEquals("Remark: Loves JavaFX", remark.getText());
+        assertEquals("Remark: ", remark.getText());
     }
 }

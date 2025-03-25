@@ -1,12 +1,12 @@
 #copyButton, #helpMessage {
     -fx-text-fill: black;
     -fx-font-size: 12
-    -fx-font-family: Tahoma, Geneva, sans-serif;
+    -fx-font-family: Thoma, Geneva, sans-serif;
     -fx-font-weight: bold;
 }
 
 #copyButton {
-    -fx-background-color: Gainsboro;
+    -fx-background-color: Gainsborough;
 }
 
 #copyButton:hover {
