@@ -3,6 +3,10 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+import java.util.logging.Logger;
+
+import seedu.finclient.commons.core.LogsCenter;
+
 /**
  * Represents a Person's networth in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNetworth(String)}
@@ -11,7 +15,9 @@ public class Networth {
     public static final String MESSAGE_CONSTRAINTS =
             "Networth can take any positive values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public final String value;
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Constructs an {@code Networth}.
@@ -21,9 +27,11 @@ public class Networth {
     public Networth(String networthAmount) {
         requireNonNull(networthAmount);
         if (isBracket(networthAmount)) {
+            logger.info("Networth inputted is bracket/special input");
             value = networthAmount;
         } else {
             checkArgument(isValidNetworth(networthAmount), MESSAGE_CONSTRAINTS);
+            logger.info("Networth inputted is a number: " + networthAmount);
             value = getNetworthBracket(networthAmount);
         }
     }
