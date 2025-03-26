@@ -1,3 +1,7 @@
+<head>
+  <title>{{ title }}</title>
+  <!-- ...other meta tags... -->
+</head>
 <head-bottom>
   <link rel="stylesheet" href="{{baseUrl}}/stylesheets/main.css">
 </head-bottom>
