@@ -3,9 +3,13 @@ package seedu.finclient.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -34,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_REMARK, PREFIX_TAG);
+                        PREFIX_REMARK, PREFIX_TAG, PREFIX_COMPANY, PREFIX_JOB, PREFIX_PLATFORM, PREFIX_NETWORTH);
 
         Index index;
 
@@ -63,6 +67,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             editPersonDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
         }
+        if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+            editPersonDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_JOB).isPresent()) {
+            editPersonDescriptor.setJob(ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PLATFORM).isPresent()) {
+            editPersonDescriptor.setStockPlatform(
+                    ParserUtil.parseStockPlatform(argMultimap.getValue(PREFIX_PLATFORM).get()));
+        }
+        if (argMultimap.getValue(PREFIX_NETWORTH).isPresent()) {
+            editPersonDescriptor.setNetworth(ParserUtil.parseNetworth(argMultimap.getValue(PREFIX_NETWORTH).get()));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -86,5 +103,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }
