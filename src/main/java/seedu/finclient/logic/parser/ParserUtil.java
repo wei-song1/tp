@@ -13,11 +13,15 @@ import seedu.finclient.commons.util.StringUtil;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.person.Remark;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -177,10 +181,73 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Remark} is invalid.
      */
-    public static Remark parseRemark(String remark) {
+    public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String job} into an {@code Job}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code job} is invalid.
+     */
+    public static Job parseJob(String job) throws ParseException {
+        requireNonNull(job);
+        String trimmedJob = job.trim();
+        if (!Job.isValidJob(trimmedJob)) {
+            throw new ParseException(Job.MESSAGE_CONSTRAINTS);
+        }
+        return new Job(trimmedJob);
+    }
+
+    /**
+     * Parses a {@code String platform} into an {@code StockPlatform}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code platform} is invalid.
+     */
+    public static StockPlatform parseStockPlatform(String platform) throws ParseException {
+        requireNonNull(platform);
+        String trimmedPlatform = platform.trim();
+        if (!StockPlatform.isValidStockPlatform(trimmedPlatform)) {
+            throw new ParseException(StockPlatform.MESSAGE_CONSTRAINTS);
+        }
+        return new StockPlatform(trimmedPlatform);
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Networth parseNetworth(String networth) throws ParseException {
+        requireNonNull(networth);
+        String trimmedNetworth = networth.trim();
+        if (!Networth.isValidNetworth(trimmedNetworth)) {
+            throw new ParseException(Networth.MESSAGE_CONSTRAINTS);
+        }
+        return new Networth(trimmedNetworth);
     }
 
     /**

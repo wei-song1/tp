@@ -6,6 +6,9 @@ import static java.util.Objects.requireNonNull;
  * Represents a Person's remark in the address book.
  */
 public class Remark {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Remark can contain anything, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
     /**
@@ -16,6 +19,13 @@ public class Remark {
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    /**
+     * Returns true if a given string is a valid remark.
+     */
+    public static boolean isValidRemark(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -57,7 +57,9 @@ public class OrderCommand extends Command {
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         personToEdit.setUnhidden();
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhoneList(), personToEdit.getEmail(),
-                personToEdit.getAddress(), order, personToEdit.getRemark(), personToEdit.getTags());
+                personToEdit.getAddress(), order, personToEdit.getRemark(), personToEdit.getTags(),
+                personToEdit.getCompany(), personToEdit.getJob(), personToEdit.getStockPlatform(),
+                personToEdit.getNetworth());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

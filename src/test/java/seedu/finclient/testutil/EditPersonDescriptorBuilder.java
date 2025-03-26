@@ -6,11 +6,15 @@ import java.util.stream.Stream;
 
 import seedu.finclient.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -38,6 +42,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setRemark(person.getRemark());
+        descriptor.setCompany(person.getCompany());
+        descriptor.setJob(person.getJob());
+        descriptor.setNetworth(person.getNetworth());
+        descriptor.setStockPlatform(person.getStockPlatform());
     }
 
     /**
@@ -83,6 +92,38 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withCompany(String company) {
+        descriptor.setCompany(new Company(company));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withJob(String job) {
+        descriptor.setJob(new Job(job));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withStockPlatform(String stockPlatform) {
+        descriptor.setStockPlatform(new StockPlatform(stockPlatform));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNetworth(String networh) {
+        descriptor.setNetworth(new Networth(networh));
         return this;
     }
 
