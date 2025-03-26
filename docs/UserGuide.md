@@ -8,38 +8,41 @@ pageNav: 3
 
 Welcome Financial Advisors! 👋 This guide will help you get started with FinClient.
 
+Are you tired of juggling multiple client records and struggling to keep track of their preferences? FinClient is designed for tech-savvy financial advisors like you who prefer typing and need fast, efficient access to client details. 💡 With FinClient, managing hobbies, preferences, financial packages, and contact information has never been easier!
+
 FinClient is a Command-Line Interface (CLI) application, or simply put, a typing-based application, that is built to help you manage your contacts and their financial details, while minimizing the time and effort spent on doing so! 🚀
 
-With specific features such as:
+Specific features include:
 
 * 📇 Adding and deleting contacts
-* ✏️ Editing your contact's details 
-* 🔍 Locating your contact's by name
+* ✏️ Editing your contacts' details 
+* 🔍 Locating your contacts by name
 * 🏢 Maintaining contact-specific details such as jobs and their workplaces  
 * 📊 Sorting your contacts by name, networth, order prices and amounts
 * 🕵️‍♂️ Hiding and revealing contacts  
-* 📈 Order and Call Auction function  
+* 📈 Estimating Call Auction clearing prices simultaneously 
 
 You can look forward to an efficient and enjoyable experience with FinClient!
 
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-  - [Viewing help](#viewing-help)
-  - [Adding a person](#adding-a-person)
-  - [Listing all persons](#listing-all-persons)
-  - [Editing a person](#editing-a-person)
-  - [Locating persons by name](#locating-persons-by-name)
-  - [Deleting a person](#deleting-a-person)
-  - [Hiding a person](#hiding-a-person)
-  - [Revealing a person](#revealing-a-person)
-  - [Adding remarks](#adding-remarks)
-  - [Sorting contacts](#sorting-contacts)
-  - [Clearing all entries](#clearing-all-entries)
-  - [Exiting the program](#exiting-the-program)
-  - [Saving the data](#saving-the-data)
-  - [Editing the data file](#editing-the-data-file)
-  - [Archiving data files](#archiving-data-files)
+    - [Viewing help](#viewing-help)
+    - [Adding a person](#adding-a-person)
+    - [Listing all persons](#listing-all-persons)
+    - [Editing a person](#editing-a-person)
+    - [Locating persons by name](#locating-persons-by-name)
+    - [Deleting a person](#deleting-a-person)
+    - [Hiding a person](#hiding-a-person)
+    - [Revealing a person](#revealing-a-person)
+    - [Limit orders and Call Auction calculator](#order)
+    - [Adding remarks](#adding-remarks)
+    - [Sorting contacts](#sorting-contacts)
+    - [Clearing all entries](#clearing-all-entries)
+    - [Exiting the program](#exiting-the-program)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+    - [Archiving data files](#archiving-data-files)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
@@ -231,8 +234,34 @@ Format: `reveal all|INDEX|name`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `reveal 2` reveals the 2nd person in FinClient.
+* `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
+
+### <span id="order">Limit orders and Call Auction calculator : `order`</span>
+
+Records a limit order for a specific contact in FinClient.
+
+The [call auction](https://www.investopedia.com/terms/c/call-auction.asp) calculator uses the aggregated orders to determine a clearing price.
+
+Format: `order INDEX [o/TYPE am/AMOUNT at/PRICE]`
+
+* Records a limit order for the person specified at `INDEX`.
+* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
+* If only the index is provided, the order will be recorded as an empty order.
+* The order type can be `BUY` or `SELL`.
+* The amount must be a positive integer.
+* The price must be a positive decimal number.
+
+Examples:
+* `order 1` records an empty order for the person listed at index 1.
+* `order 1 o/buy am/10 at/9.50` records a buy order of 5 units at $5.50 for the person listed at index 1.
+* `order 1 o/sell am/10 at/10.50` records a sell order of 10 units at $10.50 for the person listed at index 1.
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Design choice:**
+Since FinClient is designed for a single financial instrument, every order recorded relates to that same asset.
+</div>
 
 ### <span id="adding-remarks">Adding remarks: `remark`</span>
 
