@@ -41,7 +41,7 @@ public class PersonTest {
     }
 
     @Test
-    public void other_constructor_nullValues_throwsNullPointerException() {
+    public void otherConstructor_nullValues_throwsNullPointerException() {
         // Check if null values are handled by throwing NullPointerException
         assertThrows(NullPointerException.class, () ->
                 new Person(null, null, null, null, null,
@@ -163,5 +163,11 @@ public class PersonTest {
         String unhiddenString = ALICE.toString();
         assertTrue(unhiddenString.contains(ALICE.getName().toString()),
                 "Unhidden person's toString() should show full details.");
+    }
+
+    @Test
+    public void testingHashValue() {
+        Person hiddenAlice = new PersonBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), hiddenAlice.hashCode());
     }
 }
