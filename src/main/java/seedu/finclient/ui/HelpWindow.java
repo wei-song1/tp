@@ -45,6 +45,13 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HIDE_REVEAL_MESSAGE = "Hide/Reveal all contacts : ";
     public static final String HIDE_REVEAL_SYNTAX = "hide all / reveal all";
 
+    public static final String ORDER_MESSAGE = "Place order for call auctions: ";
+    public static final String ORDER_SYNTAX = "order INDEX o/TYPE am/AMOUNT at/PRICE"
+            + " (Available types: buy, sell)";
+
+    public static final String REMOVE_ORDER_MESSAGE = "Remove order for call auctions: ";
+    public static final String REMOVE_ORDER_SYNTAX = "order INDEX";
+
     public static final String CLEAR_MESSAGE = "Clear all saved contacts : ";
     public static final String CLEAR_SYNTAX = "clear";
 
@@ -59,10 +66,11 @@ public class HelpWindow extends UiPart<Stage> {
             + " located at the top right of this window";
 
     public static final String SORT_MESSAGE = "Sort contact via certain criteria : ";
-    public static final String SORT_SYNTAX = "sort c/CRITERIA (current "
-            + "available criteria: name, phone)";
+    public static final String SORT_SYNTAX = "sort c/CRITERIA ("
+            + "Available criterias: name, phone)";
 
-    public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional";
+    public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional"
+            + "\n\n" + " INDEX refers to the number beside the contact'sname";
     public static final String URL_GUIDE_MESSAGE = "For a more detailed guide, please head to ";
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
 
@@ -71,10 +79,10 @@ public class HelpWindow extends UiPart<Stage> {
             + LIST_MESSAGE + LIST_SYNTAX + "\n\n" + FIND_MESSAGE + FIND_SYNTAX + "\n\n"
             + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n" + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n"
             + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n" + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n"
-            + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n" + CLEAR_MESSAGE
-            + CLEAR_SYNTAX + "\n\n" + HELP_MESSAGE + HELP_SYNTAX + "\n\n"
-            + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n" + SORT_MESSAGE + SORT_SYNTAX + "\n\n"
-            + EXTRA_INFO + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n"
+            + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n" + SORT_MESSAGE + SORT_SYNTAX + "\n\n"
+            + ORDER_MESSAGE + ORDER_SYNTAX + "\n\n" +REMOVE_ORDER_MESSAGE + REMOVE_ORDER_SYNTAX + "\n\n"
+            + CLEAR_MESSAGE + CLEAR_SYNTAX + "\n\n" + HELP_MESSAGE + HELP_SYNTAX + "\n\n"
+            + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n" + EXTRA_INFO + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n"
             + URL_GUIDE_MESSAGE + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

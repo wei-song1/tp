@@ -15,24 +15,24 @@
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene width="550" height="650">
+    <Scene width="550">
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <AnchorPane prefWidth="550" prefHeight="640" style="fx-background-color: #484848">
+      <AnchorPane  style="fx-background-color: #484848">
         <children>
           <VBox fx:id="helpMessageContainer" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
             <padding>
               <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
             </padding>
             <children>
-              <Label fx:id="helpMessage" text="Label" wrapText="true" />
+              <Label fx:id="helpMessage" text="Label" wrapText="true" maxWidth="500" />
             </children>
           </VBox>
 
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL"
-                  AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="15.0" />
+                  AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" prefWidth="75" prefHeight="30" />
         </children>
       </AnchorPane>
     </Scene>
