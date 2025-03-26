@@ -45,10 +45,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private MenuItem exitMenuItem;
+    private Label priceLabel;
 
     @FXML
-    private Label dataLabel;
+    private MenuItem exitMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -120,6 +120,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
+        priceLabel.setText("Clearing Price: " + logic.getClearingPrice().orElse(0.0));
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -156,7 +159,6 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
         resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_HELP_MESSAGE);
-        dataLabel.setText("HEHE THIS WORKS");
     }
 
     void show() {
@@ -207,6 +209,7 @@ public class MainWindow extends UiPart<Stage> {
             // force refresh
             personListPanel = new PersonListPanel(logic.getFilteredPersonList());
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            priceLabel.setText("Clearing Price: " + logic.getClearingPrice().orElse(0.0));
 
             return commandResult;
         } catch (CommandException | ParseException e) {
