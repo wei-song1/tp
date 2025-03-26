@@ -18,9 +18,13 @@ import org.junit.jupiter.api.Test;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -272,5 +276,110 @@ public class ParserUtilTest {
         assertEquals(Order.OrderType.BUY, order.getOrderType());
         assertEquals(10, order.getQuantity());
         assertEquals(5.00, order.getPrice(), 1e-9);
+    }
+
+    @Test
+    public void parseCompany_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
+    }
+
+    @Test
+    public void parseCompany_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseCompany_validValueWithoutWhitespace_returnsName() throws Exception {
+        Company expectedCompany = new Company(VALID_NAME);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_NAME));
+    }
+
+    @Test
+    public void parseCompany_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String companyWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Company expectedCompany = new Company(VALID_NAME);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithWhitespace));
+    }
+
+    @Test
+    public void parseJob_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseJob((String) null));
+    }
+
+    @Test
+    public void parseJob_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseJob_validValueWithoutWhitespace_returnsName() throws Exception {
+        Job expectedJob = new Job(VALID_NAME);
+        assertEquals(expectedJob, ParserUtil.parseJob(VALID_NAME));
+    }
+
+    @Test
+    public void parseJob_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String jobWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Job expectedJob = new Job(VALID_NAME);
+        assertEquals(expectedJob, ParserUtil.parseJob(jobWithWhitespace));
+    }
+
+    @Test
+    public void parseStockPlatform_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStockPlatform((String) null));
+    }
+
+    @Test
+    public void parseStockPlatform_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseStockPlatform_validValueWithoutWhitespace_returnsName() throws Exception {
+        StockPlatform expectedStockPlatform = new StockPlatform(VALID_NAME);
+        assertEquals(expectedStockPlatform, ParserUtil.parseStockPlatform(VALID_NAME));
+    }
+
+    @Test
+    public void parseStockPlatform_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String stockPlatformWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        StockPlatform expectedStockPlatform = new StockPlatform(VALID_NAME);
+        assertEquals(expectedStockPlatform, ParserUtil.parseStockPlatform(stockPlatformWithWhitespace));
+    }
+
+    @Test
+    public void parseNetworth_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNetworth((String) null));
+    }
+
+    @Test
+    public void parseNetworth_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseNetworth_validValueWithoutWhitespace_returnsName() throws Exception {
+        Networth expectedNetworth = new Networth("0");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("0"));
+
+        expectedNetworth = new Networth("150000");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("150000"));
+
+        expectedNetworth = new Networth("9999999");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("9999999"));
+
+        // Considered in the same net worth bracket
+        expectedNetworth = new Networth("-1");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("1"));
+
+        expectedNetworth = new Networth("1");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("< $100k"));
+    }
+
+    @Test
+    public void parseNetworth_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String networthWithWhitespace = WHITESPACE + "0" + WHITESPACE;
+        Networth expectedNetworth = new Networth("0");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth(networthWithWhitespace));
     }
 }
