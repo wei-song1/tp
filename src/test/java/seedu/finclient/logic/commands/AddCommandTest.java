@@ -10,6 +10,7 @@ import static seedu.finclient.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -175,6 +176,11 @@ public class AddCommandTest {
 
         @Override
         public void revealAllPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Double> calculateClearingPrice() {
             throw new AssertionError("This method should not be called.");
         }
 

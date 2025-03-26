@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -200,6 +201,12 @@ public class HideCommandTest {
         public void revealAllPersons() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<Double> calculateClearingPrice() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
@@ -304,6 +311,12 @@ public class HideCommandTest {
         public void revealAllPersons() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<Double> calculateClearingPrice() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
@@ -394,6 +407,12 @@ public class HideCommandTest {
         public void revealAllPersons() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Optional<Double> calculateClearingPrice() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
