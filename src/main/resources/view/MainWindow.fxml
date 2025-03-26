@@ -25,7 +25,7 @@
       </stylesheets>
 
       <VBox>
-        <HBox spacing="10" VBox.vgrow="NEVER">
+        <HBox spacing="10" styleClass="hbox-menubar-data">
           <MenuBar fx:id="menuBar">
             <Menu mnemonicParsing="false" text="File">
               <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -35,7 +35,7 @@
             </Menu>
           </MenuBar>
 
-          <Label fx:id="priceLabel" prefHeight="20.0" prefWidth="209.0" styleClass="cell_big_label" text="Clearing price: ">
+          <Label fx:id="priceLabel" styleClass="data-label" text="Clearing price: ">
                   <HBox.margin>
                      <Insets top="5.0" />
                   </HBox.margin></Label>
