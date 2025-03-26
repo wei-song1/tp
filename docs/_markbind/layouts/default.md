@@ -22,14 +22,33 @@
 <div id="flex-body">
   <nav id="site-nav">
     <div class="site-nav-top">
-      <div class="fw-bold mb-2" style="font-size: 1.25rem;">Site Map</div>
+      <div class="fw-bold mb-2" style="font-size: 1.25rem;">FinClient Tutorial</div>
     </div>
     <div class="nav-component slim-scroll">
       <site-nav>
-* [Home]({{ baseUrl }}/index.html)
+* [Home]({{ baseUrl }}/index.html) :expanded:
+  * [Introduction]({{ baseUrl }}/index.html#introduction)
+  * [Example usages]({{ baseUrl }}/index.html#example-usages)
+  * [Value Proposition]({{ baseUrl }}/index.html#value-proposition)
+  * [Acknowledgment and Contribution]({{ baseUrl }}/index.html#acknowledgment-and-contribution)
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
   * [Quick Start]({{ baseUrl }}/UserGuide.html#quick-start)
   * [Features]({{ baseUrl }}/UserGuide.html#features) :expanded:
+    * [Viewing Help]({{ baseUrl }}/UserGuide.html#viewing-help)
+    * [Adding a Person]({{ baseUrl }}/UserGuide.html#adding-a-person)
+    * [Listing all Persons]({{ baseUrl }}/UserGuide.html#listing-all-persons)
+    * [Editing a Person]({{ baseUrl }}/UserGuide.html#editing-a-person)
+    * [Locating Persons by Name]({{ baseUrl }}/UserGuide.html#locating-persons-by-name)
+    * [Deleting a Person]({{ baseUrl }}/UserGuide.html#deleting-a-person)
+    * [Hiding a Person]({{ baseUrl }}/UserGuide.html#hiding-a-person)
+    * [Revealing a Person]({{ baseUrl }}/UserGuide.html#revealing-a-person)
+    * [Adding Remarks]({{ baseUrl }}/UserGuide.html#adding-remarks)
+    * [Sorting Contacts]({{ baseUrl }}/UserGuide.html#sorting-contacts)
+    * [Clearing all Entries]({{ baseUrl }}/UserGuide.html#clearing-all-entries)
+    * [Exiting the Program]({{ baseUrl }}/UserGuide.html#exiting-the-program)
+    * [Saving the Data]({{ baseUrl }}/UserGuide.html#saving-the-data)
+    * [Editing the Data File]({{ baseUrl }}/UserGuide.html#editing-the-data-file)
+    * [Archiving Data Files]({{ baseUrl }}/UserGuide.html#archiving-data-files)
   * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
   * [Known Issues]({{ baseUrl }}/UserGuide.html#known-issues)
   * [Command Summary]({{ baseUrl }}/UserGuide.html#command-summary)
