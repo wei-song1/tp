@@ -1,7 +1,3 @@
-<head>
-  <title>{{ title }}</title>
-  <!-- ...other meta tags... -->
-</head>
 <head-bottom>
   <link rel="stylesheet" href="{{baseUrl}}/stylesheets/main.css">
 </head-bottom>
@@ -72,7 +68,7 @@
   </div>
   <nav id="page-nav">
     <div class="nav-component slim-scroll">
-      </page-nav>
+      <page-nav />
     </div>
   </nav>
   <scroll-top-button></scroll-top-button>

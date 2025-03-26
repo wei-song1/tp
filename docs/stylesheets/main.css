@@ -63,14 +63,14 @@ mark {
 }
 
 #site-nav {
-  background-color: #323743;
+  background-color: #3b483f;
   display: flex;
   flex-direction: column;
   position: sticky;
   top: var(--sticky-header-height);
   flex: 0 0 auto;
   max-width: 300px;
-  min-height: calc(100vh - var(--sticky-header-height)) !important;
+  min-height: calc(100vh - var(--sticky-header-height));
   width: 300px;
   width: 300px;
 }
