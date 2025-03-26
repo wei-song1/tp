@@ -244,7 +244,7 @@ _Details coming soon ..._
  **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                              
  **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      
  **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                       
- **Hide**   | `hide all` or `hide INDEX` or `hide name`                                                                                                                                                                                                |INDEX|name`
+ **Hide**   | `hide all` or `hide INDEX` or `hide name`
  **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`  
  **Sort**   | `sort`
  **List**   | `list`                                                                                                                                                                                           
