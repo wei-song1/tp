@@ -355,6 +355,7 @@ public class ParserUtilTest {
     @Test
     public void parseNetworth_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
