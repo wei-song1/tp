@@ -170,7 +170,7 @@ Hides the details of the specified person in FinClient.
 
 Format: `hide all|INDEX|name`
 
-* Hides the details of the person specified at `INDEX` or by `name`. 
+* Hides the details of the person specified at `INDEX` or by `name`.
 * Hides all contacts' details if `all` is used.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -264,13 +264,13 @@ _Details coming soon ..._
 
  Action | Format, Examples
 ------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
+ **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
  **Clear** | `clear`
  **Delete** | `delete INDEX`<br> e.g., `delete 3`
  **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
  **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
  **Hide** | `hide all` or `hide INDEX` or `hide name`
- **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`  
+ **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`
  **Sort** | `sort c/criteria` <br> e.g., `sort c/name` or `sort c/phone`
  **List** | `list`
  **Help** | `help`

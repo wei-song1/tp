@@ -2673,3 +2673,50 @@
 2025-03-26T14:49:59.970Z - info: Site data built
 2025-03-26T14:49:59.970Z - info: Pages rebuilt
 2025-03-26T14:49:59.970Z - info: Website regeneration complete! Total build time: 0.03s
+2025-03-26T15:05:20.977Z - info: Website generation started at 11:05:20 PM
+2025-03-26T15:05:20.998Z - info: Building assets...
+2025-03-26T15:05:21.024Z - info: Assets built
+2025-03-26T15:05:21.025Z - info: Generating pages...
+2025-03-26T15:05:21.289Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/team/johndoe.html' found in file '/Users/hfr/Desktop/tp/docs/team/ki1r0.md'
+2025-03-26T15:05:21.290Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/team/team/ki1r0.html' found in file '/Users/hfr/Desktop/tp/docs/team/ki1r0.md'
+2025-03-26T15:05:21.290Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/ArchitectureDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.290Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/ArchitectureSequenceDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.290Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/ComponentManagers.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UiClassDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/LogicClassDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/DeleteSequenceDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/ParserClasses.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/ModelClassDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/BetterModelClassDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/StorageClassDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UndoRedoState0.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UndoRedoState1.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UndoRedoState2.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.291Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UndoRedoState3.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.292Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UndoRedoState4.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.292Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/UndoRedoState5.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.292Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/tp/images/CommitActivityDiagram.png' found in file '/Users/hfr/Desktop/tp/docs/DeveloperGuide.md'
+2025-03-26T15:05:21.293Z - info: Pages built
+2025-03-26T15:05:21.367Z - info: Site data built
+2025-03-26T15:05:21.367Z - info: Website generation complete! Total build time: 0.454s
+2025-03-26T15:05:21.373Z - info: Serving "/Users/hfr/Desktop/tp/docs/_site" at http://127.0.0.1:8080
+2025-03-26T15:05:21.373Z - info: Press CTRL+C to stop ...
