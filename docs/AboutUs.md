@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Huang Fengrui
+### Huang Fengrui (Ricky)
 
 <img src="images/rickyhfr.png" width="200px">
 
