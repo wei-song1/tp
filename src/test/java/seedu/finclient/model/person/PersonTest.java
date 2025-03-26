@@ -41,6 +41,14 @@ public class PersonTest {
     }
 
     @Test
+    public void other_constructor_nullValues_throwsNullPointerException() {
+        // Check if null values are handled by throwing NullPointerException
+        assertThrows(NullPointerException.class, () ->
+                new Person(null, null, null, null, null,
+                        null, null, null, null, null));
+    }
+
+    @Test
     public void testHiddenBehavior() {
         // Hide the person
         Person hiddenAlice = new PersonBuilder(ALICE).build();
