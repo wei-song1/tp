@@ -5,21 +5,7 @@ title: "User Guide"
 
 # User Guide
 
-Welcome Financial Advisors! This guide will help you get started with FinClient.
-
-FinClient is Command-Line Interface(CLI), or simply put, a typing-based application, that is built to help you manage your contacts and their financial details, while minimizing the time and effort spent on doing so! 
-
-With specific features such as:
-
-* Adding and deleting contacts
-* Editing your contact's details
-* Locating your contact's by name
-* Maintaining contact-specific details such as jobs and their workplaces
-* Sorting your contacts by name, networth, order prices and amounts
-* Hiding and revealing contacts
-* Order and Call Auction function
-
-You can look forward to an efficient and enjoyable experience with FinClient!
+FinClient is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinClient can get your contact management tasks done faster than traditional GUI apps.
 
 ## Table of Contents
 - [Quick start](#quick-start)
@@ -71,7 +57,7 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
    * `exit` : Exits the app.
 
-1. Please refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -111,14 +97,12 @@ Format: `help`
 
 Adds a person to FinClient.
 
-Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARKS [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
+Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARKS [t/TAG]…​ `
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-A person can have any number of tags (including 0)<br>
-:bulb: **Tip:**
-Optional fields can be left out when adding a person's contact.
+A person can have any number of tags (including 0)
 </div>
 
 
@@ -135,7 +119,7 @@ Format: `list`
 
 Edits an existing person in FinClient.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -143,16 +127,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]�
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
-* For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with a delete.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
-
-### <span id="locating-persons-by-tag">Locating persons by tag: `tag`</span>
-
-Finds persons whose tags contain any of the given
 
 ### <span id="locating-persons-by-name">Locating persons by name: `find`</span>
 
@@ -192,7 +170,7 @@ Hides the details of the specified person in FinClient.
 
 Format: `hide all|INDEX|name`
 
-* Hides the details of the person specified at `INDEX` or by `name`.
+* Hides the details of the person specified at `INDEX` or by `name`. 
 * Hides all contacts' details if `all` is used.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -229,13 +207,11 @@ Examples:
 
 Sorts the contact list based on the criteria of name or phone number.
 
-Format: `sort CRITERIA`
+Format: `sort c/CRITERIA`
 
 Examples:
-* `sort name` sorts the contact list in FinClient based on contact's name
-* `sort networth` sorts the contact list in FinClient based on contact's networth bracket
-* `sort amount` sorts the contact list in FinClient based on contact's order amount
-* `sort price` sorts the contact list in FinClient based on contact's order price
+* `sort c/name` sorts the contact list in FinClient based on contact's name
+* `sort c/phone` sorts the contact list in FinClient based on contact's first phone number
 
 ### <span id="clearing-all-entries">Clearing all entries : `clear`</span>
 
@@ -288,14 +264,13 @@ _Details coming soon ..._
 
  Action | Format, Examples
 ------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+ **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
  **Clear** | `clear`
  **Delete** | `delete INDEX`<br> e.g., `delete 3`
- **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+ **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
  **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
  **Hide** | `hide all` or `hide INDEX` or `hide name`
- **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`
- **Sort** | `sort CRITERIA` <br> e.g., `sort name` or `sort networth` or `sort price` or sort `sort amount`
- **Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE` <br> e.g., `order 1 o/buy am/5 at/5.50`
+ **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`  
+ **Sort** | `sort c/criteria` <br> e.g., `sort c/name` or `sort c/phone`
  **List** | `list`
  **Help** | `help`

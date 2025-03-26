@@ -62,15 +62,28 @@ mark {
   -webkit-transition: 0.4s;
 }
 
-#site-nav,
-#page-nav {
+#site-nav {
+  background-color: #323743;
   display: flex;
   flex-direction: column;
   position: sticky;
   top: var(--sticky-header-height);
   flex: 0 0 auto;
   max-width: 300px;
-  max-height: calc(100vh - var(--sticky-header-height));
+  min-height: calc(100vh - var(--sticky-header-height)) !important;
+  width: 300px;
+  width: 300px;
+}
+
+#page-nav {
+  background-color: #eef2f586;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: var(--sticky-header-height);
+  flex: 0 0 auto;
+  max-width: 300px;
+  min-height: calc(100vh - var(--sticky-header-height));
   width: 300px;
 }
 
@@ -78,6 +91,10 @@ mark {
   border-right: 1px solid lightgrey;
   padding-bottom: 20px;
   z-index: 999;
+}
+
+#site-nav a {
+  color: #FFF6E9; /* Replace with your desired text color */
 }
 
 .site-nav-top {
@@ -167,5 +184,14 @@ h3,
 h4,
 h5,
 h6 {
-  color: #e46c0a;
+  color: #1a2a3a;
+}
+
+body {
+  background-color: #ffffff; /* Change to your desired color */
+}
+
+.site-nav-top .fw-bold {
+  color: #FFF6E9; /* Replace with your desired color */
+  font-weight: bold;
 }

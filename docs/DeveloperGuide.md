@@ -1,6 +1,7 @@
 ---
 layout: default.md
 title: "Developer Guide"
+pageNav: default
 ---
 
 # Developer Guide
