@@ -1,12 +1,18 @@
 ---
-layout: page
-title: User Guide
+layout: default.md
+title: "User Guide"
 ---
+
+# User Guide
 
 FinClient is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FinClient can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+## Table of Contents
+- [Quick start](#quick-start)
+- [Features](#features)
+- [FAQ](#faq)
+- [Known issues](#known-issues)
+- [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -64,7 +70,7 @@ FinClient is a **desktop app for managing contacts, optimized for use via a Comm
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` {#viewing-help}
 
 Shows a message explaning how to access the help page.
 
@@ -73,7 +79,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `add` {#adding-a-person}
 
 Adds a person to FinClient.
 
@@ -86,13 +92,13 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/10 year sentence t/criminal `
 
-### Listing all persons : `list`
+### Listing all persons : `list` {#listing-all-persons}
 
 Shows a list of all persons in FinClient.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `edit` {#editing-a-person}
 
 Edits an existing person in FinClient.
 
@@ -109,7 +115,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `find` {#locating-persons-by-name}
 
 Finds persons whose names contain any of the given keywords.
 
@@ -127,7 +133,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `delete` {#deleting-a-person}
 
 Deletes the specified person from FinClient.
 
@@ -141,7 +147,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FinClient.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Hiding a person : `hide`
+### Hiding a person : `hide` {#hiding-a-person}
 
 Hides the details of the specified person in FinClient.
 
@@ -155,7 +161,7 @@ Examples:
 * `list` followed by `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
 
-### Revealing a person : `reveal`
+### Revealing a person : `reveal` {#revealing-a-person}
 
 Reveals the details of the specified person in FinClient.
 
@@ -169,7 +175,7 @@ Examples:
 * `list` followed by `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
 
-### Adding remarks: `remark`
+### Adding remarks: `remark` {#adding-remarks}
 
 Adds a remark to the specified person in FinClient.
 
@@ -180,7 +186,7 @@ Format: `remark INDEX r/[REMARKS]`
 Examples:
 * `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1
 
-### Sorting contacts: `sort`
+### Sorting contacts: `sort` {#sorting-contacts}
 
 Sorts the contact list based on the criteria of name or phone number.
 
@@ -190,23 +196,23 @@ Examples:
 * `sort c/name` sorts the contact list in FinClient based on contact's name
 * `sort c/phone` sorts the contact list in FinClient based on contact's first phone number
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear` {#clearing-all-entries}
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program : `exit` {#exiting-the-program}
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving the data {#saving-the-data}
 
 FinClient data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the data file {#editing-the-data-file}
 
 FinClient data are saved automatically as a JSON file `[JAR file location]/data/finclient.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -215,27 +221,27 @@ If your changes to the data file makes its format invalid, FinClient will discar
 Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files `[coming in v2.0]` {#archiving-data-files}
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ {#faq}
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinClient home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## Known issues {#known-issues}
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary {#command-summary}
 
  Action | Format, Examples
 ------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
