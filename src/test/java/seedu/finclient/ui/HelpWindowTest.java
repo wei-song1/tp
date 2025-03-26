@@ -64,14 +64,26 @@ public class HelpWindowTest extends StageExtension {
     }
 
     @Test
+    public void testGetCopyButton() {
+        Button copyButton = helpWindow.getCopyButton();
+        assertTrue(copyButton != null, "Copy Button should not be null");
+    }
+
+    @Test
+    public void testGetHelpScrollPane() {
+        ScrollPane scrollPane = helpWindow.getHelpScrollPane();
+        assertTrue(scrollPane != null, "Scroll Pane should not be null");
+    }
+
+    @Test
     public void testScrollPaneButtonVisibility() {
         robot.interact(helpWindow::show);
         ScrollPane scrollPane = helpWindow.getHelpScrollPane();
-        Button endButton = helpWindow.getCopyButton();
-        assertFalse(endButton.isVisible(),
+        Button copyButton = helpWindow.getCopyButton();
+        assertFalse(copyButton.isVisible(),
                 "End button should not be visible at the start of scroll");
         scrollPane.setVvalue(1.0);
-        assertTrue(endButton.isVisible(),
+        assertTrue(copyButton.isVisible(),
                 "End button should be visible when scrolled to the bottom");
     }
 
