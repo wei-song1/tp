@@ -3,6 +3,7 @@ package seedu.finclient.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -120,6 +121,13 @@ public class FinClient implements ReadOnlyFinClient {
      */
     public void revealPerson(Person person) {
         persons.revealPerson(person);
+    }
+
+    /**
+     * Returns the clearing price based on current orders.
+     */
+    public Optional<Double> calculateClearingPrice() {
+        return persons.calculateClearingPrice();
     }
 
     public void sortPersons(String criteria) {

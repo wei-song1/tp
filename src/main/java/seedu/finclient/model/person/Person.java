@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.finclient.commons.util.ToStringBuilder;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -26,38 +27,83 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Order order;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
 
     // Hidden detail flag
     private boolean isHidden = false;
 
+    // Optional fields
+    private final Company company;
+    private final Job job;
+    private final StockPlatform stockPlatform;
+    private final Networth networth;
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phoneList, email, address, tags);
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Order order, Remark remark,
+                  Set<Tag> tags, Company company, Job job, StockPlatform stockPlatform, Networth networth) {
+        requireAllNonNull(name, phoneList, email, address, tags, company, job, stockPlatform, networth);
+
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.order = order;
         this.remark = remark;
         this.tags.addAll(tags);
+
+        this.company = company;
+        this.job = job;
+        this.stockPlatform = stockPlatform;
+        this.networth = networth;
     }
 
     /**
      * Alternate constructor to allow hiding of details.
      */
-    public Person(Name name, PhoneList phoneList, Email email,
-                  Address address, Remark remark, Set<Tag> tags, boolean isHidden) {
-        requireAllNonNull(name, phoneList, email, address, tags);
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Order order, Remark remark,
+                  Set<Tag> tags, Company company, Job job, StockPlatform stockPlatform, Networth networth,
+                  boolean isHidden) {
+        requireAllNonNull(name, phoneList, email, address, tags, company, job, stockPlatform, networth);
+
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.order = order;
         this.remark = remark;
         this.tags.addAll(tags);
+
         this.isHidden = isHidden;
+
+        this.company = company;
+        this.job = job;
+        this.stockPlatform = stockPlatform;
+        this.networth = networth;
+    }
+
+    /**
+     * Alternate constructor to allow default NONE order.
+     */
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags,
+                  Company company, Job job, StockPlatform stockPlatform, Networth networth) {
+
+        requireAllNonNull(name, phoneList, email, address, tags, company, job, stockPlatform, networth);
+        this.name = name;
+        this.phoneList = phoneList;
+        this.email = email;
+        this.address = address;
+        this.order = new Order("NONE");
+        this.remark = remark;
+        this.tags.addAll(tags);
+
+        this.company = company;
+        this.job = job;
+        this.stockPlatform = stockPlatform;
+        this.networth = networth;
     }
 
     public void setHidden() {
@@ -84,6 +130,10 @@ public class Person {
         return isHidden ? new Address("Hidden") : address;
     }
 
+    public Order getOrder() {
+        return isHidden ? new Order(Order.OrderType.HIDDEN, "1", 1) : order;
+    }
+
     public Remark getRemark() {
         return isHidden ? new Remark("Sensitive details are hidden") : remark;
     }
@@ -101,6 +151,22 @@ public class Person {
      */
     public boolean getIsHidden() {
         return isHidden;
+    }
+
+    public Company getCompany() {
+        return isHidden ? new Company("Hidden") : company;
+    }
+
+    public Job getJob() {
+        return isHidden ? new Job("Hidden") : job;
+    }
+
+    public StockPlatform getStockPlatform() {
+        return isHidden ? new StockPlatform("Hidden") : stockPlatform;
+    }
+
+    public Networth getNetworth() {
+        return isHidden ? new Networth("Hidden") : networth;
     }
 
     /**
@@ -137,13 +203,18 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && remark.equals(otherPerson.remark)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && company.equals(otherPerson.company)
+                && job.equals(otherPerson.job)
+                && stockPlatform.equals(otherPerson.stockPlatform)
+                && networth.equals(otherPerson.networth);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phoneList, email, address, remark, tags, isHidden);
+        return Objects.hash(name, phoneList, email, address, remark, tags, company, job, stockPlatform,
+                networth, isHidden);
     }
 
     /**
@@ -172,8 +243,13 @@ public class Person {
                     .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
+                    .add("order", order)
                     .add("remark", remark)
                     .add("tags", tags)
+                    .add("company", company)
+                    .add("job", job)
+                    .add("stockPlatform", stockPlatform)
+                    .add("networth", networth)
                     .toString();
         }
     }

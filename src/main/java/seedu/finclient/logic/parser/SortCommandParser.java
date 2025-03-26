@@ -3,8 +3,7 @@ package seedu.finclient.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_CRITERIA;
-
-import java.util.stream.Stream;
+import static seedu.finclient.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.finclient.logic.commands.SortCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
@@ -34,13 +33,5 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         return new SortCommand(criteria);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

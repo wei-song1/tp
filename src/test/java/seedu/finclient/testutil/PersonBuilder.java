@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.person.Remark;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.model.util.SampleDataUtil;
 
@@ -23,14 +28,24 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REMARK = "";
+    public static final String DEFAULT_ORDER = "BUY 10 @ $5.50";
+    public static final String DEFAULT_REMARK = "Remarkable";
+    public static final String DEFAULT_COMPANY = "NUS";
+    public static final String DEFAULT_JOB = "Student";
+    public static final String DEFAULT_STOCK_PLATFORM = "eduRec";
+    public static final String DEFAULT_NETWORTH = "< $100k";
 
     private Name name;
     private PhoneList phoneList;
     private Email email;
     private Address address;
+    private Order order;
     private Remark remark;
     private Set<Tag> tags;
+    private Company company;
+    private Job job;
+    private StockPlatform stockPlatform;
+    private Networth networth;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,8 +56,13 @@ public class PersonBuilder {
         phoneList.addPhone(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        order = new Order(DEFAULT_ORDER);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
+        company = new Company(DEFAULT_COMPANY);
+        job = new Job(DEFAULT_JOB);
+        stockPlatform = new StockPlatform(DEFAULT_STOCK_PLATFORM);
+        networth = new Networth(DEFAULT_NETWORTH);
     }
 
     /**
@@ -53,8 +73,13 @@ public class PersonBuilder {
         phoneList = personToCopy.getPhoneList();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        order = personToCopy.getOrder();
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
+        company = personToCopy.getCompany();
+        job = personToCopy.getJob();
+        stockPlatform = personToCopy.getStockPlatform();
+        networth = personToCopy.getNetworth();
     }
 
     /**
@@ -114,6 +139,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Order} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withOrder(String order) {
+        this.order = new Order(order);
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PersonBuilder withRemark(String remark) {
@@ -121,8 +154,71 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Company} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCompany(String company) {
+        this.company = new Company(company);
+        return this;
+    }
+
+    /**
+     * Sets the empty {@code Company} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCompany() {
+        this.company = new Company();
+        return this;
+    }
+
+    /**
+     * Sets the {@code Job} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withJob(String job) {
+        this.job = new Job(job);
+        return this;
+    }
+    /**
+     * Sets the empty {@code Job} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withJob() {
+        this.job = new Job();
+        return this;
+    }
+
+    /**
+     * Sets the {@code StockPlatform} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStockPlatform(String stockPlatform) {
+        this.stockPlatform = new StockPlatform(stockPlatform);
+        return this;
+    }
+
+    /**
+     * Sets the empty {@code StockPlatform} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStockPlatform() {
+        this.stockPlatform = new StockPlatform();
+        return this;
+    }
+
+    /**
+     * Sets the {@code Networth} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNetworth(String networth) {
+        this.networth = new Networth(networth);
+        return this;
+    }
+
+    /**
+     * Sets the empty {@code StockPlatform} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNetworth() {
+        this.networth = new Networth();
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phoneList, email, address, remark, tags);
+        return new Person(name, phoneList, email, address, order, remark, tags, company, job, stockPlatform, networth);
     }
 
 }

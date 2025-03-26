@@ -237,15 +237,15 @@ _Details coming soon ..._
 
 ## Command summary
 
- Action     | Format, Examples                                                                                                                                                                                 
+ Action | Format, Examples
 ------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**    | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**  | `clear`                                                                                                                                                                                          
- **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                              
- **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      
- **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                       
- **Hide**   | `hide all` or `hide INDEX` or `hide name`                                                                                                                                                                                                |INDEX|name`
+ **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
+ **Clear** | `clear`
+ **Delete** | `delete INDEX`<br> e.g., `delete 3`
+ **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+ **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+ **Hide** | `hide all` or `hide INDEX` or `hide name`
  **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`  
- **Sort**   | `sort`
- **List**   | `list`                                                                                                                                                                                           
- **Help**   | `help`                                                                                                                                                                                           
+ **Sort** | `sort c/criteria` <br> e.g., `sort c/name` or `sort c/phone`
+ **List** | `list`
+ **Help** | `help`

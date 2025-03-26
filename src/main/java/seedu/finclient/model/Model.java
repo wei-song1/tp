@@ -1,6 +1,7 @@
 package seedu.finclient.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -109,6 +110,11 @@ public interface Model {
      * Reveals all hidden persons
      */
     void revealAllPersons();
+
+    /**
+     * Returns the clearing price based on current orders.
+     */
+    Optional<Double> calculateClearingPrice();
 
     /**
      * Sorts the persons in the address book by the given criteria.

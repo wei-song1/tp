@@ -3,6 +3,7 @@ package seedu.finclient.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.finclient.logic.parser.ParserUtil.parseOrder;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -15,10 +16,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.logic.parser.exceptions.ParseException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -198,5 +204,183 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    // ============================
+    // parseOrder Tests
+    // ============================
+
+    @Test
+    public void parseOrder_nullOrder_throwsNullPointerException() {
+        // The "order" argument itself is null => requireNonNull(order) triggers NPE.
+        assertThrows(NullPointerException.class, () ->
+                parseOrder(null, "10", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_invalidOrderType_throwsParseException() {
+        // orderType must be BUY or SELL. "xyz" => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("xyz", "10", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_nonIntegerQuantity_throwsParseException() {
+        // "10.5" is not a valid integer => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "10.5", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_zeroQuantity_throwsParseException() {
+        // quantity must be positive => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("SELL", "0", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_negativeQuantity_throwsParseException() {
+        // quantity must be > 0 => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "-10", "5.00"));
+    }
+
+    @Test
+    public void parseOrder_invalidPrice_throwsParseException() {
+        // "abc" is not a valid price => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "10", "abc"));
+    }
+
+    @Test
+    public void parseOrder_negativePrice_throwsParseException() {
+        // Price must be > 0 => parseException
+        assertThrows(ParseException.class, () ->
+                parseOrder("BUY", "10", "-1.23"));
+    }
+
+    @Test
+    public void parseOrder_zeroPrice_throwsParseException() {
+        // Price must be strictly > 0
+        assertThrows(ParseException.class, () ->
+                parseOrder("SELL", "10", "0"));
+    }
+
+    @Test
+    public void parseOrder_validInputs_noException() throws Exception {
+        // Trimmed or untrimmed "buy" is valid
+        // "10" => int, "5.00" => valid price
+        Order order = parseOrder("  buy  ", "  10 ", "  5.00  ");
+
+        // Verify the parsed Order’s fields
+        assertEquals(Order.OrderType.BUY, order.getOrderType());
+        assertEquals(10, order.getQuantity());
+        assertEquals(5.00, order.getPrice(), 1e-9);
+    }
+
+    @Test
+    public void parseCompany_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
+    }
+
+    @Test
+    public void parseCompany_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseCompany_validValueWithoutWhitespace_returnsName() throws Exception {
+        Company expectedCompany = new Company(VALID_NAME);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_NAME));
+    }
+
+    @Test
+    public void parseCompany_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String companyWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Company expectedCompany = new Company(VALID_NAME);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithWhitespace));
+    }
+
+    @Test
+    public void parseJob_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseJob((String) null));
+    }
+
+    @Test
+    public void parseJob_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseJob_validValueWithoutWhitespace_returnsName() throws Exception {
+        Job expectedJob = new Job(VALID_NAME);
+        assertEquals(expectedJob, ParserUtil.parseJob(VALID_NAME));
+    }
+
+    @Test
+    public void parseJob_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String jobWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Job expectedJob = new Job(VALID_NAME);
+        assertEquals(expectedJob, ParserUtil.parseJob(jobWithWhitespace));
+    }
+
+    @Test
+    public void parseStockPlatform_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStockPlatform((String) null));
+    }
+
+    @Test
+    public void parseStockPlatform_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+    }
+
+    @Test
+    public void parseStockPlatform_validValueWithoutWhitespace_returnsName() throws Exception {
+        StockPlatform expectedStockPlatform = new StockPlatform(VALID_NAME);
+        assertEquals(expectedStockPlatform, ParserUtil.parseStockPlatform(VALID_NAME));
+    }
+
+    @Test
+    public void parseStockPlatform_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String stockPlatformWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        StockPlatform expectedStockPlatform = new StockPlatform(VALID_NAME);
+        assertEquals(expectedStockPlatform, ParserUtil.parseStockPlatform(stockPlatformWithWhitespace));
+    }
+
+    @Test
+    public void parseNetworth_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNetworth((String) null));
+    }
+
+    @Test
+    public void parseNetworth_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
+    }
+
+    @Test
+    public void parseNetworth_validValueWithoutWhitespace_returnsName() throws Exception {
+        Networth expectedNetworth = new Networth("0");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("0"));
+
+        expectedNetworth = new Networth("150000");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("150000"));
+
+        expectedNetworth = new Networth("9999999");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("9999999"));
+
+        // Considered in the same net worth bracket
+        expectedNetworth = new Networth("-1");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("1"));
+
+        expectedNetworth = new Networth("1");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("< $100k"));
+    }
+
+    @Test
+    public void parseNetworth_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String networthWithWhitespace = WHITESPACE + "0" + WHITESPACE;
+        Networth expectedNetworth = new Networth("0");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth(networthWithWhitespace));
     }
 }

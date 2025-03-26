@@ -6,16 +6,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.commons.util.StringUtil;
 import seedu.finclient.logic.parser.exceptions.ParseException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
+import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
+import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
+import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
 import seedu.finclient.model.person.Remark;
+import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -126,15 +132,122 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a collection of {@code String order}, {@code String amount}
+     * and {@code String price} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given arguments are invalid (e.g. wrong order type,
+     *                        non-integer quantity, or an invalid price format).
+     */
+    public static Order parseOrder(String order, String amount, String price) throws ParseException {
+        requireNonNull(order);
+
+        // Trim whitespace
+        String trimmedOrder = order.trim();
+        String trimmedAmount = amount.trim();
+        String trimmedPrice = price.trim();
+
+        // 1) Parse the order type (BUY or SELL)
+        Order.OrderType orderType;
+        try {
+            // Convert to uppercase to match enum constants
+            orderType = Order.OrderType.valueOf(trimmedOrder.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException("Invalid order type! Must be either BUY or SELL");
+        }
+
+        // 2) Parse quantity as int
+        int quantity;
+        try {
+            quantity = Integer.parseInt(trimmedAmount);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Quantity must be a valid integer.");
+        }
+
+        if (!Order.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS_PRICE);
+        }
+
+        if (!Order.isValidQuantity(quantity)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS_QUANTITY);
+        }
+
+        return new Order(orderType, trimmedPrice, quantity);
+    }
+
+    /**
      * Parses a {@code String remark} into a {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code Remark} is invalid.
      */
-    public static Remark parseRemark(String remark) {
+    public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
         return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String job} into an {@code Job}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code job} is invalid.
+     */
+    public static Job parseJob(String job) throws ParseException {
+        requireNonNull(job);
+        String trimmedJob = job.trim();
+        if (!Job.isValidJob(trimmedJob)) {
+            throw new ParseException(Job.MESSAGE_CONSTRAINTS);
+        }
+        return new Job(trimmedJob);
+    }
+
+    /**
+     * Parses a {@code String platform} into an {@code StockPlatform}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code platform} is invalid.
+     */
+    public static StockPlatform parseStockPlatform(String platform) throws ParseException {
+        requireNonNull(platform);
+        String trimmedPlatform = platform.trim();
+        if (!StockPlatform.isValidStockPlatform(trimmedPlatform)) {
+            throw new ParseException(StockPlatform.MESSAGE_CONSTRAINTS);
+        }
+        return new StockPlatform(trimmedPlatform);
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Networth parseNetworth(String networth) throws ParseException {
+        requireNonNull(networth);
+        String trimmedNetworth = networth.trim();
+        if (!Networth.isValidNetworth(trimmedNetworth)) {
+            throw new ParseException(Networth.MESSAGE_CONSTRAINTS);
+        }
+        return new Networth(trimmedNetworth);
     }
 
     /**
@@ -162,5 +275,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

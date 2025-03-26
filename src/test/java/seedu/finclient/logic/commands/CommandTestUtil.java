@@ -3,9 +3,16 @@ package seedu.finclient.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NETWORTH;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.testutil.Assert.assertThrows;
@@ -41,6 +48,14 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_COMPANY_AMY = "NUS";
+    public static final String VALID_COMPANY_BOB = "NTU";
+    public static final String VALID_JOB_AMY = "Student";
+    public static final String VALID_JOB_BOB = "Researcher";
+    public static final String VALID_STOCK_PLATFORM_AMY = "eduRec";
+    public static final String VALID_STOCK_PLATFORM_BOB = "uNivUS";
+    public static final String VALID_NETWORTH_AMY = "< $100k";
+    public static final String VALID_NETWORTH_BOB = "< $100k";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,6 +69,14 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
+    public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
+    public static final String JOB_DESC_AMY = " " + PREFIX_JOB + VALID_JOB_AMY;
+    public static final String JOB_DESC_BOB = " " + PREFIX_JOB + VALID_JOB_BOB;
+    public static final String STOCK_PLATFORM_DESC_AMY = " " + PREFIX_PLATFORM + VALID_STOCK_PLATFORM_AMY;
+    public static final String STOCK_PLATFORM_DESC_BOB = " " + PREFIX_PLATFORM + VALID_STOCK_PLATFORM_BOB;
+    public static final String NETWORTH_DESC_AMY = " " + PREFIX_NETWORTH + VALID_NETWORTH_AMY;
+    public static final String NETWORTH_DESC_BOB = " " + PREFIX_NETWORTH + VALID_NETWORTH_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -63,6 +86,10 @@ public class CommandTestUtil {
     public static final String INVALID_DUPLICATE_PHONE_DESC = " " + PREFIX_PHONE + "911" + " " + PREFIX_PHONE + "911";
     public static final String INVALID_EXCEED_PHONE_DESC = " " + PREFIX_PHONE + "111" + " " + PREFIX_PHONE + "222"
             + " " + PREFIX_PHONE + "333" + " " + PREFIX_PHONE + "444";
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "delete";
+    public static final String INVALID_JOB_DESC = " " + PREFIX_JOB + "delete";
+    public static final String INVALID_PLATFORM_DESC = " " + PREFIX_PLATFORM + "delete";
+    public static final String INVALID_NETWORTH_DESC = " " + PREFIX_NETWORTH + "delete";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -72,6 +99,17 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    // For valid order inputs
+    public static final String ORDER_DESC_BUY = " " + PREFIX_ORDER + "buy";
+    public static final String AMOUNT_DESC_10 = " " + PREFIX_AMOUNT + "10";
+    public static final String PRICE_DESC_550 = " " + PREFIX_PRICE + "5.50";
+
+    // For invalid order fields
+    public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER + "foo"; // invalid order type
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "abc"; // non-integer
+    public static final String INVALID_QUANTITY_ZERO = " " + PREFIX_AMOUNT + "0"; // quantity must be > 0
+    public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "-1.50"; // negative price
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
