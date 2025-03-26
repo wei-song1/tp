@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.KeyCode;
@@ -18,11 +19,17 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_MESSAGE = "Add contact (minimum of 1 and maximum of 3 phone numbers) : ";
     public static final String ADD_SYNTAX = "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
-            + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG]";
+            + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG] "
+            + "[com/COMPANY] [j/JOB] [platform/PLATFORM] [networth/NETWORTH]";
 
     public static final String EDIT_MESSAGE = "Edit contact (mininally one field is to be entered) : ";
     public static final String EDIT_SYNTAX = "edit INDEX [n/NAME] "
-            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]";
+            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG] "
+            + "[com/COMPANY] [j/JOB] [platform/PLATFORM] [networth/NETWORTH]";
+
+    public static final String REMOVE_OPTIONAL_MESSAGE = "Edit and remove optional fields: ";
+    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [com/delete] "
+            + "[j/delete] [platform/delete] [networth/delete]";
 
     public static final String LIST_MESSAGE = "List all saved contacts : ";
     public static final String LIST_SYNTAX = "list";
@@ -70,20 +77,20 @@ public class HelpWindow extends UiPart<Stage> {
             + "Available criterias: name, phone)";
 
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional"
-            + "\n\n" + " INDEX refers to the number beside the contact'sname";
+            + "\n\n" + "INDEX refers to the number beside the contact's ame";
     public static final String URL_GUIDE_MESSAGE = "For a more detailed guide, please head to ";
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_DISPLAY = "Welcome to FinClient, here are the commands available: \n\n"
             + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
-            + LIST_MESSAGE + LIST_SYNTAX + "\n\n" + FIND_MESSAGE + FIND_SYNTAX + "\n\n"
-            + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n" + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n"
-            + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n" + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n"
-            + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n" + SORT_MESSAGE + SORT_SYNTAX + "\n\n"
-            + ORDER_MESSAGE + ORDER_SYNTAX + "\n\n" +REMOVE_ORDER_MESSAGE + REMOVE_ORDER_SYNTAX + "\n\n"
-            + CLEAR_MESSAGE + CLEAR_SYNTAX + "\n\n" + HELP_MESSAGE + HELP_SYNTAX + "\n\n"
-            + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n" + EXTRA_INFO + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n"
-            + URL_GUIDE_MESSAGE + USERGUIDE_URL;
+            + REMOVE_OPTIONAL_MESSAGE + REMOVE_OPTIONAL_SYNTAX + "\n\n" + LIST_MESSAGE + LIST_SYNTAX + "\n\n"
+            + FIND_MESSAGE + FIND_SYNTAX + "\n\n" + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n"
+            + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n" + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n"
+            + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n" + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n"
+            + SORT_MESSAGE + SORT_SYNTAX + "\n\n" + ORDER_MESSAGE + ORDER_SYNTAX + "\n\n"
+            + REMOVE_ORDER_MESSAGE + REMOVE_ORDER_SYNTAX + "\n\n" + CLEAR_MESSAGE + CLEAR_SYNTAX + "\n\n"
+            + HELP_MESSAGE + HELP_SYNTAX + "\n\n" + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n"
+            + EXTRA_INFO + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n" + URL_GUIDE_MESSAGE + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -96,6 +103,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private ScrollPane scrollPane;
 
     /**
      * Creates a new HelpWindow.
@@ -146,6 +156,8 @@ public class HelpWindow extends UiPart<Stage> {
 
         setKeyFunction(stage, KeyCode.ESCAPE);
 
+        setShowButton();
+
         getRoot().show();
         getRoot().centerOnScreen();
         assert isShowing() == true : NOT_SHOWING;
@@ -158,6 +170,20 @@ public class HelpWindow extends UiPart<Stage> {
         stage.getScene().setOnKeyPressed(event -> {
             if (event.getCode() == key) {
                 hide();
+            }
+        });
+    }
+
+    /**
+     * Shows copyButton when scrollbar reaches the end
+     */
+    private void setShowButton() {
+        scrollPane.vvalueProperty().addListener((observable, oldValue, newValue) -> {
+            double max = scrollPane.getVmax();
+            if (newValue.doubleValue() == max) {
+                copyButton.setVisible(true);
+            } else {
+                copyButton.setVisible(false);
             }
         });
     }
@@ -187,8 +213,6 @@ public class HelpWindow extends UiPart<Stage> {
         }
         getRoot().requestFocus();
     }
-
-
 
     /**
      * Copies the URL to the user guide to the clipboard.
