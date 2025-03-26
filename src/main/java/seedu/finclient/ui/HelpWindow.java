@@ -132,6 +132,14 @@ public class HelpWindow extends UiPart<Stage> {
         return helpMessage;
     }
 
+    public ScrollPane getHelpScrollPane() {
+        return scrollPane;
+    }
+
+    public Button getCopyButton() {
+        return copyButton;
+    }
+
     /**
      * Shows the help window.
      * @throws IllegalStateException

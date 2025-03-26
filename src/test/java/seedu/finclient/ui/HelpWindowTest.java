@@ -11,15 +11,14 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
-
 /**
  * Tests HelpWindow function.
  * Runs and passes in Windows and MacOS environment.
  * Reuses code from AB4.
  */
-
-
 @DisabledIfSystemProperty(named = "os.name", matches = "(?i).*(linux|ubuntu).*")
 public class HelpWindowTest extends StageExtension {
 
@@ -63,4 +62,18 @@ public class HelpWindowTest extends StageExtension {
         robot.release(KeyCode.valueOf("ESCAPE"));
         assertFalse(helpWindow.isShowing());
     }
+
+    @Test
+    public void testScrollPaneButtonVisibility() {
+        robot.interact(helpWindow::show);
+        ScrollPane scrollPane = helpWindow.getHelpScrollPane();
+        Button endButton = helpWindow.getCopyButton();
+        assertFalse(endButton.isVisible(),
+                "End button should not be visible at the start of scroll");
+        scrollPane.setVvalue(1.0);
+        assertTrue(endButton.isVisible(),
+                "End button should be visible when scrolled to the bottom");
+    }
+
+
 }
