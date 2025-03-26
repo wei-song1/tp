@@ -60,8 +60,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH,
-                false);
+                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM,
+                        VALID_NETWORTH, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -78,8 +78,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH,
-                false);
+                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM,
+                        VALID_NETWORTH, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PhoneList.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -96,8 +96,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH,
-                false);
+                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM,
+                        VALID_NETWORTH, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -114,8 +114,8 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH,
-                false);
+                        VALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM,
+                        VALID_NETWORTH, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -138,7 +138,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidOrder_throwsIllegalArgumentException() {
         // "BUY 10 @ $-5.50" => negative price => invalid
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, INVALID_ORDER, VALID_REMARK, VALID_TAGS, false);
+                VALID_ADDRESS, INVALID_ORDER, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM,
+                VALID_NETWORTH, false);
         // We expect an IllegalArgumentException with the price constraint message
         String expectedMessage = Order.MESSAGE_CONSTRAINTS_PRICE;
         assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
@@ -148,7 +149,8 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullOrder_returnsPerson() throws Exception {
         // If order is null, we get a person with NONE order
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, null, VALID_REMARK, VALID_TAGS, false);
+                VALID_ADDRESS, null, VALID_REMARK, VALID_TAGS, VALID_COMPANY, VALID_JOB, VALID_STOCK_PLATFORM,
+                VALID_NETWORTH, false);
 
         assertEquals(new Order("NONE"), person.toModelType().getOrder());
     }

@@ -3,9 +3,9 @@ package seedu.finclient.logic.parser;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.AMOUNT_DESC_10;
 import static seedu.finclient.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
-import static seedu.finclient.logic.commands.CommandTestUtil.AMOUNT_DESC_10;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
@@ -38,14 +38,18 @@ import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_JOB_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_STOCK_PLATFORM_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_STOCK_PLATFORM_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -246,10 +250,14 @@ public class AddCommandParserTest {
                 .withTags(VALID_TAG_FRIEND)
                 .withRemark(VALID_REMARK_BOB)
                 .withOrder("BUY 10 @ $5.50")
+                .withCompany(VALID_COMPANY_BOB)
+                .withJob(VALID_JOB_BOB)
+                .withStockPlatform(VALID_STOCK_PLATFORM_BOB)
+                .withNetworth(VALID_NETWORTH_BOB)
                 .build();
 
         String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + REMARK_DESC_BOB
-                + TAG_DESC_FRIEND
+                + TAG_DESC_FRIEND + COMPANY_DESC_BOB + JOB_DESC_BOB + STOCK_PLATFORM_DESC_BOB + NETWORTH_DESC_BOB
                 + ORDER_DESC_BUY + AMOUNT_DESC_10 + PRICE_DESC_550;
 
         assertParseSuccess(parser, userInput, new AddCommand(expectedPerson));
@@ -262,9 +270,14 @@ public class AddCommandParserTest {
                 .withRemark(VALID_REMARK_AMY)
                 .withOrder("NONE")
                 .withTags()
+                .withCompany(VALID_COMPANY_AMY)
+                .withJob(VALID_JOB_AMY)
+                .withStockPlatform(VALID_STOCK_PLATFORM_AMY)
+                .withNetworth(VALID_NETWORTH_AMY)
                 .build();
 
-        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REMARK_DESC_AMY;
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + REMARK_DESC_AMY
+                + COMPANY_DESC_AMY + JOB_DESC_AMY + STOCK_PLATFORM_DESC_AMY + NETWORTH_DESC_AMY;
         assertParseSuccess(parser, userInput, new AddCommand(expectedPerson));
     }
 

@@ -2,8 +2,8 @@ package seedu.finclient.logic.parser;
 
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
@@ -17,7 +17,6 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.finclient.logic.commands.AddCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
