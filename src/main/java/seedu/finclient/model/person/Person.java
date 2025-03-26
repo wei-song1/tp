@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.finclient.commons.util.ToStringBuilder;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.tag.Tag;
 
 /**
@@ -26,13 +27,14 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Order order;
+    private final Remark remark;
+    private final Set<Tag> tags = new HashSet<>();
 
     // Hidden detail flag
     private boolean isHidden = false;
 
     // Optional fields
-    private final Set<Tag> tags = new HashSet<>();
-    private final Remark remark;
     private final Company company;
     private final Job job;
     private final StockPlatform stockPlatform;
@@ -41,16 +43,18 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags,
-                  Company company, Job job, StockPlatform stockPlatform, Networth networth) {
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Order order, Remark remark,
+                  Set<Tag> tags, Company company, Job job, StockPlatform stockPlatform, Networth networth) {
         requireAllNonNull(name, phoneList, email, address, tags, company, job, stockPlatform, networth);
+
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.order = order;
+        this.remark = remark;
         this.tags.addAll(tags);
 
-        this.remark = remark;
         this.company = company;
         this.job = job;
         this.stockPlatform = stockPlatform;
@@ -60,18 +64,42 @@ public class Person {
     /**
      * Alternate constructor to allow hiding of details.
      */
+    public Person(Name name, PhoneList phoneList, Email email, Address address, Order order, Remark remark,
+                  Set<Tag> tags, Company company, Job job, StockPlatform stockPlatform, Networth networth,
+                  boolean isHidden) {
+        requireAllNonNull(name, phoneList, email, address, tags, company, job, stockPlatform, networth);
+
+        this.name = name;
+        this.phoneList = phoneList;
+        this.email = email;
+        this.address = address;
+        this.order = order;
+        this.remark = remark;
+        this.tags.addAll(tags);
+
+        this.isHidden = isHidden;
+
+        this.company = company;
+        this.job = job;
+        this.stockPlatform = stockPlatform;
+        this.networth = networth;
+    }
+
+    /**
+     * Alternate constructor to allow default NONE order.
+     */
     public Person(Name name, PhoneList phoneList, Email email, Address address, Remark remark, Set<Tag> tags,
-                  Company company, Job job, StockPlatform stockPlatform, Networth networth, boolean isHidden) {
+                  Company company, Job job, StockPlatform stockPlatform, Networth networth) {
+
         requireAllNonNull(name, phoneList, email, address, tags, company, job, stockPlatform, networth);
         this.name = name;
         this.phoneList = phoneList;
         this.email = email;
         this.address = address;
+        this.order = new Order("NONE");
+        this.remark = remark;
         this.tags.addAll(tags);
 
-        this.isHidden = isHidden;
-
-        this.remark = remark;
         this.company = company;
         this.job = job;
         this.stockPlatform = stockPlatform;
@@ -100,6 +128,10 @@ public class Person {
 
     public Address getAddress() {
         return isHidden ? new Address("Hidden") : address;
+    }
+
+    public Order getOrder() {
+        return isHidden ? new Order(Order.OrderType.HIDDEN, "1", 1) : order;
     }
 
     public Remark getRemark() {
@@ -211,6 +243,7 @@ public class Person {
                     .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
+                    .add("order", order)
                     .add("remark", remark)
                     .add("tags", tags)
                     .add("company", company)

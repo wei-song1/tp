@@ -26,6 +26,7 @@ import seedu.finclient.commons.util.ToStringBuilder;
 import seedu.finclient.logic.Messages;
 import seedu.finclient.logic.commands.exceptions.CommandException;
 import seedu.finclient.model.Model;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
@@ -114,6 +115,7 @@ public class EditCommand extends Command {
         PhoneList updatedPhoneList = editPersonDescriptor.getPhoneList().orElse(personToEdit.getPhoneList());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Order updatedOrder = editPersonDescriptor.getOrder().orElse(personToEdit.getOrder());
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
@@ -122,8 +124,8 @@ public class EditCommand extends Command {
                 editPersonDescriptor.getStockPlatform().orElse(personToEdit.getStockPlatform());
         Networth updatedNetworth = editPersonDescriptor.getNetworth().orElse(personToEdit.getNetworth());
 
-        return new Person(updatedName, updatedPhoneList, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                updatedCompany, updatedJob, updatedStockPlatform, updatedNetworth);
+        return new Person(updatedName, updatedPhoneList, updatedEmail, updatedAddress, updatedOrder, updatedRemark,
+                updatedTags, updatedCompany, updatedJob, updatedStockPlatform, updatedNetworth);
     }
 
     @Override
@@ -159,6 +161,7 @@ public class EditCommand extends Command {
         private PhoneList phoneList;
         private Email email;
         private Address address;
+        private Order order;
         private Remark remark;
         private Set<Tag> tags;
         private Company company;
@@ -177,6 +180,7 @@ public class EditCommand extends Command {
             setPhoneList(toCopy.phoneList);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setOrder(toCopy.order);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
             setCompany(toCopy.company);
@@ -224,6 +228,15 @@ public class EditCommand extends Command {
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
         }
+
+        public void setOrder(Order order) {
+            this.order = order;
+        }
+
+        public Optional<Order> getOrder() {
+            return Optional.ofNullable(order);
+        }
+
         public void setRemark(Remark remark) {
             this.remark = remark;
         }
@@ -312,6 +325,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phoneList, otherEditPersonDescriptor.phoneList)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(order, otherEditPersonDescriptor.order)
                     && Objects.equals(remark, otherEditPersonDescriptor.remark)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags)
                     && Objects.equals(company, otherEditPersonDescriptor.company)
@@ -327,6 +341,7 @@ public class EditCommand extends Command {
                     .add("phones", phoneList)
                     .add("email", email)
                     .add("address", address)
+                    .add("order", order)
                     .add("remark", remark)
                     .add("tags", tags)
                     .add("company", company)

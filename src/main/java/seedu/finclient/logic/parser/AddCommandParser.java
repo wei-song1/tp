@@ -3,20 +3,25 @@ package seedu.finclient.logic.parser;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NETWORTH;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.finclient.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.finclient.logic.commands.AddCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
@@ -42,7 +47,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMARK,
+                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_ORDER,
+                        PREFIX_AMOUNT, PREFIX_PRICE, PREFIX_REMARK, PREFIX_TAG,
                         PREFIX_COMPANY, PREFIX_JOB, PREFIX_PLATFORM, PREFIX_NETWORTH);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
@@ -62,6 +68,21 @@ public class AddCommandParser implements Parser<AddCommand> {
         Remark remark = arePrefixesPresent(argMultimap, PREFIX_REMARK)
                 ? ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get())
                 : new Remark("");
+
+        // Order
+        boolean hasOrder = argMultimap.getValue(PREFIX_ORDER).isPresent();
+        boolean hasAmount = argMultimap.getValue(PREFIX_AMOUNT).isPresent();
+        boolean hasPrice = argMultimap.getValue(PREFIX_PRICE).isPresent();
+
+        Order order;
+        if (!hasOrder) {
+            order = new Order("NONE");
+        } else if (hasAmount && hasPrice) {
+            order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_ORDER).get(),
+                    argMultimap.getValue(PREFIX_AMOUNT).get(), argMultimap.getValue(PREFIX_PRICE).get());
+        } else {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
 
         // Optional Fields
         Company company;
@@ -109,16 +130,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             networth = new Networth();
         }
 
-        Person person = new Person(name, phoneList, email, address, remark, tagList, company, job,
+        Person person = new Person(name, phoneList, email, address, order, remark, tagList, company, job,
                 stockPlatform, networth);
         return new AddCommand(person);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

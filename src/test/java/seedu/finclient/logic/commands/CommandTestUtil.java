@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NETWORTH;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.testutil.Assert.assertThrows;
@@ -96,6 +99,17 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    // For valid order inputs
+    public static final String ORDER_DESC_BUY = " " + PREFIX_ORDER + "buy";
+    public static final String AMOUNT_DESC_10 = " " + PREFIX_AMOUNT + "10";
+    public static final String PRICE_DESC_550 = " " + PREFIX_PRICE + "5.50";
+
+    // For invalid order fields
+    public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER + "foo"; // invalid order type
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "abc"; // non-integer
+    public static final String INVALID_QUANTITY_ZERO = " " + PREFIX_AMOUNT + "0"; // quantity must be > 0
+    public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "-1.50"; // negative price
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

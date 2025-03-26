@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.commons.util.StringUtil;
 import seedu.finclient.logic.parser.exceptions.ParseException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
@@ -130,6 +132,50 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a collection of {@code String order}, {@code String amount}
+     * and {@code String price} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given arguments are invalid (e.g. wrong order type,
+     *                        non-integer quantity, or an invalid price format).
+     */
+    public static Order parseOrder(String order, String amount, String price) throws ParseException {
+        requireNonNull(order);
+
+        // Trim whitespace
+        String trimmedOrder = order.trim();
+        String trimmedAmount = amount.trim();
+        String trimmedPrice = price.trim();
+
+        // 1) Parse the order type (BUY or SELL)
+        Order.OrderType orderType;
+        try {
+            // Convert to uppercase to match enum constants
+            orderType = Order.OrderType.valueOf(trimmedOrder.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException("Invalid order type! Must be either BUY or SELL");
+        }
+
+        // 2) Parse quantity as int
+        int quantity;
+        try {
+            quantity = Integer.parseInt(trimmedAmount);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Quantity must be a valid integer.");
+        }
+
+        if (!Order.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS_PRICE);
+        }
+
+        if (!Order.isValidQuantity(quantity)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS_QUANTITY);
+        }
+
+        return new Order(orderType, trimmedPrice, quantity);
+    }
+
+    /**
      * Parses a {@code String remark} into a {@code Remark}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -229,5 +275,13 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

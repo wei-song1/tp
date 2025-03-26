@@ -5,10 +5,13 @@ import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.finclient.model.order.CallAuctionCalculator;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.exceptions.DuplicatePersonException;
 import seedu.finclient.model.person.exceptions.PersonNotFoundException;
 
@@ -132,6 +135,17 @@ public class UniquePersonList implements Iterable<Person> {
         requireNonNull(person);
         internalList.filtered(person::isSamePerson)
                 .forEach(Person::setUnhidden);
+    }
+
+    /**
+     * Returns the clearing price based on current orders.
+     */
+    public Optional<Double> calculateClearingPrice() {
+        List<Order> orders = internalList.stream()
+                .map(p -> p.getOrder())
+                .toList();
+
+        return CallAuctionCalculator.calculateClearingPrice(orders);
     }
 
     public void sortPersons(String criteria) {

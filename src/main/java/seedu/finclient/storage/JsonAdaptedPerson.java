@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.finclient.commons.exceptions.IllegalValueException;
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final String name;
     private final String email;
     private final String address;
+    private final String order;
     private final String remark;
     private final List<String> phones;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -50,7 +52,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("phones") List<String> phones,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
-                             @JsonProperty("remark") String remark,
+                             @JsonProperty("order") String order, @JsonProperty("remark") String remark,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("company") String company,
                              @JsonProperty("job") String job,
@@ -61,6 +63,7 @@ class JsonAdaptedPerson {
         this.phones = (phones != null) ? new ArrayList<>(phones) : new ArrayList<>();
         this.email = email;
         this.address = address;
+        this.order = order;
         this.remark = remark;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -84,6 +87,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList());
         email = source.getEmail().value;
         address = source.getAddress().value;
+        order = source.getOrder().toString();
         remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -144,7 +148,17 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Order modelOrder;
+
+        if (order == null) {
+            modelOrder = new Order("NONE");
+        } else {
+            modelOrder = new Order(order);
+        }
+
         final Remark modelRemark = new Remark(remark == null ? "" : remark);
+
+        final boolean modelIsHidden = isHidden;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
@@ -160,7 +174,7 @@ class JsonAdaptedPerson {
                 ? new Networth()
                 : new Networth(networth);
 
-        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelRemark, modelTags,
+        return new Person(modelName, modelPhoneList, modelEmail, modelAddress, modelOrder, modelRemark, modelTags,
                 modelCompany, modelJob, modelStockPlatform, modelNetworth, isHidden);
     }
 }

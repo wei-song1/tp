@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
 import seedu.finclient.model.person.Company;
 import seedu.finclient.model.person.Email;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ORDER = "BUY 10 @ $5.50";
     public static final String DEFAULT_REMARK = "Remarkable";
     public static final String DEFAULT_COMPANY = "NUS";
     public static final String DEFAULT_JOB = "Student";
@@ -37,6 +39,7 @@ public class PersonBuilder {
     private PhoneList phoneList;
     private Email email;
     private Address address;
+    private Order order;
     private Remark remark;
     private Set<Tag> tags;
     private Company company;
@@ -53,6 +56,7 @@ public class PersonBuilder {
         phoneList.addPhone(new Phone(DEFAULT_PHONE));
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        order = new Order(DEFAULT_ORDER);
         remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         company = new Company(DEFAULT_COMPANY);
@@ -69,6 +73,7 @@ public class PersonBuilder {
         phoneList = personToCopy.getPhoneList();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        order = personToCopy.getOrder();
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
         company = personToCopy.getCompany();
@@ -130,6 +135,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Order} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withOrder(String order) {
+        this.order = new Order(order);
         return this;
     }
 
@@ -205,7 +218,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phoneList, email, address, remark, tags, company, job, stockPlatform, networth);
+        return new Person(name, phoneList, email, address, order, remark, tags, company, job, stockPlatform, networth);
     }
 
 }
