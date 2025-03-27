@@ -1,8 +1,10 @@
 package seedu.finclient.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,6 +38,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String order;
     private final String remark;
+    private final String remarkTimestamp;
     private final List<String> phones;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final boolean isHidden;
@@ -52,7 +55,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("phones") List<String> phones,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
-                             @JsonProperty("order") String order, @JsonProperty("remark") String remark,
+                             @JsonProperty("order") String order,
+                             @JsonProperty("remark") String remark,
+                             @JsonProperty("remarkTimestamp") String remarkTimestamp,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("company") String company,
                              @JsonProperty("job") String job,
@@ -65,6 +70,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.order = order;
         this.remark = remark;
+        this.remarkTimestamp = remarkTimestamp;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -89,6 +95,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         order = source.getOrder().toString();
         remark = source.getRemark().value;
+        remarkTimestamp = source.getRemark().getTimestamp()
+                .map(LocalDateTime::toString)
+                .orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -156,8 +165,16 @@ class JsonAdaptedPerson {
             modelOrder = new Order(order);
         }
 
-        final Remark modelRemark = new Remark(remark == null ? "" : remark);
+        final Remark modelRemark;
+        final Optional<LocalDateTime> modelTimestamp;
 
+        if (remarkTimestamp == null || remarkTimestamp.isEmpty()) {
+            modelTimestamp = Optional.empty();
+        } else {
+            modelTimestamp = Optional.of(LocalDateTime.parse(remarkTimestamp));
+        }
+
+        modelRemark = new Remark(remark == null ? "" : remark, modelTimestamp);
         final boolean modelIsHidden = isHidden;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
