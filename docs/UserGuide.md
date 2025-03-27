@@ -57,7 +57,7 @@ FinClient is a **desktop app for managing contacts, optimized for use via a Comm
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Please refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
