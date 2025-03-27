@@ -24,9 +24,18 @@ public class SortCommandTest {
 
     @Test
     public void execute_sort_success() {
-        CommandResult expectedCommandResult =
+        CommandResult expectedCommandResultName =
                 new CommandResult(String.format(MESSAGE_SORT_ACKNOWLEDGEMENT, "name"), false, false);
-        assertCommandSuccess(new SortCommand("name"), model, expectedCommandResult, expectedModel);
+        CommandResult expectedCommandResultAmount =
+                new CommandResult(String.format(MESSAGE_SORT_ACKNOWLEDGEMENT, "amount"), false, false);
+        CommandResult expectedCommandResultNetworth =
+                new CommandResult(String.format(MESSAGE_SORT_ACKNOWLEDGEMENT, "networth"), false, false);
+        CommandResult expectedCommandResultPrive =
+                new CommandResult(String.format(MESSAGE_SORT_ACKNOWLEDGEMENT, "price"), false, false);
+        assertCommandSuccess(new SortCommand("name"), model, expectedCommandResultName, expectedModel);
+        assertCommandSuccess(new SortCommand("amount"), model, expectedCommandResultAmount, expectedModel);
+        assertCommandSuccess(new SortCommand("networth"), model, expectedCommandResultNetworth, expectedModel);
+        assertCommandSuccess(new SortCommand("price"), model, expectedCommandResultPrive, expectedModel);
     }
 
     @Test
@@ -36,16 +45,21 @@ public class SortCommandTest {
 
         // invalid criteria
         assertFalse(SortCommand.isValidCriteria("invalid"));
+        assertFalse(SortCommand.isValidCriteria("name price"));
+        assertFalse(SortCommand.isValidCriteria("name price amount"));
+        assertFalse(SortCommand.isValidCriteria(" "));
 
         // valid criteria
         assertTrue(SortCommand.isValidCriteria("name"));
-        assertTrue(SortCommand.isValidCriteria("phone"));
+        assertTrue(SortCommand.isValidCriteria("amount"));
+        assertTrue(SortCommand.isValidCriteria("networth"));
+        assertTrue(SortCommand.isValidCriteria("price"));
     }
 
     @Test
     public void equals() {
         SortCommand sortNameCommand = new SortCommand("name");
-        SortCommand sortPhoneCommand = new SortCommand("phone");
+        SortCommand sortAmountCommand = new SortCommand("amount");
 
         // same object -> returns true
         assertTrue(sortNameCommand.equals(sortNameCommand));
@@ -56,12 +70,13 @@ public class SortCommandTest {
 
         // different types -> returns false
         assertFalse(sortNameCommand.equals(1));
+        assertFalse(sortNameCommand.equals("name"));
 
         // null -> returns false
         assertFalse(sortNameCommand.equals(null));
 
         // different criteria -> returns false
-        assertFalse(sortNameCommand.equals(sortPhoneCommand));
+        assertFalse(sortNameCommand.equals(sortAmountCommand));
     }
 
     @Test

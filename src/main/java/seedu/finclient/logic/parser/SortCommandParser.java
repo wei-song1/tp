@@ -2,8 +2,6 @@ package seedu.finclient.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.finclient.logic.parser.CliSyntax.PREFIX_CRITERIA;
-import static seedu.finclient.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.finclient.logic.commands.SortCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
@@ -19,14 +17,8 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CRITERIA);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CRITERIA) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        }
-
-        String criteria = argMultimap.getValue(PREFIX_CRITERIA).get();
+        String criteria = args.trim();
 
         if (!SortCommand.isValidCriteria(criteria)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));

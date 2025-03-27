@@ -224,7 +224,9 @@ public class Person {
         requireAllNonNull(other, criteria);
         return switch (criteria) {
         case "name" -> name.toString().compareTo(other.name.toString());
-        case "phone" -> phoneList.toString().compareTo(other.phoneList.toString());
+        case "price" -> order.compareTo(other.order, "price");
+        case "amount" -> order.compareTo(other.order, "amount");
+        case "networth" -> networth.compareTo(other.networth);
         default -> 0;
         };
     }
