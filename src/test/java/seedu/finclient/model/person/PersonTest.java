@@ -9,6 +9,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.ALICE;
+import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -139,12 +140,54 @@ public class PersonTest {
     }
 
     @Test
-    public void compareTo_differentPhones_returnsComparison() {
-        // Compare two persons with different phone numbers
-        assertTrue(ALICE.compareTo(BOB, "phone") > 0,
-                "ALICE should come after BOB in phone comparison.");
-        assertTrue(BOB.compareTo(ALICE, "phone") < 0,
-                "BOB should come before ALICE in phone comparison.");
+    public void compareTo_differentNetworth_returnsComparison() {
+        // Compare two persons with different networth
+        assertTrue(ALICE.compareTo(BENSON, "networth") < 0,
+                "ALICE should come before Benson in networth comparison.");
+        assertTrue(BENSON.compareTo(ALICE, "networth") > 0,
+                "Benson should come after Alice in networth comparison.");
+    }
+
+    @Test
+    public void compareTo_sameNetworth_returnsEqual() {
+        // Compare two persons with same networth
+        assertEquals(0, ALICE.compareTo(ALICE, "networth"));
+    }
+
+    @Test
+    public void compareTo_differentAmounts_returnsComparison() {
+        // Compare two persons with different amounts
+        assertTrue(ALICE.compareTo(BENSON, "amount") < 0,
+                "Alice should come before Benson in amount comparison.");
+        assertTrue(BENSON.compareTo(ALICE, "amount") > 0,
+                "Benson should come after Alice in amount comparison.");
+    }
+
+    @Test
+    public void compareTo_sameAmounts_returnsEqual() {
+        // Compare two persons with same amounts
+        assertEquals(0, ALICE.compareTo(ALICE, "amount"));
+    }
+
+    @Test
+    public void compareTo_differentPrices_returnsComparison() {
+        // Compare two persons with different amounts
+        assertTrue(ALICE.compareTo(BENSON, "price") > 0,
+                "Alice should come after Benson in price comparison.");
+        assertTrue(BENSON.compareTo(ALICE, "price") < 0,
+                "Benson should come before Alice in price comparison.");
+    }
+
+    @Test
+    public void compareTo_samePrices_returnsEqual() {
+        // Compare two persons with same amounts
+        assertEquals(0, ALICE.compareTo(ALICE, "price"));
+    }
+
+    @Test
+    public void compareToNull_throwsNullPointerException() {
+        // Check if null values are handled by throwing NullPointerException
+        assertThrows(NullPointerException.class, () -> ALICE.compareTo(null, "name"));
     }
 
     @Test

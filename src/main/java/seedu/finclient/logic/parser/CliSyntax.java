@@ -15,7 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRICE = new Prefix("at/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_CRITERIA = new Prefix("c/");
     public static final Prefix PREFIX_COMPANY = new Prefix("com/");
     public static final Prefix PREFIX_JOB = new Prefix("j/");
     public static final Prefix PREFIX_PLATFORM = new Prefix("platform/");

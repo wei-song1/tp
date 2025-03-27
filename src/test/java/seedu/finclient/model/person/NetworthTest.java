@@ -102,4 +102,28 @@ public class NetworthTest {
         Networth networth = new Networth("1000000");
         assertEquals(new Networth("1000000").hashCode(), networth.hashCode());
     }
+
+    @Test
+    public void compareTo_validNetworth() {
+        Networth networth = new Networth("1000000");
+        assertEquals(0, networth.compareTo(new Networth("1000000")));
+
+        Networth networth2 = new Networth("500000");
+        assertEquals(1, networth.compareTo(networth2));
+
+        Networth networth3 = new Networth("5000000");
+        assertEquals(-1, networth.compareTo(networth3));
+    }
+
+    @Test
+    public void compareTo_invalidNetworth() {
+        Networth networth = new Networth("1000000");
+        assertThrows(IllegalArgumentException.class, () -> networth.compareTo(new Networth("")));
+    }
+
+    @Test
+    public void compareTo_nullNetworth() {
+        Networth networth = new Networth("1000000");
+        assertThrows(NullPointerException.class, () -> networth.compareTo(null));
+    }
 }
