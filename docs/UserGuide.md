@@ -71,7 +71,7 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Please refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
