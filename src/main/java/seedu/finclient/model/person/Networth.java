@@ -3,6 +3,8 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.finclient.commons.core.LogsCenter;
@@ -110,5 +112,16 @@ public class Networth {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+
+    /**
+     * Compares this networth with another networth.
+     */
+    public int compareTo(Networth other) {
+        List<String> order = Arrays.asList("< $100k", "$100k - $250k", "$250k - $500k", "$500k - $1 million",
+                "$1 million - $5 million", "> $5 million");
+        requireNonNull(other);
+        return Integer.compare(order.indexOf(this.value), order.indexOf(other.value));
     }
 }

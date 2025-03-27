@@ -177,4 +177,16 @@ public class Order {
     public enum OrderType {
         BUY, SELL, HIDDEN, NONE
     }
+
+    /**
+     * Compares this order with another order based on the given criteria.
+     */
+    public int compareTo(Order other, String criteria) {
+        requireAllNonNull(other, criteria);
+        return switch (criteria) {
+        case "price" -> Double.compare(getPrice(), other.getPrice());
+        case "amount" -> Integer.compare(getQuantity(), other.getQuantity());
+        default -> 0;
+        };
+    }
 }

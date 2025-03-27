@@ -7,7 +7,11 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.ALICE;
+import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
+import static seedu.finclient.testutil.TypicalPersons.CARL;
+import static seedu.finclient.testutil.TypicalPersons.FIONA;
+import static seedu.finclient.testutil.TypicalPersons.GEORGE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -255,5 +259,45 @@ public class UniquePersonListTest {
         assertTrue(BOB.getIsHidden(), "BOB should remain hidden.");
 
         uniquePersonList.revealPerson(BOB);
+    }
+
+    @Test
+    public void sortByName() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        unsortedUniquePersonList.setPersons(Arrays.asList(GEORGE, BOB, ALICE));
+        unsortedUniquePersonList.sortPersons("name");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(ALICE, BOB, GEORGE));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+    }
+
+    @Test
+    public void sortByPrice() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        unsortedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, CARL));
+        unsortedUniquePersonList.sortPersons("price");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(CARL, BENSON, ALICE));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+    }
+
+    @Test
+    public void sortByAmount() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        unsortedUniquePersonList.setPersons(Arrays.asList(CARL, BENSON, ALICE));
+        unsortedUniquePersonList.sortPersons("name");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, CARL));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+    }
+
+    @Test
+    public void sortByNetworth() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        unsortedUniquePersonList.setPersons(Arrays.asList(FIONA, BENSON, ALICE));
+        unsortedUniquePersonList.sortPersons("networth");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, FIONA));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
     }
 }
