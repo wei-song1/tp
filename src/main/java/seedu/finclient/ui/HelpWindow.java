@@ -73,8 +73,8 @@ public class HelpWindow extends UiPart<Stage> {
             + " located at the top right of this window";
 
     public static final String SORT_MESSAGE = "Sort contact via certain criteria : ";
-    public static final String SORT_SYNTAX = "sort c/CRITERIA ("
-            + "Available criterias: name, phone)";
+    public static final String SORT_SYNTAX = "sort CRITERIA ("
+            + "Available criteria: name, amount, price, networth)";
 
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional"
             + "\n\n" + "INDEX refers to the number beside the contact's ame";

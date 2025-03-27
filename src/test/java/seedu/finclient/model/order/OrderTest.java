@@ -1,5 +1,6 @@
 package seedu.finclient.model.order;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.testutil.Assert.assertThrows;
@@ -163,5 +164,34 @@ public class OrderTest {
         // different quantity -> returns false
         Order differentQty = new Order(OrderType.BUY, "10.00", 5);
         assertFalse(order.equals(differentQty));
+    }
+
+    @Test
+    public void compareTo_validOrder_success() {
+        Order order = new Order(OrderType.BUY, "10.00", 10);
+        Order orderCopy = new Order(OrderType.BUY, "10.00", 10);
+        Order orderHigherPrice = new Order(OrderType.BUY, "11.00", 10);
+        Order orderHigherAmount = new Order(OrderType.BUY, "10.00", 11);
+        assertEquals(0, order.compareTo(orderCopy, "price"));
+        assertEquals(0, order.compareTo(orderCopy, "amount"));
+        assertEquals(-1, order.compareTo(orderHigherPrice, "price"));
+        assertEquals(-1, order.compareTo(orderHigherAmount, "amount"));
+        assertEquals(1, orderHigherPrice.compareTo(order, "price"));
+        assertEquals(1, orderHigherAmount.compareTo(order, "amount"));
+    }
+
+    @Test
+    public void compareTo_invalidOrder_exceptionThrown() {
+        Order order = new Order(OrderType.BUY, "10.00", 10);
+        Order orderCopy = new Order(OrderType.BUY, "10.00", 10);
+        assertThrows(NullPointerException.class, () -> order.compareTo(null, "price"));
+        assertThrows(NullPointerException.class, () -> order.compareTo(orderCopy, null));
+    }
+
+    @Test
+    public void compareTo_invalidCriteria_returnZero() {
+        Order order = new Order(OrderType.BUY, "10.00", 10);
+        Order orderCopy = new Order(OrderType.BUY, "10.00", 10);
+        assertEquals(0, order.compareTo(orderCopy, "invalid"));
     }
 }
