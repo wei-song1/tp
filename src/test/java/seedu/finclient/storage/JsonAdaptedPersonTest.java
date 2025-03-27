@@ -5,6 +5,7 @@ import static seedu.finclient.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FO
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.BENSON;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -145,7 +146,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = Order.MESSAGE_CONSTRAINTS_PRICE;
         assertThrows(IllegalArgumentException.class, expectedMessage, person::toModelType);
     }
-
     @Test
     public void toModelType_nullOrder_returnsPerson() throws Exception {
         // If order is null, we get a person with NONE order
@@ -154,5 +154,22 @@ public class JsonAdaptedPersonTest {
                 VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH, false);
 
         assertEquals(new Order("NONE"), person.toModelType().getOrder());
+    }
+    @Test
+    public void toModelType_validRemarkTimestamp_returnsPerson() throws Exception {
+        String validTimestamp = "2025-03-27T10:30"; // ISO_LOCAL_DATE_TIME format
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_ORDER, VALID_REMARK, validTimestamp, VALID_TAGS, VALID_COMPANY,
+                VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH, false);
+        assertEquals(BENSON.getName(), person.toModelType().getName()); // sanity check it parses fine
+    }
+    @Test
+    public void toModelType_invalidRemarkTimestamp_throwsException() {
+        String invalidTimestamp = "March 27, 2025 10:30 AM"; // Not ISO format
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_ORDER, VALID_REMARK, invalidTimestamp, VALID_TAGS, VALID_COMPANY,
+                VALID_JOB, VALID_STOCK_PLATFORM, VALID_NETWORTH, false);
+
+        assertThrows(DateTimeParseException.class, person::toModelType);
     }
 }
