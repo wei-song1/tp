@@ -20,4 +20,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_JOB = new Prefix("j/");
     public static final Prefix PREFIX_PLATFORM = new Prefix("platform/");
     public static final Prefix PREFIX_NETWORTH = new Prefix("networth/");
+    public static final Prefix PREFIX_TIMESTAMP = new Prefix("by/");
 }

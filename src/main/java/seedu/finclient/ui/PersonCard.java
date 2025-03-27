@@ -1,5 +1,6 @@
 package seedu.finclient.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -43,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
+    private Label remarkTimestamp;
+    @FXML
     private FlowPane tags;
     @FXML
     private Label company;
@@ -75,6 +78,14 @@ public class PersonCard extends UiPart<Region> {
         if (person.getRemark().value == "") {
             remark.setVisible(false);
             remark.setManaged(false);
+        }
+
+        if (person.getRemark().timestamp.isPresent()) {
+            String formatted = person.getRemark().timestamp.get()
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            remarkTimestamp.setText("Due: " + formatted);
+        } else {
+            remarkTimestamp.setText(""); // hide if absent
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
