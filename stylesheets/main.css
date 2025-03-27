@@ -1,0 +1,14 @@
+/* Adjust scroll offset for targeted headings */
+*:target::before {
+  content: "";
+  display: block;
+  height: 80px; /* adjust to your header height */
+  margin-top: -80px;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.nav-link.active {
+  background-color: #ccc; /* change to desired active background color */
+  color: #a60f0f;           /* change text color if needed */
+}
