@@ -8,7 +8,7 @@ pageNav: 3
 
 Welcome Financial Advisors! This guide will help you get started with FinClient.
 
-FinClient is Command-Line Interface(CLI), or simply put, a typing-based application, that is built to help you manage your contacts and their financial details, while minimizing the time and effort spent on doing so! 
+FinClient is Command-Line Interface(CLI), or simply put, a typing-based application, that is built to help you manage your contacts and their financial details, while minimizing the time and effort spent on doing so!
 
 With specific features such as:
 
