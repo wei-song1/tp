@@ -70,7 +70,7 @@ mark {
   top: var(--sticky-header-height);
   flex: 0 0 auto;
   max-width: 300px;
-  min-height: calc(100vh - var(--sticky-header-height));
+  max-height: calc(100vh - var(--sticky-header-height));
   width: 300px;
   width: 300px;
 }
@@ -188,7 +188,7 @@ h6 {
 }
 
 body {
-  background-color: #ffffff; /* Change to your desired color */
+  background: linear-gradient(to right, #3b483f 0, #3b483f 300px, #ffffff 300px);
 }
 
 .site-nav-top .fw-bold {

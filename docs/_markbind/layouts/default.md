@@ -1,3 +1,7 @@
+<head>
+  <title>{{ title }}</title>
+  <!-- ...other meta tags... -->
+</head>
 <head-bottom>
   <link rel="stylesheet" href="{{baseUrl}}/stylesheets/main.css">
 </head-bottom>
@@ -23,6 +27,7 @@
   <nav id="site-nav">
     <div class="site-nav-top">
       <div class="fw-bold mb-2 text-center" style="font-size: 3rem;">FinClient</div>
+    </div>
     <div class="nav-component slim-scroll">
       <site-nav>
 * [Home]({{ baseUrl }}/index.html) :expanded:
