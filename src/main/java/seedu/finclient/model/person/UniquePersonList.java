@@ -3,10 +3,13 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -150,6 +153,26 @@ public class UniquePersonList implements Iterable<Person> {
 
     public void sortPersons(String criteria) {
         internalList.setAll(internalList.sorted((p1, p2) -> p1.compareTo(p2, criteria)));
+    }
+    /**
+     * Returns a list of persons who have remarks with upcoming timestamps.
+     * <p>
+     * A remark is considered "upcoming" if its associated timestamp is present
+     * and occurs after the current time.
+     * </p>
+     * The list is sorted by ascending order of timestamp (earliest first),
+     * and limited to the specified number of persons.
+     *
+     * @param count the maximum number of persons to return
+     * @return a list of persons with the soonest upcoming remark timestamps
+     */
+    public List<Person> upcomingPersons(int count) {
+        return internalList.stream()
+                .filter(p -> p.getRemark().getTimestamp().isPresent())
+                .filter(p -> p.getRemark().getTimestamp().get().isAfter(LocalDateTime.now()))
+                .sorted(Comparator.comparing(p -> p.getRemark().getTimestamp().get()))
+                .limit(count)
+                .collect(Collectors.toList());
     }
 
     /**

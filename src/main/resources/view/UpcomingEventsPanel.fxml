@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="upcomingContainer" spacing="50" style="-fx-padding: 10;">
+
+    <!-- Left column: Date and day -->
+    <VBox fx:id="dateBox" spacing="5" style="-fx-alignment: CENTER_LEFT;">
+        <Label fx:id="dayOfWeekLabel" styleClass="calendar-day-label"/>
+        <Label fx:id="dateLabel" styleClass="calendar-date-label"/>
+    </VBox>
+
+    <!-- Right column: Upcoming events -->
+    <HBox fx:id="eventsBox" spacing="20" style="-fx-alignment: CENTER_LEFT;" HBox.hgrow="ALWAYS"/>
+</HBox>

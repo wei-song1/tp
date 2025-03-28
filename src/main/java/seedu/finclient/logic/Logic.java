@@ -1,6 +1,7 @@
 package seedu.finclient.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
@@ -53,4 +54,5 @@ public interface Logic {
      * Returns the clearing price based on current orders.
      */
     Optional<Double> getClearingPrice();
+    List<Person> getUpcomingPersons(int count);
 }
