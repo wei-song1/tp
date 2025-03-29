@@ -13,6 +13,8 @@ import static seedu.finclient.testutil.TypicalPersons.CARL;
 import static seedu.finclient.testutil.TypicalPersons.FIONA;
 import static seedu.finclient.testutil.TypicalPersons.GEORGE;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -259,6 +261,43 @@ public class UniquePersonListTest {
         assertTrue(BOB.getIsHidden(), "BOB should remain hidden.");
 
         uniquePersonList.revealPerson(BOB);
+    }
+
+    @Test
+    public void getUpcomingPersons_returnsCorrectlyFilteredAndSortedList() {
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+        LocalDate tomorrow = today.plusDays(1);
+
+        Person personYesterday = new PersonBuilder()
+                .withRemark("Old Event by/"
+                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Past Person")
+                .build();
+
+        Person personToday = new PersonBuilder()
+                .withRemark("Today Event by/"
+                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Today Person")
+                .build();
+
+        Person personTomorrow = new PersonBuilder()
+                .withRemark("Tomorrow Event by/"
+                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Future Person")
+                .build();
+        System.out.println(personTomorrow.getRemark().toString());
+
+
+        uniquePersonList.add(personYesterday);
+        uniquePersonList.add(personToday);
+        uniquePersonList.add(personTomorrow);
+
+        List<Person> upcoming = uniquePersonList.upcomingPersons(2);
+
+        assertEquals(2, upcoming.size());
+        assertEquals("Today Person", upcoming.get(0).getName().fullName);
+        assertEquals("Future Person", upcoming.get(1).getName().fullName);
     }
 
     @Test
