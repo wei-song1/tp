@@ -1,6 +1,7 @@
 ---
 layout: default.md
 title: "About Us"
+pageNav: 3
 ---
 
 # About Us
