@@ -40,7 +40,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String DELETE_MESSAGE = "Delete contact : ";
     public static final String DELETE_SYNTAX = "delete INDEX";
 
-    public static final String REMARK_MESSAGE = "Adding/Editing/Removing remark of contact. Optionally, add deadline : ";
+    public static final String REMARK_MESSAGE = "Adding/Editing/Removing remark of contact. "
+            + "Optionally, add deadline : ";
     public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK] [by/TIME] ";
 
     public static final String HIDE_MESSAGE = "Hide contact details (can use index or name) : ";
