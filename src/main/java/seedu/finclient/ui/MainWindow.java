@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private UpcomingEventsPanel upcomingEventsPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -56,6 +57,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
+    @FXML
+    private StackPane upcomingEventsPlaceholder;
     @FXML
     private StackPane statusbarPlaceholder;
 
@@ -134,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        UpcomingEventsPanel upcomingEventsPanel = new UpcomingEventsPanel(logic.getUpcomingPersons(2));
+        upcomingEventsPlaceholder.getChildren().add(upcomingEventsPanel.getRoot());
     }
 
     /**
@@ -210,6 +216,9 @@ public class MainWindow extends UiPart<Stage> {
             personListPanel = new PersonListPanel(logic.getFilteredPersonList());
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             priceLabel.setText("Clearing Price: " + logic.getClearingPrice().orElse(0.0));
+            upcomingEventsPlaceholder.getChildren().clear();
+            upcomingEventsPanel = new UpcomingEventsPanel(logic.getUpcomingPersons(2));
+            upcomingEventsPlaceholder.getChildren().add(upcomingEventsPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

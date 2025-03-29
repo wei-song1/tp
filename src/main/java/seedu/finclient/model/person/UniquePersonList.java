@@ -3,6 +3,8 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -150,6 +152,18 @@ public class UniquePersonList implements Iterable<Person> {
 
     public void sortPersons(String criteria) {
         internalList.setAll(internalList.sorted((p1, p2) -> p1.compareTo(p2, criteria)));
+    }
+    /**
+     * Returns a list of persons who have remarks with upcoming timestamps.
+     */
+    public List<Person> upcomingPersons(int count) {
+        LocalDate today = LocalDate.now();
+        return internalList.stream()
+                .filter(p -> p.getRemark().getTimestamp().isPresent())
+                .filter(p -> !p.getRemark().getTimestamp().get().toLocalDate().isBefore(today))
+                .sorted(Comparator.comparing(a -> a.getRemark().getTimestamp().get()))
+                .limit(count)
+                .toList();
     }
 
     /**
