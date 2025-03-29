@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -154,7 +155,10 @@ public class ModelManager implements Model {
     public void sortPersons(String criteria) {
         finClient.sortPersons(criteria);
     }
-
+    @Override
+    public List<Person> getUpcomingPersons(int count) {
+        return finClient.getUpcomingPersons(count);
+    }
     //=========== Filtered Person List Accessors =============================================================
 
     /**

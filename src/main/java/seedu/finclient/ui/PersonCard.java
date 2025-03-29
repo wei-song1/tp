@@ -70,9 +70,6 @@ public class PersonCard extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         order.setText("Order: " + person.getOrder().toString());
 
-        System.out.println("Debug: UI PersonCard -> Name: "
-                + person.getName().fullName + ", Remark: " + person.getRemark());
-
         // Optionals
         remark.setText("Remark: " + person.getRemark().value);
         if (person.getRemark().value == "") {
