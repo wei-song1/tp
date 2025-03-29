@@ -95,13 +95,6 @@ public class LogicManager implements Logic {
     }
 
     public List<Person> getUpcomingPersons(int count) {
-        LocalDate today = LocalDate.now();
-        return model.getFilteredPersonList().stream()
-                .filter(p -> p.getRemark().getTimestamp().isPresent())
-                .filter(p -> !p.getRemark().getTimestamp().get().toLocalDate().isBefore(today))
-                .sorted((a, b) -> a.getRemark().getTimestamp().get().compareTo(
-                        b.getRemark().getTimestamp().get()))
-                .limit(count)
-                .toList();
+        return model.getUpcomingPersons(count);
     }
 }
