@@ -1,6 +1,7 @@
 ---
 layout: default.md
 title: "About Us"
+pageNav: 3
 ---
 
 # About Us
@@ -11,7 +12,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Huang Fengrui (Ricky)
+### Huang Fengrui (Ricky!!)
 
 <img src="images/rickyhfr.png" width="200px">
 

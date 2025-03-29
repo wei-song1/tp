@@ -55,6 +55,14 @@ public class HelpWindowTest extends StageExtension {
     }
 
     @Test
+    public void testHelpLabelText() {
+        String labelText = helpWindow.getHelpLabel().getText();
+        assertFalse(labelText.equals(""));
+        assertTrue(labelText.startsWith("Welcome to FinClient")
+                && labelText.endsWith("https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html"));
+    }
+
+    @Test
     public void handleHelp() {
         robot.interact(helpWindow::show);
         robot.clickOn(helpWindow.getRoot().getScene().getRoot());
@@ -86,6 +94,4 @@ public class HelpWindowTest extends StageExtension {
         assertTrue(copyButton.isVisible(),
                 "End button should be visible when scrolled to the bottom");
     }
-
-
 }
