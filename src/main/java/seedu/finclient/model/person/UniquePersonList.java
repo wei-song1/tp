@@ -160,7 +160,7 @@ public class UniquePersonList implements Iterable<Person> {
         LocalDate today = LocalDate.now();
         return internalList.stream()
                 .filter(p -> p.getRemark().getTimestamp().isPresent())
-                .filter(p -> p.getRemark().getTimestamp().get().toLocalDate().isBefore(today))
+                .filter(p -> !p.getRemark().getTimestamp().get().toLocalDate().isBefore(today))
                 .sorted(Comparator.comparing(a -> a.getRemark().getTimestamp().get()))
                 .limit(count)
                 .toList();

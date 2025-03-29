@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -271,29 +270,31 @@ public class UniquePersonListTest {
         LocalDate tomorrow = today.plusDays(1);
 
         Person personYesterday = new PersonBuilder()
-                .withRemark("Old Event (Due: " + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")")
+                .withRemark("Old Event by/"
+                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
                 .withName("Past Person")
                 .build();
 
         Person personToday = new PersonBuilder()
-                .withRemark("Today Event (Due: " + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")")
+                .withRemark("Today Event by/"
+                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
                 .withName("Today Person")
                 .build();
 
         Person personTomorrow = new PersonBuilder()
-                .withRemark("Tomorrow Event (Due: " + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")")
+                .withRemark("Tomorrow Event by/"
+                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
                 .withName("Future Person")
                 .build();
+        System.out.println(personTomorrow.getRemark().toString());
 
-        // 加入 model
+
         uniquePersonList.add(personYesterday);
         uniquePersonList.add(personToday);
         uniquePersonList.add(personTomorrow);
 
-        // 测试：limit 为 2
         List<Person> upcoming = uniquePersonList.upcomingPersons(2);
 
-        // 只应包含今天和明天的
         assertEquals(2, upcoming.size());
         assertEquals("Today Person", upcoming.get(0).getName().fullName);
         assertEquals("Future Person", upcoming.get(1).getName().fullName);
