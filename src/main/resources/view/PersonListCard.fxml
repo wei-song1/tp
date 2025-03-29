@@ -40,23 +40,10 @@
           <Label fx:id="networth" styleClass="cell_small_label" text="\$email" wrapText="true" />
         </VBox>
         <Region minWidth="2" maxWidth="2" style="-fx-background-color: lightgrey" />
-        <GridPane minWidth="500" maxWidth="Infinity">
-          <columnConstraints>
-            <ColumnConstraints percentWidth="50" halignment="LEFT"/>
-            <ColumnConstraints percentWidth="50" halignment="RIGHT"/>
-          </columnConstraints>
-
-          <Label fx:id="remark"
-                 styleClass="cell_small_label"
-                 wrapText="true"
-                 GridPane.columnIndex="0" />
-
-          <Label fx:id="remarkTimestamp"
-                 styleClass="cell_small_label"
-                 wrapText="true"
-                 maxWidth="Infinity"
-                 GridPane.columnIndex="1" />
-        </GridPane>
+        <VBox minWidth="300" maxWidth="300">
+          <Label fx:id="remark" styleClass="cell_small_label" wrapText="true" />
+          <Label fx:id="remarkTimestamp" styleClass="cell_small_label" wrapText="true" />
+        </VBox>
       </HBox>
     </VBox>
   </GridPane>

@@ -27,7 +27,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG] "
             + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
 
-    public static final String REMOVE_OPTIONAL_MESSAGE = "Edit and remove optional fields: ";
+    public static final String REMOVE_OPTIONAL_MESSAGE = "Remove optional fields: ";
     public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [c/delete] "
             + "[j/delete] [s/delete] [$/delete]";
 
@@ -40,8 +40,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String DELETE_MESSAGE = "Delete contact : ";
     public static final String DELETE_SYNTAX = "delete INDEX";
 
-    public static final String REMARK_MESSAGE = "Adding remark to contact : ";
-    public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK]";
+    public static final String REMARK_MESSAGE = "Adding/Editing/Removing remark of contact. "
+            + "Optionally, add deadline : ";
+    public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK] [by/TIME] ";
 
     public static final String HIDE_MESSAGE = "Hide contact details (can use index or name) : ";
     public static final String HIDE_SYNTAX = "hide INDEX/NAME";
