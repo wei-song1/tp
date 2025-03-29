@@ -56,6 +56,10 @@ public class Remark {
         return new Remark(text, ts);
     }
 
+    public String getDisplayText() {
+        return value.isEmpty() ? "Description is empty" : value;
+    }
+
     /**
      * Returns true if a given string is a valid remark.
      */

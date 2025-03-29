@@ -188,6 +188,12 @@
     -fx-padding: 2 5 2 5;
 }
 
+.empty-remark {
+    -fx-text-fill: #aaaaaa !important;
+    -fx-font-style: italic !important;
+    -fx-font-size: 16px;
+}
+
 .event-title-label {
     -fx-text-fill: white;
     -fx-font-weight: bold;

@@ -44,12 +44,19 @@ public class UpcomingEventsPanel extends UiPart<Region> {
             VBox eventBox = new VBox();
             eventBox.setSpacing(4);
             eventBox.setStyle("-fx-background-color: #2b2b2b; -fx-padding: 10; -fx-background-radius: 8;");
-            eventBox.setMaxWidth(230);
+            eventBox.setMaxWidth(Double.MAX_VALUE);
             eventBox.setMinWidth(0);
 
             Label timeLabel = new Label(time);
             timeLabel.getStyleClass().add("event-time-label");
-            Label titleLabel = new Label(name + " - " + content);
+            Label titleLabel;
+            if (content.isEmpty()) {
+                titleLabel = new Label("New Event");
+                titleLabel.getStyleClass().add("empty-remark");
+            } else {
+                titleLabel = new Label(name + " - " + content);
+                titleLabel.getStyleClass().add("event-title-label");
+            }
             titleLabel.getStyleClass().add("event-title-label");
             titleLabel.setWrapText(true);
             eventBox.getChildren().addAll(timeLabel, titleLabel);
