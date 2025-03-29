@@ -59,4 +59,8 @@ public class UpcomingEventsPanel extends UiPart<Region> {
             eventsBox.getChildren().add(eventBox);
         }
     }
+
+    HBox getEventsBox() {
+        return eventsBox;
+    }
 }
