@@ -18,13 +18,15 @@ import seedu.finclient.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_MESSAGE = "Add contact (minimum of 1 and maximum of 3 phone numbers) : ";
-    public static final String ADD_SYNTAX = "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
-            + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG] "
+    public static final String ADD_SYNTAX = "add n/NAME p/PHONE [p/PHONE] [p/PHONE] "
+            + "e/EMAIL a/ADDRESS [r/REMARK [by/TIME]] [t/TAG] "
             + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
+    public static final String ADD_EXTRA = "** While adding/editing a contact, "
+            + "the r/REMARK and by/TIME parameters must be together, no other fields should be between r/ and by/ **";
 
     public static final String EDIT_MESSAGE = "Edit contact (mininally one field is to be entered) : ";
     public static final String EDIT_SYNTAX = "edit INDEX [n/NAME] "
-            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG] "
+            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]] [t/TAG] "
             + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
 
     public static final String REMOVE_OPTIONAL_MESSAGE = "Remove optional fields: ";
@@ -83,7 +85,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_DISPLAY = "Welcome to FinClient, here are the commands available: \n\n"
-            + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
+            + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + ADD_EXTRA + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
             + REMOVE_OPTIONAL_MESSAGE + REMOVE_OPTIONAL_SYNTAX + "\n\n" + LIST_MESSAGE + LIST_SYNTAX + "\n\n"
             + FIND_MESSAGE + FIND_SYNTAX + "\n\n" + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n"
             + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n" + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n"

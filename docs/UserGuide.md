@@ -92,7 +92,7 @@ You can look forward to an efficient and enjoyable experience with FinClient!
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order. However, to add deadlines to remarks, the parameter must be directly behind the remark parameter<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable. <br>
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable. <br>
   e.g. if the command requires `r/REMARKS by/TIME`, `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any parameters between these 2 parameters
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.<br>
@@ -105,15 +105,15 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
 Displays a pop-up window with a scrollable help message. When scrolled to the bottom, a button to copy a URL link to this guide appears.
 
-![help message](images/helpMsg.png)
-
 Format: `help`
+
+![help message](images/helpMsg.png)
 
 ### <span id="adding-a-person">Adding a person : `add`</span>
 
 Adds a person to FinClient.
 
-Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS [r/REMARKS [by/TIME]] [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] [t/TAG]…​ `
+Format: `add n/NAME p/PHONE [p/PHONE] [p/PHONE] e/EMAIL a/ADDRESS [r/REMARKS [by/TIME]] [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] [t/TAG]…​ `
 
 <div markdown="span" class="alert alert-primary">
 
@@ -290,10 +290,10 @@ _Details coming soon ..._
 
  Action | Format, Examples
 ------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+ **Add** | `add n/NAME p/PHONE [p/PHONE] [p/PHONE] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
  **Clear** | `clear`
  **Delete** | `delete INDEX`<br> e.g., `delete 3`
- **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+ **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
  **Remove Optional Fields** | `edit INDEX [t/] [j/delete] [c/delete] [s/delete] [$/delete]` <br> e.g., `edit 2 t/ j/delete`
  **Adding/Editing/Removing Remarks and Deadlines** | `remark INDEX r/[REMARK] [by/TIME]`<br> e.g., `remark 1 r/Likes to swim. by/2020-10-15 18:00`<br> e.g., `remark 1 r/`
  **List** | `list`
