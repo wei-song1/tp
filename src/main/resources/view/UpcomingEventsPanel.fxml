@@ -14,5 +14,5 @@
     </VBox>
 
     <!-- Right column: Upcoming events -->
-    <HBox fx:id="eventsBox" spacing="20" style="-fx-alignment: CENTER_LEFT;" HBox.hgrow="ALWAYS"/>
+    <HBox fx:id="eventsBox" spacing="20" style="-fx-alignment: CENTER_LEFT;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
 </HBox>
