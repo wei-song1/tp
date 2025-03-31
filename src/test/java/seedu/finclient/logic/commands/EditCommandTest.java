@@ -72,6 +72,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
+        // ensure the person to be edited is not hidden
+        model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).setUnhidden();
+
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
@@ -169,6 +172,24 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+    }
+
+    @Test
+    public void execute_editHiddenPerson_failure() {
+        // Hide the first person in the unfiltered list
+        Person hiddenPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        hiddenPerson.setHidden(); // This method depends on your Person implementation
+
+        // Build a descriptor with at least one edited field
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
+                .build();
+
+        // Attempt to edit a hidden person
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        // The command should fail because the person is hidden
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_PERSON_HIDDEN);
     }
 
     @Test
