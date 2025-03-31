@@ -1,6 +1,7 @@
 ---
 layout: default.md
 title: "User Guide"
+pageNav: 3
 ---
 
 # User Guide
@@ -90,8 +91,9 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 * Items with `…`​ after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Parameters can be in any order. However, to add deadlines to remarks, the parameter must be directly behind the remark parameter<br>
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable. <br>
+  e.g. if the command requires `r/REMARKS by/TIME`, `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any parameters between these 2 parameters
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -101,17 +103,17 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
 ### <span id="viewing-help">Viewing help : `help`</span>
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMsg.png)
+Displays a pop-up window with a scrollable help message. When scrolled to the bottom, a button to copy a URL link to this guide appears.
 
 Format: `help`
+
+![help message](images/helpMsg.png)
 
 ### <span id="adding-a-person">Adding a person : `add`</span>
 
 Adds a person to FinClient.
 
-Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARKS [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
+Format: `add n/NAME p/PHONE [p/PHONE] [p/PHONE] e/EMAIL a/ADDRESS [r/REMARKS [by/TIME]] [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] [t/TAG]…​ `
 
 <div markdown="span" class="alert alert-primary">
 
@@ -134,7 +136,7 @@ Format: `list`
 
 Edits an existing person in FinClient.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -178,7 +180,7 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FinClient.
@@ -192,7 +194,7 @@ Format: `hide all|INDEX|name`
 
 * Hides the details of the person specified at `INDEX` or by `name`.
 * Hides all contacts' details if `all` is used.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `hide 2` hides the 2nd person in FinClient.
@@ -206,7 +208,7 @@ Format: `reveal all|INDEX|name`
 
 * Reveals the details of the person specified at `INDEX` or by `name`.
 * Reveals all contacts' details if `all` is used.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `reveal 2` reveals the 2nd person in FinClient.
@@ -216,12 +218,14 @@ Examples:
 
 Adds a remark to the specified person in FinClient.
 
-Format: `remark INDEX r/[REMARKS]`
+Format: `remark INDEX r/[REMARKS] [by/TIME]`
 
 * Adds a remark to the person specified at `INDEX`.
+* Including the time will create a deadline for the current remark being added to the contact.
 
 Examples:
 * `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1.
+* `remark 1 r/Set buy order by/2025-10-15` adds `Set buy order` to the remark section of the contact listed at index 1 along with a deadline. <br> As the date nears, there will be a reminder shown on the main interface.
 
 ### <span id="sorting-contacts">Sorting contacts: `sort`</span>
 
@@ -286,10 +290,14 @@ _Details coming soon ..._
 
  Action | Format, Examples
 ------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] [p/PHONE_NUMBER] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+ **Add** | `add n/NAME p/PHONE [p/PHONE] [p/PHONE] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
  **Clear** | `clear`
  **Delete** | `delete INDEX`<br> e.g., `delete 3`
- **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+ **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+ **Remove Optional Fields** | `edit INDEX [t/] [j/delete] [c/delete] [s/delete] [$/delete]` <br> e.g., `edit 2 t/ j/delete`
+ **Adding/Editing/Removing Remarks and Deadlines** | `remark INDEX r/[REMARK] [by/TIME]`<br> e.g., `remark 1 r/Likes to swim. by/2020-10-15 18:00`<br> e.g., `remark 1 r/`
+ **List** | `list`
+ **Help** | `help [COMMAND]`<br> e.g., `help add`
  **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
  **Hide** | `hide all` or `hide INDEX` or `hide name`
  **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`

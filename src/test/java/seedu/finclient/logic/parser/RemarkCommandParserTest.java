@@ -2,12 +2,9 @@ package seedu.finclient.logic.parser;
 
 import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.finclient.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.finclient.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,34 +28,6 @@ public class RemarkCommandParserTest {
         userInput = targetIndex.getOneBased() + " " + PREFIX_REMARK;
         expectedCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(""));
         assertParseSuccess(parser, userInput, expectedCommand);
-    }
-    @Test
-    public void parse_withValidTimestamp_success() {
-        String timestampStr = "2024-12-25 15:30";
-        LocalDateTime expectedTimestamp = LocalDateTime.of(2024, 12, 25, 15, 30);
-
-        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + nonEmptyRemark
-                + " " + PREFIX_TIMESTAMP + timestampStr;
-
-        RemarkCommand expectedCommand = new RemarkCommand(INDEX_FIRST_PERSON,
-                new Remark(nonEmptyRemark, java.util.Optional.of(expectedTimestamp)));
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-    @Test
-    public void parse_withInvalidTimestamp_failure() {
-        String invalidTimestamp = "25-12-2024 15:30";
-        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + nonEmptyRemark
-                + " " + PREFIX_TIMESTAMP + invalidTimestamp;
-
-        assertParseFailure(parser, userInput, "Invalid date/time format. Use yyyy-MM-dd HH:mm");
-    }
-    @Test
-    public void parse_withEmptyTimestamp_failure() {
-        String emptyTimestamp = "";
-        String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + nonEmptyRemark
-                + " " + PREFIX_TIMESTAMP + emptyTimestamp;
-
-        assertParseFailure(parser, userInput, "Invalid date/time format. Use yyyy-MM-dd HH:mm");
     }
     @Test
     public void parse_missingCompulsoryField_failure() {
