@@ -20,6 +20,7 @@ This document provides a guide for developers who want to contribute to the proj
     - [Storage component](#storage-component)
     - [Common classes](#common-classes)
 - [Implementation](#implementation)
+    - [Order function and Call Auction Calculator](#order-function-and-call-auction-calculator)
     - [Proposed: Undo/redo feature](#proposed-undoredo-feature)
     - [Proposed: Data archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -187,7 +188,7 @@ Classes used by multiple components are in the `seedu.finclient.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Order Function and Call Auction Calculator
+### Order function and Call Auction Calculator
 
 This feature extends the Person class by adding an order field to record the amount and price for each client’s order. Additionally, a call auction mechanism is integrated within the Model to compute a clearing price based on the complete order book.
 
@@ -206,7 +207,7 @@ Clearing Price Query:
 
 The clearing price is retrieved on demand by the `UI`. When needed, the `UI` calls `Logic#getClearingPrice()`, which in turn calls `Model#calculateClearingPrice()` and returns the computed clearing price back to the `UI` for display.
 
-<puml src="diagrams/OrderSequenceDiagram.puml" width=800 />
+<puml src="diagrams/OrderSequenceDiagram.puml" width=1000 />
 
 #### Design Considerations
 
