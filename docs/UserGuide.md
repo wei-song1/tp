@@ -8,7 +8,7 @@ pageNav: 3
 
 Welcome Financial Advisors! 👋 This guide will help you get started with FinClient.
 
-Are you tired of juggling multiple client records and struggling to keep track of their preferences? FinClient is designed for tech-savvy financial advisors like you who prefer typing and need fast, efficient access to client details. 💡 With FinClient, managing hobbies, preferences, financial packages, and contact information has never been easier!
+Are you tired of juggling multiple client records and struggling to keep track of their preferences? FinClient is designed for tech-savvy financial advisors like you who prefer typing and need fast, efficient access to client details. 💡 With FinClient, managing hobbies, preferences, financial status, and contact information has never been easier!
 
 FinClient is a Command-Line Interface (CLI) based application, or simply put, a typing-based tool with specific features such as:
 
