@@ -19,7 +19,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/RickyHFR)]
 [[portfolio](team/rickyhfr.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, Documentation
+* Responsibilities: Sorting Feature, updating website and guides
 
 ### Sun Siliang
 
@@ -28,8 +29,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ki1r0)]
 [[portfolio](team/ki1r0.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Remarks and Deadline
 
 ### Yizhan Han
 
@@ -38,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/hyizhak)] [[portfolio](team/hyizhak.md)]
 
 * Role: Developer
-* Responsibilities: Integration
+* Responsibilities: Hiding/Revealing of Details, Orders Buying/Selling
 
 ### Lim Wei Song
 
@@ -47,8 +48,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/wei-song1)]
 [[portfolio](team/wei-song1.md)]
 
-* Role: Documentation
-* Responsibilities: Documentation
+* Role: Developer
+* Responsibilities: Phone List and Additional Optional Fields
 
 ### Amos Tan
 
@@ -57,5 +58,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/TanJieHaoAmos)]
 [[portfolio](team/tanjiehaoamos.md)]
 
-* Role: Coding Quality
-* Responsibilities: Look after code quality, ensures adherence to coding standards, etc
+* Role: In-charge of GUI, Documentation
+* Responsibilities: Make FinClient look beautiful, ensure everyone's work come together cohesively visually, creator of shortcuts and Help Menu

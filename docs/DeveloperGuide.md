@@ -321,18 +321,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                  | So that I can…​                                                        |
-|----------| ------------------------------------------ |-------------------------------| ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions        | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person              |                                                                        |
-| `* * *`  | user                                       | delete a person               | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | read details about my clients | I can tell what my clients have    |
-| `* * *`  | user                                       | add notes to a person         |  record important details about my business dealings with them|
-| `* * *`  | user                                       | search for clients contacts   | I can immediately get the data I require of my client|
-| `* * *`  | user                                       | store multiple phone numbers and emails for a contact     |I can reach them through different channelse|
-| `* * *`  | user                                       | find a person by name         | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name          | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                          | So that I can…​                                                     |
+|--------|--------------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *` | new user                                   | see usage instructions                                | refer to instructions when I forget how to use the App              |
+| `* * *` | user                                       | add a new person                                      |                                                                     |
+| `* * *` | user                                       | delete a person                                       | remove entries that I no longer need                                |
+| `* * *` | user                                       | read details about my clients                         | I can tell what my clients have                                     |
+| `* * *` | user                                       | add notes to a person                                 | record important details about my business dealings with them       |
+| `* * *` | user                                       | search for clients contacts                           | I can immediately get the data I require of my client               |
+| `* * *` | user                                       | store multiple phone numbers and emails for a contact | I can reach them through different channelse                        |
+| `* * *` | user                                       | find a person by name                                 | locate details of persons without having to go through the entire list |
+| `* * *` | user                                       | hide private contact details                          | minimize chance of someone else seeing them by accident             |
+| `* *`  | user with many persons in the address book | sort persons by name                                  | locate a person easily                                              |
+| `* *`  | user with things to remember               | add deadlines                                         | remember to do something for a client                               |
+| `* *`  | user                                       | add multiple numbers                                  | keep track of all my client's phone numbers                         |
+| `* *`  | forgetful user                             | add more fields to the clients                        | remember who is who at a quick glance                               |
+| `*`    | pro user                                   | see buying and selling prices of each client          | keep track of who wants to buy or sell at what price quickly        |
+| `*`    | pro user                                   | have shortcuts                                        | do my work even faster                                              |
 
 ### Use cases
 
@@ -375,28 +380,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. User provides an invalid detail.
-
     * 3a1. FinClient shows an error message.
-
       Use case resumes at step 2.
-
     * 3a2. User provides a duplicate detail.
-
       * 3a2.1. FinClient shows an error message.
-
         Use case resumes at step 2.
 
 * 3b. User provides no phone numbers or invalid numbers.
-
     * 3b1. FinClient shows an error message
-
       Use case resumes at step 2.
 
 * 3c. User provides too many phone numbers.
-
     * 3c1. FinClient shows an error message
-
       Use case resumes at step 2.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  FinClient shows a list of persons.
+3.  User requests to edit a specific person in the list.
+4.  FinClient edits the person's detail while keeping everything else the same.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User provides a prefix without any text
+    * 3a1. FinClient shows an error message.
+      Use case resumes at step 2.
+
+* 3b. User wants to remove an optional field.
+    * 3b1. User provides prefix and delete option.
+    * 3b2. FinClient edits the person's detail to remove the optional field.
+      Use case ends.
 
 **Use case: Find a person**
 
@@ -461,7 +479,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Stock Platform**: App platform that is used to trade with stocks
+* **Index**: Number beside the contact's name that is currently displayed, used to specify which contact is to be modified/deleted
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -490,7 +509,13 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Missing data on startup
+
+   1. Delete finclient.json located in /data/
+
+   2. Re-launch the app 
+   
+    Expected: App should be repopulated with default values and work again
 
 ### Deleting a person
 
