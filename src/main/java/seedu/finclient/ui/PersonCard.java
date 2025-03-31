@@ -95,9 +95,15 @@ public class PersonCard extends UiPart<Region> {
         } else {
             remarkTimestamp.setText("");
         }
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setWrapText(true);
+                    tagLabel.setMaxWidth(200);
+                    tags.getChildren().add(tagLabel);
+                });
 
         if (person.getCompany() == null || person.getCompany().value == "") {
             company.setVisible(false);
