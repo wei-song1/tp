@@ -29,7 +29,7 @@
       </HBox>
       <HBox spacing="30">
         <VBox minWidth="200" maxWidth="200" >
-          <FlowPane fx:id="tags" maxWidth="200" prefWrapLength="100" />
+          <FlowPane fx:id="tags" minWidth="200" maxWidth="200" prefWrapLength="200" />
           <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
           <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
           <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
