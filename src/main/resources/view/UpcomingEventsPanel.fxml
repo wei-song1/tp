@@ -5,14 +5,14 @@
 <?import javafx.scene.control.Label?>
 
 <HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:id="upcomingContainer" spacing="50" style="-fx-padding: 10;">
+      fx:id="upcomingContainer" spacing="50" style="-fx-padding: 10;" HBox.hgrow="ALWAYS">
 
     <!-- Left column: Date and day -->
-    <VBox fx:id="dateBox" spacing="5" style="-fx-alignment: CENTER_LEFT;">
+    <VBox fx:id="dateBox" spacing="5" style="-fx-alignment: CENTER_LEFT;" minWidth = "150">
         <Label fx:id="dayOfWeekLabel" styleClass="calendar-day-label"/>
         <Label fx:id="dateLabel" styleClass="calendar-date-label"/>
     </VBox>
 
     <!-- Right column: Upcoming events -->
-    <HBox fx:id="eventsBox" spacing="20" style="-fx-alignment: CENTER_LEFT;" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+    <HBox fx:id="eventsBox" spacing="20" style="-fx-alignment: CENTER_LEFT;" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
 </HBox>
