@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="FinClient" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="635" onCloseRequest="#handleExit" title="FinClient" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -35,7 +35,7 @@
             </Menu>
           </MenuBar>
 
-          <Label fx:id="priceLabel" styleClass="data-label" text="Clearing price: ">
+          <Label fx:id="priceLabel" styleClass="data-label" text="Clearing price:S$ ">
                   <HBox.margin>
                      <Insets top="5.0" />
                   </HBox.margin></Label>
@@ -48,6 +48,13 @@
         </StackPane>
 
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+
+        <!-- Upcoming events -->
+        <StackPane fx:id="upcomingEventsPlaceholder" prefHeight="80" styleClass="pane-with-border">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

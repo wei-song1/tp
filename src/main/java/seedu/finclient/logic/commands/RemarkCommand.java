@@ -1,6 +1,5 @@
 package seedu.finclient.logic.commands;
 
-import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -39,8 +38,6 @@ public class RemarkCommand extends Command {
      * @param remark of the person to be updated to
      */
     public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
-
         this.index = index;
         this.remark = remark;
     }
@@ -71,7 +68,10 @@ public class RemarkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !remark.value.isEmpty()
+                ? MESSAGE_ADD_REMARK_SUCCESS
+                : MESSAGE_DELETE_REMARK_SUCCESS;
+
         return String.format(message, personToEdit);
     }
 

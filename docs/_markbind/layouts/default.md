@@ -26,7 +26,7 @@
 <div id="flex-body">
   <nav id="site-nav">
     <div class="site-nav-top">
-      <div class="fw-bold mb-2" style="font-size: 1.25rem;">FinClient Tutorial</div>
+      <div class="fw-bold mb-2 text-center" style="font-size: 3rem;">FinClient</div>
     </div>
     <div class="nav-component slim-scroll">
       <site-nav>

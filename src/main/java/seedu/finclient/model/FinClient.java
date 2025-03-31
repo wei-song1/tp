@@ -133,6 +133,9 @@ public class FinClient implements ReadOnlyFinClient {
     public void sortPersons(String criteria) {
         persons.sortPersons(criteria);
     }
+    public List<Person> getUpcomingPersons(int count) {
+        return persons.upcomingPersons(count);
+    }
 
     //// util methods
 

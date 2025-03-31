@@ -18,18 +18,20 @@ import seedu.finclient.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_MESSAGE = "Add contact (minimum of 1 and maximum of 3 phone numbers) : ";
-    public static final String ADD_SYNTAX = "add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER] "
-            + "[p/PHONE_NUMBER] e/EMAIL a/ADDRESS r/REMARK [t/TAG] "
-            + "[com/COMPANY] [j/JOB] [platform/PLATFORM] [networth/NETWORTH]";
+    public static final String ADD_SYNTAX = "add n/NAME p/PHONE [p/PHONE] [p/PHONE] "
+            + "e/EMAIL a/ADDRESS [r/REMARK [by/TIME]] [t/TAG] "
+            + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
+    public static final String ADD_EXTRA = "** While adding/editing a contact, "
+            + "the r/REMARK and by/TIME parameters must be together, no other fields should be between r/ and by/ **";
 
     public static final String EDIT_MESSAGE = "Edit contact (mininally one field is to be entered) : ";
     public static final String EDIT_SYNTAX = "edit INDEX [n/NAME] "
-            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG] "
-            + "[com/COMPANY] [j/JOB] [platform/PLATFORM] [networth/NETWORTH]";
+            + "[p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]] [t/TAG] "
+            + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
 
-    public static final String REMOVE_OPTIONAL_MESSAGE = "Edit and remove optional fields: ";
-    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [com/delete] "
-            + "[j/delete] [platform/delete] [networth/delete]";
+    public static final String REMOVE_OPTIONAL_MESSAGE = "Remove optional fields: ";
+    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [c/delete] "
+            + "[j/delete] [s/delete] [$/delete]";
 
     public static final String LIST_MESSAGE = "List all saved contacts : ";
     public static final String LIST_SYNTAX = "list";
@@ -40,8 +42,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String DELETE_MESSAGE = "Delete contact : ";
     public static final String DELETE_SYNTAX = "delete INDEX";
 
-    public static final String REMARK_MESSAGE = "Adding remark to contact : ";
-    public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK]";
+    public static final String REMARK_MESSAGE = "Adding/Editing/Removing remark of contact. "
+            + "Optionally, add deadline : ";
+    public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK] [by/TIME] ";
 
     public static final String HIDE_MESSAGE = "Hide contact details (can use index or name) : ";
     public static final String HIDE_SYNTAX = "hide INDEX/NAME";
@@ -76,21 +79,21 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String SORT_SYNTAX = "sort CRITERIA ("
             + "Available criteria: name, amount, price, networth)";
 
-    public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional"
-            + "\n\n" + "INDEX refers to the number beside the contact's ame";
+    public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional."
+            + "\n\n" + "INDEX refers to the number beside the contact's name that is currently displayed.";
     public static final String URL_GUIDE_MESSAGE = "For a more detailed guide, please head to ";
     public static final String USERGUIDE_URL = "https://ay2425s2-cs2103t-t11-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_DISPLAY = "Welcome to FinClient, here are the commands available: \n\n"
-            + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
+            + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + ADD_EXTRA + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
             + REMOVE_OPTIONAL_MESSAGE + REMOVE_OPTIONAL_SYNTAX + "\n\n" + LIST_MESSAGE + LIST_SYNTAX + "\n\n"
             + FIND_MESSAGE + FIND_SYNTAX + "\n\n" + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n"
             + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n" + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n"
             + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n" + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n"
             + SORT_MESSAGE + SORT_SYNTAX + "\n\n" + ORDER_MESSAGE + ORDER_SYNTAX + "\n\n"
             + REMOVE_ORDER_MESSAGE + REMOVE_ORDER_SYNTAX + "\n\n" + CLEAR_MESSAGE + CLEAR_SYNTAX + "\n\n"
-            + HELP_MESSAGE + HELP_SYNTAX + "\n\n" + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n"
-            + EXTRA_INFO + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n" + URL_GUIDE_MESSAGE + USERGUIDE_URL;
+            + HELP_MESSAGE + HELP_SYNTAX + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n"
+            + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n" + EXTRA_INFO + "\n\n" + URL_GUIDE_MESSAGE + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

@@ -1,5 +1,6 @@
 package seedu.finclient.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -43,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
+    private Label remarkTimestamp;
+    @FXML
     private FlowPane tags;
     @FXML
     private Label company;
@@ -67,18 +70,40 @@ public class PersonCard extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         order.setText("Order: " + person.getOrder().toString());
 
-        System.out.println("Debug: UI PersonCard -> Name: "
-                + person.getName().fullName + ", Remark: " + person.getRemark());
-
         // Optionals
-        remark.setText("Remark: " + person.getRemark().value);
-        if (person.getRemark().value == "") {
-            remark.setVisible(false);
-            remark.setManaged(false);
+        if (person.getRemark().value.isEmpty()) {
+            if (person.getRemark().timestamp.isPresent()) {
+                remark.setText("New Event");
+                remark.getStyleClass().setAll("label", "empty-remark");
+                remark.setVisible(true);
+                remark.setManaged(true);
+            } else {
+                remark.setVisible(false);
+                remark.setManaged(false);
+            }
+        } else {
+            remark.setText("Remark: " + person.getRemark().value);
+            remark.getStyleClass().setAll("label");
+            remark.setVisible(true);
+            remark.setManaged(true);
         }
+
+        if (person.getRemark().timestamp.isPresent()) {
+            String formatted = person.getRemark().timestamp.get()
+                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            remarkTimestamp.setText("Due: " + formatted);
+        } else {
+            remarkTimestamp.setText("");
+        }
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setWrapText(true);
+                    tagLabel.setMaxWidth(200);
+                    tags.getChildren().add(tagLabel);
+                });
 
         if (person.getCompany() == null || person.getCompany().value == "") {
             company.setVisible(false);
