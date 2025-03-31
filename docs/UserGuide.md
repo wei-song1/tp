@@ -266,10 +266,6 @@ If your changes to the data file make its format invalid, FinClient will discard
 Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### <span id="archiving-data-files">Archiving data files `[coming in v2.0]`</span>
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## <span id="faq">FAQ</span>
