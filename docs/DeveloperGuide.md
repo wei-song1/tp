@@ -147,12 +147,12 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/FinClient-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width=450 />
+<puml src="diagrams/ModelClassDiagram.puml" width=800 />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the finclient data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -186,6 +186,40 @@ Classes used by multiple components are in the `seedu.finclient.commons` package
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Order Function and Call Auction Calculator
+
+This feature extends the Person class by adding an order field to record the amount and price for each client’s order. Additionally, a call auction mechanism is integrated within the Model to compute a clearing price based on the complete order book.
+
+
+#### Implementation
+
+Order Update:
+      
+When a user issues an `order` command, the application updates the corresponding `Person` object in the `Model` with the new order details. This update is handled by the `OrderCommand`, which modifies the Model accordingly.
+
+Call Auction Calculator Integration:
+
+The Call Auction Calculator is embedded within the `Model`. All orders are maintained in the `Model`, and the `Model` exposes a method, `model#calculateClearingPrice()`, which utilizes the internal `CallAuctionCalculator` to aggregate the order data and compute the clearing price. The computation determines the price level at which the maximum transaction volume is achieved.
+
+Clearing Price Query:
+
+The clearing price is retrieved on demand by the `UI`. When needed, the `UI` calls `Logic#getClearingPrice()`, which in turn calls `Model#calculateClearingPrice()` and returns the computed clearing price back to the `UI` for display.
+
+<puml src="diagrams/OrderSequenceDiagram.puml" width=800 />
+
+#### Design Considerations
+
+* **Separation of Concerns:**
+The `order` command is solely responsible for updating the `Model`, while the clearing price calculation is a distinct operation invoked by the `UI`. This separation ensures that the processes for updating orders and calculating the auction clearing price remain decoupled.
+* **Data Consistency:**
+All order data is maintained within the `Model`. The integrated call auction calculator accesses the current order book directly from the Model, ensuring that the most up-to-date information is used for computing the clearing price.
+* **Performance:**
+The clearing price computation is optimized to handle a large volume of orders efficiently. Future enhancements might include caching strategies to further improve performance.
+* **Extensibility:**
+The `CallAuctionCalculator` is implemented as a modular component within the Model. This design allows for easy modifications or extensions of the auction mechanism without impacting other parts of the system.
+* **Error Handling:**
+If the order data is incomplete or invalid, the `Logic` will trigger appropriate error messages during the order parsing phase. The clearing price is computed only when the Model’s state is consistent, ensuring accurate auction results.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -409,11 +443,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User provides a prefix without any text
     * 3a1. FinClient shows an error message.
+  
       Use case resumes at step 2.
 
 * 3b. User wants to remove an optional field.
     * 3b1. User provides prefix and delete option.
     * 3b2. FinClient edits the person's detail to remove the optional field.
+  
       Use case ends.
 
 **Use case: Find a person**
@@ -450,6 +486,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FinClient reveals the person’s details
 
    Use case ends.
+
+**Use case: Track orders for a person**
+
+**MSS**
+
+1. User requests to track orders for a specific contact.
+2. FinClient updates the contact’s order.
+3. FinClient calculates and show the call auction clearing price based on the updated order book.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The person is not found.
+
+    * 1a1. FinClient shows an error message.
+
+      Use case ends.
+
+* 1b. No order information is provided.
+
+    * 1b1. FinClient empties given person's order.
+
+      Use case resumes at step 3.
 
 **Use case: Add remarks to a person**
 
