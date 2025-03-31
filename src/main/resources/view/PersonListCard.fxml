@@ -34,14 +34,14 @@
           <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
           <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
           <Label fx:id="order" styleClass="cell_small_label" text="\$order" wrapText="true" />
-          <Label fx:id="company" styleClass="cell_small_label" text="\$email" wrapText="true" />
-          <Label fx:id="job" styleClass="cell_small_label" text="\$email" wrapText="true" />
-          <Label fx:id="stockPlatform" styleClass="cell_small_label" text="\$email" wrapText="true" />
-          <Label fx:id="networth" styleClass="cell_small_label" text="\$email" wrapText="true" />
+          <Label fx:id="company" styleClass="cell_small_label" text="\$company" wrapText="true" />
+          <Label fx:id="job" styleClass="cell_small_label" text="\$job" wrapText="true" />
+          <Label fx:id="stockPlatform" styleClass="cell_small_label" text="\$stock" wrapText="true" />
+          <Label fx:id="networth" styleClass="cell_small_label" text="\$networth" wrapText="true" />
         </VBox>
         <Region minWidth="2" maxWidth="2" style="-fx-background-color: lightgrey" />
-        <VBox minWidth="300" maxWidth="300" >
-          <Label fx:id="remark" styleClass="cell_small_label" wrapText="true" />
+        <VBox minWidth="300" maxWidth="Infinity" HBox.hgrow="ALWAYS" >
+          <Label fx:id="remark" styleClass="cell_small_label" wrapText="true" maxWidth="Infinity"/>
           <Label fx:id="remarkTimestamp" styleClass="cell_small_label" wrapText="true" />
         </VBox>
       </HBox>
