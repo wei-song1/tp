@@ -195,7 +195,7 @@ This feature extends the Person class by adding an order field to record the amo
 #### Implementation
 
 Order Update:
-      
+
 When a user issues an `order` command, the application updates the corresponding `Person` object in the `Model` with the new order details. This update is handled by the `OrderCommand`, which modifies the Model accordingly.
 
 Call Auction Calculator Integration:
@@ -443,13 +443,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. User provides a prefix without any text
     * 3a1. FinClient shows an error message.
-  
+
       Use case resumes at step 2.
 
 * 3b. User wants to remove an optional field.
     * 3b1. User provides prefix and delete option.
     * 3b2. FinClient edits the person's detail to remove the optional field.
-  
+
       Use case ends.
 
 **Use case: Find a person**
@@ -573,8 +573,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Delete finclient.json located in /data/
 
-   2. Re-launch the app 
-   
+   2. Re-launch the app
+
     Expected: App should be repopulated with default values and work again
 
 ### Deleting a person
