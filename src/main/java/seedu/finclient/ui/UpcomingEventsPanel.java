@@ -46,6 +46,7 @@ public class UpcomingEventsPanel extends UiPart<Region> {
             eventBox.setStyle("-fx-background-color: #2b2b2b; -fx-padding: 10; -fx-background-radius: 8;");
             eventBox.setMaxWidth(Double.MAX_VALUE);
             eventBox.setMinWidth(0);
+            HBox.setHgrow(eventBox, Priority.ALWAYS);
 
             Label timeLabel = new Label(time);
             timeLabel.getStyleClass().add("event-time-label");
@@ -59,9 +60,10 @@ public class UpcomingEventsPanel extends UiPart<Region> {
             }
             titleLabel.getStyleClass().add("event-title-label");
             titleLabel.setWrapText(true);
-            eventBox.getChildren().addAll(timeLabel, titleLabel);
+            titleLabel.setMaxWidth(Double.MAX_VALUE);
+            titleLabel.prefWidthProperty().bind(eventBox.widthProperty().subtract(20));
 
-            HBox.setHgrow(eventBox, Priority.ALWAYS);
+            eventBox.getChildren().addAll(timeLabel, titleLabel);
 
             eventsBox.getChildren().add(eventBox);
         }

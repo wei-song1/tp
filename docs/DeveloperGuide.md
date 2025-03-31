@@ -20,6 +20,7 @@ This document provides a guide for developers who want to contribute to the proj
     - [Storage component](#storage-component)
     - [Common classes](#common-classes)
 - [Implementation](#implementation)
+    - [Order function and Call Auction Calculator](#order-function-and-call-auction-calculator)
     - [Proposed: Undo/redo feature](#proposed-undoredo-feature)
     - [Proposed: Data archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -147,12 +148,12 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/FinClient-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width=450 />
+<puml src="diagrams/ModelClassDiagram.puml" width=800 />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the finclient data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -186,6 +187,40 @@ Classes used by multiple components are in the `seedu.finclient.commons` package
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Order function and Call Auction Calculator
+
+This feature extends the Person class by adding an order field to record the amount and price for each client’s order. Additionally, a call auction mechanism is integrated within the Model to compute a clearing price based on the complete order book.
+
+
+#### Implementation
+
+Order Update:
+
+When a user issues an `order` command, the application updates the corresponding `Person` object in the `Model` with the new order details. This update is handled by the `OrderCommand`, which modifies the Model accordingly.
+
+Call Auction Calculator Integration:
+
+The Call Auction Calculator is embedded within the `Model`. All orders are maintained in the `Model`, and the `Model` exposes a method, `model#calculateClearingPrice()`, which utilizes the internal `CallAuctionCalculator` to aggregate the order data and compute the clearing price. The computation determines the price level at which the maximum transaction volume is achieved.
+
+Clearing Price Query:
+
+The clearing price is retrieved on demand by the `UI`. When needed, the `UI` calls `Logic#getClearingPrice()`, which in turn calls `Model#calculateClearingPrice()` and returns the computed clearing price back to the `UI` for display.
+
+<puml src="diagrams/OrderSequenceDiagram.puml" width=1000 />
+
+#### Design Considerations
+
+* **Separation of Concerns:**
+The `order` command is solely responsible for updating the `Model`, while the clearing price calculation is a distinct operation invoked by the `UI`. This separation ensures that the processes for updating orders and calculating the auction clearing price remain decoupled.
+* **Data Consistency:**
+All order data is maintained within the `Model`. The integrated call auction calculator accesses the current order book directly from the Model, ensuring that the most up-to-date information is used for computing the clearing price.
+* **Performance:**
+The clearing price computation is optimized to handle a large volume of orders efficiently. Future enhancements might include caching strategies to further improve performance.
+* **Extensibility:**
+The `CallAuctionCalculator` is implemented as a modular component within the Model. This design allows for easy modifications or extensions of the auction mechanism without impacting other parts of the system.
+* **Error Handling:**
+If the order data is incomplete or invalid, the `Logic` will trigger appropriate error messages during the order parsing phase. The clearing price is computed only when the Model’s state is consistent, ensuring accurate auction results.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -321,18 +356,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                  | So that I can…​                                                        |
-|----------| ------------------------------------------ |-------------------------------| ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions        | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person              |                                                                        |
-| `* * *`  | user                                       | delete a person               | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | read details about my clients | I can tell what my clients have    |
-| `* * *`  | user                                       | add notes to a person         |  record important details about my business dealings with them|
-| `* * *`  | user                                       | search for clients contacts   | I can immediately get the data I require of my client|
-| `* * *`  | user                                       | store multiple phone numbers and emails for a contact     |I can reach them through different channelse|
-| `* * *`  | user                                       | find a person by name         | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | hide private contact details  | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name          | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                                          | So that I can…​                                                     |
+|--------|--------------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------|
+| `* * *` | new user                                   | see usage instructions                                | refer to instructions when I forget how to use the App              |
+| `* * *` | user                                       | add a new person                                      |                                                                     |
+| `* * *` | user                                       | delete a person                                       | remove entries that I no longer need                                |
+| `* * *` | user                                       | read details about my clients                         | I can tell what my clients have                                     |
+| `* * *` | user                                       | add notes to a person                                 | record important details about my business dealings with them       |
+| `* * *` | user                                       | search for clients contacts                           | I can immediately get the data I require of my client               |
+| `* * *` | user                                       | store multiple phone numbers and emails for a contact | I can reach them through different channelse                        |
+| `* * *` | user                                       | find a person by name                                 | locate details of persons without having to go through the entire list |
+| `* * *` | user                                       | hide private contact details                          | minimize chance of someone else seeing them by accident             |
+| `* *`  | user with many persons in the address book | sort persons by name                                  | locate a person easily                                              |
+| `* *`  | user with things to remember               | add deadlines                                         | remember to do something for a client                               |
+| `* *`  | user                                       | add multiple numbers                                  | keep track of all my client's phone numbers                         |
+| `* *`  | forgetful user                             | add more fields to the clients                        | remember who is who at a quick glance                               |
+| `*`    | pro user                                   | see buying and selling prices of each client          | keep track of who wants to buy or sell at what price quickly        |
+| `*`    | pro user                                   | have shortcuts                                        | do my work even faster                                              |
 
 ### Use cases
 
@@ -375,28 +415,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. User provides an invalid detail.
+    * 3a1. FinClient shows an error message.
+      Use case resumes at step 2.
+    * 3a2. User provides a duplicate detail.
+      * 3a2.1. FinClient shows an error message.
+        Use case resumes at step 2.
 
+* 3b. User provides no phone numbers or invalid numbers.
+    * 3b1. FinClient shows an error message
+      Use case resumes at step 2.
+
+* 3c. User provides too many phone numbers.
+    * 3c1. FinClient shows an error message
+      Use case resumes at step 2.
+
+**Use case: Edit a person**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  FinClient shows a list of persons.
+3.  User requests to edit a specific person in the list.
+4.  FinClient edits the person's detail while keeping everything else the same.
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User provides a prefix without any text
     * 3a1. FinClient shows an error message.
 
       Use case resumes at step 2.
 
-    * 3a2. User provides a duplicate detail.
+* 3b. User wants to remove an optional field.
+    * 3b1. User provides prefix and delete option.
+    * 3b2. FinClient edits the person's detail to remove the optional field.
 
-      * 3a2.1. FinClient shows an error message.
-
-        Use case resumes at step 2.
-
-* 3b. User provides no phone numbers or invalid numbers.
-
-    * 3b1. FinClient shows an error message
-
-      Use case resumes at step 2.
-
-* 3c. User provides too many phone numbers.
-
-    * 3c1. FinClient shows an error message
-
-      Use case resumes at step 2.
+      Use case ends.
 
 **Use case: Find a person**
 
@@ -433,6 +488,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Use case: Track orders for a person**
+
+**MSS**
+
+1. User requests to track orders for a specific contact.
+2. FinClient updates the contact’s order.
+3. FinClient calculates and show the call auction clearing price based on the updated order book.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The person is not found.
+
+    * 1a1. FinClient shows an error message.
+
+      Use case ends.
+
+* 1b. No order information is provided.
+
+    * 1b1. FinClient empties given person's order.
+
+      Use case resumes at step 3.
+
 **Use case: Add remarks to a person**
 
 **MSS**
@@ -461,7 +540,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Stock Platform**: App platform that is used to trade with stocks
+* **Index**: Number beside the contact's name that is currently displayed, used to specify which contact is to be modified/deleted
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -490,7 +570,13 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Missing data on startup
+
+   1. Delete finclient.json located in /data/
+
+   2. Re-launch the app
+
+    Expected: App should be repopulated with default values and work again
 
 ### Deleting a person
 
