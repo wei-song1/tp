@@ -359,6 +359,7 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("-1"));
         assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("-0.5"));
         assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("2147483648"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("999999999999"));
         assertThrows(NullPointerException.class, () -> ParserUtil.parseNetworth(null));
     }
 

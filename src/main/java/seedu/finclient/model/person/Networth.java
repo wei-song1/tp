@@ -57,7 +57,7 @@ public class Networth {
     public static boolean isValidAmount(String test) {
         boolean isValid = false;
         try {
-            isValid = Long.parseLong(test) >= 0 && Long.parseLong(test) < 2147483647;
+            isValid = Long.parseLong(test) >= 0 && Long.parseLong(test) < 2147483647 && test.length() <= 10;
         } catch (NumberFormatException e) {
             isValid = false;
         }
