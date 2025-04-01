@@ -135,7 +135,7 @@ Format: `help`
 
 Adds a person to FinClient.
 
-Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS r/REMARKS [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
+Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK [by/TIME]] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -168,7 +168,7 @@ Although you may find list a redundant command, it can be very useful in special
 
 Edits an existing person in FinClient.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -320,8 +320,13 @@ Format: `sort CRITERIA`
 Examples:
 * `sort name` sorts the contact list in FinClient based on contact's name
 * `sort networth` sorts the contact list in FinClient based on contact's networth bracket
-* `sort amount` sorts the contact list in FinClient based on contact's order amount
-* `sort price` sorts the contact list in FinClient based on contact's order price
+
+Current available criteria are:
+* `name` : Sorts the contact list based on contact's name
+* `networth` : Sorts the contact list based on contact's networth bracket
+* `amount` : Sorts the contact list based on contact's order amount
+* `price` : Sorts the contact list based on contact's order price
+* `deadline`: Sorts the contact list based on contact's deadline
 
 ### <span id="clearing-all-entries">Clearing all entries : `clear`</span>
 
