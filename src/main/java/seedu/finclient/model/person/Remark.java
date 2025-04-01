@@ -93,6 +93,12 @@ public class Remark {
                 && timestamp.equals(otherRemark.timestamp);
     }
 
+    /**
+     * Compares this remark with another remark based on the timestamp.
+     * If both have timestamps, it compares them.
+     * If only one has a timestamp, it is considered "less than" the other.
+     * If neither has a timestamp, they are considered equal.
+     */
     public int compareTo(Remark other) {
         requireNonNull(other);
         if (this.timestamp.isPresent() && other.timestamp.isPresent()) {

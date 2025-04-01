@@ -12,12 +12,12 @@ import static seedu.finclient.testutil.TypicalPersons.ALICE;
 import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.testutil.PersonBuilder;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class PersonTest {
 

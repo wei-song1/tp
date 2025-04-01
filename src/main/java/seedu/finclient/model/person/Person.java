@@ -2,7 +2,6 @@ package seedu.finclient.model.person;
 
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

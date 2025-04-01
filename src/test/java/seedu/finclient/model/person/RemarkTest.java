@@ -3,13 +3,12 @@ package seedu.finclient.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.assertj.core.internal.bytebuddy.asm.Advice;
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 public class RemarkTest {
 
