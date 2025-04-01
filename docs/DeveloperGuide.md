@@ -785,7 +785,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Sorting Contacts
 
-1. ?
+1. Sorting Contacts
+   - Prerequisite: Have at least two contacts in FinClient.
+   - Test case: `sort name`<br>
+     Expected: Contacts are sorted alphabetically by name.
+   - Test case: `sort networth`<br>
+     Expected: Contacts are sorted according to their networth.
 
 ### Clearing all contacts
 

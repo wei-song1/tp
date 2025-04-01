@@ -207,7 +207,7 @@ public class PersonTest {
     }
 
     @Test
-    public void compareTo_deadline() {
+    public void compareTo_timestamp() {
         LocalDate today = LocalDate.now();
         LocalDate yesterday = today.minusDays(1);
         LocalDate tomorrow = today.plusDays(1);
@@ -230,26 +230,26 @@ public class PersonTest {
                 .withName("Future Person")
                 .build();
 
-        // Compare persons with different deadlines
-        assertTrue(personYesterday.compareTo(personToday, "deadline") < 0,
-                "Person with yesterday's deadline should come before today's deadline.");
-        assertTrue(personToday.compareTo(personTomorrow, "deadline") < 0,
-                "Person with today's deadline should come before tomorrow's deadline.");
-        assertTrue(personTomorrow.compareTo(personToday, "deadline") > 0,
-                "Person with tomorrow's deadline should come after today's deadline.");
-        assertTrue(personToday.compareTo(personYesterday, "deadline") > 0,
-                "Person with today's deadline should come after yesterday's deadline.");
-        assertEquals(0, personToday.compareTo(personToday, "deadline"),
-                "Person with same deadline should be equal.");
-        assertTrue(personYesterday.compareTo(personTomorrow, "deadline") < 0,
-                "Person with yesterday's deadline should come before tomorrow's deadline.");
-        assertTrue(personTomorrow.compareTo(personYesterday, "deadline") > 0,
-                "Person with tomorrow's deadline should come after yesterday's deadline.");
+        // Compare persons with different timestamps
+        assertTrue(personYesterday.compareTo(personToday, "timestamp") < 0,
+                "Person with yesterday's timestamp should come before today's timestamp.");
+        assertTrue(personToday.compareTo(personTomorrow, "timestamp") < 0,
+                "Person with today's timestamp should come before tomorrow's timestamp.");
+        assertTrue(personTomorrow.compareTo(personToday, "timestamp") > 0,
+                "Person with tomorrow's timestamp should come after today's timestamp.");
+        assertTrue(personToday.compareTo(personYesterday, "timestamp") > 0,
+                "Person with today's timestamp should come after yesterday's timestamp.");
+        assertEquals(0, personToday.compareTo(personToday, "timestamp"),
+                "Person with same timestamp should be equal.");
+        assertTrue(personYesterday.compareTo(personTomorrow, "timestamp") < 0,
+                "Person with yesterday's timestamp should come before tomorrow's timestamp.");
+        assertTrue(personTomorrow.compareTo(personYesterday, "timestamp") > 0,
+                "Person with tomorrow's timestamp should come after yesterday's timestamp.");
     }
 
     @Test
-    public void compareToDeadline_oneWithRemarkOneWithoutRemark() {
-        // Compare one person with a deadline and another without
+    public void compareTotimestamp_oneWithRemarkOneWithoutRemark() {
+        // Compare one person with a timestamp and another without
         Person personWithRemark = new PersonBuilder()
                 .withRemark("Event by/",
                         Optional.of(LocalDate.now().plusDays(1).atStartOfDay()))
@@ -260,15 +260,15 @@ public class PersonTest {
                 .withName("Person without Remark")
                 .build();
 
-        assertTrue(personWithRemark.compareTo(personWithoutRemark, "deadline") < 0,
-                "Person with deadline should come before person without deadline.");
-        assertTrue(personWithoutRemark.compareTo(personWithRemark, "deadline") > 0,
-                "Person without deadline should come after person with deadline.");
+        assertTrue(personWithRemark.compareTo(personWithoutRemark, "timestamp") < 0,
+                "Person with timestamp should come before person without timestamp.");
+        assertTrue(personWithoutRemark.compareTo(personWithRemark, "timestamp") > 0,
+                "Person without timestamp should come after person with timestamp.");
     }
 
     @Test
-    public void compareToDeadline_bothWithoutRemark() {
-        // Compare one person with a deadline and another without
+    public void compareTotimestamp_bothWithoutRemark() {
+        // Compare one person with a timestamp and another without
 
         Person personWithoutRemark = new PersonBuilder()
                     .withName("Person without Remark")
@@ -278,8 +278,8 @@ public class PersonTest {
                 .withName("Person without Remark")
                 .build();
 
-        assertEquals(0, personWithoutRemark.compareTo(anotherPersonWithoutRemark, "deadline"),
-                "Two persons without deadlines should be equal.");
+        assertEquals(0, personWithoutRemark.compareTo(anotherPersonWithoutRemark, "timestamp"),
+                "Two persons without timestamps should be equal.");
     }
 
     @Test

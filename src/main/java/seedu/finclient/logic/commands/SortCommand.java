@@ -18,10 +18,10 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort all contacts by given criteria.\n"
-            + "Parameters: criteria (name, networth, price, amount, deadline)\n"
+            + "Parameters: criteria (name, networth, price, amount, timestamp)\n"
             + "Example: " + COMMAND_WORD + " name";
     public static final String MESSAGE_SORT_ACKNOWLEDGEMENT = "Sorted contacts by criteria: %1$s";
-    private static final List<String> validCriteria = Arrays.asList("name", "price", "networth", "amount", "deadline");
+    private static final List<String> validCriteria = Arrays.asList("name", "price", "networth", "amount", "timestamp");
     private final String criteria;
 
     /**

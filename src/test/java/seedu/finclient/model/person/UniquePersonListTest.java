@@ -362,7 +362,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void sortByDeadline() {
+    public void sortByTimestamp() {
         UniquePersonList unsortedUniquePersonList = new UniquePersonList();
         LocalDate today = LocalDate.now();
         LocalDate yesterday = today.minusDays(1);
@@ -388,7 +388,7 @@ public class UniquePersonListTest {
 
         // Test all different dates
         unsortedUniquePersonList.setPersons(Arrays.asList(personTomorrow, personToday, personYesterday));
-        unsortedUniquePersonList.sortPersons("deadline");
+        unsortedUniquePersonList.sortPersons("timestamp");
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.setPersons(Arrays.asList(personYesterday, personToday, personTomorrow));
         assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
@@ -407,18 +407,18 @@ public class UniquePersonListTest {
                 .build();
 
         unsortedUniquePersonList.setPersons(Arrays.asList(personToday, personToday2, personToday3));
-        unsortedUniquePersonList.sortPersons("deadline");
+        unsortedUniquePersonList.sortPersons("timestamp");
         expectedUniquePersonList.setPersons(Arrays.asList(personToday, personToday2, personToday3));
         assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
 
-        // Test some remarks without deadlines
-        Person personWithoutDeadline = new PersonBuilder()
-                .withRemark("No Deadline Event", Optional.empty())
-                .withName("No Deadline Person")
+        // Test some remarks without Timestamps
+        Person personWithoutTimestamp = new PersonBuilder()
+                .withRemark("No Timestamp Event", Optional.empty())
+                .withName("No Timestamp Person")
                 .build();
 
-        unsortedUniquePersonList.setPersons(Arrays.asList(personWithoutDeadline, personToday, personYesterday));
-        unsortedUniquePersonList.sortPersons("deadline");
-        expectedUniquePersonList.setPersons(Arrays.asList(personYesterday, personToday, personWithoutDeadline));
+        unsortedUniquePersonList.setPersons(Arrays.asList(personWithoutTimestamp, personToday, personYesterday));
+        unsortedUniquePersonList.sortPersons("timestamp");
+        expectedUniquePersonList.setPersons(Arrays.asList(personYesterday, personToday, personWithoutTimestamp));
     }
 }
