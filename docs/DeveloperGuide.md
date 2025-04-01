@@ -21,7 +21,7 @@ This document provides a guide for developers who want to contribute to the proj
     - [Common classes](#common-classes)
 - [Implementation](#implementation)
     - [Order function and Call Auction Calculator](#order-function-and-call-auction-calculator)
-    - [Accessing Help Message](#accesing-help-message)
+    - [Accessing Help Message](#accessing-help-message)
     - [Proposed: Undo/redo feature](#proposed-undoredo-feature)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
@@ -36,6 +36,7 @@ This document provides a guide for developers who want to contribute to the proj
 
 ## **Acknowledgements**
 
+* [Code](https://github.com/se-edu/addressbook-level4) from [AB4](https://se-education.org/addressbook-level4/), a SE-EDU project, has been reused and adapted in FinClient for GUI testing purposes.
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
