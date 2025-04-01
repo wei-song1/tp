@@ -42,10 +42,6 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String DELETE_MESSAGE = "Delete contact : ";
     public static final String DELETE_SYNTAX = "delete INDEX";
 
-    public static final String REMARK_MESSAGE = "Adding/Editing/Removing remark of contact. "
-            + "Optionally, add deadline : ";
-    public static final String REMARK_SYNTAX = "remark INDEX r/[REMARK] [by/TIME] ";
-
     public static final String HIDE_MESSAGE = "Hide contact details (can use index or name) : ";
     public static final String HIDE_SYNTAX = "hide INDEX/NAME";
 
@@ -77,7 +73,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String SORT_MESSAGE = "Sort contact via certain criteria : ";
     public static final String SORT_SYNTAX = "sort CRITERIA ("
-            + "Available criteria: name, amount, price, networth)";
+            + "Available criteria: name, amount, price, networth, deadline)";
 
     public static final String EXTRA_INFO = "Details inside [ ] in the command examples are optional."
             + "\n\n" + "INDEX refers to the number beside the contact's name that is currently displayed.";
@@ -88,12 +84,12 @@ public class HelpWindow extends UiPart<Stage> {
             + ADD_MESSAGE + ADD_SYNTAX + "\n\n" + ADD_EXTRA + "\n\n" + EDIT_MESSAGE + EDIT_SYNTAX + "\n\n"
             + REMOVE_OPTIONAL_MESSAGE + REMOVE_OPTIONAL_SYNTAX + "\n\n" + LIST_MESSAGE + LIST_SYNTAX + "\n\n"
             + FIND_MESSAGE + FIND_SYNTAX + "\n\n" + DELETE_MESSAGE + DELETE_SYNTAX + "\n\n"
-            + REMARK_MESSAGE + REMARK_SYNTAX + "\n\n" + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n"
-            + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n" + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n"
-            + SORT_MESSAGE + SORT_SYNTAX + "\n\n" + ORDER_MESSAGE + ORDER_SYNTAX + "\n\n"
-            + REMOVE_ORDER_MESSAGE + REMOVE_ORDER_SYNTAX + "\n\n" + CLEAR_MESSAGE + CLEAR_SYNTAX + "\n\n"
-            + HELP_MESSAGE + HELP_SYNTAX + "\n\n" + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n"
-            + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n" + EXTRA_INFO + "\n\n" + URL_GUIDE_MESSAGE + USERGUIDE_URL;
+            + HIDE_MESSAGE + HIDE_SYNTAX + "\n\n" + REVEAL_MESSAGE + REVEAL_SYNTAX + "\n\n"
+            + HIDE_REVEAL_MESSAGE + HIDE_REVEAL_SYNTAX + "\n\n" + SORT_MESSAGE + SORT_SYNTAX + "\n\n"
+            + ORDER_MESSAGE + ORDER_SYNTAX + "\n\n" + REMOVE_ORDER_MESSAGE + REMOVE_ORDER_SYNTAX + "\n\n"
+            + CLEAR_MESSAGE + CLEAR_SYNTAX + "\n\n" + HELP_MESSAGE + HELP_SYNTAX + "\n\n"
+            + ESCAPE_MESSAGE + ESCAPE_SYNTAX + "\n\n" + EXIT_MESSAGE + EXIT_SYNTAX + "\n\n"
+            + EXTRA_INFO + "\n\n" + URL_GUIDE_MESSAGE + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
