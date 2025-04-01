@@ -381,10 +381,10 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="faq">FAQ</span>
+## FAQ
 
 <!-- FAQ: General Usage -->
-### <span id="general-usage" style="font-size: smaller;">General Usage</span>
+### General Usage
 <details>
   <summary>What is FinClient, and who is it for?</summary>
   <p><em>FinClient is a CLI-based contact management tool designed for financial advisors who prefer typing over using a GUI. It helps manage client records, preferences, financial details, and more.</em></p>
@@ -404,7 +404,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 <br>
 
 <!-- FAQ: Commands & Features -->
-### <span id="commands-and-features" style="font-size: smaller;">Commands and Features</span>
+### Commands and Features
 <details>
   <summary>Can I undo an action in FinClient?</summary>
   <p><em>Currently, there is no undo command, so be careful when making changes. However, you can back up your data before making major edits.</em></p>
@@ -434,7 +434,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 <br>
 
 <!-- FAQ: Data Management -->
-### <span id="data-management" style="font-size: smaller;">Data Management</span>
+### Data Management
 <details>
   <summary>Where is my data stored?</summary>
   <p><em>Your data is saved in a file in the same directory as finclient.jar.</em></p>
@@ -458,7 +458,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 <br>
 
 <!-- FAQ: Troubleshooting -->
-### <span id="trouble-shooting" style="font-size: smaller;">Trouble Shooting</span>
+### Trouble Shooting
 <details>
   <summary>I get an error when trying to start FinClient. What should I do?</summary>
   <p><em>Ensure you have Java 17 or above installed.<br>
