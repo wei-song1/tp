@@ -235,6 +235,42 @@ public class PersonTest {
     }
 
     @Test
+    public void compareToDeadline_oneWithRemarkOneWithoutRemark() {
+        // Compare one person with a deadline and another without
+        Person personWithRemark = new PersonBuilder()
+                .withRemark("Event by/"
+                        + LocalDate.now().plusDays(1).atStartOfDay()
+                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Person with Remark")
+                .build();
+
+        Person personWithoutRemark = new PersonBuilder()
+                .withName("Person without Remark")
+                .build();
+
+        assertTrue(personWithRemark.compareTo(personWithoutRemark, "deadline") < 0,
+                "Person with deadline should come before person without deadline.");
+        assertTrue(personWithoutRemark.compareTo(personWithRemark, "deadline") > 0,
+                "Person without deadline should come after person with deadline.");
+    }
+
+    @Test
+    public void compareToDeadline_bothWithoutRemark() {
+        // Compare one person with a deadline and another without
+
+        Person personWithoutRemark = new PersonBuilder()
+                    .withName("Person without Remark")
+                .build();
+
+        Person anotherPersonWithoutRemark = new PersonBuilder()
+                .withName("Person without Remark")
+                .build();
+
+        assertEquals(0, personWithoutRemark.compareTo(anotherPersonWithoutRemark, "deadline"),
+                "Two persons without deadlines should be equal.");
+    }
+
+    @Test
     public void toString_hiddenPerson_displaysHiddenDetails() {
         // Hide the person and check the toString method
         Person hiddenAlice = new PersonBuilder(ALICE).build();
