@@ -1,7 +1,5 @@
 package seedu.finclient.model.order;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
