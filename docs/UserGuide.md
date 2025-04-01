@@ -10,15 +10,17 @@ Welcome Financial Advisors! 👋 This guide will help you get started with FinCl
 
 Are you tired of juggling multiple client records and struggling to keep track of their preferences? FinClient is designed for tech-savvy financial advisors like you who prefer typing and need fast, efficient access to client details. 💡 With FinClient, managing hobbies, preferences, financial packages, and contact information has never been easier!
 
-FinClient is a Command-Line Interface (CLI) based application, or simply put, a typing-based tool with specific features such as:
+FinClient is a Command-Line Interface (CLI) application, or simply put, a typing-based application, that is built to help you manage your contacts and their financial details, while minimizing the time and effort spent on doing so! 🚀
 
-* 🚀 Adding and deleting contacts
-* 🛠 Editing your contact's details
+Specific features include:
+
+* 📇 Adding and deleting contacts
+* ✏️ Editing your contacts' details 
 * 🔍 Locating your contacts by name
-* 🏢 Maintaining contact-specific details such as jobs and workplaces
-* 📊 Sorting your contacts by name, net worth, order prices, and amounts
-* 🙈 Hiding and revealing contacts for privacy
-* 📈 Estimating Call Auction clearing prices simultaneously
+* 🏢 Maintaining contact-specific details such as jobs and their workplaces  
+* 📊 Sorting your contacts by name, networth, order prices and amounts
+* 🕵️‍♂️ Hiding and revealing contacts  
+* 📈 Estimating Call Auction clearing prices simultaneously 
 
 You can look forward to an efficient and enjoyable experience with FinClient!
 
@@ -49,31 +51,47 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
 ## <span id="quick-start">Quick start</span>
 
-1. Ensure you have Java `17` or above installed on your computer.<br>
+> Note:
+> - "Home folder" refers to the main folder where your FinClient files are stored.
+> - "cd into" means opening your command terminal and typing "cd" followed by a space and the folder path (e.g., cd /Users/yourname/Documents). Then press Enter to change the current directory.
+> - "GUI" (Graphical User Interface) is the windowed application that you interact with using your mouse and keyboard.
+
+1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FinClient.
+1. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar finclient.jar` command to run the application.<br>
-   A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
+   1. On Windows: Press the Windows key, type cmd, and press Enter.
+   1. On Mac: Open Terminal from the Applications > Utilities folder.
 
-1. Type a command in the command box and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+1. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
+   
+    For example:
+   >```cd Downloads/FinClient```
 
-    * `list` : Lists all contacts.
+1. Now, start the app by typing this and pressing Enter:
+   >```java -jar finclient.jar```
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+      ![Ui](images/Ui.png)
 
-    * `clear` : Deletes all contacts.
+1. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
 
-    * `exit` : Exits the app.
+   * `list` : List all contacts.
 
-1. Please refer to the [Features](#features) below for details of each command.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Add a contact named `John Doe` to the Address Book.
+
+   * `delete 3` : Delete the 3rd contact shown in the current list.
+
+   * `clear` : Delete all contacts.
+
+   * `exit` : Exit the app.
+
+Congratulations! You've successfully finished setting up FinClient 🎉. Explore the [Features](#features), check out the [FAQ](#faq), and review the [Known issues](#known-issues) for more information 🚀.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -83,28 +101,31 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the arguments to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is an argument which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Items that are in square brackets are optional, and those without square brackets are mandatory. <br>
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times, including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items followed by `…` can be repeated any number of times (including not at all).<br>
+  e.g. `[t/TAG]…` can be used as ` `(i.e. 0 times), `t/friend`, or `t/friend t/family` etc.
 
-* Parameters can be in any order. However, to add deadlines to remarks, the parameter must be directly behind the remark parameter<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable. <br>
-  e.g. if the command requires `r/REMARKS by/TIME`, `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any parameters between these 2 parameters
+* Arguments can be in any order (there is a special case for remark command, please refer [here](#adding-remarks)).<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.<br>
+* Extraneous arguments for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+</div>
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+If you are referring to a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
 ### <span id="viewing-help">Viewing help : `help`</span>
 
-Displays a pop-up window with a scrollable help message. When scrolled to the bottom, a button to copy a URL link to this guide appears.
+Shows a message containing current available commands and provides a description on how to get more help.
 
 Format: `help`
 
@@ -114,17 +135,20 @@ Format: `help`
 
 Adds a person to FinClient.
 
-Format: `add n/NAME p/PHONE [p/PHONE] [p/PHONE] e/EMAIL a/ADDRESS [r/REMARKS [by/TIME]] [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] [t/TAG]…​ `
+Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK [by/TIME]] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-A person can have any number of tags (including 0).<br>
+A person can have any number of tags (including 0)<br>
 :bulb: **Tip:**
 Optional fields can be left out when adding a person's contact.
 </div>
 
-Examples:
+
+Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In that case, your command includes her name (`n/Betsy Crowe`), a tag indicating "friend" (`t/friend`), her email (`betsycrowe@example.com`), address (`Newgate Prison`), and phone number (`p/1234567`) along with optional remarks (`r/10 year sentence t/criminal`).
+
+Example input:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/10 year sentence t/criminal `
 
 ### <span id="listing-all-persons">Listing all persons : `list`</span>
@@ -132,6 +156,13 @@ Examples:
 Shows a list of all persons in FinClient.
 
 Format: `list`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+Although you may find list a redundant command, it can be very useful in special cases. [Explain the special cases here.]
+</div>
+
 
 ### <span id="editing-a-person">Editing a person : `edit`</span>
 
@@ -142,18 +173,27 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e., adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-* For the optional fields of company, job, stock platform, and net worth, you can remove the existing value by typing their prefix followed with a delete.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+    specifying any tags after it.
+* For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with `delete`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform, and net worth.
+*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
+</div>
 
 ### <span id="locating-persons-by-tag">Locating persons by tag: `tag`</span>
 
-Finds persons whose tags contain any of the given keywords.
+Finds persons whose tags contain any of the given tags.
+
+Format: `find TAG_NAME`
 
 ### <span id="locating-persons-by-name">Locating persons by name: `find`</span>
 
@@ -161,16 +201,17 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g., `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g., `Hans Bo` will match `Bo Hans`.
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g., `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e., `OR` search).
-  e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Use `list` to see all contacts again
 
 Examples:
-* `find John` returns `John` and `John Doe`.
-* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### <span id="deleting-a-person">Deleting a person : `delete`</span>
@@ -181,13 +222,13 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FinClient.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### <span id="hiding-a-person">Hiding details : `hide`</span>
+### <span id="hiding-a-person">Hiding a person : `hide`</span>
 
 Hides the details of the specified person in FinClient.
 
@@ -195,14 +236,19 @@ Format: `hide all|INDEX|name`
 
 * Hides the details of the person specified at `INDEX` or by `name`.
 * Hides all contacts' details if `all` is used.
-* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `hide 2` hides the 2nd person in FinClient.
+* `list` followed by `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
-  ![example of a hidden person](images/hidden_person.png)
 
-### <span id="revealing-a-person">Revealing details : `reveal`</span>
+Before
+![Ui](images/Ui.png)
+
+After
+![result for 'hide 1'](images/HideResult.png)
+
+### <span id="revealing-a-person">Revealing a person : `reveal`</span>
 
 Reveals the details of the specified person in FinClient.
 
@@ -210,11 +256,13 @@ Format: `reveal all|INDEX|name`
 
 * Reveals the details of the person specified at `INDEX` or by `name`.
 * Reveals all contacts' details if `all` is used.
-* The index **must be a positive number displayed beside a contact's name** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
+
+![result for 'reveal 1'](images/RevealResult.png)
 
 ### <span id="order">Limit orders and Call Auction calculator : `order`</span>
 
@@ -246,7 +294,7 @@ Since FinClient is designed for a single financial instrument, every order recor
 
 Adds a remark to the specified person in FinClient.
 
-Format: `remark INDEX r/[REMARKS] [by/TIME]`
+Format: `remark INDEX r/[REMARKS]`
 
 * Adds a remark to the person specified at `INDEX`.
 * Including the time will create a deadline for the current remark being added to the contact.
@@ -255,6 +303,14 @@ Examples:
 * `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1.
 * `remark 1 r/Set buy order by/2025-10-15` adds `Set buy order` to the remark section of the contact listed at index 1 along with a deadline. <br> As the date nears, there will be a reminder shown on the main interface.
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+To add deadlines to remarks, the by/ argument must be supplied right after r/. 
+
+The remark command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
+</div>
+
 ### <span id="sorting-contacts">Sorting contacts: `sort`</span>
 
 Sorts the contact list based on the criteria of name or phone number.
@@ -262,10 +318,15 @@ Sorts the contact list based on the criteria of name or phone number.
 Format: `sort CRITERIA`
 
 Examples:
-* `sort name` sorts the contact list in FinClient based on contact's name.
-* `sort networth` sorts the contact list in FinClient based on contact's net worth bracket.
-* `sort amount` sorts the contact list in FinClient based on contact's order amount.
-* `sort price` sorts the contact list in FinClient based on contact's order price.
+* `sort name` sorts the contact list in FinClient based on contact's name
+* `sort networth` sorts the contact list in FinClient based on contact's networth bracket
+
+Current available criteria are:
+* `name` : Sorts the contact list based on contact's name
+* `networth` : Sorts the contact list based on contact's networth bracket
+* `amount` : Sorts the contact list based on contact's order amount
+* `price` : Sorts the contact list based on contact's order price
+* `deadline`: Sorts the contact list based on contact's deadline
 
 ### <span id="clearing-all-entries">Clearing all entries : `clear`</span>
 
@@ -281,16 +342,16 @@ Format: `exit`
 
 ### <span id="saving-the-data">Saving the data</span>
 
-Your FinClient data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FinClient data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### <span id="editing-the-data-file">Editing the data file</span>
 
-Your FinClient data is saved automatically as a JSON file `[JAR file location]/data/finclient.json`. Advanced users are welcome to update data directly by editing that data file.
+FinClient data are saved automatically as a JSON file `[JAR file location]/data/finclient.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:**
-If your changes to the data file make its format invalid, FinClient will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file makes its format invalid, FinClient will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
@@ -298,8 +359,8 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 ## <span id="faq">FAQ</span>
 
-**Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinClient home folder.
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinClient home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -312,20 +373,16 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 ## <span id="command-summary">Command summary</span>
 
- Action | Format, Examples
-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add** | `add n/NAME p/PHONE [p/PHONE] [p/PHONE] e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
- **Clear** | `clear`
- **Delete** | `delete INDEX`<br> e.g., `delete 3`
- **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH] `<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
- **Remove Optional Fields** | `edit INDEX [t/] [j/delete] [c/delete] [s/delete] [$/delete]` <br> e.g., `edit 2 t/ j/delete`
- **Adding/Editing/Removing Remarks and Deadlines** | `remark INDEX r/[REMARK] [by/TIME]`<br> e.g., `remark 1 r/Likes to swim. by/2020-10-15 18:00`<br> e.g., `remark 1 r/`
- **List** | `list`
- **Help** | `help [COMMAND]`<br> e.g., `help add`
- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
- **Hide** | `hide all` or `hide INDEX` or `hide name`
- **Reveal** | `reveal all` or `reveal INDEX` or `reveal name`
- **Sort** | `sort CRITERIA` <br> e.g., `sort name` or `sort networth` or `sort price` or sort `sort amount`
- **Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE` <br> e.g., `order 1 o/buy am/5 at/5.50`
- **List** | `list`
- **Help** | `help`
+Action | Format | Example
+---|---|---
+**Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/Engineer`
+**Clear** | `clear` | `clear`
+**Delete** | `delete INDEX` | `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]… [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake`
+**Hide** | `hide all` or `hide INDEX` or `hide name` | `hide 2`
+**Reveal** | `reveal all` or `reveal INDEX` or `reveal name` | `reveal 2`
+**Sort** | `sort CRITERIA` | `sort name`
+**Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE` | `order 1 o/buy am/5 at/5.50`
+**List** | `list` | `list`
+**Help** | `help` | `help`

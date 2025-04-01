@@ -270,6 +270,13 @@ public class ParserUtil {
         if (!Networth.isValidNetworth(trimmedNetworth)) {
             throw new ParseException(Networth.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Networth.isBracket(trimmedNetworth)) {
+            if (!Networth.isValidAmount(trimmedNetworth)) {
+                throw new ParseException(Networth.MESSAGE_CONSTRAINTS);
+            }
+        }
+
         return new Networth(trimmedNetworth);
     }
 

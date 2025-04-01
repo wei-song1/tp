@@ -194,4 +194,12 @@ public class OrderTest {
         Order orderCopy = new Order(OrderType.BUY, "10.00", 10);
         assertEquals(0, order.compareTo(orderCopy, "invalid"));
     }
+
+    @Test
+    public void compareTo_differentOrderType_success() {
+        Order buyOrder = new Order(OrderType.BUY, "10.00", 10);
+        Order sellOrder = new Order(OrderType.SELL, "10.00", 10);
+        assertEquals(-1, buyOrder.compareTo(sellOrder, "amount"));
+        assertEquals(-1, buyOrder.compareTo(sellOrder, "price"));
+    }
 }

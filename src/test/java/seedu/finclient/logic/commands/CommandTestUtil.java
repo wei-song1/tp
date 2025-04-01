@@ -61,6 +61,11 @@ public class CommandTestUtil {
     public static final String VALID_NETWORTH_AMY = "< $100k";
     public static final String VALID_NETWORTH_BOB = "< $100k";
     public static final Optional<LocalDateTime> EMPTY_TIMESTAMP = Optional.empty();
+    public static final String VALID_NAME_CINDY = "Cindy Brown";
+    public static final String VALID_PHONE_CINDY = "987654321";
+    public static final String VALID_EMAIL_CINDY = "cindybrown@example.com";
+    public static final String VALID_ADDRESS_CINDY = "Example Blk 33 Room 21";
+    public static final String VALID_ORDER_CINDY = "SELL 70 @ $5.90";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

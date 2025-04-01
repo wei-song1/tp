@@ -354,8 +354,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseNetworth_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(""));
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("0.5"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("-1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("-0.5"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("2147483648"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNetworth("999999999999"));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNetworth(null));
     }
 
     @Test
@@ -370,10 +375,13 @@ public class ParserUtilTest {
         assertEquals(expectedNetworth, ParserUtil.parseNetworth("9999999"));
 
         // Considered in the same net worth bracket
-        expectedNetworth = new Networth("-1");
-        assertEquals(expectedNetworth, ParserUtil.parseNetworth("1"));
+        expectedNetworth = new Networth("10000");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("10000"));
 
         expectedNetworth = new Networth("1");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("< $100k"));
+
+        expectedNetworth = new Networth("< $100k");
         assertEquals(expectedNetworth, ParserUtil.parseNetworth("< $100k"));
     }
 

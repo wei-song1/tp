@@ -21,8 +21,8 @@ This document provides a guide for developers who want to contribute to the proj
     - [Common classes](#common-classes)
 - [Implementation](#implementation)
     - [Order function and Call Auction Calculator](#order-function-and-call-auction-calculator)
+    - [Accessing Help Message](#accessing-help-message)
     - [Proposed: Undo/redo feature](#proposed-undoredo-feature)
-    - [Proposed: Data archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
     - [Product scope](#product-scope)
@@ -36,6 +36,7 @@ This document provides a guide for developers who want to contribute to the proj
 
 ## **Acknowledgements**
 
+* [Code](https://github.com/se-edu/addressbook-level4) from [AB4](https://se-education.org/addressbook-level4/), a SE-EDU project, has been reused and adapted in FinClient for GUI testing purposes.
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -222,6 +223,22 @@ The `CallAuctionCalculator` is implemented as a modular component within the Mod
 * **Error Handling:**
 If the order data is incomplete or invalid, the `Logic` will trigger appropriate error messages during the order parsing phase. The clearing price is computed only when the Model’s state is consistent, ensuring accurate auction results.
 
+### Accessing Help Message
+The feature allows the user to obtain relevant information regarding the commands available while also giving them the choice to copy a URL to our User Guide when scrolled to the bottom of the help message.
+
+#### Implementation 
+
+Accessing Help:
+
+When a user issues a `help` command, or presses a shortcut of `Fn + F1`, the application will run the command through the `Logic` component which then interacts with the `UI` components of `MainWindow` and `HelpWindow`.
+
+Closing Help:
+
+When a user has finished using the help function, the user can click on the `X` to close it or alternatively, press on the `ESCAPE` key to close the help message. This action is registered via the `HelpWindow`.
+
+<puml src="diagrams/HelpSequenceDiagram.puml" width="800" />
+<puml src="diagrams/HelpActivityDiagram.puml" width="800" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -311,13 +328,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -529,6 +539,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FinClient shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Access help message**
+
+**MSS**
+1. User requests to access or open help message
+2. FinClient opens help message
+3. User reads help message
+4. User closes help message
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. User accidentally minimizes help message
+  * 2a1. User manually opens help message
+
+    Use case resumes at step 3.
+  
+* 2b. User overlays help message
+  * User focuses help message 
+    
+    Use case resumes at step 3.
+
 
 ### Non-Functional Requirements
 

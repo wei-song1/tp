@@ -12,6 +12,9 @@ import static seedu.finclient.testutil.TypicalPersons.ALICE;
 import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.testutil.PersonBuilder;
@@ -188,6 +191,83 @@ public class PersonTest {
     public void compareToNull_throwsNullPointerException() {
         // Check if null values are handled by throwing NullPointerException
         assertThrows(NullPointerException.class, () -> ALICE.compareTo(null, "name"));
+    }
+
+    @Test
+    public void compareTo_deadline() {
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+        LocalDate tomorrow = today.plusDays(1);
+
+        Person personYesterday = new PersonBuilder()
+                .withRemark("Old Event by/"
+                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Past Person")
+                .build();
+
+        Person personToday = new PersonBuilder()
+                .withRemark("Today Event by/"
+                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Today Person")
+                .build();
+
+        Person personTomorrow = new PersonBuilder()
+                .withRemark("Tomorrow Event by/"
+                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Future Person")
+                .build();
+
+        // Compare persons with different deadlines
+        assertTrue(personYesterday.compareTo(personToday, "deadline") < 0,
+                "Person with yesterday's deadline should come before today's deadline.");
+        assertTrue(personToday.compareTo(personTomorrow, "deadline") < 0,
+                "Person with today's deadline should come before tomorrow's deadline.");
+        assertTrue(personTomorrow.compareTo(personToday, "deadline") > 0,
+                "Person with tomorrow's deadline should come after today's deadline.");
+        assertTrue(personToday.compareTo(personYesterday, "deadline") > 0,
+                "Person with today's deadline should come after yesterday's deadline.");
+        assertEquals(0, personToday.compareTo(personToday, "deadline"),
+                "Person with same deadline should be equal.");
+        assertTrue(personYesterday.compareTo(personTomorrow, "deadline") < 0,
+                "Person with yesterday's deadline should come before tomorrow's deadline.");
+        assertTrue(personTomorrow.compareTo(personYesterday, "deadline") > 0,
+                "Person with tomorrow's deadline should come after yesterday's deadline.");
+    }
+
+    @Test
+    public void compareToDeadline_oneWithRemarkOneWithoutRemark() {
+        // Compare one person with a deadline and another without
+        Person personWithRemark = new PersonBuilder()
+                .withRemark("Event by/"
+                        + LocalDate.now().plusDays(1).atStartOfDay()
+                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Person with Remark")
+                .build();
+
+        Person personWithoutRemark = new PersonBuilder()
+                .withName("Person without Remark")
+                .build();
+
+        assertTrue(personWithRemark.compareTo(personWithoutRemark, "deadline") < 0,
+                "Person with deadline should come before person without deadline.");
+        assertTrue(personWithoutRemark.compareTo(personWithRemark, "deadline") > 0,
+                "Person without deadline should come after person with deadline.");
+    }
+
+    @Test
+    public void compareToDeadline_bothWithoutRemark() {
+        // Compare one person with a deadline and another without
+
+        Person personWithoutRemark = new PersonBuilder()
+                    .withName("Person without Remark")
+                .build();
+
+        Person anotherPersonWithoutRemark = new PersonBuilder()
+                .withName("Person without Remark")
+                .build();
+
+        assertEquals(0, personWithoutRemark.compareTo(anotherPersonWithoutRemark, "deadline"),
+                "Two persons without deadlines should be equal.");
     }
 
     @Test
