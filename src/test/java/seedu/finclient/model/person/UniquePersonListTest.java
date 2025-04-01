@@ -360,4 +360,65 @@ public class UniquePersonListTest {
         expectedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, FIONA));
         assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
     }
+
+    @Test
+    public void sortByDeadline() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+        LocalDate tomorrow = today.plusDays(1);
+
+        Person personYesterday = new PersonBuilder()
+                .withRemark("Old Event by/"
+                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Past Person")
+                .build();
+
+        Person personToday = new PersonBuilder()
+                .withRemark("Today Event by/"
+                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Today Person")
+                .build();
+
+        Person personTomorrow = new PersonBuilder()
+                .withRemark("Tomorrow Event by/"
+                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Future Person")
+                .build();
+
+        // Test all different dates
+        unsortedUniquePersonList.setPersons(Arrays.asList(personTomorrow, personToday, personYesterday));
+        unsortedUniquePersonList.sortPersons("deadline");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(personYesterday, personToday, personTomorrow));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+
+        // Test all same dates
+        Person personToday2 = new PersonBuilder()
+                .withRemark("Today Event by/"
+                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Today Person 2")
+                .build();
+
+        Person personToday3 = new PersonBuilder()
+                .withRemark("Today Event by/"
+                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withName("Today Person 3")
+                .build();
+
+        unsortedUniquePersonList.setPersons(Arrays.asList(personToday, personToday2, personToday3));
+        unsortedUniquePersonList.sortPersons("deadline");
+        expectedUniquePersonList.setPersons(Arrays.asList(personToday, personToday2, personToday3));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+
+        // Test some remarks without deadlines
+        Person personWithoutDeadline = new PersonBuilder()
+                .withRemark("No Deadline Event")
+                .withName("No Deadline Person")
+                .build();
+
+        unsortedUniquePersonList.setPersons(Arrays.asList(personWithoutDeadline, personToday, personYesterday));
+        unsortedUniquePersonList.sortPersons("deadline");
+        expectedUniquePersonList.setPersons(Arrays.asList(personYesterday, personToday, personWithoutDeadline));
+    }
 }

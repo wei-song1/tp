@@ -2,6 +2,7 @@ package seedu.finclient.model.person;
 
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -222,13 +223,28 @@ public class Person {
      */
     public int compareTo(Person other, String criteria) {
         requireAllNonNull(other, criteria);
-        return switch (criteria) {
-        case "name" -> name.toString().compareTo(other.name.toString());
-        case "price" -> order.compareTo(other.order, "price");
-        case "amount" -> order.compareTo(other.order, "amount");
-        case "networth" -> networth.compareTo(other.networth);
-        default -> 0;
-        };
+        switch (criteria) {
+        case "name":
+            return name.toString().compareTo(other.name.toString());
+        case "price":
+            return order.compareTo(other.order, "price");
+        case "amount":
+            return order.compareTo(other.order, "amount");
+        case "networth":
+            return networth.compareTo(other.networth);
+        case "deadline":
+            if (getRemark() == null && other.getRemark() == null) {
+                return 0;
+            } else if (getRemark() == null && other.getRemark() != null) {
+                return 1;
+            } else if (getRemark() != null && other.getRemark() == null) {
+                return -1;
+            } else {
+                return getRemark().compareTo(other.getRemark());
+            }
+        default:
+            return 0;
+        }
     }
 
     @Override

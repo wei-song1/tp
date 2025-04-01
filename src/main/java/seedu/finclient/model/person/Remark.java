@@ -93,6 +93,19 @@ public class Remark {
                 && timestamp.equals(otherRemark.timestamp);
     }
 
+    public int compareTo(Remark other) {
+        requireNonNull(other);
+        if (this.timestamp.isPresent() && other.timestamp.isPresent()) {
+            return this.timestamp.get().compareTo(other.timestamp.get());
+        } else if (this.timestamp.isPresent()) {
+            return -1;
+        } else if (other.timestamp.isPresent()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode() + timestamp.hashCode();
