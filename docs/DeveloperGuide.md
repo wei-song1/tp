@@ -37,7 +37,6 @@ This document provides a guide for developers who want to contribute to the proj
 ## **Acknowledgements**
 
 * [Code](https://github.com/se-edu/addressbook-level4) from [AB4](https://se-education.org/addressbook-level4/), a SE-EDU project, has been reused and adapted in FinClient for GUI testing purposes.
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -239,7 +238,7 @@ When a user has finished using the help function, the user can click on the `X` 
 <puml src="diagrams/HelpSequenceDiagram.puml" width="800" />
 <puml src="diagrams/HelpActivityDiagram.puml" width="800" />
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo\/redo feature
 
 #### Proposed Implementation
 
