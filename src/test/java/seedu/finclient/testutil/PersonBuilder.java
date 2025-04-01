@@ -1,7 +1,9 @@
 package seedu.finclient.testutil;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.finclient.model.order.Order;
@@ -57,7 +59,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         order = new Order(DEFAULT_ORDER);
-        remark = new Remark(DEFAULT_REMARK);
+        remark = new Remark(DEFAULT_REMARK, Optional.empty());
         tags = new HashSet<>();
         company = new Company(DEFAULT_COMPANY);
         job = new Job(DEFAULT_JOB);
@@ -149,8 +151,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
+    public PersonBuilder withRemark(String remark, Optional<LocalDateTime> timestamp) {
+        this.remark = new Remark(remark, timestamp);
         return this;
     }
 

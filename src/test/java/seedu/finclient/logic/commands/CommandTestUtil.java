@@ -17,9 +17,11 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.logic.commands.exceptions.CommandException;
@@ -46,6 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+    public static final String VALID_TIMESTAMP_AMY = "2025-06-20 10:00";
+    public static final String VALID_TIMESTAMP_BOB = "2024-07-28 14:00";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_COMPANY_AMY = "NUS";
@@ -56,6 +60,7 @@ public class CommandTestUtil {
     public static final String VALID_STOCK_PLATFORM_BOB = "uNivUS";
     public static final String VALID_NETWORTH_AMY = "< $100k";
     public static final String VALID_NETWORTH_BOB = "< $100k";
+    public static final Optional<LocalDateTime> EMPTY_TIMESTAMP = Optional.empty();
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

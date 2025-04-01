@@ -14,6 +14,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.finclient.model.FinClient;
 import seedu.finclient.model.person.Person;
@@ -26,39 +27,41 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withOrder("BUY 30 @ $5.50").withPhone("94351253").withTags("friends")
-            .withRemark("").withCompany().withJob().withStockPlatform().withNetworth("< $100k")
+            .withRemark("", Optional.empty()).withCompany().withJob().withStockPlatform().withNetworth("< $100k")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withOrder("BUY 50 @ $4.92").withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withRemark("").withCompany().withJob().withStockPlatform().withNetworth("$100k - $250k")
+            .withRemark("", Optional.empty()).withCompany().withJob().withStockPlatform().withNetworth("$100k - $250k")
             .build();
 
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz")
             .withOrder("BUY 100 @ $4.50").withPhone("95352563").withEmail("heinz@example.com")
-            .withAddress("wall street").withRemark("").withCompany().withJob().withStockPlatform()
+            .withAddress("wall street").withRemark("", Optional.empty()).withCompany().withJob().withStockPlatform()
             .withNetworth("$250k - $500k").build();
 
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("friends")
-            .withRemark("").withCompany().withJob().withStockPlatform().withNetworth("$500k - $1 million")
+            .withRemark("", Optional.empty())
+            .withCompany().withJob().withStockPlatform().withNetworth("$500k - $1 million")
             .build();
 
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer")
             .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
-            .withRemark("").withCompany().withJob().withStockPlatform().withNetworth("$1 million - $5 million")
+            .withRemark("", Optional.empty())
+            .withCompany().withJob().withStockPlatform().withNetworth("$1 million - $5 million")
             .build();
 
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz")
             .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo")
-            .withRemark("").withCompany().withJob().withStockPlatform().withNetworth("> $5 million")
+            .withRemark("", Optional.empty()).withCompany().withJob().withStockPlatform().withNetworth("> $5 million")
             .build();
 
     public static final Person GEORGE = new PersonBuilder().withName("George Best")
             .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street")
-            .withRemark("").withCompany().withJob().withStockPlatform().withNetworth()
+            .withRemark("", Optional.empty()).withCompany().withJob().withStockPlatform().withNetworth()
             .build();
 
     // Manually added

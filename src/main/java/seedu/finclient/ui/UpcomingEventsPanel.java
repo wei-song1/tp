@@ -52,8 +52,7 @@ public class UpcomingEventsPanel extends UiPart<Region> {
             timeLabel.getStyleClass().add("event-time-label");
             Label titleLabel;
             if (content.isEmpty()) {
-                titleLabel = new Label("New Event");
-                titleLabel.getStyleClass().add("empty-remark");
+                titleLabel = new Label(name + " - " + "New Event");
             } else {
                 titleLabel = new Label(name + " - " + content);
                 titleLabel.getStyleClass().add("event-title-label");

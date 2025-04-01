@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 /**
@@ -13,6 +12,7 @@ import java.util.Optional;
 public class Remark {
     public static final String MESSAGE_CONSTRAINTS =
             "Remark can contain anything, and it should not be blank";
+    public static final String MESSAGE_INVALID_TIMESTAMP = "The timestamp is invalid";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public final String value;
@@ -26,34 +26,6 @@ public class Remark {
         requireNonNull(timestamp);
         this.value = remark;
         this.timestamp = timestamp;
-    }
-
-    /**
-     * Constructor used in tests or when parsing raw user input.
-     * Automatically attempts to parse a timestamp from the string.
-     */
-    public Remark(String rawInput) {
-        Remark parsed = parseRemarkWithTimestamp(rawInput);
-        this.value = parsed.value;
-        this.timestamp = parsed.timestamp;
-    }
-    /**
-     * Parses a string in the format: "content by/yyyy-MM-dd HH:mm"
-     * into a Remark with content and timestamp.
-     */
-    public static Remark parseRemarkWithTimestamp(String rawInput) {
-        requireNonNull(rawInput);
-        String[] parts = rawInput.split("by/");
-        String text = parts[0].trim();
-        Optional<LocalDateTime> ts = Optional.empty();
-        if (parts.length > 1) {
-            try {
-                ts = Optional.of(LocalDateTime.parse(parts[1].trim(), FORMATTER));
-            } catch (DateTimeParseException e) {
-                // Invalid format: ignore timestamp
-            }
-        }
-        return new Remark(text, ts);
     }
 
     public String getDisplayText() {
@@ -73,7 +45,7 @@ public class Remark {
 
     @Override
     public String toString() {
-        return timestamp.map(t -> value + " (Due: " + t.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")")
+        return timestamp.map(t -> value + " (At: " + t.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")")
                 .orElse(value);
     }
 
