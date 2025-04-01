@@ -54,7 +54,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
-<puml src="diagrams/ArchitectureDiagram.puml" width=300 />
+<div class="text-center">
+  <puml src="diagrams/ArchitectureDiagram.puml" width="300"></puml>
+  <figcaption><strong>Figure 1:</strong> Architecture Diagram.</figcaption>
+</div>
+<br>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -77,9 +81,11 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<puml src="diagrams/ArchitectureSequenceDiagram.puml" width=574 />
+<div class="text-center">
+  <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574"></puml>
+  <figcaption><strong>Figure 2:</strong> Architecture Sequence Diagram.</figcaption>
+</div>
+<br>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -88,8 +94,11 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<puml src="diagrams/ComponentManagers.puml" width=300 />
-
+<div class="text-center">
+  <puml src="diagrams/ComponentManagers.puml" width="300"></puml>
+  <figcaption><strong>Figure 3:</strong> Component Managers Diagram.</figcaption>
+</div>
+<br>
 
 The sections below give more details of each component.
 
@@ -97,7 +106,11 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/FinClient-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-<puml src="diagrams/UiClassDiagram.puml" width=800 />
+<div class="text-center">
+  <puml src="diagrams/UiClassDiagram.puml" width="800"></puml>
+  <figcaption><strong>Figure 4:</strong> UI Class Diagram.</figcaption>
+</div>
+<br>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -114,15 +127,19 @@ The `UI` component,
 
 **API** : [`Logic.java`](https://github.com/se-edu/FinClient-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
-
-<puml src="diagrams/LogicClassDiagram.puml" width=600 />
-
+<div class="text-center">
+  <puml src="diagrams/LogicClassDiagram.puml" width="600"></puml>
+  <figcaption><strong>Figure 5:</strong> Logic Class Diagram.</figcaption>
+</div>
+<br>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" width=600 />
-
+<div class="text-center">
+  <puml src="diagrams/DeleteSequenceDiagram.puml" width="600"></puml>
+  <figcaption><strong>Figure 6:</strong> Delete Sequence Diagram.</figcaption>
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -139,7 +156,11 @@ How the `Logic` component works:
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<puml src="diagrams/ParserClasses.puml" width=600 />
+<div class="text-center">
+  <puml src="diagrams/ParserClasses.puml" width="600"></puml>
+  <figcaption><strong>Figure 7:</strong> Parser Classes Diagram.</figcaption>
+</div>
+<br>
 
 How the parsing works:
 * When called upon to parse a user command, the `FinClientParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FinClientParser` returns back as a `Command` object.
@@ -148,8 +169,11 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/FinClient-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width=800 />
-
+<div class="text-center">
+  <puml src="diagrams/ModelClassDiagram.puml" width="800"></puml>
+  <figcaption><strong>Figure 8:</strong> Model Class Diagram.</figcaption>
+</div>
+<br>
 
 The `Model` component,
 
@@ -162,7 +186,10 @@ The `Model` component,
 
 :information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FinClient`, which `Person` references. This allows `FinClient` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<puml src="diagrams/BetterModelClassDiagram.puml" width=450 />
+<div class="text-center">
+  <puml src="diagrams/BetterModelClassDiagram.puml" width="450"></puml>
+  <figcaption><strong>Figure 9:</strong> Better Model Class Diagram.</figcaption>
+</div>
 
 </div>
 
@@ -171,7 +198,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/FinClient-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width=550 />
+<div class="text-center">
+  <puml src="diagrams/StorageClassDiagram.puml" width="550"></puml>
+  <figcaption><strong>Figure 10:</strong> Storage Class Diagram.</figcaption>
+</div>
+<br>
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -207,7 +238,11 @@ Clearing Price Query:
 
 The clearing price is retrieved on demand by the `UI`. When needed, the `UI` calls `Logic#getClearingPrice()`, which in turn calls `Model#calculateClearingPrice()` and returns the computed clearing price back to the `UI` for display.
 
-<puml src="diagrams/OrderSequenceDiagram.puml" width=1000 />
+<div class="text-center">
+  <puml src="diagrams/OrderSequenceDiagram.puml" width="1000"></puml>
+  <figcaption><strong>Figure 11:</strong> Order Sequence Diagram.</figcaption>
+</div>
+<br>
 
 #### Design Considerations
 
@@ -235,8 +270,17 @@ Closing Help:
 
 When a user has finished using the help function, the user can click on the `X` to close it or alternatively, press on the `ESCAPE` key to close the help message. This action is registered via the `HelpWindow`.
 
-<puml src="diagrams/HelpSequenceDiagram.puml" width="800" />
-<puml src="diagrams/HelpActivityDiagram.puml" width="800" />
+<div class="text-center">
+  <puml src="diagrams/HelpSequenceDiagram.puml" width="800"></puml>
+  <figcaption><strong>Figure 12:</strong> Help Sequence Diagram.</figcaption>
+</div>
+<br>
+
+<div class="text-center">
+  <puml src="diagrams/HelpActivityDiagram.puml" width="800"></puml>
+  <figcaption><strong>Figure 13:</strong> Help Activity Diagram.</figcaption>
+</div>
+<br>
 
 ### \[Proposed\] Undo\/redo feature
 
@@ -254,15 +298,27 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `VersionedFinClient` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-<puml src="diagrams/UndoRedoState0.puml" width=500 />
+<div class="text-center">
+  <puml src="diagrams/UndoRedoState0.puml" width="500"></puml>
+  <figcaption><strong>Figure 14:</strong> UndoRedo State 0.</figcaption>
+</div>
+<br>
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitFinClient()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `FinClientStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
-<puml src="diagrams/UndoRedoState1.puml" width=500 />
+<div class="text-center">
+  <puml src="diagrams/UndoRedoState1.puml" width="500"></puml>
+  <figcaption><strong>Figure 15:</strong> UndoRedo State 1.</figcaption>
+</div>
+<br>
 
 Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitFinClient()`, causing another modified address book state to be saved into the `FinClientStateList`.
 
-<puml src="diagrams/UndoRedoState2.puml" width=500 />
+<div class="text-center">
+  <puml src="diagrams/UndoRedoState2.puml" width="500"></puml>
+  <figcaption><strong>Figure 16:</strong> UndoRedo State 2.</figcaption>
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -272,7 +328,11 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFinClient()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-<puml src="diagrams/UndoRedoState3.puml" width=500 />
+<div class="text-center">
+  <puml src="diagrams/UndoRedoState3.puml" width="500"></puml>
+  <figcaption><strong>Figure 17:</strong> UndoRedo State 3.</figcaption>
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -283,7 +343,11 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+<div class="text-center">
+  <img src="images/UndoSequenceDiagram-Logic.png" alt="Undo Sequence Diagram (Logic)" />
+  <figcaption><strong>Figure 21:</strong> Undo Sequence Diagram (Logic).</figcaption>
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -293,7 +357,11 @@ The following sequence diagram shows how an undo operation goes through the `Log
 
 Similarly, how an undo operation goes through the `Model` component is shown below:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
+<div class="text-center">
+  <img src="images/UndoSequenceDiagram-Model.png" alt="Undo Sequence Diagram (Model)" />
+  <figcaption><strong>Figure 22:</strong> Undo Sequence Diagram (Model).</figcaption>
+</div>
+<br>
 
 The `redo` command does the opposite — it calls `Model#redoFinClient()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
@@ -305,15 +373,27 @@ The `redo` command does the opposite — it calls `Model#redoFinClient()`, w
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitFinClient()`, `Model#undoFinClient()` or `Model#redoFinClient()`. Thus, the `FinClientStateList` remains unchanged.
 
-<puml src="diagrams/UndoRedoState4.puml" width=500 />
+<div class="text-center">
+  <puml src="diagrams/UndoRedoState4.puml" width="500"></puml>
+  <figcaption><strong>Figure 18:</strong> UndoRedo State 4.</figcaption>
+</div>
+<br>
 
 Step 6. The user executes `clear`, which calls `Model#commitFinClient()`. Since the `currentStatePointer` is not pointing at the end of the `FinClientStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
-<puml src="diagrams/UndoRedoState5.puml" width=500 />
+<div class="text-center">
+  <puml src="diagrams/UndoRedoState5.puml" width="500"></puml>
+  <figcaption><strong>Figure 19:</strong> UndoRedo State 5.</figcaption>
+</div>
+<br>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<puml src="diagrams/CommitActivityDiagram.puml" width=250 />
+<div class="text-center">
+  <puml src="diagrams/CommitActivityDiagram.puml" width="250"></puml>
+  <figcaption><strong>Figure 20:</strong> Commit Activity Diagram.</figcaption>
+</div>
+<br>
 
 #### Design considerations:
 

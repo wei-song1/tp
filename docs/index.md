@@ -5,8 +5,16 @@ pageNav: 3
 ---
 # FinClient Overview
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2425S2-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=U0FNGKT3U8)](https://codecov.io/gh/AY2425S2-CS2103T-T11-4/tp)
+<div class="badge-container">
+  <a href="https://github.com/se-edu/addressbook-level3/actions">
+    <img src="https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg" class="no-style" alt="CI Status">
+  </a>
+  <a href="https://codecov.io/gh/AY2425S2-CS2103T-T11-4/tp">
+    <img src="https://codecov.io/gh/AY2425S2-CS2103T-T11-4/tp/branch/master/graph/badge.svg?token=U0FNGKT3U8" class="no-style" alt="codecov">
+  </a>
+</div>
+
+<br>
 
 ## Table of Contents
 - [Introduction](#introduction)

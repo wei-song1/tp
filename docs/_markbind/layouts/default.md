@@ -53,7 +53,11 @@
     * [Exiting the Program]({{ baseUrl }}/UserGuide.html#exiting-the-program-exit)
     * [Saving the Data]({{ baseUrl }}/UserGuide.html#saving-the-data)
     * [Editing the Data File]({{ baseUrl }}/UserGuide.html#editing-the-data-file)
-  * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
+  * [FAQ]({{ baseUrl }}/UserGuide.html#faq) :expanded:
+    * [General Usage]({{ baseUrl }}/UserGuide.html#general-usage)
+    * [Commands and Features]({{ baseUrl }}/UserGuide.html#commands-and-features)
+    * [Data Management]({{ baseUrl }}/UserGuide.html#data-management)
+    * [Trouble Shooting]({{ baseUrl }}/UserGuide.html#trouble-shooting)
   * [Known Issues]({{ baseUrl }}/UserGuide.html#known-issues)
   * [Command Summary]({{ baseUrl }}/UserGuide.html#command-summary)
 * [Developer Guide]({{ baseUrl }}/DeveloperGuide.html) :expanded:
@@ -82,6 +86,6 @@
 <footer>
   <!-- Support MarkBind by including a link to us on your landing page! -->
   <div class="text-center">
-    <small>[<md>**Powered by**</md> <img src="https://markbind.org/favicon.ico" width="30"> {{MarkBind}}, generated on {{timestamp}}]</small>
+    <small>[<md>**Powered by**</md> <img src="https://markbind.org/favicon.ico" class="no-style" width="30"> {{MarkBind}}, generated on {{timestamp}}]</small>
   </div>
 </footer>
