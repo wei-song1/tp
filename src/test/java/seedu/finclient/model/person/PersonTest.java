@@ -13,7 +13,7 @@ import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -200,20 +200,20 @@ public class PersonTest {
         LocalDate tomorrow = today.plusDays(1);
 
         Person personYesterday = new PersonBuilder()
-                .withRemark("Old Event by/"
-                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Old Event by/",
+                        Optional.of(yesterday.atStartOfDay()))
                 .withName("Past Person")
                 .build();
 
         Person personToday = new PersonBuilder()
-                .withRemark("Today Event by/"
-                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Today Event by/",
+                        Optional.of(today.atStartOfDay()))
                 .withName("Today Person")
                 .build();
 
         Person personTomorrow = new PersonBuilder()
-                .withRemark("Tomorrow Event by/"
-                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Tomorrow Event by/",
+                        Optional.of(tomorrow.atStartOfDay()))
                 .withName("Future Person")
                 .build();
 
@@ -238,9 +238,8 @@ public class PersonTest {
     public void compareToDeadline_oneWithRemarkOneWithoutRemark() {
         // Compare one person with a deadline and another without
         Person personWithRemark = new PersonBuilder()
-                .withRemark("Event by/"
-                        + LocalDate.now().plusDays(1).atStartOfDay()
-                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Event by/",
+                        Optional.of(LocalDate.now().plusDays(1).atStartOfDay()))
                 .withName("Person with Remark")
                 .build();
 

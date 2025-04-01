@@ -21,6 +21,7 @@ import java.util.Set;
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.logic.commands.EditCommand;
 import seedu.finclient.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.finclient.logic.commands.RemarkUtil.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.tag.Tag;
 
@@ -65,7 +66,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
-            editPersonDescriptor.setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()));
+            editPersonDescriptor
+                    .setRemark(ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get(), CommandType.EDIT));
         }
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             editPersonDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));

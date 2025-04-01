@@ -151,6 +151,11 @@ Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In 
 Example input:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/10 year sentence t/criminal `
 
+Now, suppose you want to add the contact of Sherlock Holmes, a family member. You include his name (`n/Sherlock Holmes`), a "family" tag, his email, phone number, and address. You also add a remark (`r/family dinner`) and schedule it with a timestamp using `by/2025-04-03 18:00`, indicating when the event will happen.
+
+Example input:
+* `add n/Sherlock Holmes t/family e/sherlock@example.com a/221B Baker Street p/1234567 r/family dinner by/2025-04-03 18:00 t/detective `
+
 ### <span id="listing-all-persons">Listing all persons : `list`</span>
 
 Shows a list of all persons in FinClient.
@@ -174,13 +179,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* Similarly, you can remove the person's remark field by typing `r/` with no description or timestamp.
+* However, empty remarks with timestamp such as `r/ by/2025-03-30 16:00` are not accepted.  
 * For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with `delete`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 r/scheduled meeting by/2025-04-03 10:00` Edits the remark of the 1st person to be `scheduled meeting` and associates it with the timestamp `2025-04-03 10:00`, indicating the scheduled time of the event.
+*  `edit 1 r/` removes the remark field of the 1st person.
 *  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
 
 <div markdown="span" class="alert alert-primary">
@@ -288,27 +296,6 @@ Examples:
 
 :information_source: **Design choice:**
 Since FinClient is designed for a single financial instrument, every order recorded relates to that same asset.
-</div>
-
-### <span id="adding-remarks">Adding remarks: `remark`</span>
-
-Adds a remark to the specified person in FinClient.
-
-Format: `remark INDEX r/[REMARKS]`
-
-* Adds a remark to the person specified at `INDEX`.
-* Including the time will create a deadline for the current remark being added to the contact.
-
-Examples:
-* `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1.
-* `remark 1 r/Set buy order by/2025-10-15` adds `Set buy order` to the remark section of the contact listed at index 1 along with a deadline. <br> As the date nears, there will be a reminder shown on the main interface.
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:**
-To add deadlines to remarks, the by/ argument must be supplied right after r/. 
-
-The remark command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
 </div>
 
 ### <span id="sorting-contacts">Sorting contacts: `sort`</span>

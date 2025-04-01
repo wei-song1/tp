@@ -14,13 +14,13 @@ public class RemarkTest {
 
     @Test
     public void equals() {
-        Remark remark = new Remark("Hello");
+        Remark remark = new Remark("Hello", Optional.empty());
 
         // same object -> returns true
         assertTrue(remark.equals(remark));
 
         // same values -> returns true
-        Remark remarkCopy = new Remark(remark.value);
+        Remark remarkCopy = new Remark(remark.value, Optional.empty());
         assertTrue(remark.equals(remarkCopy));
 
         // different types -> returns false
@@ -30,14 +30,14 @@ public class RemarkTest {
         assertFalse(remark.equals(null));
 
         // different remark -> returns false
-        Remark differentRemark = new Remark("Bye");
+        Remark differentRemark = new Remark("Bye", Optional.empty());
         assertFalse(remark.equals(differentRemark));
     }
 
     @Test
     public void testCompareTo_bothWithoutDeadline() {
-        Remark remark1 = new Remark("Hello");
-        Remark remark2 = new Remark("Hello");
+        Remark remark1 = new Remark("Hello", Optional.empty());
+        Remark remark2 = new Remark("Hello", Optional.empty());
         assertTrue(remark1.compareTo(remark2) == 0);
     }
 
@@ -45,7 +45,7 @@ public class RemarkTest {
     public void testCompareTo_oneWithAndOneWithoutDeadline() {
         LocalDateTime dateTime = LocalDate.of(2020, Month.JANUARY, 18).atStartOfDay();
         Remark remark1 = new Remark("Deadline 1", Optional.of(dateTime));
-        Remark remark2 = new Remark("Hello");
+        Remark remark2 = new Remark("Hello", Optional.empty());
         assertTrue(remark1.compareTo(remark2) == -1);
     }
 

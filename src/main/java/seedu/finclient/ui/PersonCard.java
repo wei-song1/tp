@@ -91,7 +91,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getRemark().timestamp.isPresent()) {
             String formatted = person.getRemark().timestamp.get()
                     .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            remarkTimestamp.setText("Due: " + formatted);
+            remarkTimestamp.setText("At: " + formatted);
         } else {
             remarkTimestamp.setText("");
         }

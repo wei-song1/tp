@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.finclient.commons.util.ToStringBuilder;
@@ -135,7 +136,7 @@ public class Person {
     }
 
     public Remark getRemark() {
-        return isHidden ? new Remark("Sensitive details are hidden") : remark;
+        return isHidden ? new Remark("Sensitive details are hidden", Optional.empty()) : remark;
     }
 
     /**

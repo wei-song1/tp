@@ -15,11 +15,14 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.finclient.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.logic.commands.exceptions.CommandException;
@@ -46,6 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_REMARK_AMY = "Like skiing.";
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+    public static final String VALID_TIMESTAMP_AMY = "2025-04-01 10:00";
+    public static final String VALID_TIMESTAMP_BOB = "2024-07-28 14:00";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_COMPANY_AMY = "NUS";
@@ -61,6 +66,9 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_CINDY = "cindybrown@example.com";
     public static final String VALID_ADDRESS_CINDY = "Example Blk 33 Room 21";
     public static final String VALID_ORDER_CINDY = "SELL 70 @ $5.90";
+    public static final Optional<LocalDateTime> EMPTY_TIMESTAMP = Optional.empty();
+    public static final Optional<LocalDateTime> VALID_PARSED_TIMESTAMP_AMY =
+            Optional.of(LocalDateTime.of(2025, 04, 01, 10, 00));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -72,6 +80,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
+    public static final String TIMESTAMP_DESC_AMY = " " + PREFIX_TIMESTAMP + VALID_TIMESTAMP_AMY;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
@@ -87,6 +96,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_EMPTY_REMARK_DESC = " " + PREFIX_REMARK;
+    public static final String INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC = " " + PREFIX_REMARK + TIMESTAMP_DESC_AMY;
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DUPLICATE_PHONE_DESC = " " + PREFIX_PHONE + "911" + " " + PREFIX_PHONE + "911";
     public static final String INVALID_EXCEED_PHONE_DESC = " " + PREFIX_PHONE + "111" + " " + PREFIX_PHONE + "222"

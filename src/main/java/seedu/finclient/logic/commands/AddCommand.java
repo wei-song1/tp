@@ -7,6 +7,7 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
 import seedu.finclient.commons.util.ToStringBuilder;
 import seedu.finclient.logic.Messages;
@@ -28,7 +29,8 @@ public class AddCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE]... "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_REMARK + "REMARK"
+            + "[" + PREFIX_REMARK + "REMARK "
+            + "[" + PREFIX_TIMESTAMP + "TIMESTAMP]] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
