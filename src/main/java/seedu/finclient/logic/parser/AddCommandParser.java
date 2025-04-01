@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.finclient.logic.commands.AddCommand;
-import seedu.finclient.logic.commands.CommandType;
+import seedu.finclient.logic.commands.RemarkUtil.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;

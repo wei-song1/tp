@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.commons.util.StringUtil;
-import seedu.finclient.logic.commands.CommandType;
+import seedu.finclient.logic.commands.RemarkUtil.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
@@ -199,11 +199,13 @@ public class ParserUtil {
         Optional<LocalDateTime> ts = Optional.empty();
         if (parts.length > 1) {
             String dateTimeStr = parts[1].trim();
-            String regexPattern = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
+            String regexPattern = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}"; // Expected format: yyyy-MM-dd HH:mm
+            // First, validate the structure of the timestamp using regex.
             if (!dateTimeStr.matches(regexPattern)) {
                 throw new ParseException("Timestamp format is invalid. Expected format: yyyy-MM-dd HH:mm");
             }
 
+            // Next, parse the string into LocalDateTime and catch any semantic errors (e.g. invalid dates).
             try {
                 ts = Optional.of(LocalDateTime.parse(dateTimeStr, FORMATTER));
             } catch (DateTimeParseException e) {
