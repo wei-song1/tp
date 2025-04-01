@@ -10,6 +10,7 @@ import static seedu.finclient.testutil.TypicalPersons.ALICE;
 import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import static seedu.finclient.testutil.TypicalPersons.BOB;
 import static seedu.finclient.testutil.TypicalPersons.CARL;
+import static seedu.finclient.testutil.TypicalPersons.CINDY;
 import static seedu.finclient.testutil.TypicalPersons.FIONA;
 import static seedu.finclient.testutil.TypicalPersons.GEORGE;
 
@@ -311,9 +312,9 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void sortByPrice() {
+    public void sortByPrice_singleOrderType() {
         UniquePersonList unsortedUniquePersonList = new UniquePersonList();
-        unsortedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, CARL));
+        unsortedUniquePersonList.setPersons(Arrays.asList(CARL, ALICE, BENSON));
         unsortedUniquePersonList.sortPersons("price");
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.setPersons(Arrays.asList(CARL, BENSON, ALICE));
@@ -321,12 +322,32 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void sortByAmount() {
+    public void sortByAmount_singleOrderType() {
         UniquePersonList unsortedUniquePersonList = new UniquePersonList();
         unsortedUniquePersonList.setPersons(Arrays.asList(CARL, BENSON, ALICE));
-        unsortedUniquePersonList.sortPersons("name");
+        unsortedUniquePersonList.sortPersons("amount");
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, CARL));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+    }
+
+    @Test
+    public void sortByAmount_multipleOrderType() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        unsortedUniquePersonList.setPersons(Arrays.asList(CINDY, ALICE, BENSON));
+        unsortedUniquePersonList.sortPersons("amount");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(ALICE, BENSON, CINDY));
+        assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
+    }
+
+    @Test
+    public void sortByPrice_multipleOrderType() {
+        UniquePersonList unsortedUniquePersonList = new UniquePersonList();
+        unsortedUniquePersonList.setPersons(Arrays.asList(CINDY, BENSON, ALICE));
+        unsortedUniquePersonList.sortPersons("price");
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        expectedUniquePersonList.setPersons(Arrays.asList(BENSON, ALICE, CINDY));
         assertEquals(expectedUniquePersonList, unsortedUniquePersonList);
     }
 

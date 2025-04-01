@@ -1,5 +1,7 @@
 package seedu.finclient.model.order;
 
+import java.util.List;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 import static seedu.finclient.commons.util.CollectionUtil.requireAllNonNull;
@@ -183,10 +185,15 @@ public class Order {
      */
     public int compareTo(Order other, String criteria) {
         requireAllNonNull(other, criteria);
-        return switch (criteria) {
-        case "price" -> Double.compare(getPrice(), other.getPrice());
-        case "amount" -> Integer.compare(getQuantity(), other.getQuantity());
-        default -> 0;
-        };
+        if (getOrderType() != other.getOrderType()) {
+            return getOrderType() == OrderType.BUY ? -1 : 1;
+        }
+        if (criteria.equals("price")) {
+            return Double.compare(getPrice(), other.getPrice());
+        }
+        if (criteria.equals("amount")) {
+            return Integer.compare(getQuantity(), other.getQuantity());
+        }
+        return 0;
     }
 }
