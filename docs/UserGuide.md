@@ -191,7 +191,7 @@ Here is a complete reference table of all arguments that add command accept:
 | Argument | Prefix | Compulsory? | Allowed Count | Special Remarks |
 | --- | --- | --- | --- | --- |
 | Name | n/ | Yes | 1 | Must be alphabetic without special characters|
-| Phone | p/ | Yes | Multiple | Digits only (without space or special character)|
+| Phone | p/ | Yes | 1-3 | Digits only (without space or special character)|
 | Email | e/ | Yes | 1 | Valid email format |
 | Address | a/ | Yes | 1 | Non-empty address |
 | Tags | t/ | No | Multiple | No space or special character within one tag|
