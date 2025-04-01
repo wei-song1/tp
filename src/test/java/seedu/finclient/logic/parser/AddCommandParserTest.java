@@ -13,6 +13,8 @@ import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ADDRESS_DES
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_DUPLICATE_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMPTY_REMARK_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ORDER_DESC;
@@ -38,6 +40,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC
 import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.finclient.logic.commands.CommandTestUtil.TIMESTAMP_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
@@ -47,6 +50,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PARSED_TIMESTAMP_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
@@ -73,6 +77,7 @@ import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.testutil.PersonBuilder;
 
@@ -238,6 +243,43 @@ public class AddCommandParserTest {
     public void parse_exceedPhoneNumbers_failure() {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_EXCEED_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 PhoneList.SIZE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_emptyRemarkInAdd_failure() {
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + INVALID_EMPTY_REMARK_DESC;
+        System.out.println(userInput);
+        assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_emptyDescriptionWithTimestamp_failure() {
+
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC + COMPANY_DESC_AMY + JOB_DESC_AMY
+                + STOCK_PLATFORM_DESC_AMY + NETWORTH_DESC_AMY;
+        System.out.println(userInput);
+        assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validDescriptionWithTimestamp_success() {
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withRemark(VALID_REMARK_AMY, VALID_PARSED_TIMESTAMP_AMY)
+                .withTags()
+                .withOrder("NONE")
+                .withCompany(VALID_COMPANY_AMY)
+                .withJob(VALID_JOB_AMY)
+                .withStockPlatform(VALID_STOCK_PLATFORM_AMY)
+                .withNetworth(VALID_NETWORTH_AMY)
+                .build();
+
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + REMARK_DESC_AMY + TIMESTAMP_DESC_AMY + COMPANY_DESC_AMY + JOB_DESC_AMY
+                + STOCK_PLATFORM_DESC_AMY + NETWORTH_DESC_AMY;
+        System.out.println(userInput);
+        assertParseSuccess(parser, userInput, new AddCommand(expectedPerson));
     }
 
     // ======================

@@ -1,5 +1,7 @@
 package seedu.finclient.testutil;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,6 +16,7 @@ import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
@@ -92,6 +95,14 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRemark(String description, Optional<LocalDateTime> timestamp) {
+        descriptor.setRemark(new Remark(description, timestamp));
         return this;
     }
 
