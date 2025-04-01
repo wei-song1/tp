@@ -61,11 +61,23 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
 1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FinClient.
+1. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar finclient.jar` command to run the application. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+1. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
+   1. On Windows: Press the Windows key, type cmd, and press Enter.
+   1. On Mac: Open Terminal from the Applications > Utilities folder.
 
-   ![Ui](images/Ui.png)
+1. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
+   
+    For example:
+   >```cd Downloads/FinClient```
+
+1. Now, start the app by typing this and pressing Enter:
+   >```java -jar finclient.jar```
+
+   After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
+
+      ![Ui](images/Ui.png)
 
 1. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
 
@@ -164,12 +176,18 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]�
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
-* For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with a delete.
+* For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with `delete`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
+</div>
 
 ### <span id="locating-persons-by-tag">Locating persons by tag: `tag`</span>
 
@@ -189,6 +207,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Use `list` to see all contacts again
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -223,6 +242,12 @@ Examples:
 * `list` followed by `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
 
+Before
+![Ui](images/Ui.png)
+
+After
+![result for 'hide 1'](images/HideResult.png)
+
 ### <span id="revealing-a-person">Revealing a person : `reveal`</span>
 
 Reveals the details of the specified person in FinClient.
@@ -236,6 +261,8 @@ Format: `reveal all|INDEX|name`
 Examples:
 * `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
+
+![result for 'reveal 1'](images/RevealResult.png)
 
 ### <span id="order">Limit orders and Call Auction calculator : `order`</span>
 
@@ -323,10 +350,6 @@ If your changes to the data file makes its format invalid, FinClient will discar
 Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### <span id="archiving-data-files">Archiving data files `[coming in v2.0]`</span>
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## <span id="faq">FAQ</span>
@@ -347,7 +370,7 @@ _Details coming soon ..._
 
 Action | Format | Example
 ---|---|---
-**Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/Engineer`
 **Clear** | `clear` | `clear`
 **Delete** | `delete INDEX` | `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]… [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `edit 2 n/James Lee e/jameslee@example.com`
