@@ -17,10 +17,10 @@ Specific features include:
 * 📇 Adding and deleting contacts
 * ✏️ Editing your contacts' details 
 * 🔍 Locating your contacts by tag\/name
-* 🏢 Maintaining contact-specific details such as jobs and their workplaces  
+* 🏢 Maintaining contact-specific details such as jobs and their workplaces
 * 📊 Sorting your contacts by name, networth, order prices and amounts
-* 🕵️‍♂️ Hiding and revealing contacts  
-* 📈 Estimating Call Auction clearing prices simultaneously 
+* 🕵️‍♂️ Hiding and revealing contacts
+* 📈 Estimating Call Auction clearing prices simultaneously
 
 You can look forward to an efficient and enjoyable experience with FinClient!
 
@@ -66,8 +66,8 @@ You can look forward to an efficient and enjoyable experience with FinClient!
    1. On Windows: Press the Windows key, type cmd, and press Enter.
    2. On Mac: Open Terminal from the Applications > Utilities folder.
 
-5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
-   
+5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path.
+
     For example:
    ```
    cd Downloads/FinClient
@@ -180,8 +180,8 @@ Format: `list`
 
 :bulb: **Tip:**
 `list` is handy in these cases:
-* **Resetting after a filtered view:** If you have just used the [`find`](#locating-persons-by-tag) command (or any other command) that shows a _subset_ of your contacts, `list` will bring back the _full set_ of all contacts. 
-* **Verifying updates:** After adding, editing, or removing multiple persons, running `list` ensures that any unexpected filters or sorting are cleared, so you see the entire, up-to-date list at once. 
+* **Resetting after a filtered view:** If you have just used the [`find`](#locating-persons-by-tag) command (or any other command) that shows a _subset_ of your contacts, `list` will bring back the _full set_ of all contacts.
+* **Verifying updates:** After adding, editing, or removing multiple persons, running `list` ensures that any unexpected filters or sorting are cleared, so you see the entire, up-to-date list at once.
 * **Navigating from another feature:** In some (proposed) workflows, you might be reviewing transaction records or other data. Using `list` ensures you return to the complete contact view without any lingering search results or partial views.
 </div>
 
@@ -198,7 +198,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * Similarly, you can remove the person's remark field by typing `r/` with no description or timestamp.
-* However, empty remarks with timestamp such as `r/ by/2025-03-30 16:00` are not accepted.  
+* However, empty remarks with timestamp such as `r/ by/2025-03-30 16:00` are not accepted.
 * For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with `delete`.
 
 Examples:

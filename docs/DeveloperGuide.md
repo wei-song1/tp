@@ -260,7 +260,7 @@ If the order data is incomplete or invalid, the `Logic` will trigger appropriate
 ### Accessing Help Message
 The feature allows the user to obtain relevant information regarding the commands available while also giving them the choice to copy a URL to our User Guide when scrolled to the bottom of the help message.
 
-#### Implementation 
+#### Implementation
 
 Accessing Help:
 
@@ -635,10 +635,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. User manually opens help message
 
     Use case resumes at step 3.
-  
+
 * 2b. User overlays help message
-  * User focuses help message 
-    
+  * User focuses help message
+
     Use case resumes at step 3.
 
 
