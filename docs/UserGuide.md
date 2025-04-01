@@ -113,7 +113,7 @@ If you are referring to a PDF version of this document, be careful when copying 
 
 ### <span id="viewing-help">Viewing help : `help`</span>
 
-Shows a message explaining how to access the help page.
+Shows a message containing current available commands and provides a description on how to get more help.
 
 Format: `help`
 
