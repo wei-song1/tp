@@ -44,6 +44,10 @@ You can look forward to an efficient and enjoyable experience with FinClient!
   15. [Editing the data file](#editing-the-data-file)
 - [Known issues](#known-issues)
 - [FAQ](#faq)
+  1. [General Usage](#general-usage)
+  2. [Commands and Features](#commands-and-features)
+  3. [Data Management](#data-management)
+  4. [Trouble Shooting](#trouble-shooting)
 - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
