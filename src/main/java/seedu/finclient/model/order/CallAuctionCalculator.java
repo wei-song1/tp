@@ -29,11 +29,11 @@ public class CallAuctionCalculator {
      */
     private static class CandidateResult {
         private double price;
-        private int matchedVolume;
-        private int demand;
-        private int supply;
+        private long matchedVolume;
+        private long demand;
+        private long supply;
 
-        CandidateResult(double price, int matchedVolume, int demand, int supply) {
+        CandidateResult(double price, long matchedVolume, long demand, long supply) {
             this.price = price;
             this.matchedVolume = matchedVolume;
             this.demand = demand;
@@ -44,15 +44,15 @@ public class CallAuctionCalculator {
             return price;
         }
 
-        public int getMatchedVolume() {
+        public long getMatchedVolume() {
             return matchedVolume;
         }
 
-        public int getDemand() {
+        public long getDemand() {
             return demand;
         }
 
-        public int getSupply() {
+        public long getSupply() {
             return supply;
         }
     }
@@ -101,15 +101,15 @@ public class CallAuctionCalculator {
         // Evaluate matched volume at each candidate price
         List<CandidateResult> results = new ArrayList<>();
         for (double p : sortedPrices) {
-            int demand = calculateDemand(buyOrders, p);
-            int supply = calculateSupply(sellOrders, p);
-            int matched = Math.min(demand, supply);
+            long demand = calculateDemand(buyOrders, p);
+            long supply = calculateSupply(sellOrders, p);
+            long matched = Math.min(demand, supply);
             results.add(new CandidateResult(p, matched, demand, supply));
         }
 
         // 1) Find the maximum matchedVolume
-        int maxVolume = results.stream()
-                .mapToInt(r -> r.matchedVolume)
+        long maxVolume = results.stream()
+                .mapToLong(r -> r.matchedVolume)
                 .max()
                 .orElse(0);
 
@@ -124,16 +124,16 @@ public class CallAuctionCalculator {
         // 2) Among those, pick the one with the smallest leftover = |demand - supply|
         //    leftover = demand - supply (positive means leftover demand, negative leftover supply)
         //    We only care about absolute leftover
-        int minLeftover = Integer.MAX_VALUE;
+        long minLeftover = Long.MAX_VALUE;
         for (CandidateResult r : topVolumeResults) {
-            int leftover = Math.abs(r.demand - r.supply);
+            long leftover = Math.abs(r.demand - r.supply);
             if (leftover < minLeftover) {
                 minLeftover = leftover;
             }
         }
         List<CandidateResult> bestLeftoverResults = new ArrayList<>();
         for (CandidateResult r : topVolumeResults) {
-            int leftover = Math.abs(r.demand - r.supply);
+            long leftover = Math.abs(r.demand - r.supply);
             if (leftover == minLeftover) {
                 bestLeftoverResults.add(r);
             }
@@ -149,8 +149,8 @@ public class CallAuctionCalculator {
     /**
      * Sum of all buy orders' quantities whose limit >= p
      */
-    private static int calculateDemand(List<Order> buyOrders, double p) {
-        int sum = 0;
+    private static long calculateDemand(List<Order> buyOrders, double p) {
+        long sum = 0;
         for (Order b : buyOrders) {
             if (b.getPrice() >= p) {
                 sum += b.getQuantity();
@@ -162,8 +162,8 @@ public class CallAuctionCalculator {
     /**
      * Sum of all sell orders' quantities whose limit <= p
      */
-    private static int calculateSupply(List<Order> sellOrders, double p) {
-        int sum = 0;
+    private static long calculateSupply(List<Order> sellOrders, double p) {
+        long sum = 0;
         for (Order s : sellOrders) {
             if (s.getPrice() <= p) {
                 sum += s.getQuantity();
