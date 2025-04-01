@@ -98,7 +98,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 * Items followed by `…` can be repeated any number of times (including not at all).<br>
   e.g. `[t/TAG]…` can be used as ` `(i.e. 0 times), `t/friend`, or `t/friend t/family` etc.
 
-* Arguments can be in any order.<br>
+* Arguments can be in any order (there is a special case for remark command, please refer [here](#adding-remarks)).<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous arguments for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -269,10 +269,20 @@ Adds a remark to the specified person in FinClient.
 
 Format: `remark INDEX r/[REMARKS]`
 
-* Adds a remark to the person specified at `INDEX`
+* Adds a remark to the person specified at `INDEX`.
+* Including the time will create a deadline for the current remark being added to the contact.
 
 Examples:
-* `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1
+* `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1.
+* `remark 1 r/Set buy order by/2025-10-15` adds `Set buy order` to the remark section of the contact listed at index 1 along with a deadline. <br> As the date nears, there will be a reminder shown on the main interface.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+To add deadlines to remarks, the by/ argument must be supplied right after r/. 
+
+The remark command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
+</div>
 
 ### <span id="sorting-contacts">Sorting contacts: `sort`</span>
 
