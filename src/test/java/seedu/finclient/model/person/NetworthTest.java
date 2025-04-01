@@ -58,9 +58,9 @@ public class NetworthTest {
     public void getNetworthBracket() {
         // check correct bucket assignment
         assertEquals("< $100k", new Networth("50000").value);
-        assertEquals("< $100k", new Networth("-1").value);
+        assertEquals("< $100k", new Networth("1").value);
         assertEquals("< $100k", new Networth("0").value);
-        assertEquals("< $100k", new Networth("-9999999").value);
+        assertEquals("< $100k", new Networth("99999").value);
         assertEquals("$100k - $250k", new Networth("100000").value);
         assertEquals("$100k - $250k", new Networth("150000").value);
         assertEquals("$100k - $250k", new Networth("249999").value);
@@ -69,6 +69,16 @@ public class NetworthTest {
         assertEquals("$1 million - $5 million", new Networth("2000000").value);
         assertEquals("> $5 million", new Networth("6000000").value);
         assertEquals("> $5 million", new Networth("9999999").value);
+    }
+
+    @Test
+    public void isValidAmount() {
+        assertThrows(NumberFormatException.class, () -> Networth.isValidAmount(null));
+        assertThrows(IllegalArgumentException.class, () -> Networth.isValidAmount(""));
+        assertFalse(Networth.isValidAmount("-1"));
+        assertFalse(Networth.isValidAmount("-999"));
+        assertTrue(Networth.isValidAmount("1"));
+        assertTrue(Networth.isValidAmount("999"));
     }
 
     @Test

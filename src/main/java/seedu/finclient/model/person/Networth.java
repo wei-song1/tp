@@ -3,6 +3,7 @@ package seedu.finclient.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.finclient.commons.util.AppUtil.checkArgument;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -15,7 +16,8 @@ import seedu.finclient.commons.core.LogsCenter;
  */
 public class Networth {
     public static final String MESSAGE_CONSTRAINTS =
-            "Networth can take any positive values, and it should not be blank";
+            "Networth can take any positive values, should be smaller than 2,147,483,647, " +
+                    "should not contain any decimal points, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
@@ -33,6 +35,7 @@ public class Networth {
             value = networthAmount;
         } else {
             checkArgument(isValidNetworth(networthAmount), MESSAGE_CONSTRAINTS);
+            checkArgument(isValidAmount(networthAmount), MESSAGE_CONSTRAINTS);
             logger.info("Networth inputted is a number: " + networthAmount);
             value = getNetworthBracket(networthAmount);
         }
@@ -47,6 +50,19 @@ public class Networth {
      */
     public static boolean isValidNetworth(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid integer amount.
+     */
+    public static boolean isValidAmount(String test) {
+        boolean isValid = false;
+        try {
+            isValid = Long.parseLong(test) >= 0 && Long.parseLong(test) < 2147483647;
+        } catch (NumberFormatException e) {
+            isValid = false;
+        }
+        return isValid;
     }
 
     /**

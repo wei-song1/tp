@@ -370,8 +370,8 @@ public class ParserUtilTest {
         assertEquals(expectedNetworth, ParserUtil.parseNetworth("9999999"));
 
         // Considered in the same net worth bracket
-        expectedNetworth = new Networth("-1");
-        assertEquals(expectedNetworth, ParserUtil.parseNetworth("1"));
+        expectedNetworth = new Networth("10000");
+        assertEquals(expectedNetworth, ParserUtil.parseNetworth("10000"));
 
         expectedNetworth = new Networth("1");
         assertEquals(expectedNetworth, ParserUtil.parseNetworth("< $100k"));
