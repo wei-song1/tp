@@ -238,7 +238,7 @@ When a user has finished using the help function, the user can click on the `X` 
 <puml src="diagrams/HelpSequenceDiagram.puml" width="800" />
 <puml src="diagrams/HelpActivityDiagram.puml" width="800" />
 
-### \[Proposed\] Undo/Redo feature
+### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
