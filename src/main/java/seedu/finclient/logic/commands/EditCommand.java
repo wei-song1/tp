@@ -11,6 +11,7 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import static seedu.finclient.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -54,7 +55,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_REMARK + "REMARK "
+            + "[" + PREFIX_TIMESTAMP + "TIMESTAMP]] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_JOB + "JOB] "
             + "[" + PREFIX_PLATFORM + "STOCKPLATFORM] "
