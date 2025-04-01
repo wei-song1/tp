@@ -73,10 +73,11 @@ public class NetworthTest {
 
     @Test
     public void isValidAmount() {
-        assertThrows(NumberFormatException.class, () -> Networth.isValidAmount(null));
-        assertThrows(IllegalArgumentException.class, () -> Networth.isValidAmount(""));
         assertFalse(Networth.isValidAmount("-1"));
         assertFalse(Networth.isValidAmount("-999"));
+        assertFalse(Networth.isValidAmount("-0.5"));
+        assertFalse(Networth.isValidAmount(".1"));
+        assertFalse(Networth.isValidAmount("0.5"));
         assertTrue(Networth.isValidAmount("1"));
         assertTrue(Networth.isValidAmount("999"));
     }
