@@ -27,21 +27,21 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help-help)
-    - [Adding a person](#adding-a-person-add)
-    - [Listing all persons](#listing-all-persons-list)
-    - [Editing a person](#editing-a-person-edit)
-    - [Locating persons by tag](#locating-persons-by-tag-find)
-    - [Locating persons by name](#locating-persons-by-name-find)
-    - [Deleting a person](#deleting-a-person-delete)
-    - [Hiding a person](#hiding-a-person-hide)
-    - [Revealing a person](#revealing-a-person-reveal)
-    - [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
-    - [Sorting contacts](#sorting-contacts-sort)
-    - [Clearing all entries](#clearing-all-entries-clear)
-    - [Exiting the program](#exiting-the-program-exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
+  1. [Viewing help](#viewing-help-help)
+  2. [Adding a person](#adding-a-person-add)
+  3. [Listing all persons](#listing-all-persons-list)
+  4. [Editing a person](#editing-a-person-edit)
+  5. [Locating persons by tag](#locating-persons-by-tag-find)
+  6. [Locating persons by name](#locating-persons-by-name-find)
+  7. [Deleting a person](#deleting-a-person-delete)
+  8. [Hiding a person](#hiding-a-person-hide)
+  9. [Revealing a person](#revealing-a-person-reveal)
+  10. [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
+  11. [Sorting contacts](#sorting-contacts-sort)
+  12. [Clearing all entries](#clearing-all-entries-clear)
+  13. [Exiting the program](#exiting-the-program-exit)
+  14. [Saving the data](#saving-the-data)
+  15. [Editing the data file](#editing-the-data-file)
 - [Known issues](#known-issues)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
@@ -69,14 +69,20 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 1. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
    
     For example:
-   >```cd Downloads/FinClient```
+   ```
+   cd Downloads/FinClient
+   ```
 
 1. Now, start the app by typing this and pressing Enter:
-   >```java -jar finclient.jar```
+   ```
+   java -jar finclient.jar
+   ```
 
    After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
 
-      ![Ui](images/Ui.png)
+<div style="text-align: center;">
+  <img src="images/Ui.png" alt="Ui" style="width: 60%; max-width: 500px; height: auto;" />
+</div>
 
 1. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
 
@@ -128,7 +134,9 @@ Shows a message containing current available commands and provides a description
 
 Format: `help`
 
-![help message](images/helpMsg.png)
+<div style="text-align: center;">
+  <img src="images/helpMsg.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
+</div>
 
 ### Adding a person : `add`
 
@@ -234,7 +242,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+<div style="text-align: center;">
+  <p>What happens when you do <code>find Alex David</code></p>
+  <img src="images/findAlexDavidResult.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
+</div>
+
 
 ### Deleting a person : `delete`
 
@@ -264,11 +276,12 @@ Examples:
 * `list` followed by `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
 
-Before
-![Ui](images/Ui.png)
-
-After
-![result for 'hide 1'](images/HideResult.png)
+<div style="text-align: center;">
+  <p>Before</p>
+  <img src="images/HideBefore.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
+  <p>After</p>
+  <img src="images/HideResult.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
+</div>
 
 ### Revealing a person : `reveal`
 
@@ -284,7 +297,10 @@ Examples:
 * `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
 
-![result for 'reveal 1'](images/RevealResult.png)
+<div style="text-align: center;">
+  <p>After Revealing</p>
+  <img src="images/RevealResult.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
+</div>
 
 ### Limit orders and Call Auction calculator : `order`
 
@@ -324,7 +340,7 @@ Examples:
 
 Current available criteria are:
 * `name` : Sorts the contact list based on contact's name
-* `networth` : Sorts the contact list based on contact's networth bracket
+* `networth` : Sorts the contact list based on contact's net worth bracket
 * `amount` : Sorts the contact list based on contact's order amount
 * `price` : Sorts the contact list based on contact's order price
 * `deadline`: Sorts the contact list based on contact's deadline
