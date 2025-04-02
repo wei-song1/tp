@@ -30,7 +30,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
 
     public static final String REMOVE_OPTIONAL_MESSAGE = "Remove optional fields: ";
-    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [c/delete] "
+    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [r/] [c/delete] "
             + "[j/delete] [s/delete] [$/delete]";
 
     public static final String LIST_MESSAGE = "List all saved contacts : ";
