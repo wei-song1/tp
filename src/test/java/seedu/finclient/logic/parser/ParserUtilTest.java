@@ -17,7 +17,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.finclient.logic.commands.RemarkUtil.CommandType;
+import seedu.finclient.logic.commands.remark.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;

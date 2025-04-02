@@ -59,6 +59,7 @@ public class OrderTest {
         assertTrue(noneOrder.getOrderType() == OrderType.NONE);
         assertTrue(noneOrder.getPrice() == 1.0);
         assertTrue(noneOrder.getQuantity() == 1);
+        assertEquals("NONE", noneOrder.toString());
     }
 
     @Test
@@ -68,6 +69,7 @@ public class OrderTest {
         assertTrue(hiddenOrder.getOrderType() == OrderType.HIDDEN);
         assertTrue(hiddenOrder.getPrice() == 1.0);
         assertTrue(hiddenOrder.getQuantity() == 1);
+        assertEquals("Hidden", hiddenOrder.toString());
     }
 
     @Test
@@ -77,6 +79,7 @@ public class OrderTest {
         assertTrue(buyOrder.getOrderType() == OrderType.BUY);
         assertTrue(buyOrder.getPrice() == 5.50);
         assertTrue(buyOrder.getQuantity() == 10);
+        assertEquals("BUY 10 @ $5.50", buyOrder.toString());
     }
 
     @Test
