@@ -189,12 +189,19 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 *  `edit 1 r/scheduled meeting by/2025-04-03 10:00` Edits the remark of the 1st person to be `scheduled meeting` and associates it with the timestamp `2025-04-03 10:00`, indicating the scheduled time of the event.
 *  `edit 1 r/` removes the remark field of the 1st person.
-*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
+*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the company of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
 Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
+</div>
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+To add deadlines to remarks, the by/ argument must be supplied right after r/.
+
+The edit command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
 </div>
 
 ### <span id="locating-persons-by-tag">Locating persons by tag: `tag`</span>
