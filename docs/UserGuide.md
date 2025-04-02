@@ -96,7 +96,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -138,14 +138,17 @@ Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMA
 
 <div markdown="span" class="alert alert-primary">
 
-:exclamation:
-Duplicate persons are not allowed. If you try to add a person with the same name and phone numbers as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
 :bulb: **Tip:**
 A person can have any number of tags (including 0)<br>
 :bulb: **Tip:**
 Optional fields can be left out when adding a person's contact.
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+Duplicate persons are not allowed. If you try to add a person with the same name and phone numbers as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
+</div>
 
 Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In that case, your command includes her name (`n/Betsy Crowe`), a tag indicating "friend" (`t/friend`), her email (`betsycrowe@example.com`), address (`Newgate Prison`), and phone number (`p/1234567`) along with optional remarks (`r/10 year sentence t/criminal`).
 
