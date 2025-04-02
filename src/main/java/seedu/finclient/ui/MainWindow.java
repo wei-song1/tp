@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        priceLabel.setText("Clearing Price: S$" + logic.getClearingPrice().orElse(0.0));
+        priceLabel.setText("Clearing Price: $" + logic.getClearingPrice().orElse(0.0));
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -215,7 +215,7 @@ public class MainWindow extends UiPart<Stage> {
             // force refresh
             personListPanel = new PersonListPanel(logic.getFilteredPersonList());
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-            priceLabel.setText("Clearing Price: " + logic.getClearingPrice().orElse(0.0));
+            priceLabel.setText("Clearing Price: $" + logic.getClearingPrice().orElse(0.0));
             upcomingEventsPlaceholder.getChildren().clear();
             upcomingEventsPanel = new UpcomingEventsPanel(logic.getUpcomingPersons(2));
             upcomingEventsPlaceholder.getChildren().add(upcomingEventsPanel.getRoot());
