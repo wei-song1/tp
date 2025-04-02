@@ -16,7 +16,7 @@ Specific features include:
 
 * 📇 Adding and deleting contacts
 * ✏️ Editing your contacts' details 
-* 🔍 Locating your contacts by name
+* 🔍 Locating your contacts by tag\/name
 * 🏢 Maintaining contact-specific details such as jobs and their workplaces  
 * 📊 Sorting your contacts by name, networth, order prices and amounts
 * 🕵️‍♂️ Hiding and revealing contacts  
@@ -27,29 +27,28 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help)
-    - [Adding a person](#adding-a-person)
-    - [Listing all persons](#listing-all-persons)
-    - [Editing a person](#editing-a-person)
-    - [Locating persons by name](#locating-persons-by-name)
-    - [Deleting a person](#deleting-a-person)
-    - [Hiding a person](#hiding-a-person)
-    - [Revealing a person](#revealing-a-person)
-    - [Limit orders and Call Auction calculator](#order)
-    - [Adding remarks](#adding-remarks)
-    - [Sorting contacts](#sorting-contacts)
-    - [Clearing all entries](#clearing-all-entries)
-    - [Exiting the program](#exiting-the-program)
+    - [Viewing help](#viewing-help-help)
+    - [Adding a person](#adding-a-person-add)
+    - [Listing all persons](#listing-all-persons-list)
+    - [Editing a person](#editing-a-person-edit)
+    - [Locating persons by tag](#locating-persons-by-tag-find)
+    - [Locating persons by name](#locating-persons-by-name-find)
+    - [Deleting a person](#deleting-a-person-delete)
+    - [Hiding a person](#hiding-a-person-hide)
+    - [Revealing a person](#revealing-a-person-reveal)
+    - [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
+    - [Sorting contacts](#sorting-contacts-sort)
+    - [Clearing all entries](#clearing-all-entries-clear)
+    - [Exiting the program](#exiting-the-program-exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files](#archiving-data-files)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
 - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="quick-start">Quick start</span>
+## Quick start
 
 > Note:
 > - "Home folder" refers to the main folder where your FinClient files are stored.
@@ -95,7 +94,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="features">Features</span>
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -123,7 +122,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 If you are referring to a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### <span id="viewing-help">Viewing help : `help`</span>
+### Viewing help : `help`
 
 Shows a message containing current available commands and provides a description on how to get more help.
 
@@ -131,7 +130,7 @@ Format: `help`
 
 ![help message](images/helpMsg.png)
 
-### <span id="adding-a-person">Adding a person : `add`</span>
+### Adding a person : `add`
 
 Adds a person to FinClient.
 
@@ -139,6 +138,8 @@ Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMA
 
 <div markdown="span" class="alert alert-primary">
 
+:exclamation:
+Duplicate persons are not allowed. If you try to add a person with the same name and phone numbers as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
 :bulb: **Tip:**
 A person can have any number of tags (including 0)<br>
 :bulb: **Tip:**
@@ -156,7 +157,7 @@ Now, suppose you want to add the contact of Sherlock Holmes, a family member. Yo
 Example input:
 * `add n/Sherlock Holmes t/family e/sherlock@example.com a/221B Baker Street p/1234567 r/family dinner by/2025-04-03 18:00 t/detective `
 
-### <span id="listing-all-persons">Listing all persons : `list`</span>
+### Listing all persons : `list`
 
 Shows a list of all persons in FinClient.
 
@@ -165,11 +166,14 @@ Format: `list`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-Although you may find list a redundant command, it can be very useful in special cases. [Explain the special cases here.]
+`list` is handy in these cases:
+* **Resetting after a filtered view:** If you have just used the [`find`](#locating-persons-by-tag) command (or any other command) that shows a _subset_ of your contacts, `list` will bring back the _full set_ of all contacts. 
+* **Verifying updates:** After adding, editing, or removing multiple persons, running `list` ensures that any unexpected filters or sorting are cleared, so you see the entire, up-to-date list at once. 
+* **Navigating from another feature:** In some (proposed) workflows, you might be reviewing transaction records or other data. Using `list` ensures you return to the complete contact view without any lingering search results or partial views.
 </div>
 
 
-### <span id="editing-a-person">Editing a person : `edit`</span>
+### Editing a person : `edit`
 
 Edits an existing person in FinClient.
 
@@ -197,13 +201,13 @@ Examples:
 Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
 </div>
 
-### <span id="locating-persons-by-tag">Locating persons by tag: `tag`</span>
+### Locating persons by tag : `find`
 
 Finds persons whose tags contain any of the given tags.
 
 Format: `find TAG_NAME`
 
-### <span id="locating-persons-by-name">Locating persons by name: `find`</span>
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -222,7 +226,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### <span id="deleting-a-person">Deleting a person : `delete`</span>
+### Deleting a person : `delete`
 
 Deletes the specified person from FinClient.
 
@@ -236,7 +240,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FinClient.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### <span id="hiding-a-person">Hiding a person : `hide`</span>
+### Hiding a person : `hide`
 
 Hides the details of the specified person in FinClient.
 
@@ -256,7 +260,7 @@ Before
 After
 ![result for 'hide 1'](images/HideResult.png)
 
-### <span id="revealing-a-person">Revealing a person : `reveal`</span>
+### Revealing a person : `reveal`
 
 Reveals the details of the specified person in FinClient.
 
@@ -272,7 +276,7 @@ Examples:
 
 ![result for 'reveal 1'](images/RevealResult.png)
 
-### <span id="order">Limit orders and Call Auction calculator : `order`</span>
+### Limit orders and Call Auction calculator : `order`
 
 Records a limit order for a specific contact in FinClient.
 
@@ -298,7 +302,7 @@ Examples:
 Since FinClient is designed for a single financial instrument, every order recorded relates to that same asset.
 </div>
 
-### <span id="sorting-contacts">Sorting contacts: `sort`</span>
+### Sorting contacts : `sort`
 
 Sorts the contact list based on the criteria of name or phone number.
 
@@ -315,23 +319,23 @@ Current available criteria are:
 * `price` : Sorts the contact list based on contact's order price
 * `deadline`: Sorts the contact list based on contact's deadline
 
-### <span id="clearing-all-entries">Clearing all entries : `clear`</span>
+### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### <span id="exiting-the-program">Exiting the program : `exit`</span>
+### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### <span id="saving-the-data">Saving the data</span>
+### Saving the data
 
 FinClient data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### <span id="editing-the-data-file">Editing the data file</span>
+### Editing the data file
 
 FinClient data are saved automatically as a JSON file `[JAR file location]/data/finclient.json`. Advanced users are welcome to update data directly by editing that data file.
 

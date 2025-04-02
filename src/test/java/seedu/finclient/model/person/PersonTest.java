@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.ALICE;
@@ -121,8 +120,8 @@ public class PersonTest {
 
     @Test
     public void isSamePerson_differentAttributes_returnsTrue() {
-        // Same name, different other attributes
-        Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        // Same name and phonelist, different other attributes
+        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }
