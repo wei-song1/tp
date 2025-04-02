@@ -27,21 +27,21 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help-help)
-    - [Adding a person](#adding-a-person-add)
-    - [Listing all persons](#listing-all-persons-list)
-    - [Editing a person](#editing-a-person-edit)
-    - [Locating persons by tag](#locating-persons-by-tag-find)
-    - [Locating persons by name](#locating-persons-by-name-find)
-    - [Deleting a person](#deleting-a-person-delete)
-    - [Hiding a person](#hiding-a-person-hide)
-    - [Revealing a person](#revealing-a-person-reveal)
-    - [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
-    - [Sorting contacts](#sorting-contacts-sort)
-    - [Clearing all entries](#clearing-all-entries-clear)
-    - [Exiting the program](#exiting-the-program-exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
+  1. [Viewing help](#viewing-help-help)
+  2. [Adding a person](#adding-a-person-add)
+  3. [Listing all persons](#listing-all-persons-list)
+  4. [Editing a person](#editing-a-person-edit)
+  5. [Locating persons by tag](#locating-persons-by-tag-find)
+  6. [Locating persons by name](#locating-persons-by-name-find)
+  7. [Deleting a person](#deleting-a-person-delete)
+  8. [Hiding a person](#hiding-a-person-hide)
+  9. [Revealing a person](#revealing-a-person-reveal)
+  10. [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
+  11. [Sorting contacts](#sorting-contacts-sort)
+  12. [Clearing all entries](#clearing-all-entries-clear)
+  13. [Exiting the program](#exiting-the-program-exit)
+  14. [Saving the data](#saving-the-data)
+  15. [Editing the data file](#editing-the-data-file)
 - [Known issues](#known-issues)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
@@ -58,21 +58,25 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
 
-1. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
+3. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
 
-1. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
+4. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
    1. On Windows: Press the Windows key, type cmd, and press Enter.
-   1. On Mac: Open Terminal from the Applications > Utilities folder.
+   2. On Mac: Open Terminal from the Applications > Utilities folder.
 
-1. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
+5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
    
     For example:
-   >```cd Downloads/FinClient```
+   ```
+   cd Downloads/FinClient
+   ```
 
-1. Now, start the app by typing this and pressing Enter:
-   >```java -jar finclient.jar```
+6. Now, start the app by typing this and pressing Enter:
+   ```
+   java -jar finclient.jar
+   ```
 
    After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
 
@@ -81,7 +85,7 @@ You can look forward to an efficient and enjoyable experience with FinClient!
   <figcaption align="center"><strong>Figure 1:</strong> Main GUI of FinClient.</figcaption>
 </figure>
 
-1. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
+7. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
 
    * `list` : List all contacts.
 
@@ -331,7 +335,7 @@ Examples:
 
 Current available criteria are:
 * `name` : Sorts the contact list based on contact's name
-* `networth` : Sorts the contact list based on contact's networth bracket
+* `networth` : Sorts the contact list based on contact's net worth bracket
 * `amount` : Sorts the contact list based on contact's order amount
 * `price` : Sorts the contact list based on contact's order price
 * `deadline`: Sorts the contact list based on contact's deadline
