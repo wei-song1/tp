@@ -202,4 +202,44 @@ public class OrderTest {
         assertEquals(-1, buyOrder.compareTo(sellOrder, "amount"));
         assertEquals(-1, buyOrder.compareTo(sellOrder, "price"));
     }
+
+    @Test
+    public void constructor_validLargeQuantity_noException() {
+        // Larger than 2,147,483,647 (int max)
+        long largeQuantity = 2_147_483_648L;
+        Order largeOrder = new Order(OrderType.BUY, "10.00", largeQuantity);
+
+        // Verify the quantity is stored accurately as a long
+        assertTrue(largeOrder.getQuantity() == largeQuantity);
+    }
+
+    // Tests for Constructor with long quantity
+    @Test
+    public void constructor_maxLongQuantity_noException() {
+        // Test an extreme boundary: Long.MAX_VALUE
+        long maxQuantity = Long.MAX_VALUE;
+        Order largeOrder = new Order(OrderType.BUY, "99.99", maxQuantity);
+
+        // Ensure we can handle extremely large values
+        assertTrue(largeOrder.getQuantity() == maxQuantity);
+    }
+
+    @Test
+    public void constructor_parseLargeQuantity_noException() {
+        // "BUY 2147483648 @ $5.50" -> quantity is 2,147,483,648 (exceeds int range)
+        long largeQuantity = 2_147_483_648L;
+        Order largeOrder = new Order("BUY 2147483648 @ $5.50");
+
+        assertTrue(largeOrder.getOrderType() == OrderType.BUY);
+        assertTrue(largeOrder.getPrice() == 5.50);
+        assertTrue(largeOrder.getQuantity() == largeQuantity);
+    }
+
+    // Tests for String Parsing of Large Quantities
+    @Test
+    public void constructor_parseExceedLongMax_throwsIllegalArgumentException() {
+        // Something beyond Long.MAX_VALUE
+        String invalidOrderString = "BUY 99999999999999999999999999 @ $5.50";
+        assertThrows(IllegalArgumentException.class, () -> new Order(invalidOrderString));
+    }
 }

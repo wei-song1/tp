@@ -162,9 +162,9 @@ public class ParserUtil {
         }
 
         // 2) Parse quantity as int
-        int quantity;
+        long quantity;
         try {
-            quantity = Integer.parseInt(trimmedAmount);
+            quantity = Long.parseLong(trimmedAmount);
         } catch (NumberFormatException e) {
             throw new ParseException("Quantity must be a valid integer.");
         }

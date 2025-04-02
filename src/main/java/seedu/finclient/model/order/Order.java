@@ -21,7 +21,7 @@ public class Order {
 
     private OrderType orderType;
     private String price;
-    private int quantity;
+    private long quantity;
 
     /**
      * Constructs a {@code Order}.
@@ -30,7 +30,7 @@ public class Order {
      * @param price     A valid price (e.g. "10.50").
      * @param quantity  A valid quantity (e.g. 100).
      */
-    public Order(OrderType orderType, String price, int quantity) {
+    public Order(OrderType orderType, String price, long quantity) {
         requireAllNonNull(orderType, price, quantity);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS_PRICE);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS_QUANTITY);
@@ -77,9 +77,9 @@ public class Order {
             this.orderType = OrderType.valueOf(orderParts[0].toUpperCase());
 
             // Parse quantity
-            int parsedQuantity;
+            long parsedQuantity;
             try {
-                parsedQuantity = Integer.parseInt(orderParts[1]);
+                parsedQuantity = Long.parseLong(orderParts[1]);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("Quantity must be an integer. Example: '10'");
             }
@@ -106,7 +106,7 @@ public class Order {
         return test.matches(VALIDATION_REGEX_PRICE) && Double.parseDouble(test) > 0;
     }
 
-    public static boolean isValidQuantity(int test) {
+    public static boolean isValidQuantity(long test) {
         return test > 0;
     }
 
@@ -118,7 +118,7 @@ public class Order {
         return Double.parseDouble(price);
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
@@ -133,7 +133,7 @@ public class Order {
         this.price = price;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS_QUANTITY);
         this.quantity = quantity;
@@ -168,7 +168,7 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return orderType.hashCode() ^ price.hashCode() ^ quantity;
+        return (int) (orderType.hashCode() ^ price.hashCode() ^ quantity);
     }
 
     /**
@@ -190,7 +190,7 @@ public class Order {
             return Double.compare(getPrice(), other.getPrice());
         }
         if (criteria.equals("amount")) {
-            return Integer.compare(getQuantity(), other.getQuantity());
+            return Long.compare(getQuantity(), other.getQuantity());
         }
         return 0;
     }
