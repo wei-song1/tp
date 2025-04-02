@@ -355,6 +355,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **If you use the shortcuts provided to access help or exit the application**, note that some devices differ in what to press for the shortcut. For example, to access help, you may need to press `Fn + F1` or just `F1` depending on your device settings. The remedy is to check which of the two, `Fn + F1` or `F1`, works for you to open help, and which of the two, `Fn + F2` of `F2` works for you to exit the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
