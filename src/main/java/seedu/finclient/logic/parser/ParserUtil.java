@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.commons.util.StringUtil;
-import seedu.finclient.logic.commands.RemarkUtil.CommandType;
+import seedu.finclient.logic.commands.remark.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;

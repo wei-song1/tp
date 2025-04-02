@@ -58,33 +58,34 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
 
-1. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
+3. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
 
-1. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
+4. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
    1. On Windows: Press the Windows key, type cmd, and press Enter.
-   1. On Mac: Open Terminal from the Applications > Utilities folder.
+   2. On Mac: Open Terminal from the Applications > Utilities folder.
 
-1. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
+5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
    
     For example:
    ```
    cd Downloads/FinClient
    ```
 
-1. Now, start the app by typing this and pressing Enter:
+6. Now, start the app by typing this and pressing Enter:
    ```
    java -jar finclient.jar
    ```
 
    After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
 
-<div style="text-align: center;">
-  <img src="images/Ui.png" alt="Ui" style="width: 60%; max-width: 500px; height: auto;" />
-</div>
+<figure>
+  <img src="images/main_ui.png" alt="main GUI" width="600px">
+  <figcaption align="center"><strong>Figure 1:</strong> Main GUI of FinClient.</figcaption>
+</figure>
 
-1. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
+7. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
 
    * `list` : List all contacts.
 
@@ -102,7 +103,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 
 ## Features
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -134,9 +135,10 @@ Shows a message containing current available commands and provides a description
 
 Format: `help`
 
-<div style="text-align: center;">
-  <img src="images/helpMsg.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
-</div>
+<figure>
+  <img src="images/help_message.png" alt="result for 'help'" width="600px">
+  <figcaption align="center"><strong>Figure 2:</strong> Help Message.</figcaption>
+</figure>
 
 ### Adding a person : `add`
 
@@ -242,11 +244,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-<div style="text-align: center;">
-  <p>What happens when you do <code>find Alex David</code></p>
-  <img src="images/findAlexDavidResult.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
-</div>
 
+<figure>
+  <img src="images/find_alex_david.png" alt="result for 'find alex david'" width="600px">
+  <figcaption align="center"><strong>Figure 3:</strong> Result of <code> find alex david</code>.</figcaption>
+</figure>
 
 ### Deleting a person : `delete`
 
@@ -276,12 +278,10 @@ Examples:
 * `list` followed by `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
 
-<div style="text-align: center;">
-  <p>Before</p>
-  <img src="images/HideBefore.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
-  <p>After</p>
-  <img src="images/HideResult.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
-</div>
+<figure>
+  <img src="images/hidden_person.png" alt="result for 'hide 1'" width="800px">
+  <figcaption align="center"><strong>Figure 4:</strong> Example of a hidden person.</figcaption>
+</figure>
 
 ### Revealing a person : `reveal`
 
@@ -296,11 +296,6 @@ Format: `reveal all|INDEX|name`
 Examples:
 * `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
-
-<div style="text-align: center;">
-  <p>After Revealing</p>
-  <img src="images/RevealResult.png" alt="Ui" style="width: 60%; max-width: 400px; height: auto;" />
-</div>
 
 ### Limit orders and Call Auction calculator : `order`
 
@@ -322,7 +317,7 @@ Examples:
 * `order 1 o/buy am/10 at/9.50` records a buy order of 5 units at $5.50 for the person listed at index 1.
 * `order 1 o/sell am/10 at/10.50` records a sell order of 10 units at $10.50 for the person listed at index 1.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Design choice:**
 Since FinClient is designed for a single financial instrument, every order recorded relates to that same asset.

@@ -20,7 +20,10 @@ pageNav: 3
 * **_FinClient_** is a typing-based software meant for tech-savvy financial advisors to keep track of their clients.</br>
 * The software will be mainly interacted with through the CLI (Command Line Interface), or simply put, via typing input commands with the keyboard.
 
-![Ui](images/Ui.png)
+<figure>
+  <img src="images/main_ui.png" alt="main GUI" width="600px">
+  <figcaption align="center"><strong>Figure 1:</strong> Main GUI of FinClient.</figcaption>
+</figure>
 
 ## Example usages:
   * Adding and managing clients details

@@ -142,7 +142,7 @@ public class Order {
     @Override
     public String toString() {
         if (orderType == OrderType.HIDDEN) {
-            return "HIDDEN";
+            return "Hidden";
         }
 
         if (orderType == OrderType.NONE) {

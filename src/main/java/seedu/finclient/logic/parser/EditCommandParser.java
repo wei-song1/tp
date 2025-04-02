@@ -21,7 +21,7 @@ import java.util.Set;
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.logic.commands.EditCommand;
 import seedu.finclient.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.finclient.logic.commands.RemarkUtil.CommandType;
+import seedu.finclient.logic.commands.remark.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.tag.Tag;
 
