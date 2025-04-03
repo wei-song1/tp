@@ -711,8 +711,5 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisite : Requires a copy of working finclient.json
 
-   1. Test case: Replace finclient.json with a corrupted file by editing the data to be in an incorrect format.<br>
-      Expected: App should still be able to start, however, the data will be corrupted and no contacts will be shown.
-
    1. Test case: Delete finclient.json <br>
       Expected: App should be repopulated with a copy of sample data and work again, without any presence of old data and a fresh copy of finclient.json is saved.
