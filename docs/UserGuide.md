@@ -393,7 +393,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 </details>
 <details>
   <summary>How do I update FinClient to the latest version?</summary>
-  <p><em>Simply download the latest .jar file from the official source and replace your existing one.</em></p>
+  <p><em>Simply download the latest .jar file from the <a href="https://github.com/AY2425S2-CS2103T-T11-4/tp/releases">official source</a> and replace your existing one.</em></p>
 </details>
 <br>
 
