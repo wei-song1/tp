@@ -17,10 +17,10 @@ Specific features include:
 * 📇 Adding and deleting contacts
 * ✏️ Editing your contacts' details 
 * 🔍 Locating your contacts by tag\/name
-* 🏢 Maintaining contact-specific details such as jobs and their workplaces  
+* 🏢 Maintaining contact-specific details such as jobs and their workplaces
 * 📊 Sorting your contacts by name, networth, order prices and amounts
-* 🕵️‍♂️ Hiding and revealing contacts  
-* 📈 Estimating Call Auction clearing prices simultaneously 
+* 🕵️‍♂️ Hiding and revealing contacts
+* 📈 Estimating Call Auction clearing prices simultaneously
 
 You can look forward to an efficient and enjoyable experience with FinClient!
 
@@ -44,6 +44,10 @@ You can look forward to an efficient and enjoyable experience with FinClient!
   15. [Editing the data file](#editing-the-data-file)
 - [Known issues](#known-issues)
 - [FAQ](#faq)
+  1. [General Usage](#general-usage)
+  2. [Commands and Features](#commands-and-features)
+  3. [Data Management](#data-management)
+  4. [Trouble Shooting](#trouble-shooting)
 - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -66,8 +70,8 @@ You can look forward to an efficient and enjoyable experience with FinClient!
    1. On Windows: Press the Windows key, type cmd, and press Enter.
    2. On Mac: Open Terminal from the Applications > Utilities folder.
 
-5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
-   
+5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path.
+
     For example:
    ```
    cd Downloads/FinClient
@@ -180,8 +184,8 @@ Format: `list`
 
 :bulb: **Tip:**
 `list` is handy in these cases:
-* **Resetting after a filtered view:** If you have just used the [`find`](#locating-persons-by-tag) command (or any other command) that shows a _subset_ of your contacts, `list` will bring back the _full set_ of all contacts. 
-* **Verifying updates:** After adding, editing, or removing multiple persons, running `list` ensures that any unexpected filters or sorting are cleared, so you see the entire, up-to-date list at once. 
+* **Resetting after a filtered view:** If you have just used the [`find`](#locating-persons-by-tag) command (or any other command) that shows a _subset_ of your contacts, `list` will bring back the _full set_ of all contacts.
+* **Verifying updates:** After adding, editing, or removing multiple persons, running `list` ensures that any unexpected filters or sorting are cleared, so you see the entire, up-to-date list at once.
 * **Navigating from another feature:** In some (proposed) workflows, you might be reviewing transaction records or other data. Using `list` ensures you return to the complete contact view without any lingering search results or partial views.
 </div>
 
@@ -198,7 +202,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * Similarly, you can remove the person's remark field by typing `r/` with no description or timestamp.
-* However, empty remarks with timestamp such as `r/ by/2025-03-30 16:00` are not accepted.  
+* However, empty remarks with timestamp such as `r/ by/2025-03-30 16:00` are not accepted.
 * For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with `delete`.
 
 Examples:
@@ -377,10 +381,102 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="faq">FAQ</span>
+## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinClient home folder.
+<!-- FAQ: General Usage -->
+### General Usage
+<details>
+  <summary>What is FinClient, and who is it for?</summary>
+  <p><em>FinClient is a CLI-based contact management tool designed for financial advisors who prefer typing over using a GUI. It helps manage client records, preferences, financial details, and more.</em></p>
+</details>
+<details>
+  <summary>Do I need an internet connection to use FinClient?</summary>
+  <p><em>No, FinClient runs locally on your computer, so an internet connection is not required.</em></p>
+</details>
+<details>
+  <summary>Can I use FinClient on both Windows and Mac?</summary>
+  <p><em>Yes, FinClient works on both Windows and Mac, as long as you have Java 17 or above installed.</em></p>
+</details>
+<details>
+  <summary>How do I update FinClient to the latest version?</summary>
+  <p><em>Simply download the latest .jar file from the official source and replace your existing one.</em></p>
+</details>
+<br>
+
+<!-- FAQ: Commands & Features -->
+### Commands and Features
+<details>
+  <summary>Can I undo an action in FinClient?</summary>
+  <p><em>Currently, there is no undo command, so be careful when making changes. However, you can back up your data before making major edits.</em></p>
+</details>
+<details>
+  <summary>How can I search for a client?</summary>
+  <p><em>You can use:<br>
+  <code>find NAME</code> to search by name, or<br>
+  <code>find TAG</code> to search by a specific tag.</em></p>
+</details>
+<details>
+  <summary>What happens if I try to add a duplicate contact?</summary>
+  <p><em>FinClient does not allow duplicate entries. If a contact with the same name and phone number already exists, the new entry will be ignored.</em></p>
+</details>
+<details>
+  <summary>How do I sort my contacts?</summary>
+  <p><em>Use <code>sort</code> followed by the criteria, such as <code>sort name</code> or <code>sort networth</code>.</em></p>
+</details>
+<details>
+  <summary>Can I hide certain contacts from my list?</summary>
+  <p><em>Yes, you can use the <code>hide</code> command to hide contacts and <code>reveal</code> to show them again.</em></p>
+</details>
+<details>
+  <summary>What is the Call Auction calculator?</summary>
+  <p><em>This feature helps estimate clearing prices for limit orders. Refer to the "Limit orders and Call Auction calculator" section for details.</em></p>
+</details>
+<br>
+
+<!-- FAQ: Data Management -->
+### Data Management
+<details>
+  <summary>Where is my data stored?</summary>
+  <p><em>Your data is saved in a file in the same directory as finclient.jar.</em></p>
+</details>
+<details>
+  <summary>Can I edit the data file manually?</summary>
+  <p><em>Yes, but be cautious. The data is stored in a structured format, and incorrect modifications may corrupt it.</em></p>
+</details>
+<details>
+  <summary>Is my data automatically saved?</summary>
+  <p><em>Yes, any changes made in FinClient are automatically saved.</em></p>
+</details>
+<details>
+  <summary>How do I clear all data and start fresh?</summary>
+  <p><em>Use the <code>clear</code> command, but be aware that this action is irreversible.</em></p>
+</details>
+<details>
+  <summary>Can I back up my data?</summary>
+  <p><em>Yes, simply copy the data file to a safe location before making major changes.</em></p>
+</details>
+<br>
+
+<!-- FAQ: Troubleshooting -->
+### Trouble Shooting
+<details>
+  <summary>I get an error when trying to start FinClient. What should I do?</summary>
+  <p><em>Ensure you have Java 17 or above installed.<br>
+  Verify that you are running <code>java -jar finclient.jar</code> in the correct directory.<br>
+  Check if the .jar file is corrupted by redownloading it.</em></p>
+</details>
+<details>
+  <summary>Some commands are not working as expected. How can I fix this?</summary>
+  <p><em>Double-check the command format and arguments using the <code>help</code> command.</em></p>
+</details>
+<details>
+  <summary>I accidentally deleted a contact. Can I recover it?</summary>
+  <p><em>If you have a backup of your data file, you can restore it. Otherwise, deleted contacts cannot be recovered.</em></p>
+</details>
+<details>
+  <summary>How can I reset FinClient if something goes wrong?</summary>
+  <p><em>Delete the data file and restart FinClient. This will reset it to a fresh state.</em></p>
+</details>
 
 --------------------------------------------------------------------------------------------------------------------
 
