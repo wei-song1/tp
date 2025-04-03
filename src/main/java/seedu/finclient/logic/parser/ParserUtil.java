@@ -1,15 +1,20 @@
 package seedu.finclient.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.finclient.model.person.Remark.FORMATTER;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.commons.util.StringUtil;
+import seedu.finclient.logic.commands.remark.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
@@ -157,9 +162,9 @@ public class ParserUtil {
         }
 
         // 2) Parse quantity as int
-        int quantity;
+        long quantity;
         try {
-            quantity = Integer.parseInt(trimmedAmount);
+            quantity = Long.parseLong(trimmedAmount);
         } catch (NumberFormatException e) {
             throw new ParseException("Quantity must be a valid integer.");
         }
@@ -181,13 +186,33 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code Remark} is invalid.
      */
-    public static Remark parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
+    public static Remark parseRemark(String input, CommandType type) throws ParseException {
+        if (input.isEmpty() && type.equals(CommandType.EDIT)) {
+            return new Remark("", Optional.empty());
+        }
+        requireNonNull(input);
+        String[] parts = input.split("by/");
+        String text = parts[0].trim();
+        if (!Remark.isValidRemark(text)) {
             throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
-        return new Remark(trimmedRemark);
+        Optional<LocalDateTime> ts = Optional.empty();
+        if (parts.length > 1) {
+            String dateTimeStr = parts[1].trim();
+            String regexPattern = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}"; // Expected format: yyyy-MM-dd HH:mm
+            // First, validate the structure of the timestamp using regex.
+            if (!dateTimeStr.matches(regexPattern)) {
+                throw new ParseException("Timestamp format is invalid. Expected format: yyyy-MM-dd HH:mm");
+            }
+
+            // Next, parse the string into LocalDateTime and catch any semantic errors (e.g. invalid dates).
+            try {
+                ts = Optional.of(LocalDateTime.parse(dateTimeStr, FORMATTER));
+            } catch (DateTimeParseException e) {
+                throw new ParseException("Timestamp value is invalid. Please enter a real date and time.");
+            }
+        }
+        return new Remark(text, ts);
     }
 
     /**

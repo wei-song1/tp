@@ -16,9 +16,11 @@ import static seedu.finclient.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.finclient.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.finclient.logic.commands.AddCommand;
+import seedu.finclient.logic.commands.remark.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
@@ -65,8 +67,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Remark remark = arePrefixesPresent(argMultimap, PREFIX_REMARK)
-                ? ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get())
-                : new Remark("");
+                ? ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get(), CommandType.ADD)
+                : new Remark("", Optional.empty());
 
         // Order
         boolean hasOrder = argMultimap.getValue(PREFIX_ORDER).isPresent();

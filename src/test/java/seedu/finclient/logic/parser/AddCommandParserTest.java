@@ -8,10 +8,13 @@ import static seedu.finclient.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.EMPTY_TIMESTAMP;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_DUPLICATE_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMPTY_REMARK_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_EXCEED_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_ORDER_DESC;
@@ -37,6 +40,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC
 import static seedu.finclient.logic.commands.CommandTestUtil.STOCK_PLATFORM_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.finclient.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.finclient.logic.commands.CommandTestUtil.TIMESTAMP_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
@@ -46,6 +50,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
+import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PARSED_TIMESTAMP_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
@@ -72,6 +77,7 @@ import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Person;
 import seedu.finclient.model.person.Phone;
 import seedu.finclient.model.person.PhoneList;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.tag.Tag;
 import seedu.finclient.testutil.PersonBuilder;
 
@@ -80,8 +86,9 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).withRemark(VALID_REMARK_BOB)
-                .withCompany(VALID_COMPANY_BOB).withJob(VALID_JOB_BOB).withStockPlatform(VALID_STOCK_PLATFORM_BOB)
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND)
+                .withRemark(VALID_REMARK_BOB, EMPTY_TIMESTAMP).withCompany(VALID_COMPANY_BOB)
+                .withJob(VALID_JOB_BOB).withStockPlatform(VALID_STOCK_PLATFORM_BOB)
                 .withNetworth(VALID_NETWORTH_BOB).build();
 
         // whitespace only preamble
@@ -90,7 +97,7 @@ public class AddCommandParserTest {
                 + STOCK_PLATFORM_DESC_BOB + NETWORTH_DESC_BOB, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withRemark(VALID_REMARK_BOB)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withRemark(VALID_REMARK_BOB, EMPTY_TIMESTAMP)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).withCompany(VALID_COMPANY_BOB).withJob(VALID_JOB_BOB)
                 .withStockPlatform(VALID_STOCK_PLATFORM_BOB).withNetworth(VALID_NETWORTH_BOB).build();
         assertParseSuccess(parser,
@@ -163,7 +170,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Person expectedPerson = new PersonBuilder(AMY).withRemark(VALID_REMARK_AMY).withTags().build();
+        Person expectedPerson = new PersonBuilder(AMY).withRemark(VALID_REMARK_AMY, EMPTY_TIMESTAMP).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + REMARK_DESC_AMY + COMPANY_DESC_AMY + JOB_DESC_AMY + STOCK_PLATFORM_DESC_AMY
                         + NETWORTH_DESC_AMY, new AddCommand(expectedPerson));
@@ -238,6 +245,43 @@ public class AddCommandParserTest {
                 PhoneList.SIZE_CONSTRAINTS);
     }
 
+    @Test
+    public void parse_emptyRemarkInAdd_failure() {
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + INVALID_EMPTY_REMARK_DESC;
+        System.out.println(userInput);
+        assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_emptyDescriptionWithTimestamp_failure() {
+
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC + COMPANY_DESC_AMY + JOB_DESC_AMY
+                + STOCK_PLATFORM_DESC_AMY + NETWORTH_DESC_AMY;
+        System.out.println(userInput);
+        assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_validDescriptionWithTimestamp_success() {
+        Person expectedPerson = new PersonBuilder(AMY)
+                .withRemark(VALID_REMARK_AMY, VALID_PARSED_TIMESTAMP_AMY)
+                .withTags()
+                .withOrder("NONE")
+                .withCompany(VALID_COMPANY_AMY)
+                .withJob(VALID_JOB_AMY)
+                .withStockPlatform(VALID_STOCK_PLATFORM_AMY)
+                .withNetworth(VALID_NETWORTH_AMY)
+                .build();
+
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + REMARK_DESC_AMY + TIMESTAMP_DESC_AMY + COMPANY_DESC_AMY + JOB_DESC_AMY
+                + STOCK_PLATFORM_DESC_AMY + NETWORTH_DESC_AMY;
+        System.out.println(userInput);
+        assertParseSuccess(parser, userInput, new AddCommand(expectedPerson));
+    }
+
     // ======================
     // Order-related tests
     // ======================
@@ -248,7 +292,7 @@ public class AddCommandParserTest {
         // This is combined with the rest of the required fields (name, phone, email, address).
         Person expectedPerson = new PersonBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND)
-                .withRemark(VALID_REMARK_BOB)
+                .withRemark(VALID_REMARK_BOB, EMPTY_TIMESTAMP)
                 .withOrder("BUY 10 @ $5.50")
                 .withCompany(VALID_COMPANY_BOB)
                 .withJob(VALID_JOB_BOB)
@@ -267,7 +311,7 @@ public class AddCommandParserTest {
     public void parse_noOrderFieldsProvided_orderDefaultsToNone() {
         // If user does NOT specify any order/amount/price, the parser sets order to NONE by default.
         Person expectedPerson = new PersonBuilder(AMY)
-                .withRemark(VALID_REMARK_AMY)
+                .withRemark(VALID_REMARK_AMY, EMPTY_TIMESTAMP)
                 .withOrder("NONE")
                 .withTags()
                 .withCompany(VALID_COMPANY_AMY)

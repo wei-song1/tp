@@ -33,6 +33,8 @@ import static seedu.finclient.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.commons.core.index.Index;
@@ -221,6 +223,19 @@ public class EditCommandParserTest {
 
         assertParseFailure(parser, userInput,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL, PREFIX_ADDRESS));
+    }
+
+    @Test
+    public void parse_emptyRemarkAllowedInEdit_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + " r/";
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withRemark("", Optional.empty())
+                .build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test

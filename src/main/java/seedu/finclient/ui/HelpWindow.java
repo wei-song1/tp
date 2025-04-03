@@ -30,7 +30,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "[c/COMPANY] [j/JOB] [s/PLATFORM] [$/NETWORTH]";
 
     public static final String REMOVE_OPTIONAL_MESSAGE = "Remove optional fields: ";
-    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [c/delete] "
+    public static final String REMOVE_OPTIONAL_SYNTAX = "edit INDEX [t/] [r/] [c/delete] "
             + "[j/delete] [s/delete] [$/delete]";
 
     public static final String LIST_MESSAGE = "List all saved contacts : ";
@@ -62,10 +62,12 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String CLEAR_SYNTAX = "clear";
 
     public static final String HELP_MESSAGE = "Getting help for available commands : ";
-    public static final String HELP_SYNTAX = "help or press Fn + F1";
+    public static final String HELP_SYNTAX = "help"
+            + "\nYou can also press Fn + F1 or F1, dependent on your system, to get help";
 
     public static final String EXIT_MESSAGE = "Exit FinClient : ";
-    public static final String EXIT_SYNTAX = "exit or press Fn + F2";
+    public static final String EXIT_SYNTAX = "exit"
+            + "\nYou can also press Fn + F2 or F2, dependent on your system, to exit";
 
     public static final String ESCAPE_MESSAGE = "Close help window : ";
     public static final String ESCAPE_SYNTAX = "hit the ESC key or click on the 'X'"

@@ -2,6 +2,7 @@ package seedu.finclient.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ import seedu.finclient.model.tag.Tag;
  * Contains utility methods for populating {@code FinClient} with sample data.
  */
 public class SampleDataUtil {
-    public static final Remark EMPTY_REMARK = new Remark("");
+    public static final Remark EMPTY_REMARK = new Remark("", Optional.empty());
     public static final Company EMPTY_COMPANY = new Company();
     public static final Job EMPTY_JOB = new Job();
     public static final StockPlatform EMPTY_STOCK_PLATFORM = new StockPlatform();
@@ -37,7 +38,7 @@ public class SampleDataUtil {
                     new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
                     new Order("BUY 30 @ $5.50"),
-                    new Remark("Loves cycling and photography."),
+                    new Remark("Loves cycling and photography.", Optional.empty()),
                     getTagSet("friends"),
                     new Company("Nimbus Technologies"),
                     new Job("Software Engineer"),
@@ -48,7 +49,7 @@ public class SampleDataUtil {
                     new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     new Order("SELL 30 @ $5.70"),
-                    new Remark("Volunteers at animal shelters."),
+                    new Remark("Volunteers at animal shelters.", Optional.empty()),
                     getTagSet("colleagues", "friends"),
                     new Company("Zenith Finance"),
                     new Job("Financial Analyst"),
@@ -69,7 +70,7 @@ public class SampleDataUtil {
                     new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     new Order("BUY 50 @ $5.60"),
-                    new Remark("Looking to switch industries."),
+                    new Remark("Looking to switch industries.", Optional.empty()),
                     getTagSet("family"),
                     new Company("BrightSpark Learning"),
                     new Job("Education Consultant"),
@@ -80,7 +81,7 @@ public class SampleDataUtil {
                     new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
                     new Order("SELL 50 @ $5.50"),
-                    new Remark("Active in coding meetups."),
+                    new Remark("Active in coding meetups.", Optional.empty()),
                     getTagSet("classmates"),
                     new Company("Arcade Labs"),
                     new Job("UX Designer"),
@@ -91,7 +92,7 @@ public class SampleDataUtil {
                     new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
                     new Order("SELL 25 @ $5.20"),
-                    new Remark("Enjoys photography."),
+                    new Remark("Enjoys photography.", Optional.empty()),
                     getTagSet("colleagues"),
                     EMPTY_COMPANY,
                     EMPTY_JOB,

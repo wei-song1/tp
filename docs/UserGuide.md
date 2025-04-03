@@ -4,7 +4,7 @@ title: "User Guide"
 pageNav: 3
 ---
 
-# User Guide
+# FinClient User Guide
 
 Welcome Financial Advisors! 👋 This guide will help you get started with FinClient.
 
@@ -16,7 +16,7 @@ Specific features include:
 
 * 📇 Adding and deleting contacts
 * ✏️ Editing your contacts' details 
-* 🔍 Locating your contacts by name
+* 🔍 Locating your contacts by tag\/name
 * 🏢 Maintaining contact-specific details such as jobs and their workplaces  
 * 📊 Sorting your contacts by name, networth, order prices and amounts
 * 🕵️‍♂️ Hiding and revealing contacts  
@@ -27,29 +27,28 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 ## Table of Contents
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help](#viewing-help)
-    - [Adding a person](#adding-a-person)
-    - [Listing all persons](#listing-all-persons)
-    - [Editing a person](#editing-a-person)
-    - [Locating persons by name](#locating-persons-by-name)
-    - [Deleting a person](#deleting-a-person)
-    - [Hiding a person](#hiding-a-person)
-    - [Revealing a person](#revealing-a-person)
-    - [Limit orders and Call Auction calculator](#order)
-    - [Adding remarks](#adding-remarks)
-    - [Sorting contacts](#sorting-contacts)
-    - [Clearing all entries](#clearing-all-entries)
-    - [Exiting the program](#exiting-the-program)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files](#archiving-data-files)
-- [FAQ](#faq)
+  1. [Viewing help](#viewing-help-help)
+  2. [Adding a person](#adding-a-person-add)
+  3. [Listing all persons](#listing-all-persons-list)
+  4. [Editing a person](#editing-a-person-edit)
+  5. [Locating persons by tag](#locating-persons-by-tag-find)
+  6. [Locating persons by name](#locating-persons-by-name-find)
+  7. [Deleting a person](#deleting-a-person-delete)
+  8. [Hiding a person](#hiding-a-person-hide)
+  9. [Revealing a person](#revealing-a-person-reveal)
+  10. [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
+  11. [Sorting contacts](#sorting-contacts-sort)
+  12. [Clearing all entries](#clearing-all-entries-clear)
+  13. [Exiting the program](#exiting-the-program-exit)
+  14. [Saving the data](#saving-the-data)
+  15. [Editing the data file](#editing-the-data-file)
 - [Known issues](#known-issues)
+- [FAQ](#faq)
 - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="quick-start">Quick start</span>
+## Quick start
 
 > Note:
 > - "Home folder" refers to the main folder where your FinClient files are stored.
@@ -59,27 +58,34 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103T-T11-4/tp/releases).
 
-1. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
+3. Find the file (called `finclient.jar`) and move it into the folder where you want your FinClient app to store data.
 
-1. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
+4. Open a command window (also known as `Terminal` on MacOS or `Command Prompt` on Windows).
    1. On Windows: Press the Windows key, type cmd, and press Enter.
-   1. On Mac: Open Terminal from the Applications > Utilities folder.
+   2. On Mac: Open Terminal from the Applications > Utilities folder.
 
-1. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
+5. In the command window, go to the folder where you saved the file. You do this by typing cd followed by the folder path. 
    
     For example:
-   >```cd Downloads/FinClient```
+   ```
+   cd Downloads/FinClient
+   ```
 
-1. Now, start the app by typing this and pressing Enter:
-   >```java -jar finclient.jar```
+6. Now, start the app by typing this and pressing Enter:
+   ```
+   java -jar finclient.jar
+   ```
 
    After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
 
-      ![Ui](images/Ui.png)
+<figure>
+  <img src="images/main_ui.png" alt="main GUI" width="600px">
+  <figcaption align="center"><strong>Figure 1:</strong> Main GUI of FinClient.</figcaption>
+</figure>
 
-1. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
+7. Type the command in the command box (at the top of the window) and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. Some example commands you can try (you can refer to the [Features](#features) section below for details of each command):
 
    * `list` : List all contacts.
 
@@ -95,7 +101,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="features">Features</span>
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -123,15 +129,18 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 If you are referring to a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### <span id="viewing-help">Viewing help : `help`</span>
+### Viewing help : `help`
 
 Shows a message containing current available commands and provides a description on how to get more help.
 
 Format: `help`
 
-![help message](images/helpMsg.png)
+<figure>
+  <img src="images/help_message.png" alt="result for 'help'" width="600px">
+  <figcaption align="center"><strong>Figure 2:</strong> Help Message.</figcaption>
+</figure>
 
-### <span id="adding-a-person">Adding a person : `add`</span>
+### Adding a person : `add`
 
 Adds a person to FinClient.
 
@@ -145,13 +154,23 @@ A person can have any number of tags (including 0)<br>
 Optional fields can be left out when adding a person's contact.
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+Duplicate persons are not allowed. If you try to add a person with the same name and phone numbers as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
+</div>
 
 Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In that case, your command includes her name (`n/Betsy Crowe`), a tag indicating "friend" (`t/friend`), her email (`betsycrowe@example.com`), address (`Newgate Prison`), and phone number (`p/1234567`) along with optional remarks (`r/10 year sentence t/criminal`).
 
 Example input:
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/10 year sentence t/criminal `
 
-### <span id="listing-all-persons">Listing all persons : `list`</span>
+Now, suppose you want to add the contact of Sherlock Holmes, a family member. You include his name (`n/Sherlock Holmes`), a "family" tag, his email, phone number, and address. You also add a remark (`r/family dinner`) and schedule it with a timestamp using `by/2025-04-03 18:00`, indicating when the event will happen.
+
+Example input:
+* `add n/Sherlock Holmes t/family e/sherlock@example.com a/221B Baker Street p/1234567 r/family dinner by/2025-04-03 18:00 t/detective `
+
+### Listing all persons : `list`
 
 Shows a list of all persons in FinClient.
 
@@ -160,11 +179,14 @@ Format: `list`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-Although you may find list a redundant command, it can be very useful in special cases. [Explain the special cases here.]
+`list` is handy in these cases:
+* **Resetting after a filtered view:** If you have just used the [`find`](#locating-persons-by-tag) command (or any other command) that shows a _subset_ of your contacts, `list` will bring back the _full set_ of all contacts. 
+* **Verifying updates:** After adding, editing, or removing multiple persons, running `list` ensures that any unexpected filters or sorting are cleared, so you see the entire, up-to-date list at once. 
+* **Navigating from another feature:** In some (proposed) workflows, you might be reviewing transaction records or other data. Using `list` ensures you return to the complete contact view without any lingering search results or partial views.
 </div>
 
 
-### <span id="editing-a-person">Editing a person : `edit`</span>
+### Editing a person : `edit`
 
 Edits an existing person in FinClient.
 
@@ -174,28 +196,38 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/TIME]
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* Similarly, you can remove the person's remark field by typing `r/` with no description or timestamp.
+* However, empty remarks with timestamp such as `r/ by/2025-03-30 16:00` are not accepted.  
 * For the optional fields of company, job, stock platform and networth, you can remove the existing value by typing their prefix followed with `delete`.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the job of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
+*  `edit 1 r/scheduled meeting by/2025-04-03 10:00` Edits the remark of the 1st person to be `scheduled meeting` and associates it with the timestamp `2025-04-03 10:00`, indicating the scheduled time of the event.
+*  `edit 1 r/` removes the remark field of the 1st person.
+*  `edit 2 j/delete c/LittleStartUp s/delete $/delete` Edits the company of the 2nd person to be `LittleStartUp` and clears the existing job, stock platform and networth.
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
 Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
 </div>
+<div markdown="span" class="alert alert-warning">
 
-### <span id="locating-persons-by-tag">Locating persons by tag: `tag`</span>
+:exclamation: **Caution:**
+To add deadlines to remarks, the by/ argument must be supplied right after r/.
+
+The edit command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
+</div>
+
+### Locating persons by tag : `find`
 
 Finds persons whose tags contain any of the given tags.
 
 Format: `find TAG_NAME`
 
-### <span id="locating-persons-by-name">Locating persons by name: `find`</span>
+### Locating persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -212,9 +244,13 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### <span id="deleting-a-person">Deleting a person : `delete`</span>
+<figure>
+  <img src="images/find_alex_david.png" alt="result for 'find alex david'" width="600px">
+  <figcaption align="center"><strong>Figure 3:</strong> Result of <code> find alex david</code>.</figcaption>
+</figure>
+
+### Deleting a person : `delete`
 
 Deletes the specified person from FinClient.
 
@@ -228,7 +264,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in FinClient.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### <span id="hiding-a-person">Hiding a person : `hide`</span>
+### Hiding a person : `hide`
 
 Hides the details of the specified person in FinClient.
 
@@ -242,13 +278,12 @@ Examples:
 * `list` followed by `hide 2` hides the 2nd person in FinClient.
 * `find Betsy` followed by `hide 1` hides the 1st person in the results of the `find` command.
 
-Before
-![Ui](images/Ui.png)
+<figure>
+  <img src="images/hidden_person.png" alt="result for 'hide 1'" width="800px">
+  <figcaption align="center"><strong>Figure 4:</strong> Example of a hidden person.</figcaption>
+</figure>
 
-After
-![result for 'hide 1'](images/HideResult.png)
-
-### <span id="revealing-a-person">Revealing a person : `reveal`</span>
+### Revealing a person : `reveal`
 
 Reveals the details of the specified person in FinClient.
 
@@ -262,9 +297,7 @@ Examples:
 * `reveal 2` reveals the 2nd person in FinClient.
 * `find Betsy` followed by `reveal 1` reveals the 1st person in the results of the `find` command.
 
-![result for 'reveal 1'](images/RevealResult.png)
-
-### <span id="order">Limit orders and Call Auction calculator : `order`</span>
+### Limit orders and Call Auction calculator : `order`
 
 Records a limit order for a specific contact in FinClient.
 
@@ -284,34 +317,13 @@ Examples:
 * `order 1 o/buy am/10 at/9.50` records a buy order of 5 units at $5.50 for the person listed at index 1.
 * `order 1 o/sell am/10 at/10.50` records a sell order of 10 units at $10.50 for the person listed at index 1.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Design choice:**
 Since FinClient is designed for a single financial instrument, every order recorded relates to that same asset.
 </div>
 
-### <span id="adding-remarks">Adding remarks: `remark`</span>
-
-Adds a remark to the specified person in FinClient.
-
-Format: `remark INDEX r/[REMARKS]`
-
-* Adds a remark to the person specified at `INDEX`.
-* Including the time will create a deadline for the current remark being added to the contact.
-
-Examples:
-* `remark 1 r/this is a test remark` adds `this is a test remark` to the remark section of the contact listed at index 1.
-* `remark 1 r/Set buy order by/2025-10-15` adds `Set buy order` to the remark section of the contact listed at index 1 along with a deadline. <br> As the date nears, there will be a reminder shown on the main interface.
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:**
-To add deadlines to remarks, the by/ argument must be supplied right after r/. 
-
-The remark command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
-</div>
-
-### <span id="sorting-contacts">Sorting contacts: `sort`</span>
+### Sorting contacts : `sort`
 
 Sorts the contact list based on the criteria of name or phone number.
 
@@ -323,28 +335,28 @@ Examples:
 
 Current available criteria are:
 * `name` : Sorts the contact list based on contact's name
-* `networth` : Sorts the contact list based on contact's networth bracket
+* `networth` : Sorts the contact list based on contact's net worth bracket
 * `amount` : Sorts the contact list based on contact's order amount
 * `price` : Sorts the contact list based on contact's order price
 * `deadline`: Sorts the contact list based on contact's deadline
 
-### <span id="clearing-all-entries">Clearing all entries : `clear`</span>
+### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all contact entries from FinClient.
 
 Format: `clear`
 
-### <span id="exiting-the-program">Exiting the program : `exit`</span>
+### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### <span id="saving-the-data">Saving the data</span>
+### Saving the data
 
 FinClient data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### <span id="editing-the-data-file">Editing the data file</span>
+### Editing the data file
 
 FinClient data are saved automatically as a JSON file `[JAR file location]/data/finclient.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -357,17 +369,18 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <span id="faq">FAQ</span>
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinClient home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
 ## <span id="known-issues">Known issues</span>
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. **If you use the shortcuts provided to access help or exit the application**, note that some devices differ in what to press for the shortcut. For example, to access help, you may need to press `Fn + F1` or just `F1` depending on your device settings. The remedy is to check which of the two, `Fn + F1` or `F1`, works for you to open help, and which of the two, `Fn + F2` of `F2` works for you to exit the application.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## <span id="faq">FAQ</span>
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FinClient home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 

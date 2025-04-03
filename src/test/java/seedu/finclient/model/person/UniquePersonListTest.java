@@ -15,10 +15,10 @@ import static seedu.finclient.testutil.TypicalPersons.FIONA;
 import static seedu.finclient.testutil.TypicalPersons.GEORGE;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -271,20 +271,20 @@ public class UniquePersonListTest {
         LocalDate tomorrow = today.plusDays(1);
 
         Person personYesterday = new PersonBuilder()
-                .withRemark("Old Event by/"
-                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Old Event by/",
+                        Optional.of(yesterday.atStartOfDay()))
                 .withName("Past Person")
                 .build();
 
         Person personToday = new PersonBuilder()
-                .withRemark("Today Event by/"
-                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Today Event by/",
+                        Optional.of(today.atStartOfDay()))
                 .withName("Today Person")
                 .build();
 
         Person personTomorrow = new PersonBuilder()
-                .withRemark("Tomorrow Event by/"
-                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Tomorrow Event by/",
+                        Optional.of(tomorrow.atStartOfDay()))
                 .withName("Future Person")
                 .build();
         System.out.println(personTomorrow.getRemark().toString());
@@ -369,20 +369,20 @@ public class UniquePersonListTest {
         LocalDate tomorrow = today.plusDays(1);
 
         Person personYesterday = new PersonBuilder()
-                .withRemark("Old Event by/"
-                        + yesterday.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Old Event by/",
+                        Optional.of(yesterday.atStartOfDay()))
                 .withName("Past Person")
                 .build();
 
         Person personToday = new PersonBuilder()
-                .withRemark("Today Event by/"
-                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Today Event by/",
+                        Optional.of(today.atStartOfDay()))
                 .withName("Today Person")
                 .build();
 
         Person personTomorrow = new PersonBuilder()
-                .withRemark("Tomorrow Event by/"
-                        + tomorrow.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Tomorrow Event by/",
+                        Optional.of(tomorrow.atStartOfDay()))
                 .withName("Future Person")
                 .build();
 
@@ -395,14 +395,14 @@ public class UniquePersonListTest {
 
         // Test all same dates
         Person personToday2 = new PersonBuilder()
-                .withRemark("Today Event by/"
-                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Today Event by/",
+                        Optional.of(today.atStartOfDay()))
                 .withName("Today Person 2")
                 .build();
 
         Person personToday3 = new PersonBuilder()
-                .withRemark("Today Event by/"
-                        + today.atStartOfDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")))
+                .withRemark("Today Event by/",
+                        Optional.of(today.atStartOfDay()))
                 .withName("Today Person 3")
                 .build();
 
@@ -413,7 +413,7 @@ public class UniquePersonListTest {
 
         // Test some remarks without deadlines
         Person personWithoutDeadline = new PersonBuilder()
-                .withRemark("No Deadline Event")
+                .withRemark("No Deadline Event", Optional.empty())
                 .withName("No Deadline Person")
                 .build();
 

@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.finclient.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.finclient.logic.parser.ParserUtil.parseOrder;
+import static seedu.finclient.logic.parser.ParserUtil.parseRemark;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +17,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.finclient.logic.commands.remark.CommandType;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.order.Order;
 import seedu.finclient.model.person.Address;
@@ -24,6 +27,7 @@ import seedu.finclient.model.person.Job;
 import seedu.finclient.model.person.Name;
 import seedu.finclient.model.person.Networth;
 import seedu.finclient.model.person.Phone;
+import seedu.finclient.model.person.Remark;
 import seedu.finclient.model.person.StockPlatform;
 import seedu.finclient.model.tag.Tag;
 
@@ -33,6 +37,8 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_REMARK_FORMAT = "meeting by/2025-04-01T10:00";
+    private static final String INVALID_REMARK_DATE = "meeting by/2025-02-30 10:00";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -40,6 +46,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_REMARK = "Lunch meeting by/2025-04-01 10:00";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -206,6 +213,19 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    @Test
+    public void parseRemark_invalidFormat_throwsFormatError() {
+        String input = INVALID_REMARK_FORMAT;
+        assertThrows(ParseException.class, () -> parseRemark(input, CommandType.ADD));
+    }
+
+    @Test
+    public void parseRemark_validInput_success() throws Exception {
+        Remark result = parseRemark(VALID_REMARK, CommandType.ADD);
+        assertEquals("Lunch meeting", result.value);
+        assertTrue(result.timestamp.isPresent());
+        assertEquals(LocalDateTime.of(2025, 4, 1, 10, 0), result.timestamp.get());
+    }
     // ============================
     // parseOrder Tests
     // ============================
