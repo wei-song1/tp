@@ -135,7 +135,7 @@ If you are referring to a PDF version of this document, be careful when copying 
 
 ### Viewing help : `help`
 
-Shows a message containing current available commands and provides a description on how to get more help.
+Shows a scrollable message containing current available commands and provides a description on how to get more help.
 
 Format: `help`
 
@@ -224,12 +224,6 @@ To add deadlines to remarks, the by/ argument must be supplied right after r/.
 
 The edit command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
 </div>
-
-### Locating persons by tag : `find`
-
-Finds persons whose tags contain any of the given tags.
-
-Format: `find TAG_NAME`
 
 ### Locating persons by name : `find`
 
@@ -412,8 +406,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 <details>
   <summary>How can I search for a client?</summary>
   <p><em>You can use:<br>
-  <code>find NAME</code> to search by name, or<br>
-  <code>find TAG</code> to search by a specific tag.</em></p>
+  <code>find NAME</code> to search by name<br></em></p>
 </details>
 <details>
   <summary>What happens if I try to add a duplicate contact?</summary>
