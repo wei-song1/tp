@@ -705,12 +705,14 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. _Prerequisite : Requires a copy of working finclient.json
 
-1. _{ more test cases …​ }_
+   1. Test case: Replace finclient.json with a corrupted file by editing the data to be in an incorrect format.<br>
+      Expected: App should still be able to start, however, the data will be corrupted and no contacts will be shown.
+
+   1. Test case: Delete finclient.json <br>
+      Expected: App should be repopulated with a copy of sample data and work again, without any presence of old data and a fresh copy of finclient.json is saved. 
