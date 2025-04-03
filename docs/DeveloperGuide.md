@@ -4,7 +4,7 @@ title: "Developer Guide"
 pageNav: 3
 ---
 
-# Developer Guide
+# FinClient Developer Guide
 
 This document provides a guide for developers who want to contribute to the project.
 
