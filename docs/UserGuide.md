@@ -15,7 +15,7 @@ FinClient is a Command-Line Interface (CLI) application, or simply put, a typing
 Specific features include:
 
 * 📇 Adding and deleting contacts
-* ✏️ Editing your contacts' details 
+* ✏️ Editing your contacts' details
 * 🔍 Locating your contacts by tag\/name
 * 🏢 Maintaining contact-specific details such as jobs and their workplaces
 * 📊 Sorting your contacts by name, networth, order prices and amounts
