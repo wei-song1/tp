@@ -474,16 +474,16 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 ## <span id="command-summary">Command summary</span>
 
-Action | Format                                                                                                                                        | Example
----|-----------------------------------------------------------------------------------------------------------------------------------------------|---
+Action | Format | Example
+---|--------|---
 **Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK [by/]] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/Engineer`
-**Clear** | `clear`                                                                                                                                       | `clear`
-**Delete** | `delete INDEX`                                                                                                                                | `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/]] [t/TAG]… [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`     | `edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                | `find James Jake`
-**Hide** | `hide all` or `hide INDEX` or `hide name`                                                                                                     | `hide 2`
-**Reveal** | `reveal all` or `reveal INDEX` or `reveal name`                                                                                               | `reveal 2`
-**Sort** | `sort CRITERIA`                                                                                                                               | `sort name`
-**Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE`                                                                                                       | `order 1 o/buy am/5 at/5.50`
-**List** | `list`                                                                                                                                        | `list`
-**Help** | `help`                                                                                                                                        | `help`
+**Clear** | `clear` | `clear`
+**Delete** | `delete INDEX` | `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/]] [t/TAG]… [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake`
+**Hide** | `hide all` or `hide INDEX` or `hide name` | `hide 2`
+**Reveal** | `reveal all` or `reveal INDEX` or `reveal name` | `reveal 2`
+**Sort** | `sort CRITERIA` | `sort name`
+**Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE` | `order 1 o/buy am/5 at/5.50`
+**List** | `list` | `list`
+**Help** | `help` | `help`
