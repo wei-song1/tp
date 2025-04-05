@@ -16,7 +16,7 @@ Specific features include:
 
 * 📇 Adding and deleting contacts
 * ✏️ Editing your contacts' details
-* 🔍 Locating your contacts by tag\/name
+* 🔍 Locating your contacts by name
 * 🏢 Maintaining contact-specific details such as jobs and their workplaces
 * 📊 Sorting your contacts by name, networth, order prices and amounts
 * 🕵️‍♂️ Hiding and revealing contacts
@@ -31,17 +31,16 @@ You can look forward to an efficient and enjoyable experience with FinClient!
   2. [Adding a person](#adding-a-person-add)
   3. [Listing all persons](#listing-all-persons-list)
   4. [Editing a person](#editing-a-person-edit)
-  5. [Locating persons by tag](#locating-persons-by-tag-find)
-  6. [Locating persons by name](#locating-persons-by-name-find)
-  7. [Deleting a person](#deleting-a-person-delete)
-  8. [Hiding a person](#hiding-a-person-hide)
-  9. [Revealing a person](#revealing-a-person-reveal)
-  10. [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
-  11. [Sorting contacts](#sorting-contacts-sort)
-  12. [Clearing all entries](#clearing-all-entries-clear)
-  13. [Exiting the program](#exiting-the-program-exit)
-  14. [Saving the data](#saving-the-data)
-  15. [Editing the data file](#editing-the-data-file)
+  5. [Locating persons by name](#locating-persons-by-name-find)
+  6. [Deleting a person](#deleting-a-person-delete)
+  7. [Hiding a person](#hiding-a-person-hide)
+  8. [Revealing a person](#revealing-a-person-reveal)
+  9. [Limit orders and Call Auction calculator](#limit-orders-and-call-auction-calculator-order)
+  10. [Sorting contacts](#sorting-contacts-sort)
+  11. [Clearing all entries](#clearing-all-entries-clear)
+  12. [Exiting the program](#exiting-the-program-exit)
+  13. [Saving the data](#saving-the-data)
+  14. [Editing the data file](#editing-the-data-file)
 - [Known issues](#known-issues)
 - [FAQ](#faq)
   1. [General Usage](#general-usage)
@@ -93,7 +92,7 @@ You can look forward to an efficient and enjoyable experience with FinClient!
 
    * `list` : List all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Add a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Add a contact named `John Doe` to FinClient.
 
    * `delete 3` : Delete the 3rd contact shown in the current list.
 
@@ -120,7 +119,7 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 * Items followed by `…` can be repeated any number of times (including not at all).<br>
   e.g. `[t/TAG]…` can be used as ` `(i.e. 0 times), `t/friend`, or `t/friend t/family` etc.
 
-* Arguments can be in any order (there is a special case for remark command, please refer [here](#adding-remarks)).<br>
+* Arguments can be in any order <br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous arguments for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -231,17 +230,17 @@ Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Use `list` to see all contacts again
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Use `list` to see all contacts again.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find John` returns `john` and `John Doe`.
+* `find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
 <figure>
   <img src="images/find_alex_david.png" alt="result for 'find alex david'" width="600px">
@@ -312,7 +311,7 @@ Format: `order INDEX [o/TYPE am/AMOUNT at/PRICE]`
 
 Examples:
 * `order 1` records an empty order for the person listed at index 1.
-* `order 1 o/buy am/10 at/9.50` records a buy order of 5 units at $5.50 for the person listed at index 1.
+* `order 1 o/buy am/10 at/9.50` records a buy order of 10 units at $9.50 for the person listed at index 1.
 * `order 1 o/sell am/10 at/10.50` records a sell order of 10 units at $10.50 for the person listed at index 1.
 
 <div markdown="span" class="alert alert-info">
@@ -323,20 +322,20 @@ Since FinClient is designed for a single financial instrument, every order recor
 
 ### Sorting contacts : `sort`
 
-Sorts the contact list based on the criteria of name or phone number.
+Sorts the contact list based on a set of certain criterias.
 
 Format: `sort CRITERIA`
 
 Examples:
-* `sort name` sorts the contact list in FinClient based on contact's name
-* `sort networth` sorts the contact list in FinClient based on contact's networth bracket
+* `sort name` sorts the contact list in FinClient based on contact's name.
+* `sort networth` sorts the contact list in FinClient based on contact's networth bracket.
 
 Current available criteria are:
-* `name` : Sorts the contact list based on contact's name
-* `networth` : Sorts the contact list based on contact's net worth bracket
-* `amount` : Sorts the contact list based on contact's order amount
-* `price` : Sorts the contact list based on contact's order price
-* `deadline`: Sorts the contact list based on contact's deadline
+* `name` : Sorts the contact list based on contact's name.
+* `networth` : Sorts the contact list based on contact's net worth bracket.
+* `amount` : Sorts the contact list based on contact's order amount.
+* `price` : Sorts the contact list based on contact's order price.
+* `deadline`: Sorts the contact list based on contact's deadline.
 
 ### Clearing all entries : `clear`
 
@@ -475,16 +474,16 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 
 ## <span id="command-summary">Command summary</span>
 
-Action | Format | Example
----|---|---
-**Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/Engineer`
-**Clear** | `clear` | `clear`
-**Delete** | `delete INDEX` | `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]… [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]` | `find James Jake`
-**Hide** | `hide all` or `hide INDEX` or `hide name` | `hide 2`
-**Reveal** | `reveal all` or `reveal INDEX` or `reveal name` | `reveal 2`
-**Sort** | `sort CRITERIA` | `sort name`
-**Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE` | `order 1 o/buy am/5 at/5.50`
-**List** | `list` | `list`
-**Help** | `help` | `help`
+Action | Format                                                                                                                                        | Example
+---|-----------------------------------------------------------------------------------------------------------------------------------------------|---
+**Add** | `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMARK [by/]] [t/TAG]…​ [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/Engineer`
+**Clear** | `clear`                                                                                                                                       | `clear`
+**Delete** | `delete INDEX`                                                                                                                                | `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/REMARK [by/]] [t/TAG]… [c/COMPANY] [j/job] [s/STOCKPLATFORM] [$/NETWORTH]`     | `edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`                                                                                                                | `find James Jake`
+**Hide** | `hide all` or `hide INDEX` or `hide name`                                                                                                     | `hide 2`
+**Reveal** | `reveal all` or `reveal INDEX` or `reveal name`                                                                                               | `reveal 2`
+**Sort** | `sort CRITERIA`                                                                                                                               | `sort name`
+**Order** | `order INDEX o/TYPE am/AMOUNT at/PRICE`                                                                                                       | `order 1 o/buy am/5 at/5.50`
+**List** | `list`                                                                                                                                        | `list`
+**Help** | `help`                                                                                                                                        | `help`
