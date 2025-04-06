@@ -207,9 +207,13 @@ public class ParserUtil {
      */
     public static Remark parseRemark(String input, CommandType type) throws ParseException {
         if (input.isEmpty() && type.equals(CommandType.EDIT)) {
-            return new Remark("", Optional.empty());
+            return new Remark("", Optional.empty()); // Remark is removed for empty remark in edit command.
         }
         requireNonNull(input);
+        int byCount = input.split("by/").length - 1;
+        if (byCount > 1) {
+            throw new ParseException("Only one timestamp is allowed in a remark.");
+        }
         String[] parts = input.split("by/");
         String text = parts[0].trim();
         if (!Remark.isValidRemark(text)) {
