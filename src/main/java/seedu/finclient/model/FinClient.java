@@ -70,6 +70,14 @@ public class FinClient implements ReadOnlyFinClient {
     }
 
     /**
+     * Returns true if a person that matches the given {@code predicate} exists in the address book.
+     */
+    public boolean hasPerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return persons.contains(predicate);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

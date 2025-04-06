@@ -152,6 +152,9 @@ public class ParserUtil {
         String trimmedAmount = amount.trim();
         String trimmedPrice = price.trim();
 
+        // Remove leading zeros from price string
+        trimmedPrice = removeLeadingZeros(trimmedPrice);
+
         // 1) Parse the order type (BUY or SELL)
         Order.OrderType orderType;
         try {
@@ -178,6 +181,22 @@ public class ParserUtil {
         }
 
         return new Order(orderType, trimmedPrice, quantity);
+    }
+
+    private static String removeLeadingZeros(String price) {
+        if (price.contains(".")) {
+            // Split into integer and fractional parts
+            String[] parts = price.split("\\.", 2);
+            // Remove leading zeros from the integer part.
+            String integerPart = parts[0].replaceFirst("^0+(?!$)", "");
+            if (integerPart.isEmpty()) {
+                integerPart = "0";
+            }
+            return integerPart + "." + parts[1];
+        } else {
+            // No decimal point, simply remove leading zeros.
+            return price.replaceFirst("^0+(?!$)", "");
+        }
     }
 
     /**

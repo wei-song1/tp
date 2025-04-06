@@ -7,6 +7,7 @@ import java.util.Arrays;
 import seedu.finclient.commons.core.index.Index;
 import seedu.finclient.commons.util.StringUtil;
 import seedu.finclient.logic.commands.HideCommand;
+import seedu.finclient.logic.commands.RevealCommand;
 import seedu.finclient.logic.parser.exceptions.ParseException;
 import seedu.finclient.model.person.NameContainsKeywordsPredicate;
 
@@ -40,7 +41,14 @@ public class HideCommandParser implements Parser<HideCommand> {
             return new HideCommand(index);
         }
 
-        // 3) Otherwise, treat them as name keywords
+        // 3) Otherwise, ensure they contain only letters and treat as keywords
+        for (String arg : splitArgs) {
+            if (!arg.matches("[a-zA-Z]+")) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RevealCommand.MESSAGE_USAGE));
+            }
+        }
+
         return new HideCommand(new NameContainsKeywordsPredicate(Arrays.asList(splitArgs)));
     }
 }

@@ -1,5 +1,6 @@
 package seedu.finclient.logic.parser;
 
+import static seedu.finclient.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.finclient.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -26,9 +27,11 @@ public class OrderCommandParser implements Parser<OrderCommand> {
 
         // parse the index from the preamble
         if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException("Must provide an index! \n" + OrderCommand.MESSAGE_USAGE);
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT + OrderCommand.MESSAGE_USAGE);
         }
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ORDER, PREFIX_AMOUNT, PREFIX_PRICE);
 
         boolean hasOrder = argMultimap.getValue(PREFIX_ORDER).isPresent();
         boolean hasAmount = argMultimap.getValue(PREFIX_AMOUNT).isPresent();
@@ -47,7 +50,8 @@ public class OrderCommandParser implements Parser<OrderCommand> {
             order = new Order("NONE");
         } else {
             // partial: e.g. user gave order type but not amount? Throw error
-            throw new ParseException("If you specify an order, you must provide all of order, amount, price.");
+            throw new ParseException("If you specify an order, you must provide all of order, amount, price.\n"
+                    + OrderCommand.MESSAGE_USAGE);
         }
 
         return new OrderCommand(index, order);

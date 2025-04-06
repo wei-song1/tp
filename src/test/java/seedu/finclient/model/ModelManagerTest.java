@@ -11,11 +11,13 @@ import static seedu.finclient.testutil.TypicalPersons.BENSON;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.finclient.commons.core.GuiSettings;
 import seedu.finclient.model.person.NameContainsKeywordsPredicate;
+import seedu.finclient.model.person.Person;
 import seedu.finclient.testutil.FinClientBuilder;
 
 public class ModelManagerTest {
@@ -74,7 +76,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasPerson((Person) null));
     }
 
     @Test
@@ -86,6 +88,26 @@ public class ModelManagerTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasPersonPredicate_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPerson((Predicate<Person>) null));
+    }
+
+    @Test
+    public void hasPersonPredicate_personNotInAddressBook_returnsFalse() {
+        // Predicate that checks if a person equals ALICE.
+        Predicate<Person> predicate = person -> person.equals(ALICE);
+        assertFalse(modelManager.hasPerson(predicate));
+    }
+
+    @Test
+    public void hasPersonPredicate_personInAddressBook_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        // Predicate that checks if a person equals ALICE.
+        Predicate<Person> predicate = person -> person.equals(ALICE);
+        assertTrue(modelManager.hasPerson(predicate));
     }
 
     @Test

@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +57,7 @@ public class FinClientTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> finClient.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> finClient.hasPerson((Person) null));
     }
 
     @Test
@@ -76,6 +77,38 @@ public class FinClientTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(finClient.hasPerson(editedAlice));
+    }
+
+    // New tests for the predicate-based hasPerson method
+
+    @Test
+    public void hasPerson_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> finClient.hasPerson((Predicate<Person>) null));
+    }
+
+    @Test
+    public void hasPersonPredicate_personNotInAddressBook_returnsFalse() {
+        Predicate<Person> predicate = person -> person.equals(ALICE);
+        assertFalse(finClient.hasPerson(predicate));
+    }
+
+    @Test
+    public void hasPersonPredicate_personInAddressBook_returnsTrue() {
+        finClient.addPerson(ALICE);
+        Predicate<Person> predicate = person -> person.equals(ALICE);
+        assertTrue(finClient.hasPerson(predicate));
+    }
+
+    @Test
+    public void hasPersonPredicate_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        finClient.addPerson(ALICE);
+        Person editedAlice = new PersonBuilder(ALICE)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND)
+                .build();
+        // Using isSamePerson to check for identity equivalence
+        Predicate<Person> predicate = person -> person.isSamePerson(editedAlice);
+        assertTrue(finClient.hasPerson(predicate));
     }
 
     @Test

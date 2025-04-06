@@ -17,7 +17,7 @@ import seedu.finclient.model.person.Person;
 public class RevealCommand extends Command {
     public static final String COMMAND_WORD = "reveal";
 
-    public static final String MESSAGE_SUCCESS = "Revealed the person's details";
+    public static final String MESSAGE_SUCCESS = "Revealed details for the specified person(s).";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reveals hidden details of person(s).\n"
             + "Parameters: all | INDEX | KEYWORD [MORE_KEYWORDS]...\n"
@@ -74,6 +74,11 @@ public class RevealCommand extends Command {
             Person personToReveal = lastShownList.get(targetIndex.getZeroBased());
             model.revealPerson(personToReveal);
         } else {
+
+            if (!model.hasPerson(predicate)) {
+                throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+            }
+
             model.revealPerson(predicate);
         }
 

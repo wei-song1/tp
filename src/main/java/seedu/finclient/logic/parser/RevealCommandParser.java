@@ -40,7 +40,14 @@ public class RevealCommandParser implements Parser<RevealCommand> {
             return new RevealCommand(index);
         }
 
-        // 3) Otherwise, treat them as name keywords
+        // 3) Otherwise, ensure they contain only letters and treat as keywords
+        for (String arg : splitArgs) {
+            if (!arg.matches("[a-zA-Z]+")) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, RevealCommand.MESSAGE_USAGE));
+            }
+        }
+
         return new RevealCommand(new NameContainsKeywordsPredicate(Arrays.asList(splitArgs)));
     }
 }

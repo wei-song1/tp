@@ -59,4 +59,19 @@ public class RevealCommandParserTest {
                 new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertEquals(expected2, command2);
     }
+
+    // 5) Invalid keyword: any token contains non-letter characters should throw ParseException.
+    @Test
+    public void parse_invalidKeywordContainingNonLetters_throwsParseException() {
+        // Single token containing non-letters (e.g., "Alice1")
+        assertThrows(ParseException.class, () -> parser.parse("Alice1"),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RevealCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multipleKeywordsWithOneInvalidToken_throwsParseException() {
+        // Multiple tokens with one token containing non-letter characters (e.g., "Alice Bob!")
+        assertThrows(ParseException.class, () -> parser.parse("Alice Bob!"),
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RevealCommand.MESSAGE_USAGE));
+    }
 }
