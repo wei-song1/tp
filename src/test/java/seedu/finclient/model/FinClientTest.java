@@ -56,7 +56,7 @@ public class FinClientTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> finClient.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> finClient.hasPerson((Person) null));
     }
 
     @Test

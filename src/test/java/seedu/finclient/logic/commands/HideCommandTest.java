@@ -173,6 +173,12 @@ public class HideCommandTest {
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasPerson(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
@@ -283,6 +289,12 @@ public class HideCommandTest {
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasPerson(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
@@ -384,6 +396,12 @@ public class HideCommandTest {
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasPerson(Predicate<Person> predicate) {
+            return true; // Always returns true for the stub
+        }
+
         @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");

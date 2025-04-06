@@ -60,6 +60,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person that matches the given {@code predicate} exists in the address book.
+     */
+    boolean hasPerson(Predicate<Person> predicate);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */

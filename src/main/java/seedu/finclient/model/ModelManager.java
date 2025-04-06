@@ -96,6 +96,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return finClient.hasPerson(predicate);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         finClient.removePerson(target);
     }

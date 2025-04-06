@@ -17,7 +17,7 @@ import seedu.finclient.model.person.Person;
 public class HideCommand extends Command {
     public static final String COMMAND_WORD = "hide";
 
-    public static final String MESSAGE_SUCCESS = "Hid the person's details";
+    public static final String MESSAGE_SUCCESS = "Hid details for the specified person(s).";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides details of person(s).\n"
             + "Parameters: all | INDEX | KEYWORD [MORE_KEYWORDS]...\n"
@@ -74,6 +74,11 @@ public class HideCommand extends Command {
             Person personToHide = lastShownList.get(targetIndex.getZeroBased());
             model.hidePerson(personToHide);
         } else {
+
+            if (!model.hasPerson(predicate)) {
+                throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+            }
+
             model.hidePerson(predicate);
         }
 

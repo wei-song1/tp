@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.finclient.commons.core.GuiSettings;
 import seedu.finclient.model.person.NameContainsKeywordsPredicate;
+import seedu.finclient.model.person.Person;
 import seedu.finclient.testutil.FinClientBuilder;
 
 public class ModelManagerTest {
@@ -74,7 +75,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasPerson((Person) null));
     }
 
     @Test

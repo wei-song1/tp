@@ -43,6 +43,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a person matching the given predicate.
+     */
+    public boolean contains(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return internalList.stream().anyMatch(predicate);
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
