@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Optional;
 
 /**
@@ -14,7 +15,8 @@ public class Remark {
             "Remark can contain anything, and it should not be blank";
     public static final String MESSAGE_INVALID_TIMESTAMP = "The timestamp is invalid";
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+            .withResolverStyle(ResolverStyle.STRICT);;
     public final String value;
     public final Optional<LocalDateTime> timestamp;
 
