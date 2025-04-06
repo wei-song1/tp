@@ -79,6 +79,17 @@ public class HideCommandTest {
     }
 
     @Test
+    public void hideByName_noMatchingPerson_throwsCommandException() {
+        // Use a stub where hasPerson(predicate) returns false.
+        ModelStubHideByPredicateFalse modelStub = new ModelStubHideByPredicateFalse();
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("Nonexistent"));
+        HideCommand hideByPredicate = new HideCommand(predicate);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_PERSON_NOT_FOUND, ()
+                -> hideByPredicate.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         HideCommand hideAll = new HideCommand();
         HideCommand hideAliceIndex = new HideCommand(Index.fromOneBased(1));
@@ -350,7 +361,7 @@ public class HideCommandTest {
     }
 
     /**
-     * A Model stub that records when hidePerson(Predicate) is called.
+     * A Model stub that records when hidePerson(Predicate) is called and returns true for hasPerson(predicate).
      */
     private static class ModelStubHideByPredicate implements Model {
         private Predicate<Person> predicateUsed = null;
@@ -457,6 +468,111 @@ public class HideCommandTest {
         @Override
         public void sortPersons(String criteria) {
             throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    /**
+     * A Model stub where hasPerson(Predicate) returns false,
+     * simulating the case where no person matches the predicate.
+     */
+    private static class ModelStubHideByPredicateFalse implements Model {
+
+        // All other methods throw AssertionError as they are not expected to be called.
+        @Override
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public ReadOnlyUserPrefs getUserPrefs() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public GuiSettings getGuiSettings() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public Path getFinClientFilePath() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void setFinClientFilePath(Path addressBookFilePath) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void setFinClient(ReadOnlyFinClient newData) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public ReadOnlyFinClient getFinClient() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public boolean hasPerson(Person person) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public boolean hasPerson(Predicate<Person> predicate) {
+            return false;
+        }
+        @Override
+        public void deletePerson(Person target) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void hidePerson(Predicate<Person> predicate) {
+            throw new AssertionError("hidePerson(Predicate) should not be called when no person matches.");
+        }
+        @Override
+        public void hidePerson(Person person) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void revealPerson(Predicate<Person> predicate) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void revealPerson(Person person) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void hideAllPersons() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void revealAllPersons() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public Optional<Double> calculateClearingPrice() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public List<Person> getUpcomingPersons(int count) {
+            throw new AssertionError("Not expected to be called.");
+        }
+        @Override
+        public void sortPersons(String criteria) {
+            throw new AssertionError("Not expected to be called.");
         }
     }
 }
