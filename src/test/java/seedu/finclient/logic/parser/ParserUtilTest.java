@@ -298,6 +298,22 @@ public class ParserUtilTest {
         assertEquals(5.00, order.getPrice(), 1e-9);
     }
 
+    // New tests to verify leading zeros in price are removed correctly
+    @Test
+    public void parseOrder_leadingZerosInPrice_returnsParsedPrice() throws Exception {
+        // Price with leading zeros before the integer part
+        Order order1 = parseOrder("BUY", "10", "0005.00");
+        assertEquals(Order.OrderType.BUY, order1.getOrderType());
+        assertEquals(10, order1.getQuantity());
+        assertEquals(5.00, order1.getPrice(), 1e-9);
+
+        // Price with leading zeros where the integer part is zero
+        Order order2 = parseOrder("SELL", "20", "000.50");
+        assertEquals(Order.OrderType.SELL, order2.getOrderType());
+        assertEquals(20, order2.getQuantity());
+        assertEquals(0.50, order2.getPrice(), 1e-9);
+    }
+
     @Test
     public void parseCompany_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
