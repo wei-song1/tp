@@ -249,7 +249,6 @@ public class AddCommandParserTest {
     public void parse_emptyRemarkInAdd_failure() {
         String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + INVALID_EMPTY_REMARK_DESC;
-        System.out.println(userInput);
         assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
     }
 
@@ -259,7 +258,6 @@ public class AddCommandParserTest {
         String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC + COMPANY_DESC_AMY + JOB_DESC_AMY
                 + STOCK_PLATFORM_DESC_AMY + NETWORTH_DESC_AMY;
-        System.out.println(userInput);
         assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
     }
 

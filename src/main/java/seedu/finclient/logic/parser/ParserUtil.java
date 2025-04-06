@@ -1,10 +1,9 @@
 package seedu.finclient.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.finclient.model.person.Remark.FORMATTER;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -230,8 +229,19 @@ public class ParserUtil {
 
             // Next, parse the string into LocalDateTime and catch any semantic errors (e.g. invalid dates).
             try {
-                ts = Optional.of(LocalDateTime.parse(dateTimeStr, FORMATTER));
-            } catch (DateTimeParseException e) {
+                String[] dt = dateTimeStr.split(" ");
+                String[] date = dt[0].split("-");
+                String[] time = dt[1].split(":");
+
+                int year = Integer.parseInt(date[0]);
+                int month = Integer.parseInt(date[1]);
+                int day = Integer.parseInt(date[2]);
+                int hour = Integer.parseInt(time[0]);
+                int minute = Integer.parseInt(time[1]);
+
+                // Will throw exception if invalid date or time
+                ts = Optional.of(LocalDateTime.of(year, month, day, hour, minute));
+            } catch (DateTimeException | NumberFormatException e) {
                 throw new ParseException("Timestamp value is invalid. Please enter a real date and time.");
             }
         }
