@@ -160,7 +160,7 @@ Optional fields can be left out when adding a person's contact.
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:**
-Duplicate persons are not allowed. If you try to add a person with the same name and phone numbers as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
+Duplicate persons are not allowed. If you try to add a person with the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
 </div>
 
 Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In that case, your command includes her name (`n/Betsy Crowe`), a tag indicating "friend" (`t/friend`), her email (`betsycrowe@example.com`), address (`Newgate Prison`), and phone number (`p/1234567`) along with optional remarks (`r/10 year sentence t/criminal`).
@@ -217,6 +217,12 @@ Examples:
 Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
 </div>
 <div markdown="span" class="alert alert-warning">
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+Duplicate persons are not allowed. If you try to edit a person to the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
+</div>
 
 :exclamation: **Caution:**
 To add deadlines to remarks, the by/ argument must be supplied right after r/.
@@ -409,7 +415,11 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
 </details>
 <details>
   <summary>What happens if I try to add a duplicate contact?</summary>
-  <p><em>FinClient does not allow duplicate entries. If a contact with the same name and phone number already exists, the new entry will be ignored.</em></p>
+  <p><em>FinClient does not allow duplicate entries. If a contact with the same name, same email and same address already exists, FinClient will give a warning and not allow it.</em></p>
+</details>
+<details>
+  <summary>What happens if I try to edit a contact so that it's the same as an existing contact?</summary>
+  <p><em>FinClient does not allow duplicate entries. If a contact with the same name, same email and same address already exists for the contact you are trying to edit, FinClient will give a warning and not allow it.</em></p>
 </details>
 <details>
   <summary>How do I sort my contacts?</summary>
@@ -423,6 +433,11 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
   <summary>What is the Call Auction calculator?</summary>
   <p><em>This feature helps estimate clearing prices for limit orders. Refer to the "Limit orders and Call Auction calculator" section for details.</em></p>
 </details>
+<details> <summary>Why can I not include '+' symbol when dialing international numbers?</summary> <p><em><code>+</code> symbol is just a placeholder for your country's international dialing prefix.</em></p> <p>You can replace <code>+</code> with the appropriate digits for your region:</p>
+In the <strong>US/Canada</strong>, use <code>011</code><br>
+In the <strong>UK</strong>, use <code>00</code><br>
+In <strong>Australia</strong>, use <code>0011</code><br>
+<p>For example, instead of dialing <code>+44 20 7946 0958</code> (UK), you can dial <code>011 44 20 7946 0958</code> if you're in the US.</p> <p>This is why symbols are not allowed when you write phone numbers onto FinClient.</p> </details>
 <br>
 
 <!-- FAQ: Data Management -->
