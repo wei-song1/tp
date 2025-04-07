@@ -10,14 +10,13 @@ import static seedu.finclient.commons.util.AppUtil.checkArgument;
 public class Address {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Addresses should contain only alphanumeric characters and "
-                    + "common symbols such as , . / # -, and must not be blank.";
+            "Addresses can contain alphanumeric characters and common symbols, and must not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ,.\\-/#]*";
+    public static final String VALIDATION_REGEX = ".*\\p{Alnum}.*";
 
     public final String value;
 
