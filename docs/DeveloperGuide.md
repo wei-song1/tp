@@ -669,8 +669,8 @@ We plan to make it such that these components are able to be accessed via keyboa
 2. **Improve on add command accepted inputs**: Currently, the add command uses s/ prefix as a way to add in the stock platform used by the users. We plan to change it in a future update so that user who have clients that have names which contain 's/o' is allowed to be added as a contact with their full name.  
 3. **Make the UI remain on found contacts after editing**: Currently, the UI will return to the full list of contacts after the user edits a contact. We plan to make it such that the UI will remain on the found contacts after the user edits a contact.
 4. **Allowing tags to contain spacing**.  Currently, tags are not allowed to contain spacing. We plan to make it such that tags are allowed to contain spacing.
-5. **Emails are not checked for validity**: Currently, the add and edit command does not check for the validity of the email. We plan to make it such that both of the commands will check for the validity of the email, such as whether they contain '.org' or '.com' etc.
-
+5. **Emails are not checked for validity**: Currently, the add and edit command does not check for the validity of the email. We plan to make it such that both of the commands will check for the validity of the email, such as whether they contain '.org' or '.com' etc .
+6. **Prevent the acceptance of duplicate inputs for certain parameters**: Currently, duplicated inputs for certain parameters are not checked but are accepted, with only the last input being displayed. We plan to make it such that the duplicated inputs will be checked for so that the commands will not be accepted if there are duplicated inputs for certain parameters.
 
 
 
