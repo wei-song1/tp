@@ -11,7 +11,7 @@ Are you tired of juggling multiple client records and struggling to keep track o
 FinClient is a Command-Line Interface (CLI) application, or simply put, a typing-based application, that is built to help you manage your contacts and their financial details, while minimizing the time and effort spent on doing so! 🚀
 
 <figure>
-  <img src="/docs/images/main_ui.png" alt="main GUI" width="600px">
+  <img src="/docs/images/Ui.png" alt="main GUI" width="600px">
   <figcaption align="center"><strong>Figure 1:</strong> Main GUI of FinClient.</figcaption>
 </figure>
 
