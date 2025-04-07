@@ -316,8 +316,8 @@ public class PersonTest {
                 "Person with lower networth should come before person with higher networth.");
         assertTrue(anotherPersonWithNetworth.compareTo(personWithNetworth, "networth") > 0,
                 "Person with higher networth should come after person with lower networth.");
-        assertFalse(personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
-        assertFalse(anotherPersonWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertTrue(!personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertTrue(!anotherPersonWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
     }
 
     @Test
@@ -336,7 +336,7 @@ public class PersonTest {
                 "Person with networth should come before person without networth.");
         assertTrue(personWithoutNetworth.compareTo(personWithNetworth, "networth") > 0,
                 "Person without networth should come after person with networth.");
-        assertFalse(personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertTrue(!personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
         assertTrue(personWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
     }
 

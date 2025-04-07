@@ -351,12 +351,16 @@ Current available criteria are:
 * `price` : Sorts the contact list based on contact's order price (per unit).
 * `deadline`: Sorts the contact list based on contact's deadline.
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:**
-For criteria related to clients' orders (price, amount), all BUY type orders are placed before SELL after sorting, with 
-orders of same type sorted by the given criteria.
-</div>
+Note that for criteria related to clients' orders (price, amount), all BUY type orders are placed before SELL after sorting, with
+orders of same type sorted by the given criteria. In terms of networth, FinClient does not store the exact value of clients,
+but rather a bracket of the networth. Therefore, the sorting of networth is done based on the brackets above instead of the exact value.
+The brackets are as follows:
+* `< $100k`
+* `$100k - $250k`
+* `$250k - $500k`
+* `$500k - $1 million`
+* `$1 million - $5 million`
+* `> $5 million` <br>
 
 ### Clearing all entries : `clear`
 
