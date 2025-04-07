@@ -345,8 +345,8 @@ than attempting to perform the undo.
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
 <div class="text-center">
-  <img src="images/UndoSequenceDiagram-Logic.png" alt="Undo Sequence Diagram (Logic)" />
-  <figcaption><strong>Figure 21:</strong> Undo Sequence Diagram (Logic).</figcaption>
+  <puml src="diagrams/UndoSequenceDiagram-Logic.puml" width="500"></puml>
+  <figcaption><strong>Figure 18:</strong> Undo Sequence Diagram (Logic).</figcaption>
 </div>
 <br>
 
@@ -359,8 +359,8 @@ The following sequence diagram shows how an undo operation goes through the `Log
 Similarly, how an undo operation goes through the `Model` component is shown below:
 
 <div class="text-center">
-  <img src="images/UndoSequenceDiagram-Model.png" alt="Undo Sequence Diagram (Model)" />
-  <figcaption><strong>Figure 22:</strong> Undo Sequence Diagram (Model).</figcaption>
+  <puml src="diagrams/UndoSequenceDiagram-Model.puml" width="500"></puml>
+  <figcaption><strong>Figure 19:</strong> Undo Sequence Diagram (Model).</figcaption>
 </div>
 <br>
 
@@ -376,7 +376,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 <div class="text-center">
   <puml src="diagrams/UndoRedoState4.puml" width="500"></puml>
-  <figcaption><strong>Figure 18:</strong> UndoRedo State 4.</figcaption>
+  <figcaption><strong>Figure 20:</strong> UndoRedo State 4.</figcaption>
 </div>
 <br>
 
@@ -384,7 +384,7 @@ Step 6. The user executes `clear`, which calls `Model#commitFinClient()`. Since 
 
 <div class="text-center">
   <puml src="diagrams/UndoRedoState5.puml" width="500"></puml>
-  <figcaption><strong>Figure 19:</strong> UndoRedo State 5.</figcaption>
+  <figcaption><strong>Figure 21:</strong> UndoRedo State 5.</figcaption>
 </div>
 <br>
 
@@ -392,7 +392,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <div class="text-center">
   <puml src="diagrams/CommitActivityDiagram.puml" width="250"></puml>
-  <figcaption><strong>Figure 20:</strong> Commit Activity Diagram.</figcaption>
+  <figcaption><strong>Figure 22:</strong> Commit Activity Diagram.</figcaption>
 </div>
 <br>
 
@@ -786,10 +786,10 @@ testers are expected to do more *exploratory* testing.
 ### Sorting Contacts
 
 1. Sorting Contacts
-   - Prerequisite: Have at least two contacts in FinClient.
-   - Test case: `sort name`<br>
+   2. Prerequisite: Have at least two contacts in FinClient.
+   3. Test case: `sort name`<br>
      Expected: Contacts are sorted alphabetically by name.
-   - Test case: `sort networth`<br>
+   4. Test case: `sort networth`<br>
      Expected: Contacts are sorted according to their networth.
 
 ### Clearing all contacts
