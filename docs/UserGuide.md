@@ -229,17 +229,12 @@ Examples:
 :bulb: **Tip:**
 Tag, Company, Job, Stock Platform and Networth are all optional. You can delete these optional fields too!
 </div>
-<div markdown="span" class="alert alert-warning">
 
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:**
-Duplicate persons are not allowed. If you try to edit a person to the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
-</div>
-
-:exclamation: **Caution:**
-To add deadlines to remarks, the by/ argument must be supplied right after r/.
-
+Duplicate persons are not allowed. If you try to edit a person to the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists. 
+<br><br>To add deadlines to remarks, the by/ argument must be supplied right after r/.
 The edit command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
 </div>
 
