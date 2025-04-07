@@ -116,13 +116,29 @@ public class PersonTest {
 
         // Compare with a different person object
         assertFalse(ALICE.equals(BOB));
+
+        // Different Name
+        Person nameAliceCopy = new PersonBuilder(ALICE).withName("test").build();
+        assertFalse(ALICE.isSamePerson(nameAliceCopy));
+
+        // Different Email
+        Person emailAliceCopy = new PersonBuilder(ALICE).withEmail("test@test").build();
+        assertFalse(ALICE.isSamePerson(emailAliceCopy));
+
+        // Different Address
+        Person addressAliceCopy = new PersonBuilder(ALICE).withAddress("test").build();
+        assertFalse(ALICE.isSamePerson(addressAliceCopy));
+
+        // Different Number, Same Everything Else
+        Person numAliceCopy = new PersonBuilder(ALICE).withPhone("123456").build();
+        assertTrue(ALICE.isSamePerson(numAliceCopy));
     }
 
     @Test
     public void isSamePerson_differentAttributes_returnsTrue() {
         // Same name and phonelist, different other attributes
-        Person editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Person editedAlice = new PersonBuilder(ALICE).withPhone(PersonBuilder.DEFAULT_PHONE)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }
 

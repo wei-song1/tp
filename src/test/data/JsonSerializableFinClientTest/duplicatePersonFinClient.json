@@ -15,9 +15,9 @@
   }, {
     "name": "Alice Pauline",
     "phones": [ "94351253" ],
-    "email": "pauline@example.com",
+    "email": "alice@example.com",
     "order" : "NONE",
-    "address": "4th street",
+    "address": "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "tags": [ "friends" ],
     "company" : "",
