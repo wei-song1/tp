@@ -458,7 +458,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user                                       | find a person by name                                   | locate details of persons without having to go through the entire list |
 | `* * *` | user                                       | hide private contact details                            | minimize chance of someone else seeing them by accident                |
 | `* *`  | user with many persons in the address book | sort persons by name                                    | locate a person easily                                                 |
-| `* *`  | user with things to remember               | add deadlines                                           | remember to do something for a client                                  |
+| `* *`  | user with things to remember               | add timestamps                                          | remember to do something for a client                                  |
 | `* *`  | user                                       | add multiple numbers                                    | keep track of all my client's phone numbers                            |
 | `* *`  | forgetful user                             | add more fields to the clients                          | remember who is who at a quick glance                                  |
 | `*`    | pro user                                   | see buying and selling prices of each client            | keep track of who wants to buy or sell at what price quickly           |
