@@ -56,5 +56,8 @@ public class NameTest {
 
         // different values -> returns false
         assertFalse(name.equals(new Name("Other Valid Name")));
+
+        // whitespace inbetween -> truncated and returns true
+        assertTrue(name.equals(new Name("Valid                                        Name")));
     }
 }
