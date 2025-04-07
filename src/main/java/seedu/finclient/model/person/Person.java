@@ -180,8 +180,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhoneList().equals(getPhoneList());
+                && otherPerson.getName().equals(getName()) && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**

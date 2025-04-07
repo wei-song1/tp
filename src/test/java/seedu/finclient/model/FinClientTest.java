@@ -3,7 +3,6 @@ package seedu.finclient.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.finclient.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.finclient.testutil.Assert.assertThrows;
 import static seedu.finclient.testutil.TypicalPersons.ALICE;
@@ -47,7 +46,7 @@ public class FinClientTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -74,7 +73,7 @@ public class FinClientTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         finClient.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withPhone("123").withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(finClient.hasPerson(editedAlice));
     }
@@ -103,7 +102,7 @@ public class FinClientTest {
     public void hasPersonPredicate_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         finClient.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withPhone(PersonBuilder.DEFAULT_PHONE)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         // Using isSamePerson to check for identity equivalence
