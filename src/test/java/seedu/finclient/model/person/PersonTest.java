@@ -283,6 +283,64 @@ public class PersonTest {
     }
 
     @Test
+    public void compareTo_bothWithoutNetworth() {
+        Person personWithoutNetworth = new PersonBuilder()
+                .withName("Person without Networth")
+                .withNetworth()
+                .build();
+
+        Person anotherPersonWithoutNetworth = new PersonBuilder()
+                .withName("Another Person without Networth")
+                .withNetworth()
+                .build();
+
+        assertEquals(0, personWithoutNetworth.compareTo(anotherPersonWithoutNetworth, "networth"),
+                "Two persons without networth should be equal.");
+        assertTrue(personWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
+        assertTrue(anotherPersonWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
+    }
+
+    @Test
+    public void compareTo_bothWithNetworth() {
+        Person personWithNetworth = new PersonBuilder()
+                .withName("Person with Networth")
+                .withNetworth("1000000")
+                .build();
+
+        Person anotherPersonWithNetworth = new PersonBuilder()
+                .withName("Another Person with Networth")
+                .withNetworth("200000000")
+                .build();
+
+        assertTrue(personWithNetworth.compareTo(anotherPersonWithNetworth, "networth") < 0,
+                "Person with lower networth should come before person with higher networth.");
+        assertTrue(anotherPersonWithNetworth.compareTo(personWithNetworth, "networth") > 0,
+                "Person with higher networth should come after person with lower networth.");
+        assertTrue(!personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertTrue(!anotherPersonWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+    }
+
+    @Test
+    public void compareTo_oneWithNetworthAndOneWithout() {
+        Person personWithNetworth = new PersonBuilder()
+                .withName("Person with Networth")
+                .withNetworth("1000000")
+                .build();
+
+        Person personWithoutNetworth = new PersonBuilder()
+                .withName("Person without Networth")
+                .withNetworth()
+                .build();
+
+        assertTrue(personWithNetworth.compareTo(personWithoutNetworth, "networth") < 0,
+                "Person with networth should come before person without networth.");
+        assertTrue(personWithoutNetworth.compareTo(personWithNetworth, "networth") > 0,
+                "Person without networth should come after person with networth.");
+        assertTrue(!personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertTrue(personWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
+    }
+
+    @Test
     public void toString_hiddenPerson_displaysHiddenDetails() {
         // Hide the person and check the toString method
         Person hiddenAlice = new PersonBuilder(ALICE).build();
