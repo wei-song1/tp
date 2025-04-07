@@ -176,15 +176,16 @@ If all compulsory fields are present, FinClient will prompt error message specif
 Duplicate persons are not allowed. If you try to add a person with the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists.<br>
 </div>
 
-Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In that case, your command includes her name (`n/Betsy Crowe`), a tag indicating "friend" (`t/friend`), her email (`betsycrowe@example.com`), address (`Newgate Prison`), and phone number (`p/1234567`) along with optional remarks (`r/10 year sentence t/criminal`).
+Now, suppose you want to add the contact of Betsy Crowe, who is your friend. In that case, your command includes her name (`n/Betsy Crowe`), a tag indicating "friend" (`t/friend`), her email (`betsycrowe@example.com`), address (`Newgate Prison`), and phone number (`p/1234567`). 
+In addition, you can also add an optional remark (`r/10 year sentence`) with a timestamp (`by/2022-10-03`) to keep track of the date of her imprisonment, along with an additional tag (`t/criminal`).
 
 Example input:
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/10 year sentence t/criminal `
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/10 year sentence by/2022-10-03 t/criminal`
 
-Now, suppose you want to add the contact of Sherlock Holmes, a family member. You include his name (`n/Sherlock Holmes`), a "family" tag, his email, phone number, and address. You also add a remark (`r/family dinner`) and schedule it with a timestamp using `by/2025-04-03 18:00`, indicating when the event will happen.
+Now, suppose you want to add the contact of Sherlock Holmes, a family member. You include his name (`n/Sherlock Holmes`), a "family" tag, his email, phone number, and address. You also add a remark (`r/family dinner`) and schedule it with a timestamp using `by/2025-07-03 18:00`, indicating when the event will happen.
 
 Example input:
-* `add n/Sherlock Holmes t/family e/sherlock@example.com a/221B Baker Street p/1234567 r/family dinner by/2025-04-03 18:00 t/detective `
+* `add n/Sherlock Holmes t/family e/sherlock@example.com a/221B Baker Street p/1234567 r/family dinner by/2025-07-03 18:00 t/detective `
 
 ### Listing all persons : `list`
 
@@ -234,8 +235,8 @@ Tag, Company, Job, Stock Platform and Networth are all optional. You can delete 
 
 :exclamation: **Caution:**
 Duplicate persons are not allowed. If you try to edit a person to the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists. 
-<br><br>To add deadlines to remarks, the by/ argument must be supplied right after r/.
-The edit command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
+<br><br>To add a timestamp to remarks, the by/ argument must be supplied right after r/.
+The edit command requires `r/REMARKS by/TIME` if you wish to add a timestamp. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
 </div>
 
 ### Locating persons by name : `find`
@@ -349,7 +350,7 @@ Current available criteria are:
 * `networth` : Sorts the contact list based on contact's networth bracket.
 * `amount` : Sorts the contact list based on contact's order amount.
 * `price` : Sorts the contact list based on contact's order price (per unit).
-* `deadline`: Sorts the contact list based on contact's deadline.
+* `timestamp`: Sorts the contact list based on contact's remark timestamp.
 
 Note that for criteria related to clients' orders (price, amount), all BUY type orders are placed before SELL after sorting, with
 orders of same type sorted by the given criteria. In terms of networth, FinClient does not store the exact value of clients,
