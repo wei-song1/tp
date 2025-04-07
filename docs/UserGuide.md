@@ -186,6 +186,22 @@ Now, suppose you want to add the contact of Sherlock Holmes, a family member. Yo
 Example input:
 * `add n/Sherlock Holmes t/family e/sherlock@example.com a/221B Baker Street p/1234567 r/family dinner by/2025-04-03 18:00 t/detective `
 
+Here is a complete reference table of all arguments that add command accept:
+
+| Argument | Prefix | Compulsory? | Allowed Count | Special Remarks |
+| --- | --- | --- | --- | --- |
+| Name | n/ | Yes | 1 | Must be alphabetic without special characters|
+| Phone | p/ | Yes | 1-3 | Digits only (without space or special character)|
+| Email | e/ | Yes | 1 | Valid email format |
+| Address | a/ | Yes | 1 | Non-empty address |
+| Tags | t/ | No | Multiple | No space or special character within one tag|
+| Remark | r/ | No | 1 | |
+| Deadline | by/ | No | 1 | If included, must be placed right after r/|
+| Company| c/ | No | 1 | |
+| Job | j/ | No | 1 | |
+| Stock Platform | s/ | No | 1 | |
+| Networth | $/ | No | 1 | Must be valid positive integers, or networth brackets specified [here](#sorting-contacts-sort) |
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in FinClient.
