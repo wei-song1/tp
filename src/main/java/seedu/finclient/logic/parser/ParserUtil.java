@@ -1,10 +1,9 @@
 package seedu.finclient.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.finclient.model.person.Remark.FORMATTER;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -207,9 +206,13 @@ public class ParserUtil {
      */
     public static Remark parseRemark(String input, CommandType type) throws ParseException {
         if (input.isEmpty() && type.equals(CommandType.EDIT)) {
-            return new Remark("", Optional.empty());
+            return new Remark("", Optional.empty()); // Remark is removed for empty remark in edit command.
         }
         requireNonNull(input);
+        int byCount = input.split("by/").length - 1;
+        if (byCount > 1) {
+            throw new ParseException(Remark.MESSAGE_MULTIPLE_TIMESTAMP);
+        }
         String[] parts = input.split("by/");
         String text = parts[0].trim();
         if (!Remark.isValidRemark(text)) {
@@ -221,14 +224,25 @@ public class ParserUtil {
             String regexPattern = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}"; // Expected format: yyyy-MM-dd HH:mm
             // First, validate the structure of the timestamp using regex.
             if (!dateTimeStr.matches(regexPattern)) {
-                throw new ParseException("Timestamp format is invalid. Expected format: yyyy-MM-dd HH:mm");
+                throw new ParseException(Remark.MESSAGE_TIMESTAMP_INVALID_FORMAT);
             }
 
             // Next, parse the string into LocalDateTime and catch any semantic errors (e.g. invalid dates).
             try {
-                ts = Optional.of(LocalDateTime.parse(dateTimeStr, FORMATTER));
-            } catch (DateTimeParseException e) {
-                throw new ParseException("Timestamp value is invalid. Please enter a real date and time.");
+                String[] dt = dateTimeStr.split(" ");
+                String[] date = dt[0].split("-");
+                String[] time = dt[1].split(":");
+
+                int year = Integer.parseInt(date[0]);
+                int month = Integer.parseInt(date[1]);
+                int day = Integer.parseInt(date[2]);
+                int hour = Integer.parseInt(time[0]);
+                int minute = Integer.parseInt(time[1]);
+
+                // Will throw exception if invalid date or time
+                ts = Optional.of(LocalDateTime.of(year, month, day, hour, minute));
+            } catch (DateTimeException | NumberFormatException e) {
+                throw new ParseException(Remark.MESSAGE_TIMESTAMP_INVALID_DATETIME);
             }
         }
         return new Remark(text, ts);
@@ -323,7 +337,7 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tagSet.add(parseTag(tagName.toLowerCase()));
         }
         return tagSet;
     }
