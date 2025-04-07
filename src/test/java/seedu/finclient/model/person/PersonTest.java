@@ -286,14 +286,18 @@ public class PersonTest {
     public void compareTo_bothWithoutNetworth() {
         Person personWithoutNetworth = new PersonBuilder()
                 .withName("Person without Networth")
+                .withNetworth()
                 .build();
 
         Person anotherPersonWithoutNetworth = new PersonBuilder()
                 .withName("Another Person without Networth")
+                .withNetworth()
                 .build();
 
         assertEquals(0, personWithoutNetworth.compareTo(anotherPersonWithoutNetworth, "networth"),
                 "Two persons without networth should be equal.");
+        assertTrue(personWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
+        assertTrue(anotherPersonWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
     }
 
     @Test
@@ -312,6 +316,8 @@ public class PersonTest {
                 "Person with lower networth should come before person with higher networth.");
         assertTrue(anotherPersonWithNetworth.compareTo(personWithNetworth, "networth") > 0,
                 "Person with higher networth should come after person with lower networth.");
+        assertFalse(personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertFalse(anotherPersonWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
     }
 
     @Test
@@ -323,12 +329,15 @@ public class PersonTest {
 
         Person personWithoutNetworth = new PersonBuilder()
                 .withName("Person without Networth")
+                .withNetworth()
                 .build();
 
-        assertTrue(personWithNetworth.compareTo(personWithoutNetworth, "networth") > 0,
+        assertTrue(personWithNetworth.compareTo(personWithoutNetworth, "networth") < 0,
                 "Person with networth should come before person without networth.");
-        assertTrue(personWithoutNetworth.compareTo(personWithNetworth, "networth") < 0,
+        assertTrue(personWithoutNetworth.compareTo(personWithNetworth, "networth") > 0,
                 "Person without networth should come after person with networth.");
+        assertFalse(personWithNetworth.getNetworth().toString().isEmpty(), "Networth should not be empty.");
+        assertTrue(personWithoutNetworth.getNetworth().toString().isEmpty(), "Networth should be empty.");
     }
 
     @Test
