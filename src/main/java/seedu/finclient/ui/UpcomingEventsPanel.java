@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import seedu.finclient.model.person.Person;
 
 /**
- * A UI component that displays the upcoming events sorted by deadline.
+ * A UI component that displays the upcoming events sorted by timestamp.
  */
 public class UpcomingEventsPanel extends UiPart<Region> {
     private static final String FXML = "UpcomingEventsPanel.fxml";

@@ -240,7 +240,7 @@ public class Person {
                 return -1;
             }
             return networth.compareTo(other.networth);
-        case "deadline":
+        case "timestamp":
             if (getRemark() == null && other.getRemark() == null) {
                 return 0;
             } else if (getRemark() == null && other.getRemark() != null) {

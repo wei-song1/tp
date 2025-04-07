@@ -35,38 +35,38 @@ public class RemarkTest {
     }
 
     @Test
-    public void testCompareTo_bothWithoutDeadline() {
+    public void testCompareTo_bothWithoutTimestamp() {
         Remark remark1 = new Remark("Hello", Optional.empty());
         Remark remark2 = new Remark("Hello", Optional.empty());
         assertTrue(remark1.compareTo(remark2) == 0);
     }
 
     @Test
-    public void testCompareTo_oneWithAndOneWithoutDeadline() {
+    public void testCompareTo_oneWithAndOneWithoutTimestamp() {
         LocalDateTime dateTime = LocalDate.of(2020, Month.JANUARY, 18).atStartOfDay();
-        Remark remark1 = new Remark("Deadline 1", Optional.of(dateTime));
+        Remark remark1 = new Remark("Timestamp 1", Optional.of(dateTime));
         Remark remark2 = new Remark("Hello", Optional.empty());
         assertTrue(remark1.compareTo(remark2) == -1);
     }
 
     @Test
-    public void testCompareTo_bothWithDeadline() {
+    public void testCompareTo_bothWithTimestamp() {
         LocalDateTime dateTime = LocalDate.of(2025, Month.APRIL, 18).atStartOfDay();
         LocalDateTime anotherDateTime = LocalDate.of(2025, Month.MAY, 19).atStartOfDay();
 
         // test same datetime
-        Remark remark1 = new Remark("Deadline 1", Optional.of(dateTime));
-        Remark remark2 = new Remark("Deadline 2", Optional.of(dateTime));
+        Remark remark1 = new Remark("Timestamp 1", Optional.of(dateTime));
+        Remark remark2 = new Remark("Timestamp 2", Optional.of(dateTime));
         assertTrue(remark1.compareTo(remark2) == 0);
 
         // test different datetime
-        Remark remark3 = new Remark("Deadline 1", Optional.of(dateTime));
-        Remark remark4 = new Remark("Deadline 2", Optional.of(anotherDateTime));
+        Remark remark3 = new Remark("Timestamp 1", Optional.of(dateTime));
+        Remark remark4 = new Remark("Timestamp 2", Optional.of(anotherDateTime));
         assertTrue(remark3.compareTo(remark4) == -1);
 
         // test different datetime
-        Remark remark5 = new Remark("Deadline 1", Optional.of(anotherDateTime));
-        Remark remark6 = new Remark("Deadline 2", Optional.of(dateTime));
+        Remark remark5 = new Remark("Timestamp 1", Optional.of(anotherDateTime));
+        Remark remark6 = new Remark("Timestamp 2", Optional.of(dateTime));
         assertTrue(remark5.compareTo(remark6) == 1);
     }
 
