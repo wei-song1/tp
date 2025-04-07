@@ -124,6 +124,16 @@ Congratulations! You've successfully finished setting up FinClient 🎉. Explore
 
 * Extraneous arguments for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* The application accepts more than one spaces between the command and the arguments, and between the arguments themselves. However,
+at least one space must be included to separate them.<br>
+    e.g. `delete [multiple spaces] 1` is acceptable, but `delete1` is not.
+
+* For all commands that expect index, the index provided must be a positive integer. FinClient treats input
+  indices that are not positive integer (such as 0, -1, 10.5) as format error, and will only detect out of bound index
+  given the index provided is a positive integer. <br>
+  e.g. Given 10 contacts stored in FinClient, `delete 1` is acceptable, but `delete 0` and `delete 11` are not. Former displays
+  an error message about command format, while latter displays an error message about index out of bound.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -154,7 +164,10 @@ Format: `add n/NAME p/PHONE_NUMBER [p/PHONE_NUMBER]… e/EMAIL a/ADDRESS [r/REMA
 :bulb: **Tip:**
 A person can have any number of tags (including 0)<br>
 :bulb: **Tip:**
-Optional fields can be left out when adding a person's contact.
+Optional fields can be left out when adding a person's contact. However, if you miss out any compulsory arguments, 
+FinClient will display the correct format and not allow you to add the contact. <br>
+:bulb: **Tip:**
+If all compulsory fields are present, FinClient will prompt error message specific to each argument if there are any issues.<br>
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -328,26 +341,41 @@ Since FinClient is designed for a single financial instrument, every order recor
 
 ### Sorting contacts : `sort`
 
-Sorts the contact list based on a set of certain criterias.
+Sorts the contact list based on a set of certain criteria.
 
 Format: `sort CRITERIA`
 
 Examples:
 * `sort name` sorts the contact list in FinClient based on contact's name.
-* `sort networth` sorts the contact list in FinClient based on contact's networth bracket.
+* `sort networth` sorts the contact list in FinClient based on contact's networth.
 
 Current available criteria are:
 * `name` : Sorts the contact list based on contact's name.
-* `networth` : Sorts the contact list based on contact's net worth bracket.
+* `networth` : Sorts the contact list based on contact's networth bracket.
 * `amount` : Sorts the contact list based on contact's order amount.
-* `price` : Sorts the contact list based on contact's order price.
+* `price` : Sorts the contact list based on contact's order price (per unit).
 * `deadline`: Sorts the contact list based on contact's deadline.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+For criteria related to clients' orders (price, amount), all BUY type orders are placed before SELL after sorting, with 
+orders of same type sorted by the given criteria.
+</div>
 
 ### Clearing all entries : `clear`
 
 Clears all contact entries from FinClient.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+This command clears all contacts and their details **permanently** which is irreversible! Currently, our application
+does not support clear by categories such as `clear tag` or `clear remark`, and all such commands will be 
+treated as `clear`.<br>
+</div>
 
 ### Exiting the program : `exit`
 
@@ -414,7 +442,7 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
   <code>find NAME</code> to search by name<br></em></p>
 </details>
 <details>
-  <summary>What is considered a duplicate contact??</summary>
+  <summary>What is considered a duplicate contact?</summary>
   <p><em>A contact with the exact same name, email and address is considered a duplicate. Contacts can share the same names, or same email address, or same physical addresses, and it won't be considered a duplicate since people can have same names, share emails or live together. It is only considered a duplicate if they have all 3 exact same details.</em></p>
 </details>
 <details>

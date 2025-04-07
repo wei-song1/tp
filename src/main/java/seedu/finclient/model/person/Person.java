@@ -232,6 +232,13 @@ public class Person {
         case "amount":
             return order.compareTo(other.order, "amount");
         case "networth":
+            if (getNetworth().toString().isEmpty() && other.getNetworth().toString().isEmpty()) {
+                return 0;
+            } else if (getNetworth().toString().isEmpty() && !other.getNetworth().toString().isEmpty()) {
+                return 1;
+            } else if (!getNetworth().toString().isEmpty() && other.getNetworth().toString().isEmpty()) {
+                return -1;
+            }
             return networth.compareTo(other.networth);
         case "deadline":
             if (getRemark() == null && other.getRemark() == null) {

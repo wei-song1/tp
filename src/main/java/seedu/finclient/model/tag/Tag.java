@@ -9,7 +9,8 @@ import static seedu.finclient.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and does not contain" +
+            " special characters/spaces.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
