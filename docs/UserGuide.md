@@ -189,14 +189,14 @@ Example input:
 Here is a complete reference table of all arguments that add command accept:
 
 | Argument | Prefix | Compulsory? | Allowed Count | Special Remarks |
-| --- | --- | --- | --- | --- |
+|  | --- | --- | --- | --- |
 | Name | n/ | Yes | 1 | Must be alphabetic without special characters|
 | Phone | p/ | Yes | 1-3 | Digits only (without space or special character)|
 | Email | e/ | Yes | 1 | Valid email format |
 | Address | a/ | Yes | 1 | Non-empty address |
 | Tags | t/ | No | Multiple | No space or special character within one tag|
 | Remark | r/ | No | 1 | |
-| Deadline | by/ | No | 1 | If included, must be placed right after r/|
+| Timestamp | by/ | No | 1 | If included, must be placed right after r/|
 | Company| c/ | No | 1 | |
 | Job | j/ | No | 1 | |
 | Stock Platform | s/ | No | 1 | |
@@ -250,8 +250,8 @@ Tag, Company, Job, Stock Platform and Networth are all optional. You can delete 
 
 :exclamation: **Caution:**
 Duplicate persons are not allowed. If you try to edit a person to the same name, same email and same address as an existing person, FinClient will ignore the new entry and display a message indicating that the person already exists. 
-<br><br>To add deadlines to remarks, the by/ argument must be supplied right after r/.
-The edit command requires `r/REMARKS by/TIME` if you wish to add a deadline. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
+<br><br>To add timestamps to remarks, the by/ argument must be supplied right after r/.
+The edit command requires `r/REMARKS by/TIME` if you wish to add a timestamp. `by/TIME r/REMARKS` is not acceptable. Similarly, there should not any other arguments between these two.
 </div>
 
 ### Locating persons by name : `find`
@@ -365,7 +365,7 @@ Current available criteria are:
 * `networth` : Sorts the contact list based on contact's networth bracket.
 * `amount` : Sorts the contact list based on contact's order amount.
 * `price` : Sorts the contact list based on contact's order price (per unit).
-* `deadline`: Sorts the contact list based on contact's deadline.
+* `timestamp`: Sorts the contact list based on contact's timestamp.
 
 Note that for criteria related to clients' orders (price, amount), all BUY type orders are placed before SELL after sorting, with
 orders of same type sorted by the given criteria. In terms of networth, FinClient does not store the exact value of clients,
