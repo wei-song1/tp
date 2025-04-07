@@ -693,12 +693,12 @@ testers are expected to do more *exploratory* testing.
    1. Open a terminal and navigate to the folder with the downloaded jar file.
    1. Run the jar file by typing the command `java -jar finclient.jar` into the terminal.
    1. Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
+<br><br>
 1. Saving window preferences.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    1. Re-launch the app by typing the command `java -jar finclient.jar` into the terminal. <br>
        Expected: The most recent window size and location is retained.
-
+<br><br>
 1. Missing data on startup.
    1. Delete finclient.json located in /data/.
    2. Re-launch the app. <br>
@@ -723,26 +723,26 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. There is at least 1 person in the list.
     2. Test case: `edit 1 e/newalice@example.com p/99887766`
     <br>Expected: The email and phone number for the first contact are updated accordingly.
-   3. Test case: `edit 0 e/newalice@example.com p/99887766`<br>
-   Expected: No person is edited. Error details shown in the status message.
-   1. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size).<br>
+    3. Test case: `edit 0 e/newalice@example.com p/99887766`<br>
+    Expected: No person is edited. Error details shown in the status message.
+    4. Other incorrect delete commands to try: `edit`, `edit x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 <br><br>
-3. Removing optional fields.
-   4. Prerequisites: List all persons using the `list` command. There is at least 1 person with the optional fields in the contact.
-   5. Test case: `edit 1 c/delete`
+2. Removing optional fields.
+   1. Prerequisites: List all persons using the `list` command. There is at least 1 person with the optional fields in the contact.
+   2. Test case: `edit 1 c/delete`
    <br>Expected: The company field for the first contact is removed.
-   5. Test case: `edit 1 j/delete`
+   3. Test case: `edit 1 j/delete`
       <br>Expected: The job field for the first contact is removed.
-   5. Test case: `edit 1 s/delete`
+   4. Test case: `edit 1 s/delete`
       <br>Expected: The stock platform field for the first contact is removed.
    5. Test case: `edit 1 $/delete`
       <br>Expected: The net worth field for the first contact is removed.
-   5. Test case: `edit 1 r/`
+   6. Test case: `edit 1 r/`
       <br>Expected: The remark for the first contact is removed.
-   5. Test case: `edit 1 t/`
+   7. Test case: `edit 1 t/`
       <br>Expected: All tags for the first contact is removed.
-   6. Test case: `edit 1 r/ t/ c/delete j/delete s/delete $/delete`
+   8. Test case: `edit 1 r/ t/ c/delete j/delete s/delete $/delete`
    <br>Expected: All optional fields are removed.
 
 ### Deleting a person
@@ -759,18 +759,18 @@ testers are expected to do more *exploratory* testing.
 ### Finding a person
 
 1. Searching by name
-   2. Prerequisite: One contact with the name "Alice Tan" exists in FinClient.
-   3. Test case: `find Alice`<br>
-   Expected: Contacts matching the search criteria are displayed. If no match is found, an empty list is shown.
-   4. Test case: `find Tan Alice`<br>
-   Expected: The contact "Alice Tan" is returned regardless of the keyword order.
+   1. Prerequisite: One contact with the name "Alice Tan" exists in FinClient.
+   2. Test case: `find Alice`<br>
+       Expected: Contacts matching the search criteria are displayed. If no match is found, an empty list is shown.
+   3. Test case: `find Tan Alice`<br>
+       Expected: The contact "Alice Tan" is returned regardless of the keyword order.
 
 ### Listing all contacts
 
 1. Listing all contacts
-   2. Prerequisite: Have at least one contact in the FinClient
-   3. Test case: `list`<br>
-   Expected: All contacts are displayed.
+   1. Prerequisite: Have at least one contact in the FinClient
+   2. Test case: `list`<br>
+       Expected: All contacts are displayed.
 
 ### Hiding and revealing contacts
 
@@ -790,15 +790,15 @@ testers are expected to do more *exploratory* testing.
 ### Clearing all contacts
 
 1. Clearing all contacts
-   2. Prerequisite: Have at least one contact in the FinClient
-   3. Test case: `clear`<br>
-   Expected: All contacts are deleted, and a status message confirms the deletion.
+   1. Prerequisite: Have at least one contact in the FinClient
+   2. Test case: `clear`<br>
+       Expected: All contacts are deleted, and a status message confirms the deletion.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files.
    1. Prerequisite: Requires a copy of working finclient.json.
    1. Test case: Delete finclient.json. <br>
-      Expected: App should be repopulated with a copy of sample data and work again, without any presence of old data and a fresh copy of finclient.json is saved.
+       Expected: App should be repopulated with a copy of sample data and work again, without any presence of old data and a fresh copy of finclient.json is saved.
    2. Test case: Use any `add/edit/delete/hide/reveal/order` <br>
-   Expected: App should automatically save data upon use of the above commands.
+       Expected: App should automatically save data upon use of the above commands.
