@@ -414,12 +414,16 @@ Furthermore, certain edits can cause FinClient to behave in unexpected ways (e.g
   <code>find NAME</code> to search by name<br></em></p>
 </details>
 <details>
+  <summary>What is considered a duplicate contact??</summary>
+  <p><em>A contact with the exact same name, email and address is considered a duplicate. Contacts can share the same names, or same email address, or same physical addresses, and it won't be considered a duplicate since people can have same names, share emails or live together. It is only considered a duplicate if they have all 3 exact same details.</em></p>
+</details>
+<details>
   <summary>What happens if I try to add a duplicate contact?</summary>
-  <p><em>FinClient does not allow duplicate entries. If a contact with the same name, same email and same address already exists, FinClient will give a warning and not allow it.</em></p>
+  <p><em>FinClient does not allow duplicate entries. If a contact with the same name, same email and same address already exists, FinClient will give a warning and not allow it. Note that for it to be considered a duplicate contact, they must have exactly the same name, email and address.</em></p>
 </details>
 <details>
   <summary>What happens if I try to edit a contact so that it's the same as an existing contact?</summary>
-  <p><em>FinClient does not allow duplicate entries. If a contact with the same name, same email and same address already exists for the contact you are trying to edit, FinClient will give a warning and not allow it.</em></p>
+  <p><em>FinClient does not allow duplicate entries. If a contact with the same name, same email and same address already exists for the contact you are trying to edit, FinClient will give a warning and not allow it. Note that for it to be considered a duplicate contact, they must have exactly the same name, email and address.</em></p>
 </details>
 <details>
   <summary>How do I sort my contacts?</summary>
