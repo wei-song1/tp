@@ -211,7 +211,7 @@ public class ParserUtil {
         requireNonNull(input);
         int byCount = input.split("by/").length - 1;
         if (byCount > 1) {
-            throw new ParseException("Only one timestamp is allowed in a remark.");
+            throw new ParseException(Remark.MESSAGE_MULTIPLE_TIMESTAMP);
         }
         String[] parts = input.split("by/");
         String text = parts[0].trim();
@@ -224,7 +224,7 @@ public class ParserUtil {
             String regexPattern = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}"; // Expected format: yyyy-MM-dd HH:mm
             // First, validate the structure of the timestamp using regex.
             if (!dateTimeStr.matches(regexPattern)) {
-                throw new ParseException("Timestamp format is invalid. Expected format: yyyy-MM-dd HH:mm");
+                throw new ParseException(Remark.MESSAGE_TIMESTAMP_INVALID_FORMAT);
             }
 
             // Next, parse the string into LocalDateTime and catch any semantic errors (e.g. invalid dates).
@@ -242,7 +242,7 @@ public class ParserUtil {
                 // Will throw exception if invalid date or time
                 ts = Optional.of(LocalDateTime.of(year, month, day, hour, minute));
             } catch (DateTimeException | NumberFormatException e) {
-                throw new ParseException("Timestamp value is invalid. Please enter a real date and time.");
+                throw new ParseException(Remark.MESSAGE_TIMESTAMP_INVALID_DATETIME);
             }
         }
         return new Remark(text, ts);

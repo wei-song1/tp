@@ -22,6 +22,7 @@ import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_QUANTITY_ZERO;
 import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.finclient.logic.commands.CommandTestUtil.INVALID_TIMESTAMP_DESC;
 import static seedu.finclient.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static seedu.finclient.logic.commands.CommandTestUtil.JOB_DESC_BOB;
 import static seedu.finclient.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -250,6 +251,20 @@ public class AddCommandParserTest {
         String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + INVALID_EMPTY_REMARK_DESC;
         assertParseFailure(parser, userInput, Remark.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_remarkWithMultipleTimestamp_failure() {
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + REMARK_DESC_AMY + TIMESTAMP_DESC_AMY + TIMESTAMP_DESC_AMY;
+        assertParseFailure(parser, userInput, Remark.MESSAGE_MULTIPLE_TIMESTAMP);
+    }
+
+    @Test
+    public void parse_remarkWithInvalidDate_failure() {
+        String userInput = NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + REMARK_DESC_AMY + INVALID_TIMESTAMP_DESC;
+        assertParseFailure(parser, userInput, Remark.MESSAGE_TIMESTAMP_INVALID_DATETIME);
     }
 
     @Test

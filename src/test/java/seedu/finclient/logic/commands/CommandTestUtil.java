@@ -98,6 +98,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_EMPTY_REMARK_DESC = " " + PREFIX_REMARK;
     public static final String INVALID_EMPTY_REMARK_WITH_TIMESTAMP_DESC = " " + PREFIX_REMARK + TIMESTAMP_DESC_AMY;
+    public static final String INVALID_TIMESTAMP_DESC = " " + PREFIX_TIMESTAMP + "2025-02-30 14:00";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DUPLICATE_PHONE_DESC = " " + PREFIX_PHONE + "911" + " " + PREFIX_PHONE + "911";
     public static final String INVALID_EXCEED_PHONE_DESC = " " + PREFIX_PHONE + "111" + " " + PREFIX_PHONE + "222"
