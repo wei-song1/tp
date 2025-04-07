@@ -712,9 +712,9 @@ testers are expected to do more *exploratory* testing.
    <br>Expected: The contact "Alice Tan" is added successfully, with details shown in the contact list and an updated status message.
    3. Test case: Use same command given in ii.
    <br>Expected: A duplicate error message is shown, and no new contact is added.
-   4. Test case: ```add n/Bob```
+   4. Test case: `add n/Bob`
    <br>Expected: Error message indicating missing field
-   5. Test case: ```add e/bob@example.com a/Nowhere```
+   5. Test case: `add e/bob@example.com a/Nowhere`
       <br>Expected: Error message indicating missing field
 
 ### Editing a person
