@@ -84,7 +84,7 @@ You can look forward to an efficient and enjoyable experience with FinClient!
    After a few seconds, a window should pop up that looks like the one below. It comes with some sample data already filled in, so you can start exploring right away.
 
 <figure>
-  <img src="images/main_ui.png" alt="main GUI" width="600px">
+  <img src="images/Ui.png" alt="main GUI" width="600px">
   <figcaption align="center"><strong>Figure 1:</strong> Main GUI of FinClient.</figcaption>
 </figure>
 
